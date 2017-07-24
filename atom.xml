@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-24T08:25:56.441Z</updated>
+  <updated>2017-07-24T08:30:36.230Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/07/24/Machine-Learning-Tutorial/"/>
     <id>http://yoursite.com/2017/07/24/Machine-Learning-Tutorial/</id>
     <published>2017-07-24T05:48:31.000Z</published>
-    <updated>2017-07-24T08:25:56.441Z</updated>
+    <updated>2017-07-24T08:30:36.230Z</updated>
     
     <content type="html"><![CDATA[<h1 id="什么是机器学习"><a href="#什么是机器学习" class="headerlink" title="什么是机器学习"></a>什么是机器学习</h1><p>机器学习（Machine Learning）是由一帮计算机科学家们希望让计算机像人类一样思考而延伸出来的一门计算机理论。机器学习最早来自心理和生物科学，科学家们认为人和计算机其实没有什么差别，都是一大批相互连接的信息传递和存储元素所组成的系统。机器学习是一门典型的跨领域科学，其中包含了概率学、统计学等等方面。随着计算机性能的提升和计算机运算速度的升级，机器学习的应用才真正开始融入我们日常的生活当中。而不久的将来，机器学习必将成为人类探索机器世界的关键钥匙。</p>
 <h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>图像识别， AI对话式智慧型家居, 聊天机器人， 股市风险预测…</p>
@@ -70,7 +70,7 @@
 <li><strong>降低维度算法（Reduce Dimension）</strong></li>
 <li><strong>集成算法（Integrated Algorithm）</strong></li>
 </ul>
-<h1 id="神经网络（Neural-Network）"><a href="#神经网络（Neural-Network）" class="headerlink" title="神经网络（Neural Network）"></a>神经网络（Neural Network）</h1><p>基于生物学的神经结构，将神经细胞的电信号传播机制应用到计算机结构中来，通过对信号传导和演变来组成网络架构。人工神经网络中的每一个“神经元”就是一个Neuron，用来以一定的算法改变输入的信号，从而改变传输的信息，达到对环境做出反应的目的。另一方面，通过神经网络产生的反应收到环境的反馈（做的好或不好），这些反馈和目标行为的误差会通过神经网络的反向传递从原先的路径传送回去，沿途中这些反馈信号会反过来刺激Neuron调整相应的参数从而使得下一次正向传递的结果能够更加贴近目标。如此往复便是整个神经网络训练的过程。</p>
+<h1 id="什么是神经网络（Neural-Network）"><a href="#什么是神经网络（Neural-Network）" class="headerlink" title="什么是神经网络（Neural Network）"></a>什么是神经网络（Neural Network）</h1><p>基于生物学的神经结构，将神经细胞的电信号传播机制应用到计算机结构中来，通过对信号传导和演变来组成网络架构。人工神经网络中的每一个“神经元”就是一个Neuron，用来以一定的算法改变输入的信号，从而改变传输的信息，达到对环境做出反应的目的。另一方面，通过神经网络产生的反应收到环境的反馈（做的好或不好），这些反馈和目标行为的误差会通过神经网络的反向传递从原先的路径传送回去，沿途中这些反馈信号会反过来刺激Neuron调整相应的参数从而使得下一次正向传递的结果能够更加贴近目标。如此往复便是整个神经网络训练的过程。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -480,7 +480,7 @@
 <ul>
 <li>新的神经网络重新训练之后就能够具有全新的功能，利用原先的网络优势来拓展生成新的<strong>特征标记</strong>，一定程度上减少了神经网络训练的复杂度。基于先前的图像提取，能够从图中得到事物的<strong>特征信息（Feature Representation）</strong>，再利用新的网络将这些信息进一步转换成表示事物价格的<strong>特征信息</strong>，如此一来神经网络的功能就得以演化了。</li>
 </ul>
-<h2 id="神经网络梯度下降算法（Gradient-Descent）"><a href="#神经网络梯度下降算法（Gradient-Descent）" class="headerlink" title="神经网络梯度下降算法（Gradient Descent）"></a>神经网络梯度下降算法（Gradient Descent）</h2>]]></content>
+]]></content>
     
     <summary type="html">
     
