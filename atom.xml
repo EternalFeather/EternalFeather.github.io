@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-24T05:50:52.482Z</updated>
+  <updated>2017-07-24T05:54:35.800Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/07/24/Machine-Learning-Tutorial/"/>
     <id>http://yoursite.com/2017/07/24/Machine-Learning-Tutorial/</id>
     <published>2017-07-24T05:48:31.000Z</published>
-    <updated>2017-07-24T05:50:52.482Z</updated>
+    <updated>2017-07-24T05:54:35.800Z</updated>
     
     <content type="html"><![CDATA[<h3 id="什么是机器学习"><a href="#什么是机器学习" class="headerlink" title="什么是机器学习"></a>什么是机器学习</h3><p>机器学习是由一帮计算机科学家们希望让计算机像人类一样思考而延伸出来的一门计算机理论。机器学习最早来自心理和生物科学，科学家们认为人和计算机其实没有什么差别，都是一大批相互连接的信息传递和存储元素所组成的系统。机器学习是一门典型的跨领域科学，其中包含了概率学、统计学等等方面。随着计算机性能的提升和计算机运算速度的升级，机器学习的应用才真正开始融入我们日常的生活当中。而不久的将来，机器学习必将成为人类探索机器世界的关键钥匙。</p>
 <h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>图像识别， AI对话式智慧型家居, 聊天机器人， 股市风险预测…</p>
@@ -491,6 +491,12 @@
     
       <category term="Machine Learning" scheme="http://yoursite.com/tags/Machine-Learning/"/>
     
+      <category term="Deep Learning" scheme="http://yoursite.com/tags/Deep-Learning/"/>
+    
+      <category term="Reinforcement Learning" scheme="http://yoursite.com/tags/Reinforcement-Learning/"/>
+    
+      <category term="Algorithm" scheme="http://yoursite.com/tags/Algorithm/"/>
+    
   </entry>
   
   <entry>
@@ -504,6 +510,31 @@
     
     </summary>
     
+    
+  </entry>
+  
+  <entry>
+    <title>Testing Article</title>
+    <link href="http://yoursite.com/2017/07/20/Test/"/>
+    <id>http://yoursite.com/2017/07/20/Test/</id>
+    <published>2017-07-20T08:36:12.000Z</published>
+    <updated>2017-07-20T08:38:21.134Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="H1"><a href="#H1" class="headerlink" title="H1"></a>H1</h1><p>sjgksdljgsdk</p>
+<h2 id="H2"><a href="#H2" class="headerlink" title="H2"></a>H2</h2><h2 id="H3"><a href="#H3" class="headerlink" title="H3"></a>H3</h2><p>dkjfsdjkl</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;H1&quot;&gt;&lt;a href=&quot;#H1&quot; class=&quot;headerlink&quot; title=&quot;H1&quot;&gt;&lt;/a&gt;H1&lt;/h1&gt;&lt;p&gt;sjgksdljgsdk&lt;/p&gt;
+&lt;h2 id=&quot;H2&quot;&gt;&lt;a href=&quot;#H2&quot; class=&quot;headerlink&quot; title=&quot;H
+    
+    </summary>
+    
+    
+      <category term="Testing1" scheme="http://yoursite.com/tags/Testing1/"/>
+    
+      <category term="Testing2" scheme="http://yoursite.com/tags/Testing2/"/>
     
   </entry>
   
@@ -531,31 +562,6 @@
       <category term="Testing2" scheme="http://yoursite.com/tags/Testing2/"/>
     
       <category term="Testing3" scheme="http://yoursite.com/tags/Testing3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Testing Article</title>
-    <link href="http://yoursite.com/2017/07/20/Test/"/>
-    <id>http://yoursite.com/2017/07/20/Test/</id>
-    <published>2017-07-20T08:36:12.000Z</published>
-    <updated>2017-07-20T08:38:21.134Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="H1"><a href="#H1" class="headerlink" title="H1"></a>H1</h1><p>sjgksdljgsdk</p>
-<h2 id="H2"><a href="#H2" class="headerlink" title="H2"></a>H2</h2><h2 id="H3"><a href="#H3" class="headerlink" title="H3"></a>H3</h2><p>dkjfsdjkl</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;H1&quot;&gt;&lt;a href=&quot;#H1&quot; class=&quot;headerlink&quot; title=&quot;H1&quot;&gt;&lt;/a&gt;H1&lt;/h1&gt;&lt;p&gt;sjgksdljgsdk&lt;/p&gt;
-&lt;h2 id=&quot;H2&quot;&gt;&lt;a href=&quot;#H2&quot; class=&quot;headerlink&quot; title=&quot;H
-    
-    </summary>
-    
-    
-      <category term="Testing1" scheme="http://yoursite.com/tags/Testing1/"/>
-    
-      <category term="Testing2" scheme="http://yoursite.com/tags/Testing2/"/>
     
   </entry>
   
