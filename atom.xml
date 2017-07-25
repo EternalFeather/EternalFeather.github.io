@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-25T03:54:27.626Z</updated>
+  <updated>2017-07-25T03:55:50.320Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Unicode</title>
+    <title>Python字符編碼問題</title>
     <link href="http://yoursite.com/2017/07/25/Unicode/"/>
     <id>http://yoursite.com/2017/07/25/Unicode/</id>
     <published>2017-07-25T03:52:58.000Z</published>
-    <updated>2017-07-25T03:54:27.626Z</updated>
+    <updated>2017-07-25T03:55:50.320Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Python-编码问题"><a href="#Python-编码问题" class="headerlink" title="Python 编码问题"></a>Python 编码问题</h1><h1 id="什么是编码"><a href="#什么是编码" class="headerlink" title="什么是编码"></a>什么是编码</h1><p>字符串也是一種數據形態，但是比較特殊的是字符串本身也存在一個編碼的問題，就是如何讓計算機來表示相應的字符並存儲。在編程語言中，我們經常會處理文本編碼之間的轉化問題，因為文本可能存在不同的編碼格式，例如 ASCII、GBK、UTF-8等等。最近在做NN的過程中面臨Corpus的unicode編碼問題，因此需要弄清楚python不同版本對編碼問題的處理策略。</p>
 <h2 id="字符的抽象概念"><a href="#字符的抽象概念" class="headerlink" title="字符的抽象概念"></a>字符的抽象概念</h2><p>看了一些網絡上的介紹，發現我們所謂的字符表示文本中單一的一個符號。然而一個字符不是一個字節，例如 “中” 這個字在文本中是一個基礎字符，但是在計算機中卻不是一個字節。一個字符有許多表示方法，不同的表示方法會使用不同的字節數，這就是所謂的編碼。<strong>字符就是文本中的最小單元</strong>。</p>
@@ -89,11 +89,11 @@
   </entry>
   
   <entry>
-    <title>Ubuntu-sogo</title>
+    <title>Ubuntu16.04如何安裝搜狗（Sogou）輸入法</title>
     <link href="http://yoursite.com/2017/07/25/Ubuntu-sogo/"/>
     <id>http://yoursite.com/2017/07/25/Ubuntu-sogo/</id>
     <published>2017-07-25T03:48:07.000Z</published>
-    <updated>2017-07-25T03:52:37.548Z</updated>
+    <updated>2017-07-25T03:55:33.893Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Ubuntu-16-04-安装sogou输入法"><a href="#Ubuntu-16-04-安装sogou输入法" class="headerlink" title="Ubuntu 16.04 安装sogou输入法"></a>Ubuntu 16.04 安装sogou输入法</h1><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>目前Ubuntu常用的中文输入法有：</p>
 <ul>
