@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Ubuntu-sogo | 指尖の岁月 | 世间点滴，莫忘于心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Linux,Ubuntu 16.04,sogou输入法">
+    <meta name="description" content="Ubuntu 16.04 安装sogou输入法介绍目前Ubuntu常用的中文输入法有：  搜狗拼音： 搜狗出品的面向Linux的输入法。 Fcitx： 这个是Ubuntu系统自带的Linux开源的输入法框架，提供了包括Google PinYin、ShuangPin、SunPinYin、Hong Kong和TaiWan繁体等一系列输入法。  下面主要讲下如何在Ubuntu 16.04上安装搜狗输入法">
+<meta name="keywords" content="Linux,Ubuntu 16.04,sogou输入法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu-sogo">
+<meta property="og:url" content="http://yoursite.com/2017/07/25/Ubuntu-sogo/index.html">
+<meta property="og:site_name" content="指尖の岁月">
+<meta property="og:description" content="Ubuntu 16.04 安装sogou输入法介绍目前Ubuntu常用的中文输入法有：  搜狗拼音： 搜狗出品的面向Linux的输入法。 Fcitx： 这个是Ubuntu系统自带的Linux开源的输入法框架，提供了包括Google PinYin、ShuangPin、SunPinYin、Hong Kong和TaiWan繁体等一系列输入法。  下面主要讲下如何在Ubuntu 16.04上安装搜狗输入法">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.imgur.com/G7PoJFF.png">
+<meta property="og:updated_time" content="2017-07-25T03:51:07.169Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu-sogo">
+<meta name="twitter:description" content="Ubuntu 16.04 安装sogou输入法介绍目前Ubuntu常用的中文输入法有：  搜狗拼音： 搜狗出品的面向Linux的输入法。 Fcitx： 这个是Ubuntu系统自带的Linux开源的输入法框架，提供了包括Google PinYin、ShuangPin、SunPinYin、Hong Kong和TaiWan繁体等一系列输入法。  下面主要讲下如何在Ubuntu 16.04上安装搜狗输入法">
+<meta name="twitter:image" content="https://i.imgur.com/G7PoJFF.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖の岁月" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/new3.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/one2.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Eternal</h5>
+          <a href="mailto:617844662@qq.com" title="617844662@qq.com" class="mail">617844662@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/EternalFeather" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://EternalFeather.github.io/AboutMe/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                About Me
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Ubuntu-sogo</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Ubuntu-sogo</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-07-25T03:48:07.000Z" itemprop="datePublished" class="page-time">
+  2017-07-25
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Ubuntu-16-04-安装sogou输入法"><span class="post-toc-number">1.</span> <span class="post-toc-text">Ubuntu 16.04 安装sogou输入法</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#介绍"><span class="post-toc-number">2.</span> <span class="post-toc-text">介绍</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安裝過程"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">安裝過程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Keywords"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Keywords</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Ubuntu-sogo"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Ubuntu-sogo</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-07-25 11:48:07" datetime="2017-07-25T03:48:07.000Z"  itemprop="datePublished">2017-07-25</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="Ubuntu-16-04-安装sogou输入法"><a href="#Ubuntu-16-04-安装sogou输入法" class="headerlink" title="Ubuntu 16.04 安装sogou输入法"></a>Ubuntu 16.04 安装sogou输入法</h1><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>目前Ubuntu常用的中文输入法有：</p>
+<ul>
+<li>搜狗拼音： 搜狗出品的面向Linux的输入法。</li>
+<li>Fcitx： 这个是Ubuntu系统自带的Linux开源的输入法框架，提供了包括Google PinYin、ShuangPin、SunPinYin、Hong Kong和TaiWan繁体等一系列输入法。</li>
+</ul>
+<p>下面主要讲下如何在Ubuntu 16.04上安装搜狗输入法。</p>
+<h2 id="安裝過程"><a href="#安裝過程" class="headerlink" title="安裝過程"></a>安裝過程</h2><p>下載安裝檔之前首先需要確認本機的Ubuntu系統是什麼樣的編碼位元。利用“uname -a”指令查詢系統資訊。</p>
+<p>下載安裝包，sogou提供了32位和64位版本:<a href="http://pinyin.sogou.com/linux/?r=pinyin" target="_blank" rel="external">http://pinyin.sogou.com/linux/?r=pinyin</a></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/G7PoJFF.png" alt="Sogou" title="">
+                </div>
+                <div class="image-caption">Sogou</div>
+            </figure>
+<p>下載完成后可以直接雙擊下載的deb包裝或執行指令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo dpkg -i sogoupinyin*.deb</div><div class="line">$ sudo apt -f install</div></pre></td></tr></table></figure></p>
+<ul>
+<li><strong>第一行指令會提示sogou的一些鏈接錯誤，需用第二條指令解決。</strong></li>
+</ul>
+<p>安裝完成之後重啟系統。</p>
+<p>再次開啟系統后就能夠在輸入法設置菜單看到Sogou的選項了。</p>
+<ul>
+<li><strong>Tips</strong>：有些版本會出現搜狗與Fcitx的衝突問題，但是本人沒有遇到這個問題，但是仍然提供一個評價最佳的解決策略：(移除其中一種輸入法架構)<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt remove fcitx*</div><div class="line">$ sudo apt autoremove</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Keywords"><a href="#Keywords" class="headerlink" title="Keywords"></a>Keywords</h2><p>Tags: <code>Linux</code> <code>Ubuntu 16.04</code> <code>sogou输入法</code> </p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-07-25T03:51:07.169Z" itemprop="dateUpdated">2017-07-25 11:51:07</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/07/25/Ubuntu-sogo/" target="_blank" rel="external">http://yoursite.com/2017/07/25/Ubuntu-sogo/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/one2.jpg" alt="Eternal">
+            Eternal
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu-16-04/">Ubuntu 16.04</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sogou输入法/">sogou输入法</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/07/25/Ubuntu-sogo/&title=《Ubuntu-sogo》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/07/25/Ubuntu-sogo/&title=《Ubuntu-sogo》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/07/25/Ubuntu-sogo/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ubuntu-sogo》 — 指尖の岁月&url=http://yoursite.com/2017/07/25/Ubuntu-sogo/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/07/25/Ubuntu-sogo/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/07/24/Machine-Learning-Tutorial/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">机器学习（Machine Learning）简单学</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'eternalfeather';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢您~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Eternal &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/07/25/Ubuntu-sogo/&title=《Ubuntu-sogo》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/07/25/Ubuntu-sogo/&title=《Ubuntu-sogo》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/07/25/Ubuntu-sogo/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ubuntu-sogo》 — 指尖の岁月&url=http://yoursite.com/2017/07/25/Ubuntu-sogo/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/07/25/Ubuntu-sogo/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMklEQVR42u3a0YqDQAxG4b7/S3dhrxZEPX+iC5M5cyVi2/kshEySzwev7+863vm7jvfPnr/+nuMzjy0ZMmQsy/heLr7p/jq+MvK8DBky9mFcB1ny1Z2AS373Zs8yZMiQ8XLAPaPKkCFDRo3RCdM8lMuQIUNG7RDLr58qyb1yFpchQ8aCjLQx8J/XL/Y3ZMiQsQijc+AkpbRnm5qn+5EhQ8ZoBi+rkUNmvzxHEkR0FpchQ8YgBg95JCurNSBJIoj+BxkyZAxl9EdIeejk92sjGjJkyJjN4GliGhw7w2c8xMuQIWM2Iw18aXGtE2SDVylDhoyNGWS7nR4ibz8EZ3EZMmSMY6RDFRxWSwd5MyDOcGXIkLE4I03F0hJb+jrIK4iHLWTIkLEso9+q7G+ID3mcXsuQIWMbRpre8QQuHeYgCeJpY0CGDBnjGKRYRg6QvOifvpoHZkZkyJCxOCMdnrgG8JZkLbjfpIYyZMgYzeB9g2c3wZ+5CcEyZMjYktEpw6VBlhf1blJDGTJkDGXUksK0HEbambUGqgwZMnZgpB9IS/x8bKJzkJYhQ8ZsRtqM7PNq4xrBkVuGDBnjGN9wpaRaOzNNJWXIkDGbwVe6CV5ESwc7igAZMmQszuBBlh9ZOyNiPODKkCFjNwYpcqUhkrcHeNC/GbmQIUOGDFzi5yGbH49vdiJDhgwZeEOdMYviVIgMGTK2YXQ2lCaCaRMUjXfIkCFjNOO9xkCnMFcr9smQIWMc4wfBvZmvOi6R7wAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Welcome back!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂) Hello!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
