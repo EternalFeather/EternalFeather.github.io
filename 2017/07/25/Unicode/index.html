@@ -20,23 +20,23 @@
     
     
     <meta name="keywords" content="Unicode">
-    <meta name="description" content="Python 编码问题什么是编码字符串也是一種數據形態，但是比較特殊的是字符串本身也存在一個編碼的問題，就是如何讓計算機來表示相應的字符並存儲。在編程語言中，我們經常會處理文本編碼之間的轉化問題，因為文本可能存在不同的編碼格式，例如 ASCII、GBK、UTF-8等等。最近在做NN的過程中面臨Corpus的unicode編碼問題，因此需要弄清楚python不同版本對編碼問題的處理策略。 字符的抽象">
+    <meta name="description" content="什么是编码字符串也是一種數據形態，但是比較特殊的是字符串本身也存在一個編碼的問題，就是如何讓計算機來表示相應的字符並存儲。在編程語言中，我們經常會處理文本編碼之間的轉化問題，因為文本可能存在不同的編碼格式，例如 ASCII、GBK、UTF-8等等。最近在做NN的過程中面臨Corpus的unicode編碼問題，因此需要弄清楚python不同版本對編碼問題的處理策略。 字符的抽象概念看了一些網絡上的介">
 <meta name="keywords" content="Unicode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python字符編碼問題">
 <meta property="og:url" content="http://yoursite.com/2017/07/25/Unicode/index.html">
 <meta property="og:site_name" content="指尖の岁月">
-<meta property="og:description" content="Python 编码问题什么是编码字符串也是一種數據形態，但是比較特殊的是字符串本身也存在一個編碼的問題，就是如何讓計算機來表示相應的字符並存儲。在編程語言中，我們經常會處理文本編碼之間的轉化問題，因為文本可能存在不同的編碼格式，例如 ASCII、GBK、UTF-8等等。最近在做NN的過程中面臨Corpus的unicode編碼問題，因此需要弄清楚python不同版本對編碼問題的處理策略。 字符的抽象">
+<meta property="og:description" content="什么是编码字符串也是一種數據形態，但是比較特殊的是字符串本身也存在一個編碼的問題，就是如何讓計算機來表示相應的字符並存儲。在編程語言中，我們經常會處理文本編碼之間的轉化問題，因為文本可能存在不同的編碼格式，例如 ASCII、GBK、UTF-8等等。最近在做NN的過程中面臨Corpus的unicode編碼問題，因此需要弄清楚python不同版本對編碼問題的處理策略。 字符的抽象概念看了一些網絡上的介">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.imgur.com/ctGhV9P.png">
 <meta property="og:image" content="https://i.imgur.com/8ou3vVE.png">
 <meta property="og:image" content="https://i.imgur.com/2ji3C8E.png">
 <meta property="og:image" content="https://i.imgur.com/Y2rtdQM.png">
 <meta property="og:image" content="https://i.imgur.com/RZD8Ptn.png">
-<meta property="og:updated_time" content="2017-07-25T03:55:50.320Z">
+<meta property="og:updated_time" content="2017-07-25T04:08:25.789Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python字符編碼問題">
-<meta name="twitter:description" content="Python 编码问题什么是编码字符串也是一種數據形態，但是比較特殊的是字符串本身也存在一個編碼的問題，就是如何讓計算機來表示相應的字符並存儲。在編程語言中，我們經常會處理文本編碼之間的轉化問題，因為文本可能存在不同的編碼格式，例如 ASCII、GBK、UTF-8等等。最近在做NN的過程中面臨Corpus的unicode編碼問題，因此需要弄清楚python不同版本對編碼問題的處理策略。 字符的抽象">
+<meta name="twitter:description" content="什么是编码字符串也是一種數據形態，但是比較特殊的是字符串本身也存在一個編碼的問題，就是如何讓計算機來表示相應的字符並存儲。在編程語言中，我們經常會處理文本編碼之間的轉化問題，因為文本可能存在不同的編碼格式，例如 ASCII、GBK、UTF-8等等。最近在做NN的過程中面臨Corpus的unicode編碼問題，因此需要弄清楚python不同版本對編碼問題的處理策略。 字符的抽象概念看了一些網絡上的介">
 <meta name="twitter:image" content="https://i.imgur.com/ctGhV9P.png">
     
         <link rel="alternate" type="application/atom+xml" title="指尖の岁月" href="/atom.xml">
@@ -159,7 +159,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Python-编码问题"><span class="post-toc-number">1.</span> <span class="post-toc-text">Python 编码问题</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#什么是编码"><span class="post-toc-number">2.</span> <span class="post-toc-text">什么是编码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#字符的抽象概念"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">字符的抽象概念</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#編碼的方式"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">編碼的方式</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Python2-vs-Python3"><span class="post-toc-number">3.</span> <span class="post-toc-text">Python2 vs Python3</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Keywords"><span class="post-toc-number">4.</span> <span class="post-toc-text">Keywords</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#什么是编码"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是编码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#字符的抽象概念"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">字符的抽象概念</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#編碼的方式"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">編碼的方式</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Python2-vs-Python3"><span class="post-toc-number">2.</span> <span class="post-toc-text">Python2 vs Python3</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Keywords"><span class="post-toc-number">3.</span> <span class="post-toc-text">Keywords</span></a></li></ol>
         </nav>
     </aside>
     
@@ -178,7 +178,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h1 id="Python-编码问题"><a href="#Python-编码问题" class="headerlink" title="Python 编码问题"></a>Python 编码问题</h1><h1 id="什么是编码"><a href="#什么是编码" class="headerlink" title="什么是编码"></a>什么是编码</h1><p>字符串也是一種數據形態，但是比較特殊的是字符串本身也存在一個編碼的問題，就是如何讓計算機來表示相應的字符並存儲。在編程語言中，我們經常會處理文本編碼之間的轉化問題，因為文本可能存在不同的編碼格式，例如 ASCII、GBK、UTF-8等等。最近在做NN的過程中面臨Corpus的unicode編碼問題，因此需要弄清楚python不同版本對編碼問題的處理策略。</p>
+            <h1 id="什么是编码"><a href="#什么是编码" class="headerlink" title="什么是编码"></a>什么是编码</h1><p>字符串也是一種數據形態，但是比較特殊的是字符串本身也存在一個編碼的問題，就是如何讓計算機來表示相應的字符並存儲。在編程語言中，我們經常會處理文本編碼之間的轉化問題，因為文本可能存在不同的編碼格式，例如 ASCII、GBK、UTF-8等等。最近在做NN的過程中面臨Corpus的unicode編碼問題，因此需要弄清楚python不同版本對編碼問題的處理策略。</p>
 <h2 id="字符的抽象概念"><a href="#字符的抽象概念" class="headerlink" title="字符的抽象概念"></a>字符的抽象概念</h2><p>看了一些網絡上的介紹，發現我們所謂的字符表示文本中單一的一個符號。然而一個字符不是一個字節，例如 “中” 這個字在文本中是一個基礎字符，但是在計算機中卻不是一個字節。一個字符有許多表示方法，不同的表示方法會使用不同的字節數，這就是所謂的編碼。<strong>字符就是文本中的最小單元</strong>。</p>
 <h2 id="編碼的方式"><a href="#編碼的方式" class="headerlink" title="編碼的方式"></a>編碼的方式</h2><p>Unicode是一種編碼規範，用來統一表示世界上的各種語言。其作為Python語言中的一種中間轉換碼，如果要對不同編碼格式的文本進行轉換，就必須對字符串解碼（decode）成Unicode，再從Unicode編碼（encode）成另一種編碼格式：</p>
 <p><code>decode</code> : 作用是將編碼的字符串轉換成Unicode。<br><code>encode</code> : 作用是將Unicode傳換成其他編碼格式。</p>
@@ -238,7 +238,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-07-25T03:55:50.320Z" itemprop="dateUpdated">2017-07-25 11:55:50</time>
+    最后更新时间：<time datetime="2017-07-25T04:08:25.789Z" itemprop="dateUpdated">2017-07-25 12:08:25</time>
 </span><br>
 
 

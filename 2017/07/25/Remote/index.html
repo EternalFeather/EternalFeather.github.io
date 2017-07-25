@@ -19,23 +19,23 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="Ubuntu,Remote Desktop,xrdp`">
-    <meta name="description" content="Ubuntu 遠端桌面設置IntroductionUbuntu上的遠端鏈接比起windows系統自帶的Remote Desktop需要配置的條件更多。網上也有許多不同的版本，本人嘗試之後發現了一些常見的問題，特在此總結可行的一般流程與常見問題的解決方式。 System ConfigUbuntu16.04 Windows 10 Steps1、如果需要從Ubuntu連接到Windows系統，則可以安裝">
-<meta name="keywords" content="Ubuntu,Remote Desktop,xrdp`">
+    <meta name="keywords" content="Ubuntu,Remote Desktop,xrdp">
+    <meta name="description" content="IntroductionUbuntu上的遠端鏈接比起windows系統自帶的Remote Desktop需要配置的條件更多。網上也有許多不同的版本，本人嘗試之後發現了一些常見的問題，特在此總結可行的一般流程與常見問題的解決方式。 System ConfigUbuntu16.04 Windows 10 Steps1、如果需要從Ubuntu連接到Windows系統，則可以安裝Desktop  sudo">
+<meta name="keywords" content="Ubuntu,Remote Desktop,xrdp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu16.04遠端桌面（remote desktop）設置">
 <meta property="og:url" content="http://yoursite.com/2017/07/25/Remote/index.html">
 <meta property="og:site_name" content="指尖の岁月">
-<meta property="og:description" content="Ubuntu 遠端桌面設置IntroductionUbuntu上的遠端鏈接比起windows系統自帶的Remote Desktop需要配置的條件更多。網上也有許多不同的版本，本人嘗試之後發現了一些常見的問題，特在此總結可行的一般流程與常見問題的解決方式。 System ConfigUbuntu16.04 Windows 10 Steps1、如果需要從Ubuntu連接到Windows系統，則可以安裝">
+<meta property="og:description" content="IntroductionUbuntu上的遠端鏈接比起windows系統自帶的Remote Desktop需要配置的條件更多。網上也有許多不同的版本，本人嘗試之後發現了一些常見的問題，特在此總結可行的一般流程與常見問題的解決方式。 System ConfigUbuntu16.04 Windows 10 Steps1、如果需要從Ubuntu連接到Windows系統，則可以安裝Desktop  sudo">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.imgur.com/1tOoyic.png">
 <meta property="og:image" content="https://i.imgur.com/0BgAP4w.png">
 <meta property="og:image" content="https://i.imgur.com/PBsp6Sc.png">
 <meta property="og:image" content="https://i.imgur.com/a1PmzMs.png">
-<meta property="og:updated_time" content="2017-07-25T04:01:22.551Z">
+<meta property="og:updated_time" content="2017-07-25T04:08:02.329Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu16.04遠端桌面（remote desktop）設置">
-<meta name="twitter:description" content="Ubuntu 遠端桌面設置IntroductionUbuntu上的遠端鏈接比起windows系統自帶的Remote Desktop需要配置的條件更多。網上也有許多不同的版本，本人嘗試之後發現了一些常見的問題，特在此總結可行的一般流程與常見問題的解決方式。 System ConfigUbuntu16.04 Windows 10 Steps1、如果需要從Ubuntu連接到Windows系統，則可以安裝">
+<meta name="twitter:description" content="IntroductionUbuntu上的遠端鏈接比起windows系統自帶的Remote Desktop需要配置的條件更多。網上也有許多不同的版本，本人嘗試之後發現了一些常見的問題，特在此總結可行的一般流程與常見問題的解決方式。 System ConfigUbuntu16.04 Windows 10 Steps1、如果需要從Ubuntu連接到Windows系統，則可以安裝Desktop  sudo">
 <meta name="twitter:image" content="https://i.imgur.com/1tOoyic.png">
     
         <link rel="alternate" type="application/atom+xml" title="指尖の岁月" href="/atom.xml">
@@ -158,7 +158,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Ubuntu-遠端桌面設置"><span class="post-toc-number">1.</span> <span class="post-toc-text">Ubuntu 遠端桌面設置</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Introduction"><span class="post-toc-number">2.</span> <span class="post-toc-text">Introduction</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#System-Config"><span class="post-toc-number">3.</span> <span class="post-toc-text">System Config</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Steps"><span class="post-toc-number">4.</span> <span class="post-toc-text">Steps</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Common-Problem"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">Common Problem</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Keywords"><span class="post-toc-number">5.</span> <span class="post-toc-text">Keywords</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Introduction"><span class="post-toc-number">1.</span> <span class="post-toc-text">Introduction</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#System-Config"><span class="post-toc-number">2.</span> <span class="post-toc-text">System Config</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Steps"><span class="post-toc-number">3.</span> <span class="post-toc-text">Steps</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Common-Problem"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">Common Problem</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Keywords"><span class="post-toc-number">4.</span> <span class="post-toc-text">Keywords</span></a></li></ol>
         </nav>
     </aside>
     
@@ -177,7 +177,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h1 id="Ubuntu-遠端桌面設置"><a href="#Ubuntu-遠端桌面設置" class="headerlink" title="Ubuntu 遠端桌面設置"></a>Ubuntu 遠端桌面設置</h1><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Ubuntu上的遠端鏈接比起windows系統自帶的Remote Desktop需要配置的條件更多。網上也有許多不同的版本，本人嘗試之後發現了一些常見的問題，特在此總結可行的一般流程與常見問題的解決方式。</p>
+            <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Ubuntu上的遠端鏈接比起windows系統自帶的Remote Desktop需要配置的條件更多。網上也有許多不同的版本，本人嘗試之後發現了一些常見的問題，特在此總結可行的一般流程與常見問題的解決方式。</p>
 <h1 id="System-Config"><a href="#System-Config" class="headerlink" title="System Config"></a>System Config</h1><p><code>Ubuntu16.04</code> <code>Windows 10</code></p>
 <h1 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h1><p>1、如果需要從Ubuntu連接到Windows系統，則可以安裝Desktop</p>
 <ul>
@@ -288,7 +288,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-07-25T04:01:22.551Z" itemprop="dateUpdated">2017-07-25 12:01:22</time>
+    最后更新时间：<time datetime="2017-07-25T04:08:02.329Z" itemprop="dateUpdated">2017-07-25 12:08:02</time>
 </span><br>
 
 
@@ -313,7 +313,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Remote-Desktop/">Remote Desktop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xrdp/">xrdp`</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Remote-Desktop/">Remote Desktop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xrdp/">xrdp</a></li></ul>
 
 
             
@@ -368,7 +368,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/07/25/RNN/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">利用LSTM模型进行手写识别</h4>
+      </a>
+    </div>
   
 
   

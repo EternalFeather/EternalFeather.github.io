@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>利用LSTM模型进行手写识别 | 指尖の岁月 | 世间点滴，莫忘于心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Machine Learning,LSTM,Tensorflow">
+    <meta name="description" content="Recurrent Neural Netword(RNN) Using TensorflowPre-processingDatasetsMNIST database of handwritten digits. Click hereInput data: Image shape(28*28)Output label: 0~9  Parameters Data_Size Input_dimensio">
+<meta name="keywords" content="Machine Learning,LSTM,Tensorflow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用LSTM模型进行手写识别">
+<meta property="og:url" content="http://yoursite.com/2017/07/25/RNN/index.html">
+<meta property="og:site_name" content="指尖の岁月">
+<meta property="og:description" content="Recurrent Neural Netword(RNN) Using TensorflowPre-processingDatasetsMNIST database of handwritten digits. Click hereInput data: Image shape(28*28)Output label: 0~9  Parameters Data_Size Input_dimensio">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/42741-b9a16a53d58ca2b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://json0071.gitbooks.io/deeplearning/content/LSTM.png">
+<meta property="og:updated_time" content="2017-07-25T04:08:11.421Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用LSTM模型进行手写识别">
+<meta name="twitter:description" content="Recurrent Neural Netword(RNN) Using TensorflowPre-processingDatasetsMNIST database of handwritten digits. Click hereInput data: Image shape(28*28)Output label: 0~9  Parameters Data_Size Input_dimensio">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/42741-b9a16a53d58ca2b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖の岁月" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/new3.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/one2.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Eternal</h5>
+          <a href="mailto:617844662@qq.com" title="617844662@qq.com" class="mail">617844662@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/EternalFeather" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://EternalFeather.github.io/AboutMe/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                About Me
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">利用LSTM模型进行手写识别</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">利用LSTM模型进行手写识别</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-07-25T04:03:41.000Z" itemprop="datePublished" class="page-time">
+  2017-07-25
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Recurrent-Neural-Netword-RNN-Using-Tensorflow"><span class="post-toc-number">1.</span> <span class="post-toc-text">Recurrent Neural Netword(RNN) Using Tensorflow</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Pre-processing"><span class="post-toc-number">2.</span> <span class="post-toc-text">Pre-processing</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Datasets"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Datasets</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Parameters"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Parameters</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Requirement"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Requirement</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Model-RNN-LSTM"><span class="post-toc-number">3.</span> <span class="post-toc-text">Model(RNN + LSTM)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Usage"><span class="post-toc-number">3.0.1.</span> <span class="post-toc-text">Usage</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Reference"><span class="post-toc-number">4.</span> <span class="post-toc-text">Reference</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Challenges"><span class="post-toc-number">5.</span> <span class="post-toc-text">Challenges</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Keywords"><span class="post-toc-number">6.</span> <span class="post-toc-text">Keywords</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-RNN"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">利用LSTM模型进行手写识别</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-07-25 12:03:41" datetime="2017-07-25T04:03:41.000Z"  itemprop="datePublished">2017-07-25</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="Recurrent-Neural-Netword-RNN-Using-Tensorflow"><a href="#Recurrent-Neural-Netword-RNN-Using-Tensorflow" class="headerlink" title="Recurrent Neural Netword(RNN) Using Tensorflow"></a>Recurrent Neural Netword(RNN) Using Tensorflow</h1><h1 id="Pre-processing"><a href="#Pre-processing" class="headerlink" title="Pre-processing"></a>Pre-processing</h1><h2 id="Datasets"><a href="#Datasets" class="headerlink" title="Datasets"></a>Datasets</h2><p>MNIST database of handwritten digits. <a href="http://yann.lecun.com/exdb/mnist/" target="_blank" rel="external">Click here</a><br>Input data: Image shape(28*28)<br>Output label: 0~9 </p>
+<h2 id="Parameters"><a href="#Parameters" class="headerlink" title="Parameters"></a>Parameters</h2><ul>
+<li>Data_Size<ul>
+<li><code>Input_dimension</code>: Dimension of each image</li>
+<li><code>Output_dimension</code>: Dimension of predicted label</li>
+<li><code>Classes</code>: The number of different outputs</li>
+</ul>
+</li>
+<li>Model_Parameter<ul>
+<li><code>Training_iter</code>: The number of iterations for training</li>
+<li><code>Batch_size</code>: The length of inputeach epoch</li>
+</ul>
+</li>
+</ul>
+<h2 id="Requirement"><a href="#Requirement" class="headerlink" title="Requirement"></a>Requirement</h2><ul>
+<li><code>Python 2.7</code></li>
+<li><code>Tensorflow 0.12.1</code></li>
+</ul>
+<h1 id="Model-RNN-LSTM"><a href="#Model-RNN-LSTM" class="headerlink" title="Model(RNN + LSTM)"></a>Model(RNN + LSTM)</h1><p>We use a Recurrent Neural Network with <a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="external">LSTM</a> Cell to implement this model.</p>
+<ul>
+<li>LSTM (Long Short Term Memory):</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/42741-b9a16a53d58ca2b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="LSTM_MODEL" title="">
+                </div>
+                <div class="image-caption">LSTM_MODEL</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://json0071.gitbooks.io/deeplearning/content/LSTM.png" alt="LSTM" title="">
+                </div>
+                <div class="image-caption">LSTM</div>
+            </figure>
+<p>LSTM Composed of three gates which called INPUT_GATE, FORGET_GATE and OUTPUT_GATE.</p>
+<p>More information about how to implement LSTM Model is <a href="https://www.tensorflow.org/tutorials/recurrent" target="_blank" rel="external">here</a>.</p>
+<ul>
+<li><strong>Initialize Step</strong></li>
+</ul>
+<p>First we should initialize the placeholder and weights of our neural network.<br><code>placeholder</code>: just like the <strong>x</strong> of the function:<br>$$<br>f(x) = x^2<br>$$<br><code>weights</code>: the weight for converting input data to output label.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">x = tf.placeholder(&quot;float&quot;, [None, n_steps, n_input])</div><div class="line">y = tf.placeholder(&quot;float&quot;, [None, n_classes])</div><div class="line"></div><div class="line">weights = &#123;</div><div class="line">    &apos;out&apos;: tf.Variable(tf.random_normal([n_hidden, n_classes]))</div><div class="line">&#125;</div><div class="line">biases = &#123;</div><div class="line">    &apos;out&apos;: tf.Variable(tf.random_normal([n_classes]))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>Training Step</strong></li>
+</ul>
+<p><strong>First</strong> we define a RNN_Model function.<br>Using linear relationship to combine the output parameters.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">def RNN_Model(x, weights, biases):</div><div class="line">    lstm_cell = tf.nn.rnn_cell.BasicLSTMCell(n_hidden, forget_bias = 1.0)</div><div class="line">    output, states = tf.nn.rnn(lstm_cell, x, dtype = tf.float32)</div><div class="line">    return tf.matmul(output[-1], weights[&apos;out&apos;]) + biases[&apos;out&apos;]</div></pre></td></tr></table></figure>
+<p><strong>Second</strong> we have to define the loss function and optmizer of our model.<br><code>loss fuction</code>: softmax_cross_entropy<br><code>optimizer</code>: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">prediction = RNN_Model(x, weights, biases)</div><div class="line">result = tf.nn.softmax(prediction)</div><div class="line">loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits = prediction, labels = y))</div><div class="line">optimizer = tf.train.AdamOptimizer(learning_rate = learning_rate).minimize(loss)</div></pre></td></tr></table></figure>
+<p><strong>Third</strong> in order to evaluate the efficiency of this model, we define the function to calculate accuracy.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">correct_prediction = tf.equal(tf.argmax(prediction, 1), tf.argmax(y, 1))</div><div class="line">accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))</div></pre></td></tr></table></figure>
+<p><strong>Finally</strong> we can start training after all the initialization.</p>
+<ul>
+<li>We can use session to run our tensorflow function.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">init = tf.global_variables_initializer()</div><div class="line"></div><div class="line">with tf.Session() as sess:</div><div class="line">    sess.run(init)</div><div class="line">    while &quot;./epoch&quot; &lt; training_iters</div><div class="line">        batch_x, batch_y = mnist.train.next_batch(batch_size)</div><div class="line">        batch_x = batch_x.reshape((batch_size, n_steps, n_input))</div><div class="line">        sess.run(optimizer, feed_dict = &#123;x: batch_x, y: batch_y&#125;</div><div class="line">        if &quot;./batch_size&quot;:</div><div class="line">            acc = sess.run(accuracy, feed_dict = &#123;x: batch_x, y: batch_y&#125;)</div><div class="line">            los = sess.run(loss, feed_dict = &#123;x: batch_x, y: batch_y&#125;)</div></pre></td></tr></table></figure>
+<p><strong>Tips</strong>: “./“ represent the parameters defined by user own.</p>
+<ul>
+<li><strong>Testing Step</strong></li>
+</ul>
+<p>After training we get a weights in the tensorflow session which can be used to predict our test data.</p>
+<p><strong>First</strong> generate the testing dataset from mnist generator.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">test_data = mnist.test.images[:&quot;./test_length&quot;].reshape(-1, n_steps, n_input)</div><div class="line">res = sess.run(result, feed_dict = &#123;x: test_data&#125;)</div><div class="line">predict_label = sess.run(tf.argmax(res, 1))</div></pre></td></tr></table></figure>
+<p><strong>Finally</strong> because tensorflow mnist test dataset have its own ground-truth. So we can estimate if our “predict_label” is correct. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">test_label = mnist.test.labels[:&quot;./test_lenght&quot;]</div><div class="line">sess.run(accuracy, feed_dict = &#123;x: predict_label, y: test_label&#125;)</div></pre></td></tr></table></figure>
+<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><ol>
+<li><p>Install tensorflow.</p>
+<ul>
+<li>If we will run our model on GPU we have to install cuda and cuDNN.<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install tensorflow(-gpu)==0.12.1</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Import tensorflow package.</p>
+</li>
+<li>Import tensorflow mnist dataset and read the dataset as a generator.</li>
+<li>Run our model<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python &quot;./model_name&quot;.py</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a href="https://github.com/aymericdamien/TensorFlow-Examples/" target="_blank" rel="external">Googel Tensorflow Example</a></li>
+</ul>
+<h1 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h1><p>In this experiment we use a simple RNN(LSTM) model to predict the handwritten digits which also catch a good consequence in CNN.<br>RNN model is good for using in NLP processing. But how to explore the most useful <strong>determines</strong> whether our model can get an excellent result or not.</p>
+<h1 id="Keywords"><a href="#Keywords" class="headerlink" title="Keywords"></a>Keywords</h1><p>Tags: <code>Machine Learning</code> <code>RNN</code> <code>LSTM</code> <code>Tensorflow</code></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-07-25T04:08:11.421Z" itemprop="dateUpdated">2017-07-25 12:08:11</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/07/25/RNN/" target="_blank" rel="external">http://yoursite.com/2017/07/25/RNN/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/one2.jpg" alt="Eternal">
+            Eternal
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LSTM/">LSTM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tensorflow/">Tensorflow</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/07/25/RNN/&title=《利用LSTM模型进行手写识别》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/07/25/RNN/&title=《利用LSTM模型进行手写识别》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/07/25/RNN/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《利用LSTM模型进行手写识别》 — 指尖の岁月&url=http://yoursite.com/2017/07/25/RNN/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/07/25/RNN/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/07/25/Remote/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Ubuntu16.04遠端桌面（remote desktop）設置</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'eternalfeather';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢您~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Eternal &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/07/25/RNN/&title=《利用LSTM模型进行手写识别》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/07/25/RNN/&title=《利用LSTM模型进行手写识别》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/07/25/RNN/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《利用LSTM模型进行手写识别》 — 指尖の岁月&url=http://yoursite.com/2017/07/25/RNN/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/07/25/RNN/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABw0lEQVR42u3aQW7DMAwEwPz/0ynQU4EkzpKUZRcYnwKkUkc5EOTKj0f8PH+fv59fn3zV67eLH1xc3DH3efh82jr5x73DfPkhcHFxN3KT7ZJVSbHLixouLu79ub2CdXwMXFzc/85Ntvu0atIk4eLiXsWtNiWT7OJ4/2WzGi4u7oDbC0zXfj4938XFxV10K1G9Mkm+zYvXm1W4uLhbuJP2pTy0BNUpWouLi3spt1fOeh1LHrXg4uLu5BYWFC9ikwMX4hhcXNyTucejSD6iTC5L8mEJFxf3Wu5o00F4GgUiuLi427nVkaZ3gVoNX3BxcXdyq4NNPrSs3R8XF3cntxdY5I1RXtSiVzRwcXE3cidlqzzADN6zwsXF3cOtRh7HR+rFqQkIFxf3Wm5SwqqvXCSNUTNGwcXF3c7ttSDVpicPZHFxcfdzq61GOdQovoQRpby4uLgncCelqtegVP/yTYqDi4t7MrdX+SbxR/7yBy4u7rXcVSNKr90pHwYXF3cjt4roNUB50fyS3ODi4t6SW407J2ErLi7unbnVMLT6QywuZLi4uGNu3rhUg85q2Fq488HFxT2N27uVrR4gH3iSPXFxcU/j/gDszZWM8qyDEwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Welcome back!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂) Hello!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-25T04:01:22.551Z</updated>
+  <updated>2017-07-25T04:08:11.421Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,13 +16,121 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>利用LSTM模型进行手写识别</title>
+    <link href="http://yoursite.com/2017/07/25/RNN/"/>
+    <id>http://yoursite.com/2017/07/25/RNN/</id>
+    <published>2017-07-25T04:03:41.000Z</published>
+    <updated>2017-07-25T04:08:11.421Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Recurrent-Neural-Netword-RNN-Using-Tensorflow"><a href="#Recurrent-Neural-Netword-RNN-Using-Tensorflow" class="headerlink" title="Recurrent Neural Netword(RNN) Using Tensorflow"></a>Recurrent Neural Netword(RNN) Using Tensorflow</h1><h1 id="Pre-processing"><a href="#Pre-processing" class="headerlink" title="Pre-processing"></a>Pre-processing</h1><h2 id="Datasets"><a href="#Datasets" class="headerlink" title="Datasets"></a>Datasets</h2><p>MNIST database of handwritten digits. <a href="http://yann.lecun.com/exdb/mnist/" target="_blank" rel="external">Click here</a><br>Input data: Image shape(28*28)<br>Output label: 0~9 </p>
+<h2 id="Parameters"><a href="#Parameters" class="headerlink" title="Parameters"></a>Parameters</h2><ul>
+<li>Data_Size<ul>
+<li><code>Input_dimension</code>: Dimension of each image</li>
+<li><code>Output_dimension</code>: Dimension of predicted label</li>
+<li><code>Classes</code>: The number of different outputs</li>
+</ul>
+</li>
+<li>Model_Parameter<ul>
+<li><code>Training_iter</code>: The number of iterations for training</li>
+<li><code>Batch_size</code>: The length of inputeach epoch</li>
+</ul>
+</li>
+</ul>
+<h2 id="Requirement"><a href="#Requirement" class="headerlink" title="Requirement"></a>Requirement</h2><ul>
+<li><code>Python 2.7</code></li>
+<li><code>Tensorflow 0.12.1</code></li>
+</ul>
+<h1 id="Model-RNN-LSTM"><a href="#Model-RNN-LSTM" class="headerlink" title="Model(RNN + LSTM)"></a>Model(RNN + LSTM)</h1><p>We use a Recurrent Neural Network with <a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="external">LSTM</a> Cell to implement this model.</p>
+<ul>
+<li>LSTM (Long Short Term Memory):</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/42741-b9a16a53d58ca2b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="LSTM_MODEL" title="">
+                </div>
+                <div class="image-caption">LSTM_MODEL</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://json0071.gitbooks.io/deeplearning/content/LSTM.png" alt="LSTM" title="">
+                </div>
+                <div class="image-caption">LSTM</div>
+            </figure>
+<p>LSTM Composed of three gates which called INPUT_GATE, FORGET_GATE and OUTPUT_GATE.</p>
+<p>More information about how to implement LSTM Model is <a href="https://www.tensorflow.org/tutorials/recurrent" target="_blank" rel="external">here</a>.</p>
+<ul>
+<li><strong>Initialize Step</strong></li>
+</ul>
+<p>First we should initialize the placeholder and weights of our neural network.<br><code>placeholder</code>: just like the <strong>x</strong> of the function:<br>$$<br>f(x) = x^2<br>$$<br><code>weights</code>: the weight for converting input data to output label.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">x = tf.placeholder(&quot;float&quot;, [None, n_steps, n_input])</div><div class="line">y = tf.placeholder(&quot;float&quot;, [None, n_classes])</div><div class="line"></div><div class="line">weights = &#123;</div><div class="line">    &apos;out&apos;: tf.Variable(tf.random_normal([n_hidden, n_classes]))</div><div class="line">&#125;</div><div class="line">biases = &#123;</div><div class="line">    &apos;out&apos;: tf.Variable(tf.random_normal([n_classes]))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>Training Step</strong></li>
+</ul>
+<p><strong>First</strong> we define a RNN_Model function.<br>Using linear relationship to combine the output parameters.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">def RNN_Model(x, weights, biases):</div><div class="line">    lstm_cell = tf.nn.rnn_cell.BasicLSTMCell(n_hidden, forget_bias = 1.0)</div><div class="line">    output, states = tf.nn.rnn(lstm_cell, x, dtype = tf.float32)</div><div class="line">    return tf.matmul(output[-1], weights[&apos;out&apos;]) + biases[&apos;out&apos;]</div></pre></td></tr></table></figure>
+<p><strong>Second</strong> we have to define the loss function and optmizer of our model.<br><code>loss fuction</code>: softmax_cross_entropy<br><code>optimizer</code>: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">prediction = RNN_Model(x, weights, biases)</div><div class="line">result = tf.nn.softmax(prediction)</div><div class="line">loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits = prediction, labels = y))</div><div class="line">optimizer = tf.train.AdamOptimizer(learning_rate = learning_rate).minimize(loss)</div></pre></td></tr></table></figure>
+<p><strong>Third</strong> in order to evaluate the efficiency of this model, we define the function to calculate accuracy.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">correct_prediction = tf.equal(tf.argmax(prediction, 1), tf.argmax(y, 1))</div><div class="line">accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))</div></pre></td></tr></table></figure>
+<p><strong>Finally</strong> we can start training after all the initialization.</p>
+<ul>
+<li>We can use session to run our tensorflow function.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">init = tf.global_variables_initializer()</div><div class="line"></div><div class="line">with tf.Session() as sess:</div><div class="line">    sess.run(init)</div><div class="line">    while &quot;./epoch&quot; &lt; training_iters</div><div class="line">        batch_x, batch_y = mnist.train.next_batch(batch_size)</div><div class="line">        batch_x = batch_x.reshape((batch_size, n_steps, n_input))</div><div class="line">        sess.run(optimizer, feed_dict = &#123;x: batch_x, y: batch_y&#125;</div><div class="line">        if &quot;./batch_size&quot;:</div><div class="line">            acc = sess.run(accuracy, feed_dict = &#123;x: batch_x, y: batch_y&#125;)</div><div class="line">            los = sess.run(loss, feed_dict = &#123;x: batch_x, y: batch_y&#125;)</div></pre></td></tr></table></figure>
+<p><strong>Tips</strong>: “./“ represent the parameters defined by user own.</p>
+<ul>
+<li><strong>Testing Step</strong></li>
+</ul>
+<p>After training we get a weights in the tensorflow session which can be used to predict our test data.</p>
+<p><strong>First</strong> generate the testing dataset from mnist generator.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">test_data = mnist.test.images[:&quot;./test_length&quot;].reshape(-1, n_steps, n_input)</div><div class="line">res = sess.run(result, feed_dict = &#123;x: test_data&#125;)</div><div class="line">predict_label = sess.run(tf.argmax(res, 1))</div></pre></td></tr></table></figure>
+<p><strong>Finally</strong> because tensorflow mnist test dataset have its own ground-truth. So we can estimate if our “predict_label” is correct. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">test_label = mnist.test.labels[:&quot;./test_lenght&quot;]</div><div class="line">sess.run(accuracy, feed_dict = &#123;x: predict_label, y: test_label&#125;)</div></pre></td></tr></table></figure>
+<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><ol>
+<li><p>Install tensorflow.</p>
+<ul>
+<li>If we will run our model on GPU we have to install cuda and cuDNN.<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install tensorflow(-gpu)==0.12.1</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Import tensorflow package.</p>
+</li>
+<li>Import tensorflow mnist dataset and read the dataset as a generator.</li>
+<li>Run our model<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python &quot;./model_name&quot;.py</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a href="https://github.com/aymericdamien/TensorFlow-Examples/" target="_blank" rel="external">Googel Tensorflow Example</a></li>
+</ul>
+<h1 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h1><p>In this experiment we use a simple RNN(LSTM) model to predict the handwritten digits which also catch a good consequence in CNN.<br>RNN model is good for using in NLP processing. But how to explore the most useful <strong>determines</strong> whether our model can get an excellent result or not.</p>
+<h1 id="Keywords"><a href="#Keywords" class="headerlink" title="Keywords"></a>Keywords</h1><p>Tags: <code>Machine Learning</code> <code>RNN</code> <code>LSTM</code> <code>Tensorflow</code></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Recurrent-Neural-Netword-RNN-Using-Tensorflow&quot;&gt;&lt;a href=&quot;#Recurrent-Neural-Netword-RNN-Using-Tensorflow&quot; class=&quot;headerlink&quot; title=&quot;Re
+    
+    </summary>
+    
+    
+      <category term="Machine Learning" scheme="http://yoursite.com/tags/Machine-Learning/"/>
+    
+      <category term="LSTM" scheme="http://yoursite.com/tags/LSTM/"/>
+    
+      <category term="Tensorflow" scheme="http://yoursite.com/tags/Tensorflow/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Ubuntu16.04遠端桌面（remote desktop）設置</title>
     <link href="http://yoursite.com/2017/07/25/Remote/"/>
     <id>http://yoursite.com/2017/07/25/Remote/</id>
     <published>2017-07-25T04:00:24.000Z</published>
-    <updated>2017-07-25T04:01:22.551Z</updated>
+    <updated>2017-07-25T04:08:02.329Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Ubuntu-遠端桌面設置"><a href="#Ubuntu-遠端桌面設置" class="headerlink" title="Ubuntu 遠端桌面設置"></a>Ubuntu 遠端桌面設置</h1><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Ubuntu上的遠端鏈接比起windows系統自帶的Remote Desktop需要配置的條件更多。網上也有許多不同的版本，本人嘗試之後發現了一些常見的問題，特在此總結可行的一般流程與常見問題的解決方式。</p>
+    <content type="html"><![CDATA[<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Ubuntu上的遠端鏈接比起windows系統自帶的Remote Desktop需要配置的條件更多。網上也有許多不同的版本，本人嘗試之後發現了一些常見的問題，特在此總結可行的一般流程與常見問題的解決方式。</p>
 <h1 id="System-Config"><a href="#System-Config" class="headerlink" title="System Config"></a>System Config</h1><p><code>Ubuntu16.04</code> <code>Windows 10</code></p>
 <h1 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h1><p>1、如果需要從Ubuntu連接到Windows系統，則可以安裝Desktop</p>
 <ul>
@@ -130,7 +238,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Ubuntu-遠端桌面設置&quot;&gt;&lt;a href=&quot;#Ubuntu-遠端桌面設置&quot; class=&quot;headerlink&quot; title=&quot;Ubuntu 遠端桌面設置&quot;&gt;&lt;/a&gt;Ubuntu 遠端桌面設置&lt;/h1&gt;&lt;h1 id=&quot;Introduction&quot;&gt;&lt;a href
+      &lt;h1 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h1&gt;&lt;p&gt;Ubuntu上的遠端鏈接比起windows系統自帶的Remo
     
     </summary>
     
@@ -139,7 +247,7 @@
     
       <category term="Remote Desktop" scheme="http://yoursite.com/tags/Remote-Desktop/"/>
     
-      <category term="xrdp`" scheme="http://yoursite.com/tags/xrdp/"/>
+      <category term="xrdp" scheme="http://yoursite.com/tags/xrdp/"/>
     
   </entry>
   
@@ -148,9 +256,9 @@
     <link href="http://yoursite.com/2017/07/25/Unicode/"/>
     <id>http://yoursite.com/2017/07/25/Unicode/</id>
     <published>2017-07-25T03:52:58.000Z</published>
-    <updated>2017-07-25T03:55:50.320Z</updated>
+    <updated>2017-07-25T04:08:25.789Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Python-编码问题"><a href="#Python-编码问题" class="headerlink" title="Python 编码问题"></a>Python 编码问题</h1><h1 id="什么是编码"><a href="#什么是编码" class="headerlink" title="什么是编码"></a>什么是编码</h1><p>字符串也是一種數據形態，但是比較特殊的是字符串本身也存在一個編碼的問題，就是如何讓計算機來表示相應的字符並存儲。在編程語言中，我們經常會處理文本編碼之間的轉化問題，因為文本可能存在不同的編碼格式，例如 ASCII、GBK、UTF-8等等。最近在做NN的過程中面臨Corpus的unicode編碼問題，因此需要弄清楚python不同版本對編碼問題的處理策略。</p>
+    <content type="html"><![CDATA[<h1 id="什么是编码"><a href="#什么是编码" class="headerlink" title="什么是编码"></a>什么是编码</h1><p>字符串也是一種數據形態，但是比較特殊的是字符串本身也存在一個編碼的問題，就是如何讓計算機來表示相應的字符並存儲。在編程語言中，我們經常會處理文本編碼之間的轉化問題，因為文本可能存在不同的編碼格式，例如 ASCII、GBK、UTF-8等等。最近在做NN的過程中面臨Corpus的unicode編碼問題，因此需要弄清楚python不同版本對編碼問題的處理策略。</p>
 <h2 id="字符的抽象概念"><a href="#字符的抽象概念" class="headerlink" title="字符的抽象概念"></a>字符的抽象概念</h2><p>看了一些網絡上的介紹，發現我們所謂的字符表示文本中單一的一個符號。然而一個字符不是一個字節，例如 “中” 這個字在文本中是一個基礎字符，但是在計算機中卻不是一個字節。一個字符有許多表示方法，不同的表示方法會使用不同的字節數，這就是所謂的編碼。<strong>字符就是文本中的最小單元</strong>。</p>
 <h2 id="編碼的方式"><a href="#編碼的方式" class="headerlink" title="編碼的方式"></a>編碼的方式</h2><p>Unicode是一種編碼規範，用來統一表示世界上的各種語言。其作為Python語言中的一種中間轉換碼，如果要對不同編碼格式的文本進行轉換，就必須對字符串解碼（decode）成Unicode，再從Unicode編碼（encode）成另一種編碼格式：</p>
 <p><code>decode</code> : 作用是將編碼的字符串轉換成Unicode。<br><code>encode</code> : 作用是將Unicode傳換成其他編碼格式。</p>
@@ -207,7 +315,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Python-编码问题&quot;&gt;&lt;a href=&quot;#Python-编码问题&quot; class=&quot;headerlink&quot; title=&quot;Python 编码问题&quot;&gt;&lt;/a&gt;Python 编码问题&lt;/h1&gt;&lt;h1 id=&quot;什么是编码&quot;&gt;&lt;a href=&quot;#什么是编码&quot; class
+      &lt;h1 id=&quot;什么是编码&quot;&gt;&lt;a href=&quot;#什么是编码&quot; class=&quot;headerlink&quot; title=&quot;什么是编码&quot;&gt;&lt;/a&gt;什么是编码&lt;/h1&gt;&lt;p&gt;字符串也是一種數據形態，但是比較特殊的是字符串本身也存在一個編碼的問題，就是如何讓計算機來表示相應的字符並存儲。在編
     
     </summary>
     
@@ -221,9 +329,9 @@
     <link href="http://yoursite.com/2017/07/25/Ubuntu-sogo/"/>
     <id>http://yoursite.com/2017/07/25/Ubuntu-sogo/</id>
     <published>2017-07-25T03:48:07.000Z</published>
-    <updated>2017-07-25T03:55:33.893Z</updated>
+    <updated>2017-07-25T04:08:20.329Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Ubuntu-16-04-安装sogou输入法"><a href="#Ubuntu-16-04-安装sogou输入法" class="headerlink" title="Ubuntu 16.04 安装sogou输入法"></a>Ubuntu 16.04 安装sogou输入法</h1><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>目前Ubuntu常用的中文输入法有：</p>
+    <content type="html"><![CDATA[<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>目前Ubuntu常用的中文输入法有：</p>
 <ul>
 <li>搜狗拼音： 搜狗出品的面向Linux的输入法。</li>
 <li>Fcitx： 这个是Ubuntu系统自带的Linux开源的输入法框架，提供了包括Google PinYin、ShuangPin、SunPinYin、Hong Kong和TaiWan繁体等一系列输入法。</li>
@@ -253,7 +361,10 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Ubuntu-16-04-安装sogou输入法&quot;&gt;&lt;a href=&quot;#Ubuntu-16-04-安装sogou输入法&quot; class=&quot;headerlink&quot; title=&quot;Ubuntu 16.04 安装sogou输入法&quot;&gt;&lt;/a&gt;Ubuntu 16.04 安装so
+      &lt;h1 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;headerlink&quot; title=&quot;介绍&quot;&gt;&lt;/a&gt;介绍&lt;/h1&gt;&lt;p&gt;目前Ubuntu常用的中文输入法有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;搜狗拼音： 搜狗出品的面向Linux的输入法。&lt;/li&gt;
+&lt;li&gt;Fcitx
     
     </summary>
     
