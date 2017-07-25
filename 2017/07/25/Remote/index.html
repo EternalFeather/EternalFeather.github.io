@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Ubuntu16.04遠端桌面（remote desktop）設置 | 指尖の岁月 | 世间点滴，莫忘于心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Ubuntu,Remote Desktop,xrdp`">
+    <meta name="description" content="Ubuntu 遠端桌面設置IntroductionUbuntu上的遠端鏈接比起windows系統自帶的Remote Desktop需要配置的條件更多。網上也有許多不同的版本，本人嘗試之後發現了一些常見的問題，特在此總結可行的一般流程與常見問題的解決方式。 System ConfigUbuntu16.04 Windows 10 Steps1、如果需要從Ubuntu連接到Windows系統，則可以安裝">
+<meta name="keywords" content="Ubuntu,Remote Desktop,xrdp`">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu16.04遠端桌面（remote desktop）設置">
+<meta property="og:url" content="http://yoursite.com/2017/07/25/Remote/index.html">
+<meta property="og:site_name" content="指尖の岁月">
+<meta property="og:description" content="Ubuntu 遠端桌面設置IntroductionUbuntu上的遠端鏈接比起windows系統自帶的Remote Desktop需要配置的條件更多。網上也有許多不同的版本，本人嘗試之後發現了一些常見的問題，特在此總結可行的一般流程與常見問題的解決方式。 System ConfigUbuntu16.04 Windows 10 Steps1、如果需要從Ubuntu連接到Windows系統，則可以安裝">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.imgur.com/1tOoyic.png">
+<meta property="og:image" content="https://i.imgur.com/0BgAP4w.png">
+<meta property="og:image" content="https://i.imgur.com/PBsp6Sc.png">
+<meta property="og:image" content="https://i.imgur.com/a1PmzMs.png">
+<meta property="og:updated_time" content="2017-07-25T04:01:22.551Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu16.04遠端桌面（remote desktop）設置">
+<meta name="twitter:description" content="Ubuntu 遠端桌面設置IntroductionUbuntu上的遠端鏈接比起windows系統自帶的Remote Desktop需要配置的條件更多。網上也有許多不同的版本，本人嘗試之後發現了一些常見的問題，特在此總結可行的一般流程與常見問題的解決方式。 System ConfigUbuntu16.04 Windows 10 Steps1、如果需要從Ubuntu連接到Windows系統，則可以安裝">
+<meta name="twitter:image" content="https://i.imgur.com/1tOoyic.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖の岁月" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/new3.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/one2.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Eternal</h5>
+          <a href="mailto:617844662@qq.com" title="617844662@qq.com" class="mail">617844662@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/EternalFeather" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://EternalFeather.github.io/AboutMe/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                About Me
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Ubuntu16.04遠端桌面（remote desktop）設置</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Ubuntu16.04遠端桌面（remote desktop）設置</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-07-25T04:00:24.000Z" itemprop="datePublished" class="page-time">
+  2017-07-25
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Ubuntu-遠端桌面設置"><span class="post-toc-number">1.</span> <span class="post-toc-text">Ubuntu 遠端桌面設置</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Introduction"><span class="post-toc-number">2.</span> <span class="post-toc-text">Introduction</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#System-Config"><span class="post-toc-number">3.</span> <span class="post-toc-text">System Config</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Steps"><span class="post-toc-number">4.</span> <span class="post-toc-text">Steps</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Common-Problem"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">Common Problem</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Keywords"><span class="post-toc-number">5.</span> <span class="post-toc-text">Keywords</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Remote"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Ubuntu16.04遠端桌面（remote desktop）設置</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-07-25 12:00:24" datetime="2017-07-25T04:00:24.000Z"  itemprop="datePublished">2017-07-25</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="Ubuntu-遠端桌面設置"><a href="#Ubuntu-遠端桌面設置" class="headerlink" title="Ubuntu 遠端桌面設置"></a>Ubuntu 遠端桌面設置</h1><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Ubuntu上的遠端鏈接比起windows系統自帶的Remote Desktop需要配置的條件更多。網上也有許多不同的版本，本人嘗試之後發現了一些常見的問題，特在此總結可行的一般流程與常見問題的解決方式。</p>
+<h1 id="System-Config"><a href="#System-Config" class="headerlink" title="System Config"></a>System Config</h1><p><code>Ubuntu16.04</code> <code>Windows 10</code></p>
+<h1 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h1><p>1、如果需要從Ubuntu連接到Windows系統，則可以安裝Desktop</p>
+<ul>
+<li>sudo apt-get install ubuntu-desktop</li>
+</ul>
+<p>2、若只是從Windows鏈接到Ubuntu則跳過第一步，直接安裝遠端桌面軟體xrdp</p>
+<ul>
+<li><p>sudo apt-get install xrdp</p>
+<ul>
+<li>此時若打開xrdp的配置文件，可以看到默認的xrdp協定，遠 端桌面則是根據這個來請求遠端服務的。</li>
+</ul>
+</li>
+<li>sudo vim /etc/xrdp/xrdp.ini</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/1tOoyic.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>其中port = -1表示默認port(5910)作為登錄的接口，之後的連接可通過這個port連入相同的session（因為遠端連接的port一般可以兼容port5900到5910）如果需要更改連接的port可以在xrdp.ini文檔中修改port為port = ask59XX來請求連接。</li>
+</ul>
+<p>修改完畢後記得重啟xrdp：</p>
+<ul>
+<li>sudo service xrdp restart</li>
+</ul>
+<p>3、此時可以查看service port看是否處於LISTEN的狀態。</p>
+<ul>
+<li>netstat -utl</li>
+</ul>
+<p><strong>Important : 必須確保三個port處於監聽狀態</strong></p>
+<ul>
+<li>port 3389</li>
+<li>port 3350</li>
+<li>port 59XX</li>
+</ul>
+<p><img src="https://i.imgur.com/0BgAP4w.png" alt=""></p>
+<p>4、確保Ubuntu系統安裝了vnc服務，大部分系統會自行安裝，可以通過重複安裝確認。</p>
+<ul>
+<li>sudo apt-get install vnc4server<br>或</li>
+<li>sudo apt-get install tightvncserver</li>
+</ul>
+<p>5、由於xrdp會開放3389的port作為遠端圖形化界面的窗口，因此還需要有相應的圖形化桌面套件。<br><strong>Ubuntu常用的桌面套件有三種，選擇一種安裝即可</strong></p>
+<ul>
+<li>安裝與設定Xfce<ul>
+<li>sudo apt install xfce4</li>
+<li>echo “xfce4-session” &gt; ~/.xsession </li>
+</ul>
+</li>
+<li>安裝與設定Lxde<ul>
+<li>sudo apt install lxde</li>
+<li>echo “lxsession -s LXDE -e LXDE” &gt; ~/.xession </li>
+</ul>
+</li>
+<li>安裝與設定Mate<ul>
+<li>sudo apt-add-repository ppa:ubuntu-mate-dev/ppa</li>
+<li>sudo apt-add-repository ppa:ubuntu-mate-dev/trusty-mate</li>
+<li>sudo apt update</li>
+<li>sudo apt install –no-install-recommends ubuntu-mate-core ubuntu-mate-desktop</li>
+<li>echo “mate-session” &gt; ~/.xsession</li>
+</ul>
+</li>
+</ul>
+<p>6、之後就可以使用遠端桌面連接Windows和Ubuntu了。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/PBsp6Sc.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>结果如下（Mate）：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/a1PmzMs.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="Common-Problem"><a href="#Common-Problem" class="headerlink" title="Common Problem"></a>Common Problem</h2><ul>
+<li>遠端連接出現error-problem connecting：<ul>
+<li>通常是因為vnc服務沒有架好，查看port的監聽狀態（詳見步驟3），如果只有3389和3350沒有5910的情況，則需要手動開啟相應的port進行連接。</li>
+</ul>
+</li>
+<li><strong>解決方法：</strong><ul>
+<li>vncserver : 1~9 (引號兩邊都需要空格)</li>
+<li>在xrdp設定檔中將prot從-1改為ask剛才開啟的port（vncserver設1則開啟5901以此類推）</li>
+</ul>
+</li>
+<li>遠端桌面連接進入出現灰色網格，無圖像，滑鼠變成X：<ul>
+<li>出現這種狀況通常是沒有安裝遠端桌面套件，導致圖形化界面無法呈現。</li>
+</ul>
+</li>
+<li><strong>解決方法：</strong><ul>
+<li>安裝三種遠端桌面套件的一種（詳見步驟5）</li>
+</ul>
+</li>
+</ul>
+<h1 id="Keywords"><a href="#Keywords" class="headerlink" title="Keywords"></a>Keywords</h1><p>Tags: <code>Ubuntu</code> <code>Remote Desktop</code> <code>xrdp</code></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-07-25T04:01:22.551Z" itemprop="dateUpdated">2017-07-25 12:01:22</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/07/25/Remote/" target="_blank" rel="external">http://yoursite.com/2017/07/25/Remote/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/one2.jpg" alt="Eternal">
+            Eternal
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Remote-Desktop/">Remote Desktop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xrdp/">xrdp`</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/07/25/Remote/&title=《Ubuntu16.04遠端桌面（remote desktop）設置》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/07/25/Remote/&title=《Ubuntu16.04遠端桌面（remote desktop）設置》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/07/25/Remote/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ubuntu16.04遠端桌面（remote desktop）設置》 — 指尖の岁月&url=http://yoursite.com/2017/07/25/Remote/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/07/25/Remote/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/07/25/Unicode/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Python字符編碼問題</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'eternalfeather';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢您~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Eternal &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/07/25/Remote/&title=《Ubuntu16.04遠端桌面（remote desktop）設置》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/07/25/Remote/&title=《Ubuntu16.04遠端桌面（remote desktop）設置》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/07/25/Remote/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ubuntu16.04遠端桌面（remote desktop）設置》 — 指尖の岁月&url=http://yoursite.com/2017/07/25/Remote/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/07/25/Remote/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABxUlEQVR42u3aQY7DMAgF0Ln/pTsHqJz5gO1ppZdVlKbJcxYIAz8/8fF6PFb3vF9fXdl84OLijrlVyvt/388T6PP15ZJwcXEvclcRIzl/Dkz553g24OLifgs3+bX3TFxc3O/i5klM9QouLu6ncfMUpFfgqJZUNuzVcHFxB9y8Snnu/Eh9FxcXt8V9FY/JZikPW8u34+LiXuHmAaWXmkwKKMsUChcX9zC3l4gkiLxsmn8aXFzcm9zJcNUoglbbsbi4uB/AfX5N3vx4fkLh0+Di4l7kVouk+f35qFa0VFxc3CvcydDVPD1qjn3g4uJe5M7HL6pF0vy9y+IILi7uYW6eZEy2Q73n4+Li3uTmoxUJqDqoUU6GcHFxr3B3DVjM267ldiwuLu5hbj5gkac11TLKaI4MFxf3GDcPZPnCkv/m2yFcXNz/4uaFzkL2tCsLw8XFvcJ9FY9eKyVJeqKl4uLiXuFWg0ue0CThqVpaxcXFvcmtBq9qEyVf6oZEBxcXdyt379hEr8DarO/i4uJ+GLdaNq22WzYHMlxc3GPcarLS23v90UrBxcW9ws1brbte3Gze4OLiXuHO+7S9LU0S5kb1XVxc3A73FzWoUsF8ezxwAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Welcome back!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂) Hello!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

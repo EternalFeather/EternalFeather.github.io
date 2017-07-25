@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-25T03:55:50.320Z</updated>
+  <updated>2017-07-25T04:01:22.551Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,134 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu16.04遠端桌面（remote desktop）設置</title>
+    <link href="http://yoursite.com/2017/07/25/Remote/"/>
+    <id>http://yoursite.com/2017/07/25/Remote/</id>
+    <published>2017-07-25T04:00:24.000Z</published>
+    <updated>2017-07-25T04:01:22.551Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Ubuntu-遠端桌面設置"><a href="#Ubuntu-遠端桌面設置" class="headerlink" title="Ubuntu 遠端桌面設置"></a>Ubuntu 遠端桌面設置</h1><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Ubuntu上的遠端鏈接比起windows系統自帶的Remote Desktop需要配置的條件更多。網上也有許多不同的版本，本人嘗試之後發現了一些常見的問題，特在此總結可行的一般流程與常見問題的解決方式。</p>
+<h1 id="System-Config"><a href="#System-Config" class="headerlink" title="System Config"></a>System Config</h1><p><code>Ubuntu16.04</code> <code>Windows 10</code></p>
+<h1 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h1><p>1、如果需要從Ubuntu連接到Windows系統，則可以安裝Desktop</p>
+<ul>
+<li>sudo apt-get install ubuntu-desktop</li>
+</ul>
+<p>2、若只是從Windows鏈接到Ubuntu則跳過第一步，直接安裝遠端桌面軟體xrdp</p>
+<ul>
+<li><p>sudo apt-get install xrdp</p>
+<ul>
+<li>此時若打開xrdp的配置文件，可以看到默認的xrdp協定，遠 端桌面則是根據這個來請求遠端服務的。</li>
+</ul>
+</li>
+<li>sudo vim /etc/xrdp/xrdp.ini</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/1tOoyic.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>其中port = -1表示默認port(5910)作為登錄的接口，之後的連接可通過這個port連入相同的session（因為遠端連接的port一般可以兼容port5900到5910）如果需要更改連接的port可以在xrdp.ini文檔中修改port為port = ask59XX來請求連接。</li>
+</ul>
+<p>修改完畢後記得重啟xrdp：</p>
+<ul>
+<li>sudo service xrdp restart</li>
+</ul>
+<p>3、此時可以查看service port看是否處於LISTEN的狀態。</p>
+<ul>
+<li>netstat -utl</li>
+</ul>
+<p><strong>Important : 必須確保三個port處於監聽狀態</strong></p>
+<ul>
+<li>port 3389</li>
+<li>port 3350</li>
+<li>port 59XX</li>
+</ul>
+<p><img src="https://i.imgur.com/0BgAP4w.png" alt=""></p>
+<p>4、確保Ubuntu系統安裝了vnc服務，大部分系統會自行安裝，可以通過重複安裝確認。</p>
+<ul>
+<li>sudo apt-get install vnc4server<br>或</li>
+<li>sudo apt-get install tightvncserver</li>
+</ul>
+<p>5、由於xrdp會開放3389的port作為遠端圖形化界面的窗口，因此還需要有相應的圖形化桌面套件。<br><strong>Ubuntu常用的桌面套件有三種，選擇一種安裝即可</strong></p>
+<ul>
+<li>安裝與設定Xfce<ul>
+<li>sudo apt install xfce4</li>
+<li>echo “xfce4-session” &gt; ~/.xsession </li>
+</ul>
+</li>
+<li>安裝與設定Lxde<ul>
+<li>sudo apt install lxde</li>
+<li>echo “lxsession -s LXDE -e LXDE” &gt; ~/.xession </li>
+</ul>
+</li>
+<li>安裝與設定Mate<ul>
+<li>sudo apt-add-repository ppa:ubuntu-mate-dev/ppa</li>
+<li>sudo apt-add-repository ppa:ubuntu-mate-dev/trusty-mate</li>
+<li>sudo apt update</li>
+<li>sudo apt install –no-install-recommends ubuntu-mate-core ubuntu-mate-desktop</li>
+<li>echo “mate-session” &gt; ~/.xsession</li>
+</ul>
+</li>
+</ul>
+<p>6、之後就可以使用遠端桌面連接Windows和Ubuntu了。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/PBsp6Sc.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>结果如下（Mate）：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/a1PmzMs.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="Common-Problem"><a href="#Common-Problem" class="headerlink" title="Common Problem"></a>Common Problem</h2><ul>
+<li>遠端連接出現error-problem connecting：<ul>
+<li>通常是因為vnc服務沒有架好，查看port的監聽狀態（詳見步驟3），如果只有3389和3350沒有5910的情況，則需要手動開啟相應的port進行連接。</li>
+</ul>
+</li>
+<li><strong>解決方法：</strong><ul>
+<li>vncserver : 1~9 (引號兩邊都需要空格)</li>
+<li>在xrdp設定檔中將prot從-1改為ask剛才開啟的port（vncserver設1則開啟5901以此類推）</li>
+</ul>
+</li>
+<li>遠端桌面連接進入出現灰色網格，無圖像，滑鼠變成X：<ul>
+<li>出現這種狀況通常是沒有安裝遠端桌面套件，導致圖形化界面無法呈現。</li>
+</ul>
+</li>
+<li><strong>解決方法：</strong><ul>
+<li>安裝三種遠端桌面套件的一種（詳見步驟5）</li>
+</ul>
+</li>
+</ul>
+<h1 id="Keywords"><a href="#Keywords" class="headerlink" title="Keywords"></a>Keywords</h1><p>Tags: <code>Ubuntu</code> <code>Remote Desktop</code> <code>xrdp</code></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Ubuntu-遠端桌面設置&quot;&gt;&lt;a href=&quot;#Ubuntu-遠端桌面設置&quot; class=&quot;headerlink&quot; title=&quot;Ubuntu 遠端桌面設置&quot;&gt;&lt;/a&gt;Ubuntu 遠端桌面設置&lt;/h1&gt;&lt;h1 id=&quot;Introduction&quot;&gt;&lt;a href
+    
+    </summary>
+    
+    
+      <category term="Ubuntu" scheme="http://yoursite.com/tags/Ubuntu/"/>
+    
+      <category term="Remote Desktop" scheme="http://yoursite.com/tags/Remote-Desktop/"/>
+    
+      <category term="xrdp`" scheme="http://yoursite.com/tags/xrdp/"/>
+    
+  </entry>
   
   <entry>
     <title>Python字符編碼問題</title>
