@@ -61,6 +61,7 @@
 <meta property="og:image" content="https://i.imgur.com/huvFBco.png">
 <meta property="og:image" content="https://i.imgur.com/BtcBwwU.png">
 <meta property="og:image" content="https://i.imgur.com/7NxbFvF.jpg">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large y = {ax + b \over 2}">
 <meta property="og:image" content="https://i.imgur.com/U5riVAp.png">
 <meta property="og:image" content="https://i.imgur.com/uZpZxdz.png">
 <meta property="og:image" content="https://i.imgur.com/gdW7DwM.png">
@@ -69,12 +70,14 @@
 <meta property="og:image" content="https://i.imgur.com/1GT46F0.png">
 <meta property="og:image" content="https://i.imgur.com/hE5VgF2.png">
 <meta property="og:image" content="https://i.imgur.com/qslxK9t.png">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large Cost = {(predicted - real)^2}">
 <meta property="og:image" content="https://i.imgur.com/jwReIP2.png">
 <meta property="og:image" content="https://i.imgur.com/RGjpuX3.png">
 <meta property="og:image" content="https://i.imgur.com/3UNJkcZ.png">
 <meta property="og:image" content="https://i.imgur.com/4PmjIUv.png">
 <meta property="og:image" content="https://i.imgur.com/BbwFVzg.png">
-<meta property="og:updated_time" content="2017-07-26T05:00:55.584Z">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large Error = {predicted - real}">
+<meta property="og:updated_time" content="2017-07-26T05:10:08.461Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习（Machine Learning）简单学">
 <meta name="twitter:description" content="本人对于机器学习这项技术具有强烈的兴趣，但是网络上的文献鱼龙混杂，很难找到真正适合入门级别的新手观看。前一阵子无意间在网络上看到了莫烦Python的教学视频，发现其中的内容丰富有趣并且具有很好的阶层学习框架。于是总结了一些精髓并加入了自己从事机器学习研究所工作的一些见解，总结了一些精华的部分以供大家快速入门和学习。 什么是机器学习机器学习（Machine Learning）是由一帮计算机科学家们希">
@@ -595,7 +598,8 @@
             </figure>
 <p>图中的二次元人物是通过GAN神经网络的学习，然后利用描述性的选项组合，来生成不同特征的人物图像的一个神经网络网络应用。</p>
 <h1 id="理解神经网络的“-黑盒子-”"><a href="#理解神经网络的“-黑盒子-”" class="headerlink" title="理解神经网络的“ 黑盒子 ”"></a>理解神经网络的“ 黑盒子 ”</h1><p>神经网络的成功之处在于它能够从输入和输出的数据中总结出一个抽象的算法函式，基于这个函式的关系我们就能够对未知的数据进行预测。</p>
-<p>例如：<br>$$$<br>y = {ax + b \over 2}<br>$$$</p>
+<p>例如：</p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large y = {ax + b \over 2}" style="border:none;"></p>
 <p>这个就相当于一个已经训练好的神经网络模型，对于输入信号<code>X</code>通过网络的处理之后得到输出结果<code>Y</code>。</p>
 <p>而神经网络建立的模型就像是把算法公式中所有参数进行一个<strong>封装</strong>，然后开放一个相应的<strong>接口(Interface)</strong>用于呼叫和取值。因此神经网络也被亲切地称之为 <strong>“ 黑匣子 ”</strong> 。</p>
 <figure class="image-bubble">
@@ -683,7 +687,7 @@
 <ul>
 <li>先前说过神经网络的自我调整是基于结果的反馈，也就是所谓的误差来修正自己：</li>
 </ul>
-<p>$$<br>Cost = {(predicted - real)^2}<br>$$</p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large Cost = {(predicted - real)^2}" style="border:none;"></p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -749,7 +753,9 @@
 <li>比较常用来解决Overfitting的方式为<strong>Dropout</strong>，也就是在训练的过程中随机舍弃掉一些数据，从而让自己的模型留有一些变通的空间，来适应突发的情况。</li>
 </ul>
 <h1 id="为什么要对特征进行标准化（Normalization）"><a href="#为什么要对特征进行标准化（Normalization）" class="headerlink" title="为什么要对特征进行标准化（Normalization）"></a>为什么要对特征进行标准化（Normalization）</h1><p>现实中的数据可能来自不同的地方，不同来源的数据有各自的取值范围。而在学习的过程中，这些取值范围往往<strong>差距悬殊</strong>，这样就会对训练产生障碍。想象一下，如果我们两个权重矩阵M1和M2,我们给M1一个三位数量级的输入参数，给M2一个一位数量级的输入参数，会发生什么事情呢？答案很明显，当我们改变M1的参数时，对于总体的影响是十分巨大的，而相比之下想要达到这样的差距，就必须对M2进行很大幅度的调整。</p>
-<h2 id="如何标准化"><a href="#如何标准化" class="headerlink" title="如何标准化"></a>如何标准化</h2><p>延续之前的例子，如果这时候的误差值是：<br>$$$<br>Error = {predicted - real}<br>$$$<br>那么对这个误差我们应该确保对所有的权重矩阵（Weight Matrix）具有类似的跨度。</p>
+<h2 id="如何标准化"><a href="#如何标准化" class="headerlink" title="如何标准化"></a>如何标准化</h2><p>延续之前的例子，如果这时候的误差值是：</p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large Error = {predicted - real}" style="border:none;"></p>
+<p>那么对这个误差我们应该确保对所有的权重矩阵（Weight Matrix）具有类似的跨度。</p>
 <p>通常用于标准化（Normalization）的方法有两种：</p>
 <ul>
 <li><p>一种是<strong>最小-最大标准化（Minmax Normalization）</strong>。它会将所有的数据按照一个缩放比例转换到0和1的区间中。对单独的特征而言，这个权重是唯一的（全局适用）。</p>
@@ -766,7 +772,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-07-26T05:00:55.584Z" itemprop="dateUpdated">2017-07-26 13:00:55</time>
+    最后更新时间：<time datetime="2017-07-26T05:10:08.461Z" itemprop="dateUpdated">2017-07-26 13:10:08</time>
 </span><br>
 
 
