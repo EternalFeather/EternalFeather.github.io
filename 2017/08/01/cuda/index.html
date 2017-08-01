@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Ubuntu16.04配置深度學習開發環境（CUDA+CUDNN） | 指尖の岁月 | 世间点滴，莫忘于心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Deep Learning,Tensorflow,CUDA,cuDNN">
+    <meta name="description" content="顯卡規格查詢首先需要確定自己顯卡的規格：1lspci -vnn | grep VGA -A 12                                                                                                            其中nvidia_375就是顯卡的規格指數，後面會用到。 安裝CUDA前往CUDA下載頁">
+<meta name="keywords" content="Deep Learning,Tensorflow,CUDA,cuDNN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu16.04配置深度學習開發環境（CUDA+CUDNN）">
+<meta property="og:url" content="http://yoursite.com/2017/08/01/cuda/index.html">
+<meta property="og:site_name" content="指尖の岁月">
+<meta property="og:description" content="顯卡規格查詢首先需要確定自己顯卡的規格：1lspci -vnn | grep VGA -A 12                                                                                                            其中nvidia_375就是顯卡的規格指數，後面會用到。 安裝CUDA前往CUDA下載頁">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.imgur.com/Hqk5wzt.png">
+<meta property="og:image" content="https://i.imgur.com/uxl5TQY.png">
+<meta property="og:image" content="https://i.imgur.com/VsYqKL0.png">
+<meta property="og:image" content="https://i.imgur.com/xnyMEH3.png">
+<meta property="og:image" content="https://i.imgur.com/qHCfJgT.png">
+<meta property="og:updated_time" content="2017-08-01T08:19:59.940Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu16.04配置深度學習開發環境（CUDA+CUDNN）">
+<meta name="twitter:description" content="顯卡規格查詢首先需要確定自己顯卡的規格：1lspci -vnn | grep VGA -A 12                                                                                                            其中nvidia_375就是顯卡的規格指數，後面會用到。 安裝CUDA前往CUDA下載頁">
+<meta name="twitter:image" content="https://i.imgur.com/Hqk5wzt.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖の岁月" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/new3.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/one2.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Eternal</h5>
+          <a href="mailto:617844662@qq.com" title="617844662@qq.com" class="mail">617844662@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/EternalFeather" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://EternalFeather.github.io/AboutMe/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                About Me
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Ubuntu16.04配置深度學習開發環境（CUDA+CUDNN）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Ubuntu16.04配置深度學習開發環境（CUDA+CUDNN）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-08-01T08:18:31.000Z" itemprop="datePublished" class="page-time">
+  2017-08-01
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#顯卡規格查詢"><span class="post-toc-number">1.</span> <span class="post-toc-text">顯卡規格查詢</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安裝CUDA"><span class="post-toc-number">2.</span> <span class="post-toc-text">安裝CUDA</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置CUDA環境"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">配置CUDA環境</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安裝cuDNN"><span class="post-toc-number">3.</span> <span class="post-toc-text">安裝cuDNN</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置cuDNN環境"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">配置cuDNN環境</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#設定環境變數"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">設定環境變數</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#查看配置結果"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">查看配置結果</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安裝Tensorflow-gpu"><span class="post-toc-number">4.</span> <span class="post-toc-text">安裝Tensorflow-gpu</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#KeyWords"><span class="post-toc-number">5.</span> <span class="post-toc-text">KeyWords</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-cuda"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Ubuntu16.04配置深度學習開發環境（CUDA+CUDNN）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-08-01 16:18:31" datetime="2017-08-01T08:18:31.000Z"  itemprop="datePublished">2017-08-01</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="顯卡規格查詢"><a href="#顯卡規格查詢" class="headerlink" title="顯卡規格查詢"></a>顯卡規格查詢</h1><p>首先需要確定自己顯卡的規格：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lspci -vnn | grep VGA -A 12</div></pre></td></tr></table></figure></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/Hqk5wzt.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>其中<code>nvidia_375</code>就是顯卡的規格指數，後面會用到。</p>
+<h1 id="安裝CUDA"><a href="#安裝CUDA" class="headerlink" title="安裝CUDA"></a>安裝CUDA</h1><p>前往<a href="https://developer.nvidia.com/cuda-downloads" target="_blank" rel="external">CUDA下載</a>頁面選擇好系統參數進行下載。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/uxl5TQY.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="配置CUDA環境"><a href="#配置CUDA環境" class="headerlink" title="配置CUDA環境"></a>配置CUDA環境</h2><p>Installation Instructions:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install cuda</div></pre></td></tr></table></figure></p>
+<h1 id="安裝cuDNN"><a href="#安裝cuDNN" class="headerlink" title="安裝cuDNN"></a>安裝cuDNN</h1><p>前往<a href="https://developer.nvidia.com/rdp/cudnn-download" target="_blank" rel="external">cuDNN下載</a>點擊同意並選擇規格後開始下載。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/VsYqKL0.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="配置cuDNN環境"><a href="#配置cuDNN環境" class="headerlink" title="配置cuDNN環境"></a>配置cuDNN環境</h2><p>Installation Instructions:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tar xvzf cudnn-8.0-linux-x64-v5.1-ga.tgz</div><div class="line">sudo cp cuda/include/cudnn.h /usr/local/cuda/include</div><div class="line">sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64</div><div class="line">sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*</div></pre></td></tr></table></figure></p>
+<h3 id="設定環境變數"><a href="#設定環境變數" class="headerlink" title="設定環境變數"></a>設定環境變數</h3><p>接下來到<code>.bashrc</code>檔案：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo vim ~/.bashrc</div></pre></td></tr></table></figure>
+<p>將下面的指令復制到配置文件的末尾：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/usr/lib/nvidia-375</div><div class="line">export CUDA_HOME=/usr/local/cuda</div><div class="line">export PATH=$PATH:/usr/local/cuda/bin</div></pre></td></tr></table></figure>
+<p><strong>注意</strong>：其中的/usr/lib/nvidia-375就是之前查詢的顯卡規格。</p>
+<h2 id="查看配置結果"><a href="#查看配置結果" class="headerlink" title="查看配置結果"></a>查看配置結果</h2><p>配置完成後可以查看是否成功配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nvidia-smi -l</div></pre></td></tr></table></figure>
+<p>即可即時查看GPU的運作情況</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/xnyMEH3.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h1 id="安裝Tensorflow-gpu"><a href="#安裝Tensorflow-gpu" class="headerlink" title="安裝Tensorflow-gpu"></a>安裝Tensorflow-gpu</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pip install tensorflow-gpu</div></pre></td></tr></table></figure>
+<p>安裝之後會加入pip library中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip freeze</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/qHCfJgT.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如此以來就可以用GPU操作深度學習的框架了。</p>
+<h1 id="KeyWords"><a href="#KeyWords" class="headerlink" title="KeyWords"></a>KeyWords</h1><p>Tags：<code>CUDA</code> <code>cuDNN</code> <code>Deep Learning</code> <code>Tensorflow</code></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-08-01T08:19:59.940Z" itemprop="dateUpdated">2017-08-01 16:19:59</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/08/01/cuda/" target="_blank" rel="external">http://yoursite.com/2017/08/01/cuda/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/one2.jpg" alt="Eternal">
+            Eternal
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CUDA/">CUDA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tensorflow/">Tensorflow</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cuDNN/">cuDNN</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/08/01/cuda/&title=《Ubuntu16.04配置深度學習開發環境（CUDA+CUDNN）》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/08/01/cuda/&title=《Ubuntu16.04配置深度學習開發環境（CUDA+CUDNN）》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/08/01/cuda/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ubuntu16.04配置深度學習開發環境（CUDA+CUDNN）》 — 指尖の岁月&url=http://yoursite.com/2017/08/01/cuda/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/01/cuda/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/07/25/Corpus/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">聊天机器人训练语料整理</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'eternalfeather';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢您~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Eternal &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/08/01/cuda/&title=《Ubuntu16.04配置深度學習開發環境（CUDA+CUDNN）》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/08/01/cuda/&title=《Ubuntu16.04配置深度學習開發環境（CUDA+CUDNN）》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/08/01/cuda/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ubuntu16.04配置深度學習開發環境（CUDA+CUDNN）》 — 指尖の岁月&url=http://yoursite.com/2017/08/01/cuda/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/01/cuda/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAB2UlEQVR42u3awWrEMAxF0fn/n05hVi3F7n2So0nhZhU6ITnuwkhPfr3wdb2v1d+///r7fvXM6p0HLrly5ba51/biiD0lfedySXLlyh3k7jev/WaUblh7+h82uXLlPoxLChcC3d/LlSv3f3H37coex/8dcuXKfQ63VqykrVGnYJIrV+4kNw1M77i/Md+VK1duyL3CK93CSIkTfF2uXLkj3LRpIVsPCUR4INvqseTKldvm8i2JvDoNUPYbnFy5cie5/JO8UeFL5U3Rj4pMrly5N3PJxkQ+kAavad2CHpUrV+5Rbu3IRdrekCKGHOGSK1fuDLe2vrTh6RRGwakNuXLltrl8cJK2MbWxSmvIKleu3Nu4KGEFg5DORrksfeTKlTvC5fOWdHySLkauXLnP4XZCz35QwkNSuXLlTnKDocWhxiYdliwDU7ly5d7G5cVHLQwlByyCQ2By5cod5HZ2wbS4SZctV67cT3H5RdqYWsx6YPIjV67cQ9x+sULi1M6IpXiwQ65cuW0uD0nTAxNkGfGIV65cuYPctBzhY5j4ABbJd+XKlfsYbi3u5E3X4Y1Mrly541werXIQilfkypU7yA2GnSA6qcUl6Em5cuWOcGuBaXoYK8XJlSv3Q9wvR8NN1Iod6PAAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Welcome back!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂) Hello!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

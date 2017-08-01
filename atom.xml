@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-25T07:16:13.678Z</updated>
+  <updated>2017-08-01T08:19:59.940Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,86 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu16.04配置深度學習開發環境（CUDA+CUDNN）</title>
+    <link href="http://yoursite.com/2017/08/01/cuda/"/>
+    <id>http://yoursite.com/2017/08/01/cuda/</id>
+    <published>2017-08-01T08:18:31.000Z</published>
+    <updated>2017-08-01T08:19:59.940Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="顯卡規格查詢"><a href="#顯卡規格查詢" class="headerlink" title="顯卡規格查詢"></a>顯卡規格查詢</h1><p>首先需要確定自己顯卡的規格：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lspci -vnn | grep VGA -A 12</div></pre></td></tr></table></figure></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/Hqk5wzt.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>其中<code>nvidia_375</code>就是顯卡的規格指數，後面會用到。</p>
+<h1 id="安裝CUDA"><a href="#安裝CUDA" class="headerlink" title="安裝CUDA"></a>安裝CUDA</h1><p>前往<a href="https://developer.nvidia.com/cuda-downloads" target="_blank" rel="external">CUDA下載</a>頁面選擇好系統參數進行下載。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/uxl5TQY.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="配置CUDA環境"><a href="#配置CUDA環境" class="headerlink" title="配置CUDA環境"></a>配置CUDA環境</h2><p>Installation Instructions:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install cuda</div></pre></td></tr></table></figure></p>
+<h1 id="安裝cuDNN"><a href="#安裝cuDNN" class="headerlink" title="安裝cuDNN"></a>安裝cuDNN</h1><p>前往<a href="https://developer.nvidia.com/rdp/cudnn-download" target="_blank" rel="external">cuDNN下載</a>點擊同意並選擇規格後開始下載。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/VsYqKL0.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="配置cuDNN環境"><a href="#配置cuDNN環境" class="headerlink" title="配置cuDNN環境"></a>配置cuDNN環境</h2><p>Installation Instructions:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tar xvzf cudnn-8.0-linux-x64-v5.1-ga.tgz</div><div class="line">sudo cp cuda/include/cudnn.h /usr/local/cuda/include</div><div class="line">sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64</div><div class="line">sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*</div></pre></td></tr></table></figure></p>
+<h3 id="設定環境變數"><a href="#設定環境變數" class="headerlink" title="設定環境變數"></a>設定環境變數</h3><p>接下來到<code>.bashrc</code>檔案：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo vim ~/.bashrc</div></pre></td></tr></table></figure>
+<p>將下面的指令復制到配置文件的末尾：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/usr/lib/nvidia-375</div><div class="line">export CUDA_HOME=/usr/local/cuda</div><div class="line">export PATH=$PATH:/usr/local/cuda/bin</div></pre></td></tr></table></figure>
+<p><strong>注意</strong>：其中的/usr/lib/nvidia-375就是之前查詢的顯卡規格。</p>
+<h2 id="查看配置結果"><a href="#查看配置結果" class="headerlink" title="查看配置結果"></a>查看配置結果</h2><p>配置完成後可以查看是否成功配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nvidia-smi -l</div></pre></td></tr></table></figure>
+<p>即可即時查看GPU的運作情況</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/xnyMEH3.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h1 id="安裝Tensorflow-gpu"><a href="#安裝Tensorflow-gpu" class="headerlink" title="安裝Tensorflow-gpu"></a>安裝Tensorflow-gpu</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pip install tensorflow-gpu</div></pre></td></tr></table></figure>
+<p>安裝之後會加入pip library中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip freeze</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/qHCfJgT.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如此以來就可以用GPU操作深度學習的框架了。</p>
+<h1 id="KeyWords"><a href="#KeyWords" class="headerlink" title="KeyWords"></a>KeyWords</h1><p>Tags：<code>CUDA</code> <code>cuDNN</code> <code>Deep Learning</code> <code>Tensorflow</code></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;顯卡規格查詢&quot;&gt;&lt;a href=&quot;#顯卡規格查詢&quot; class=&quot;headerlink&quot; title=&quot;顯卡規格查詢&quot;&gt;&lt;/a&gt;顯卡規格查詢&lt;/h1&gt;&lt;p&gt;首先需要確定自己顯卡的規格：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;tab
+    
+    </summary>
+    
+    
+      <category term="Deep Learning" scheme="http://yoursite.com/tags/Deep-Learning/"/>
+    
+      <category term="Tensorflow" scheme="http://yoursite.com/tags/Tensorflow/"/>
+    
+      <category term="CUDA" scheme="http://yoursite.com/tags/CUDA/"/>
+    
+      <category term="cuDNN" scheme="http://yoursite.com/tags/cuDNN/"/>
+    
+  </entry>
   
   <entry>
     <title>聊天机器人训练语料整理</title>
