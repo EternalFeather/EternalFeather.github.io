@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-01T08:19:59.940Z</updated>
+  <updated>2017-08-02T07:10:44.440Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,151 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Gal-game-on-Renpy</title>
+    <link href="http://yoursite.com/2017/08/02/gal/"/>
+    <id>http://yoursite.com/2017/08/02/gal/</id>
+    <published>2017-08-02T07:09:53.000Z</published>
+    <updated>2017-08-02T07:10:44.440Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="自己做Gal游戏"><a href="#自己做Gal游戏" class="headerlink" title="自己做Gal游戏"></a>自己做Gal游戏</h1><h1 id="安裝說明"><a href="#安裝說明" class="headerlink" title="安裝說明"></a>安裝說明</h1><p>Renpy Platform可以用來設計自己專屬的視覺小說遊戲。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/nkF3saW.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p><a href="https://pan.baidu.com/s/1kVeIIoR" target="_blank" rel="external">Demo遊戲鏈接</a><br>提取密碼: <code>m0va</code></p>
+<h1 id="素材來源"><a href="#素材來源" class="headerlink" title="素材來源"></a>素材來源</h1><p>遊戲使用的圖片、視頻以及音頻的剪輯原素材來源於 <code>FAVORITE</code> 和 <code>YUZUSOFT</code> 遊戲公司，未經授權不得用以商業目的性傳播和使用。大部分圖片經過PS修圖處理，<strong>如需轉載請注明出處</strong>。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/7RkEoRe.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h1 id="使用說明"><a href="#使用說明" class="headerlink" title="使用說明"></a>使用說明</h1><ul>
+<li>將Github上 <code>images.rar</code> 中的三個文件放入下載好的遊戲文件中的 <code>game/images/</code> 目錄中。</li>
+<li>運行 <code>.exe</code> 文件即可開始遊戲。</li>
+</ul>
+<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><ul>
+<li>主界面（會根據劇情不同有所變化）</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/kkJKDds.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>CG鑑賞頁面</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/sXbSQeM.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/wEylyRQ.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/zz1W2PG.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>設定頁面</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/ZdgAa0M.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>載入頁面</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/8MQf1cJ.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>遊戲分支選單</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/PzFMnpP.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>遊戲主題內容部分</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/ydrcpP9.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>遊戲即時選單</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/8Hq7y0e.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>選單 <code>ENCYCLOPEDIA</code> 遊戲介紹和玩法功能簡介</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/oBPr4mH.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/bHGIB3K.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h1 id="KeyWords"><a href="#KeyWords" class="headerlink" title="KeyWords"></a>KeyWords</h1><p>Tags: <code>Renpy</code> <code>Gal-game</code></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;自己做Gal游戏&quot;&gt;&lt;a href=&quot;#自己做Gal游戏&quot; class=&quot;headerlink&quot; title=&quot;自己做Gal游戏&quot;&gt;&lt;/a&gt;自己做Gal游戏&lt;/h1&gt;&lt;h1 id=&quot;安裝說明&quot;&gt;&lt;a href=&quot;#安裝說明&quot; class=&quot;headerlink&quot; 
+    
+    </summary>
+    
+    
+      <category term="Renpy" scheme="http://yoursite.com/tags/Renpy/"/>
+    
+      <category term="Gal-game" scheme="http://yoursite.com/tags/Gal-game/"/>
+    
+  </entry>
   
   <entry>
     <title>Ubuntu16.04配置深度學習開發環境（CUDA+CUDNN）</title>
@@ -85,9 +230,9 @@
     </summary>
     
     
-      <category term="Tensorflow" scheme="http://yoursite.com/tags/Tensorflow/"/>
-    
       <category term="Deep Learning" scheme="http://yoursite.com/tags/Deep-Learning/"/>
+    
+      <category term="Tensorflow" scheme="http://yoursite.com/tags/Tensorflow/"/>
     
       <category term="CUDA" scheme="http://yoursite.com/tags/CUDA/"/>
     
