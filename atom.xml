@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-02T07:10:44.440Z</updated>
+  <updated>2017-08-02T07:18:57.657Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://yoursite.com/2017/08/02/gal/"/>
     <id>http://yoursite.com/2017/08/02/gal/</id>
     <published>2017-08-02T07:09:53.000Z</published>
-    <updated>2017-08-02T07:10:44.440Z</updated>
+    <updated>2017-08-02T07:18:57.657Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="自己做Gal游戏"><a href="#自己做Gal游戏" class="headerlink" title="自己做Gal游戏"></a>自己做Gal游戏</h1><h1 id="安裝說明"><a href="#安裝說明" class="headerlink" title="安裝說明"></a>安裝說明</h1><p>Renpy Platform可以用來設計自己專屬的視覺小說遊戲。</p>
+    <content type="html"><![CDATA[<h1 id="安裝說明"><a href="#安裝說明" class="headerlink" title="安裝說明"></a>安裝說明</h1><p>Renpy Platform可以用來設計自己專屬的視覺小說遊戲。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -149,7 +149,8 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;自己做Gal游戏&quot;&gt;&lt;a href=&quot;#自己做Gal游戏&quot; class=&quot;headerlink&quot; title=&quot;自己做Gal游戏&quot;&gt;&lt;/a&gt;自己做Gal游戏&lt;/h1&gt;&lt;h1 id=&quot;安裝說明&quot;&gt;&lt;a href=&quot;#安裝說明&quot; class=&quot;headerlink&quot; 
+      &lt;h1 id=&quot;安裝說明&quot;&gt;&lt;a href=&quot;#安裝說明&quot; class=&quot;headerlink&quot; title=&quot;安裝說明&quot;&gt;&lt;/a&gt;安裝說明&lt;/h1&gt;&lt;p&gt;Renpy Platform可以用來設計自己專屬的視覺小說遊戲。&lt;/p&gt;
+&lt;figure class=&quot;image-bubb
     
     </summary>
     
@@ -230,9 +231,9 @@
     </summary>
     
     
-      <category term="Deep Learning" scheme="http://yoursite.com/tags/Deep-Learning/"/>
-    
       <category term="Tensorflow" scheme="http://yoursite.com/tags/Tensorflow/"/>
+    
+      <category term="Deep Learning" scheme="http://yoursite.com/tags/Deep-Learning/"/>
     
       <category term="CUDA" scheme="http://yoursite.com/tags/CUDA/"/>
     
