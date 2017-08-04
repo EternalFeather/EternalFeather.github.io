@@ -309,7 +309,7 @@
     <link href="http://yoursite.com/2017/08/04/word2vec/"/>
     <id>http://yoursite.com/2017/08/04/word2vec/</id>
     <published>2017-08-04T06:51:25.000Z</published>
-    <updated>2017-08-04T07:07:46.791Z</updated>
+    <updated>2017-08-04T07:53:29.800Z</updated>
     
     <content type="html"><![CDATA[<p>我们知道语言在人际交往当中充当了重要的角色，理解语言的编码就能够了解对方所要表达的意思。而机器不同于人，无法从繁杂的文字当中快速提取有用的信息，因此需要借助一个能够代表文字语言的编码单位，也就是我们说的<strong>向量（Vector）</strong>。因此训练Word2Vec的模型，用来计算词语之间的相似度似乎成为了解决文字编码问题的不可或缺的重要途径之一。</p>
 <h1 id="配置需求"><a href="#配置需求" class="headerlink" title="配置需求"></a>配置需求</h1><ul>
@@ -332,11 +332,11 @@
 <li><p>通過 <code>word2vec_process.py</code> 實現，基本參數包括：</p>
 <ul>
 <li><code>-data</code>： 輸入的維基百科數據集。</li>
-<li><code>-output</code>： 輸出的文件位置和名稱。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python word2vec_process.py -data enwiki-latest-pages-articles.xml.bz2 -output wiki.en.text</div></pre></td></tr></table></figure>
-</li>
+<li><code>-output</code>： 輸出的文件位置和名稱。</li>
 </ul>
 </li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python word2vec_process.py -data enwiki-latest-pages-articles.xml.bz2 -output wiki.en.text</div></pre></td></tr></table></figure>
 <p><strong>Tips:</strong> </p>
 <ul>
 <li>如果是中文維基百科的語料訓練時，會存在一些繁體和簡體混雜的中文字，如果想要統一字體格式，就可以使用Opencc將字體進行轉換：</li>
