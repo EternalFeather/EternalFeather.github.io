@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://i.imgur.com/VsYqKL0.png">
 <meta property="og:image" content="https://i.imgur.com/xnyMEH3.png">
 <meta property="og:image" content="https://i.imgur.com/qHCfJgT.png">
-<meta property="og:updated_time" content="2017-08-01T08:19:59.940Z">
+<meta property="og:updated_time" content="2017-08-04T06:54:57.123Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu16.04配置深度學習開發環境（CUDA+CUDNN）">
 <meta name="twitter:description" content="顯卡規格查詢首先需要確定自己顯卡的規格：1lspci -vnn | grep VGA -A 12                                                                                                            其中nvidia_375就是顯卡的規格指數，後面會用到。 安裝CUDA前往CUDA下載頁">
@@ -159,7 +159,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#顯卡規格查詢"><span class="post-toc-number">1.</span> <span class="post-toc-text">顯卡規格查詢</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安裝CUDA"><span class="post-toc-number">2.</span> <span class="post-toc-text">安裝CUDA</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置CUDA環境"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">配置CUDA環境</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安裝cuDNN"><span class="post-toc-number">3.</span> <span class="post-toc-text">安裝cuDNN</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置cuDNN環境"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">配置cuDNN環境</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#設定環境變數"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">設定環境變數</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#查看配置結果"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">查看配置結果</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安裝Tensorflow-gpu"><span class="post-toc-number">4.</span> <span class="post-toc-text">安裝Tensorflow-gpu</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#KeyWords"><span class="post-toc-number">5.</span> <span class="post-toc-text">KeyWords</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#顯卡規格查詢"><span class="post-toc-number">1.</span> <span class="post-toc-text">顯卡規格查詢</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安裝CUDA"><span class="post-toc-number">2.</span> <span class="post-toc-text">安裝CUDA</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置CUDA環境"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">配置CUDA環境</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安裝cuDNN"><span class="post-toc-number">3.</span> <span class="post-toc-text">安裝cuDNN</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置cuDNN環境"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">配置cuDNN環境</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#設定環境變數"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">設定環境變數</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#查看配置結果"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">查看配置結果</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安裝Tensorflow-gpu"><span class="post-toc-number">4.</span> <span class="post-toc-text">安裝Tensorflow-gpu</span></a></li></ol>
         </nav>
     </aside>
     
@@ -231,7 +231,6 @@
                 <div class="image-caption"></div>
             </figure>
 <p>如此以來就可以用GPU操作深度學習的框架了。</p>
-<h1 id="KeyWords"><a href="#KeyWords" class="headerlink" title="KeyWords"></a>KeyWords</h1><p>Tags：<code>CUDA</code> <code>cuDNN</code> <code>Deep Learning</code> <code>Tensorflow</code></p>
 
         </div>
 
@@ -239,7 +238,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-08-01T08:19:59.940Z" itemprop="dateUpdated">2017-08-01 16:19:59</time>
+    最后更新时间：<time datetime="2017-08-04T06:54:57.123Z" itemprop="dateUpdated">2017-08-04 14:54:57</time>
 </span><br>
 
 

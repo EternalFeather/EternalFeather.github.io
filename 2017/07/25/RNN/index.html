@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/42741-b9a16a53d58ca2b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://json0071.gitbooks.io/deeplearning/content/LSTM.png">
 <meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large f(x) = x^2">
-<meta property="og:updated_time" content="2017-08-04T02:47:50.895Z">
+<meta property="og:updated_time" content="2017-08-04T06:55:59.054Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用LSTM模型进行手写识别">
 <meta name="twitter:description" content="Recurrent Neural Netword(RNN) Using TensorflowPre-processingDatasetsMNIST database of handwritten digits. Click hereInput data: Image shape(28*28)Output label: 0~9  Parameters Data_Size Input_dimensio">
@@ -157,7 +157,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Recurrent-Neural-Netword-RNN-Using-Tensorflow"><span class="post-toc-number">1.</span> <span class="post-toc-text">Recurrent Neural Netword(RNN) Using Tensorflow</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Pre-processing"><span class="post-toc-number">2.</span> <span class="post-toc-text">Pre-processing</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Datasets"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Datasets</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Parameters"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Parameters</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Requirement"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Requirement</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Model-RNN-LSTM"><span class="post-toc-number">3.</span> <span class="post-toc-text">Model(RNN + LSTM)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Usage"><span class="post-toc-number">3.0.1.</span> <span class="post-toc-text">Usage</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Reference"><span class="post-toc-number">4.</span> <span class="post-toc-text">Reference</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Challenges"><span class="post-toc-number">5.</span> <span class="post-toc-text">Challenges</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Keywords"><span class="post-toc-number">6.</span> <span class="post-toc-text">Keywords</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Recurrent-Neural-Netword-RNN-Using-Tensorflow"><span class="post-toc-number">1.</span> <span class="post-toc-text">Recurrent Neural Netword(RNN) Using Tensorflow</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Pre-processing"><span class="post-toc-number">2.</span> <span class="post-toc-text">Pre-processing</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Datasets"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Datasets</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Parameters"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Parameters</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Requirement"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Requirement</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Model-RNN-LSTM"><span class="post-toc-number">3.</span> <span class="post-toc-text">Model(RNN + LSTM)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Usage"><span class="post-toc-number">3.0.1.</span> <span class="post-toc-text">Usage</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Reference"><span class="post-toc-number">4.</span> <span class="post-toc-text">Reference</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Challenges"><span class="post-toc-number">5.</span> <span class="post-toc-text">Challenges</span></a></li></ol>
         </nav>
     </aside>
     
@@ -261,7 +261,6 @@
 <li><a href="https://github.com/aymericdamien/TensorFlow-Examples/" target="_blank" rel="external">Googel Tensorflow Example</a></li>
 </ul>
 <h1 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h1><p>In this experiment we use a simple RNN(LSTM) model to predict the handwritten digits which also catch a good consequence in CNN.<br>RNN model is good for using in NLP processing. But how to explore the most useful <strong>determines</strong> whether our model can get an excellent result or not.</p>
-<h1 id="Keywords"><a href="#Keywords" class="headerlink" title="Keywords"></a>Keywords</h1><p>Tags: <code>Machine Learning</code> <code>RNN</code> <code>LSTM</code> <code>Tensorflow</code></p>
 
         </div>
 
@@ -269,7 +268,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-08-04T02:47:50.895Z" itemprop="dateUpdated">2017-08-04 10:47:50</time>
+    最后更新时间：<time datetime="2017-08-04T06:55:59.054Z" itemprop="dateUpdated">2017-08-04 14:55:59</time>
 </span><br>
 
 

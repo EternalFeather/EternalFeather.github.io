@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>医疗管理系统 | 指尖の岁月 | 世间点滴，莫忘于心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Database,System,Struts MVC">
+    <meta name="description" content="Introduction本系统主要是基于 Struts2 MVC架构 + mysql资料库 共同开发的医疗信息管理系统模型。利用JSP打造简易的网页与接口，让用户能够通过系统纪录和查询医疗的细节流程。 下載鏈接 Environment 操作系统：Windows10 资料库：Mysql IDE：Eclipse 开发语言：Jsp + Sql + Java  SQL Table资料库端分为五个Table">
+<meta name="keywords" content="Database,System,Struts MVC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="医疗管理系统">
+<meta property="og:url" content="http://yoursite.com/2017/08/04/database/index.html">
+<meta property="og:site_name" content="指尖の岁月">
+<meta property="og:description" content="Introduction本系统主要是基于 Struts2 MVC架构 + mysql资料库 共同开发的医疗信息管理系统模型。利用JSP打造简易的网页与接口，让用户能够通过系统纪录和查询医疗的细节流程。 下載鏈接 Environment 操作系统：Windows10 资料库：Mysql IDE：Eclipse 开发语言：Jsp + Sql + Java  SQL Table资料库端分为五个Table">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.imgur.com/qdBYNZI.png">
+<meta property="og:image" content="https://i.imgur.com/OAdFgoI.png">
+<meta property="og:image" content="https://i.imgur.com/czWAFBo.png">
+<meta property="og:image" content="https://i.imgur.com/ukIeIjX.png">
+<meta property="og:image" content="https://i.imgur.com/PDo43C2.png">
+<meta property="og:image" content="https://i.imgur.com/mYQk0G0.png">
+<meta property="og:image" content="https://i.imgur.com/UGf1VbP.png">
+<meta property="og:image" content="https://i.imgur.com/9jEEf1k.png">
+<meta property="og:image" content="https://i.imgur.com/EZVj52s.png">
+<meta property="og:image" content="https://i.imgur.com/eknZV1t.png">
+<meta property="og:image" content="https://i.imgur.com/fqo6fRa.png">
+<meta property="og:image" content="https://i.imgur.com/9P6SJ1w.png">
+<meta property="og:image" content="https://i.imgur.com/Cp7doj5.png">
+<meta property="og:image" content="https://i.imgur.com/df2ElPC.png">
+<meta property="og:updated_time" content="2017-08-04T06:54:32.035Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="医疗管理系统">
+<meta name="twitter:description" content="Introduction本系统主要是基于 Struts2 MVC架构 + mysql资料库 共同开发的医疗信息管理系统模型。利用JSP打造简易的网页与接口，让用户能够通过系统纪录和查询医疗的细节流程。 下載鏈接 Environment 操作系统：Windows10 资料库：Mysql IDE：Eclipse 开发语言：Jsp + Sql + Java  SQL Table资料库端分为五个Table">
+<meta name="twitter:image" content="https://i.imgur.com/qdBYNZI.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖の岁月" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/new3.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/one2.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Eternal</h5>
+          <a href="mailto:617844662@qq.com" title="617844662@qq.com" class="mail">617844662@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/EternalFeather" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://EternalFeather.github.io/AboutMe/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                About Me
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">医疗管理系统</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">医疗管理系统</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-08-04T06:51:50.000Z" itemprop="datePublished" class="page-time">
+  2017-08-04
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Introduction"><span class="post-toc-number">1.</span> <span class="post-toc-text">Introduction</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Environment"><span class="post-toc-number">2.</span> <span class="post-toc-text">Environment</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SQL-Table"><span class="post-toc-number">3.</span> <span class="post-toc-text">SQL Table</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Attribute-Introduction"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">Attribute Introduction</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ER-Diagram"><span class="post-toc-number">4.</span> <span class="post-toc-text">ER Diagram</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Relation-Schema"><span class="post-toc-number">5.</span> <span class="post-toc-text">Relation Schema</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Relationship-Introduction"><span class="post-toc-number">6.</span> <span class="post-toc-text">Relationship Introduction</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Usage"><span class="post-toc-number">7.</span> <span class="post-toc-text">Usage</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-database"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">医疗管理系统</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-08-04 14:51:50" datetime="2017-08-04T06:51:50.000Z"  itemprop="datePublished">2017-08-04</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>本系统主要是基于 <code>Struts2 MVC架构</code> + <code>mysql资料库</code> 共同开发的医疗信息管理系统模型。利用JSP打造简易的网页与接口，让用户能够通过系统纪录和查询医疗的细节流程。</p>
+<p><a href="https://github.com/EternalFeather/Medical_Management_System_with_Database" target="_blank" rel="external">下載鏈接</a></p>
+<h1 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h1><ul>
+<li><code>操作系统</code>：Windows10</li>
+<li><code>资料库</code>：Mysql</li>
+<li><code>IDE</code>：Eclipse</li>
+<li><code>开发语言</code>：Jsp + Sql + Java</li>
+</ul>
+<h1 id="SQL-Table"><a href="#SQL-Table" class="headerlink" title="SQL Table"></a>SQL Table</h1><p>资料库端分为五个Table，分别为 <code>Department</code>、<code>Employee</code>、<code>Hospital</code>、<code>Patient</code> 和 <code>Report</code>。</p>
+<h2 id="Attribute-Introduction"><a href="#Attribute-Introduction" class="headerlink" title="Attribute Introduction"></a>Attribute Introduction</h2><p><strong>Hospital Table:</strong> 記錄醫院的具體信息</p>
+<ul>
+<li>Hospital_ID:每間醫院的編號（唯一）</li>
+<li>Hospital_Name:醫院的名稱</li>
+<li>Hospital_Address:醫院的地理位置</li>
+<li>Hospital_Scale:醫院的規模大小</li>
+</ul>
+<p><strong>Department Table:</strong> 記錄醫院里各個不同部門的具體信息</p>
+<ul>
+<li>Department_ID:醫院裏面不同部門的編號（唯一）</li>
+<li>Department_Subject:部門的名稱</li>
+<li>Department_People:部門的人數</li>
+<li>Field:部門所掌管的職能</li>
+</ul>
+<p><strong>Employee Table:</strong> 記錄醫院工作人員的具體信息</p>
+<ul>
+<li>Doctor_ID:每個員工的編號（唯一）</li>
+<li>Doctor_Name:員工的姓名</li>
+<li>Doctor_Age:員工的年齡</li>
+<li>Doctor_Specialty:員工的專長</li>
+</ul>
+<p><strong>Patient Table:</strong> 記錄病人的具體信息</p>
+<ul>
+<li>Patient_ID:每個病人的編號（唯一）</li>
+<li>Patient_Name:病人的姓名</li>
+<li>Patient_Age:病人的年齡</li>
+<li>Patient_Disease:病人的癥狀</li>
+</ul>
+<p><strong>Report Table:</strong> 記錄病人病歷記錄的具體信息</p>
+<ul>
+<li>Report_ID:每個病歷記錄的編號（唯一）</li>
+<li>Report_Disease:病歷記錄的病人癥狀</li>
+<li>Report_PatientName:病歷記錄的病人姓名</li>
+<li>Report_Medicine:病歷記錄的病人用藥情況</li>
+</ul>
+<h1 id="ER-Diagram"><a href="#ER-Diagram" class="headerlink" title="ER Diagram"></a>ER Diagram</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/qdBYNZI.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h1 id="Relation-Schema"><a href="#Relation-Schema" class="headerlink" title="Relation Schema"></a>Relation Schema</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">Hospital Schema</th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Hospital_ID</td>
+<td style="text-align:center">Hospital_Name</td>
+<td style="text-align:center">Hospital_Address</td>
+<td style="text-align:center">Hospital_Scale</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Department Schema</th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Department_ID</td>
+<td style="text-align:center">Department_Subject</td>
+<td style="text-align:center">Department_People</td>
+<td style="text-align:center">Field</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Employee Schema</th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Doctor_ID</td>
+<td style="text-align:center">Doctor_Name</td>
+<td style="text-align:center">Doctor_Name</td>
+<td style="text-align:center">Doctor_Specialty</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Patient Schema</th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Patient_ID</td>
+<td style="text-align:center">Patient_Name</td>
+<td style="text-align:center">Patient_Age</td>
+<td style="text-align:center">Patient_Disease</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Report Schema</th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Report_ID</td>
+<td style="text-align:center">Report_Disease</td>
+<td style="text-align:center">Report_PatientName</td>
+<td style="text-align:center">Report_Medicine</td>
+</tr>
+</tbody>
+</table>
+<h1 id="Relationship-Introduction"><a href="#Relationship-Introduction" class="headerlink" title="Relationship Introduction"></a>Relationship Introduction</h1><ul>
+<li>每個醫院都會有許多不同的部門，每個部門都是隸屬於某一家醫院。</li>
+<li>每個醫院部門都會招聘不同數量的員工，未退休的員工會屬於某一個部門。</li>
+<li>所有負責醫療工作的員工都會給病人開具病歷證明，所有的病歷證明都是由醫療工作員工開具的。</li>
+<li>所有的病人都有自己的病歷記錄，所有的病歷記錄記錄著該病人的醫療情況。</li>
+<li>負責醫療工作的員工會給病人看病，同時醫院的員工也有可能是病人。</li>
+</ul>
+<h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><p>配置好sql和server之后，就可以通过localhost或者IP来访问系统网址了，这里用的是Tomcat Server來訪問資料庫系統首頁。。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/OAdFgoI.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/czWAFBo.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>左邊的功能列表可以選擇需要操作的Entity進行不同的資料庫操作。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/ukIeIjX.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>以醫院管理為例，進入醫院管理操作介面，系統會自動列出所有的數據庫資料。點擊左上角的<strong>添加</strong>按鈕可以添加新的醫院信息到database；同時可以通過<strong>Search</strong>的選項來索引資料庫裏面的資料；點擊操作欄位的<strong>修改和刪除</strong>可以分別對相應的資料進行修改和刪除；最後點擊右上角的<strong>手動修改和查詢</strong>可以分別通過手動輸入SQL指令來進行修改動作（insert，delete，update）和查詢動作（select）。</p>
+<ul>
+<li>添加介面：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/PDo43C2.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>可以<strong>添加</strong>醫院的相關信息到數據庫。</p>
+<ul>
+<li>選擇操作：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/mYQk0G0.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>系統會給出相應的<strong>檢索</strong>結果：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/UGf1VbP.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>修改和刪除：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/9jEEf1k.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>點擊修改操作系統會自動捕捉當前的資料信息，方便進行<strong>修改</strong>。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/EZVj52s.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>點擊刪除操作系統會提示<strong>是否刪除</strong>，點擊確定則會從資料庫移除相應信息。</p>
+<ul>
+<li>手動修改和刪除：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/eknZV1t.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/fqo6fRa.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>點擊<strong>手動修改和刪除</strong>操作，系統會跳出相應的輸入框，可以通過手動輸入SQL指令來進行Select檢索或者Insert，Update，Delete等操作。</p>
+<ul>
+<li>Nested Query和Aggregate Query（以醫生管理為例）：<br>點擊Nested Query會跳轉至如下畫面。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/9P6SJ1w.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>分別點擊不同的按鈕可以<strong>跳轉</strong>至相應功能對應的介面。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/Cp7doj5.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>通過選項可以自動通過Button的方式呼叫資料庫，通過sql指令也可以進行資料庫的操作。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/df2ElPC.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>通過選項操作同樣可以用button的方式呼叫資料庫操作，sql指令同樣也能夠進行相應的操作。（注：在sql對於Aggregate操作過程中需要對應下方的欄位進行as重命名）</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-08-04T06:54:32.035Z" itemprop="dateUpdated">2017-08-04 14:54:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/08/04/database/" target="_blank" rel="external">http://yoursite.com/2017/08/04/database/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/one2.jpg" alt="Eternal">
+            Eternal
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/">Database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts-MVC/">Struts MVC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/System/">System</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/08/04/database/&title=《医疗管理系统》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/08/04/database/&title=《医疗管理系统》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/08/04/database/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《医疗管理系统》 — 指尖の岁月&url=http://yoursite.com/2017/08/04/database/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/04/database/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/08/04/word2vec/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Word2Vec on Wikipedia</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'eternalfeather';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢您~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Eternal &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/08/04/database/&title=《医疗管理系统》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/08/04/database/&title=《医疗管理系统》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/08/04/database/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《医疗管理系统》 — 指尖の岁月&url=http://yoursite.com/2017/08/04/database/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/04/database/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAB1ElEQVR42u3ay27DMAwEwPz/T7vXAK3TXdFW0mJ0MpyHxxeBXOrxiNfxtJ7vnH36/f7Zp487Fi4u7ph7vFw57uybyT8kBlxc3P3c5MHtndfb2dn1LzZcXNwP5r4ugNoSBxcX9+9y834EFxf3f3CT5ifZyJL4Y1OvhouLO+DmKeV917fku7i4uEvcY7Dal7zgibi4uFu41w4/1oqhPIrFxcXdyW23mCTISBqb/FejcgcXF7fkTiLRtcHJJHzBxcXdw83LmjwMbeOVOkDBxcW9mbtWvrQHL+axbHHCCxcX9wZuOyJtQ9W2uPlhx8XFxd3CbaONSWHUtkbFCTJcXNyLuDk0b2AmhzKjXg0XF3cLN9ky1l5j7fhXkfLi4uLewK3bj7iBaXfQKKDBxcXdwk1alzwezdukfOsspjG4uLgXcdviJj+i0UYt0faHi4u7hbsWcySPXGt+ovAUFxf3Zu5RrsnQpW2iivfAxcW9lDuPMvNhahuwjtC4uLhjbrJ5rW1waxFMlPLi4uJu4bYHI9Yannw3jXo1XFzcD+DORyb5eKZ+Y1xc3Ddxk0CkvU7GM7i4uO/irjU/7ZC1LaEu7tVwcXG79LKoK/JGqD2ucdWYFhcXd8D9AoVhJQvz4ByRAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Welcome back!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂) Hello!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

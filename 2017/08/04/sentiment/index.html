@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>中文情緒字典（Chinese Sentiment Lexicon） | 指尖の岁月 | 世间点滴，莫忘于心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Sentiment Lexicon,NLP,PMI">
+    <meta name="description" content="功能利用 PMI 和 SOC-PMI 等語言統計分析算法，從現有文章中標記一些seed words，通過半監督式學習找出段落中隱含的其他情緒詞匯，從而建立起完整的情緒字典。 情緒字典的覆蓋範圍包括 名詞 、 動詞 和 形容詞 等部分，每個詞都會有一個正向分數（positive）和一個負向分數（negative）。兩個分數的高低可以判斷這個詞的情緒分布狀況。 必要配置 Python2 JDK jie">
+<meta name="keywords" content="Sentiment Lexicon,NLP,PMI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中文情緒字典（Chinese Sentiment Lexicon）">
+<meta property="og:url" content="http://yoursite.com/2017/08/04/sentiment/index.html">
+<meta property="og:site_name" content="指尖の岁月">
+<meta property="og:description" content="功能利用 PMI 和 SOC-PMI 等語言統計分析算法，從現有文章中標記一些seed words，通過半監督式學習找出段落中隱含的其他情緒詞匯，從而建立起完整的情緒字典。 情緒字典的覆蓋範圍包括 名詞 、 動詞 和 形容詞 等部分，每個詞都會有一個正向分數（positive）和一個負向分數（negative）。兩個分數的高低可以判斷這個詞的情緒分布狀況。 必要配置 Python2 JDK jie">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.imgur.com/3KEOqCF.png">
+<meta property="og:image" content="https://i.imgur.com/nGJWyIO.png">
+<meta property="og:image" content="https://i.imgur.com/Ugyr8cq.png">
+<meta property="og:updated_time" content="2017-08-04T07:04:18.501Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="中文情緒字典（Chinese Sentiment Lexicon）">
+<meta name="twitter:description" content="功能利用 PMI 和 SOC-PMI 等語言統計分析算法，從現有文章中標記一些seed words，通過半監督式學習找出段落中隱含的其他情緒詞匯，從而建立起完整的情緒字典。 情緒字典的覆蓋範圍包括 名詞 、 動詞 和 形容詞 等部分，每個詞都會有一個正向分數（positive）和一個負向分數（negative）。兩個分數的高低可以判斷這個詞的情緒分布狀況。 必要配置 Python2 JDK jie">
+<meta name="twitter:image" content="https://i.imgur.com/3KEOqCF.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖の岁月" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/new3.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/one2.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Eternal</h5>
+          <a href="mailto:617844662@qq.com" title="617844662@qq.com" class="mail">617844662@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/EternalFeather" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://EternalFeather.github.io/AboutMe/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                About Me
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">中文情緒字典（Chinese Sentiment Lexicon）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">中文情緒字典（Chinese Sentiment Lexicon）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-08-04T06:51:16.000Z" itemprop="datePublished" class="page-time">
+  2017-08-04
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#功能"><span class="post-toc-number">1.</span> <span class="post-toc-text">功能</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#必要配置"><span class="post-toc-number">2.</span> <span class="post-toc-text">必要配置</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#使用流程"><span class="post-toc-number">3.</span> <span class="post-toc-text">使用流程</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#測試結果"><span class="post-toc-number">4.</span> <span class="post-toc-text">測試結果</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-sentiment"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">中文情緒字典（Chinese Sentiment Lexicon）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-08-04 14:51:16" datetime="2017-08-04T06:51:16.000Z"  itemprop="datePublished">2017-08-04</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h1><p>利用 <code>PMI</code> 和 <code>SOC-PMI</code> 等語言統計分析算法，從現有文章中標記一些seed words，通過半監督式學習找出段落中隱含的其他情緒詞匯，從而建立起完整的情緒字典。</p>
+<p>情緒字典的覆蓋範圍包括 <code>名詞</code> 、 <code>動詞</code> 和 <code>形容詞</code> 等部分，每個詞都會有一個正向分數（positive）和一個負向分數（negative）。兩個分數的高低可以判斷這個詞的情緒分布狀況。</p>
+<h1 id="必要配置"><a href="#必要配置" class="headerlink" title="必要配置"></a>必要配置</h1><ul>
+<li><code>Python2</code></li>
+<li><code>JDK</code></li>
+<li><code>jieba</code></li>
+</ul>
+<h1 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h1><ul>
+<li>下載情緒字典程式：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/EternalFeather/-Chinese-Sentiment-Lexicon-.git</div></pre></td></tr></table></figure>
+<ul>
+<li>將預設的Seed Word（也就是自行標記的幾個情緒面向詞匯）放入 <code>SentimentLexicon/data/input/Seedwords.txt</code>  中。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/3KEOqCF.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>將需要提取情緒詞匯的訓練文章放入 <code>SentimentLexicon/data/input/Corpus.txt</code> 中。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/nGJWyIO.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>運行 <code>SL.jar</code> 文件即可開始訓練過程：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar &apos;SL.jar&apos;</div></pre></td></tr></table></figure>
+<h1 id="測試結果"><a href="#測試結果" class="headerlink" title="測試結果"></a>測試結果</h1><ul>
+<li>得到的結果會儲存在 <code>SentimentLexicon/data/Propagation/FinalMatrix.csv</code> 文件中。 </li>
+</ul>
+<p><img src="https://i.imgur.com/Ugyr8cq.png" alt=""></p>
+<p>可以看出在比較詞的正負向上能夠取得比較可觀的結果。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-08-04T07:04:18.501Z" itemprop="dateUpdated">2017-08-04 15:04:18</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/08/04/sentiment/" target="_blank" rel="external">http://yoursite.com/2017/08/04/sentiment/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/one2.jpg" alt="Eternal">
+            Eternal
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PMI/">PMI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sentiment-Lexicon/">Sentiment Lexicon</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/08/04/sentiment/&title=《中文情緒字典（Chinese Sentiment Lexicon）》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/08/04/sentiment/&title=《中文情緒字典（Chinese Sentiment Lexicon）》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/08/04/sentiment/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《中文情緒字典（Chinese Sentiment Lexicon）》 — 指尖の岁月&url=http://yoursite.com/2017/08/04/sentiment/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/04/sentiment/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/08/04/word2vec/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Word2Vec on Wikipedia</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/08/02/gal/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Gal-game-on-Renpy</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'eternalfeather';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢您~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Eternal &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/08/04/sentiment/&title=《中文情緒字典（Chinese Sentiment Lexicon）》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/08/04/sentiment/&title=《中文情緒字典（Chinese Sentiment Lexicon）》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/08/04/sentiment/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《中文情緒字典（Chinese Sentiment Lexicon）》 — 指尖の岁月&url=http://yoursite.com/2017/08/04/sentiment/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/04/sentiment/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABxElEQVR42u3aQY7DIBAEwPz/094HZHF6GDNKpOIU2TGUfUD0wOsVt+utvV/vXHm44eLitrnXbcsHWN1d9XN/fTkiLi7uIDcZJh8+Qaz6/GDDxcX9Su4KlF+v9o+Li/uL3KcCEi4u7rdx8yVIHlSSpw5mNVxc3AY3r1Ke+32kvouLi7vFvYotDzb3Qejaari4uDPcfELpbLFUA9WH8gouLu5hbjWKPPUCyd3ld8XFxR3hJkXM6pZJ3kOhQIOLizvC7TyQTH/5q+5ttODi4p7gFrY240iTT3DJV1zOu7i4uCPcvIu8JJofv4hKJ7i4uIPcvViS99A5xhEVTHFxcQ9zOwXQZPO1GqL+CT+4uLiHudWok79efiCjvBjCxcUd4eaHpaqHrjqlllZlFxcXt82tHpjII1MefsrnyHBxcUe4/Ylpr1ySxyFcXNx5bg7qTEytVRguLu4I9yq2+6f2NlALL4mLizvCrU4u1WMZ1SVRPsni4uKe5vY3SDrxqXwXFxd3kLtX6KwudB5YyuDi4n4ltxOl8jiEi4v7W9ykkFpd7hQ+Fi4u7iC3UyTdK39s/hMXF3eEW00cSTmjk18e2LjFxcXd5/4BMpviMR+p3qsAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Welcome back!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂) Hello!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

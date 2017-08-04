@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-02T07:18:57.657Z</updated>
+  <updated>2017-08-04T06:54:32.035Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,443 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>医疗管理系统</title>
+    <link href="http://yoursite.com/2017/08/04/database/"/>
+    <id>http://yoursite.com/2017/08/04/database/</id>
+    <published>2017-08-04T06:51:50.000Z</published>
+    <updated>2017-08-04T06:54:32.035Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>本系统主要是基于 <code>Struts2 MVC架构</code> + <code>mysql资料库</code> 共同开发的医疗信息管理系统模型。利用JSP打造简易的网页与接口，让用户能够通过系统纪录和查询医疗的细节流程。</p>
+<p><a href="https://github.com/EternalFeather/Medical_Management_System_with_Database" target="_blank" rel="external">下載鏈接</a></p>
+<h1 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h1><ul>
+<li><code>操作系统</code>：Windows10</li>
+<li><code>资料库</code>：Mysql</li>
+<li><code>IDE</code>：Eclipse</li>
+<li><code>开发语言</code>：Jsp + Sql + Java</li>
+</ul>
+<h1 id="SQL-Table"><a href="#SQL-Table" class="headerlink" title="SQL Table"></a>SQL Table</h1><p>资料库端分为五个Table，分别为 <code>Department</code>、<code>Employee</code>、<code>Hospital</code>、<code>Patient</code> 和 <code>Report</code>。</p>
+<h2 id="Attribute-Introduction"><a href="#Attribute-Introduction" class="headerlink" title="Attribute Introduction"></a>Attribute Introduction</h2><p><strong>Hospital Table:</strong> 記錄醫院的具體信息</p>
+<ul>
+<li>Hospital_ID:每間醫院的編號（唯一）</li>
+<li>Hospital_Name:醫院的名稱</li>
+<li>Hospital_Address:醫院的地理位置</li>
+<li>Hospital_Scale:醫院的規模大小</li>
+</ul>
+<p><strong>Department Table:</strong> 記錄醫院里各個不同部門的具體信息</p>
+<ul>
+<li>Department_ID:醫院裏面不同部門的編號（唯一）</li>
+<li>Department_Subject:部門的名稱</li>
+<li>Department_People:部門的人數</li>
+<li>Field:部門所掌管的職能</li>
+</ul>
+<p><strong>Employee Table:</strong> 記錄醫院工作人員的具體信息</p>
+<ul>
+<li>Doctor_ID:每個員工的編號（唯一）</li>
+<li>Doctor_Name:員工的姓名</li>
+<li>Doctor_Age:員工的年齡</li>
+<li>Doctor_Specialty:員工的專長</li>
+</ul>
+<p><strong>Patient Table:</strong> 記錄病人的具體信息</p>
+<ul>
+<li>Patient_ID:每個病人的編號（唯一）</li>
+<li>Patient_Name:病人的姓名</li>
+<li>Patient_Age:病人的年齡</li>
+<li>Patient_Disease:病人的癥狀</li>
+</ul>
+<p><strong>Report Table:</strong> 記錄病人病歷記錄的具體信息</p>
+<ul>
+<li>Report_ID:每個病歷記錄的編號（唯一）</li>
+<li>Report_Disease:病歷記錄的病人癥狀</li>
+<li>Report_PatientName:病歷記錄的病人姓名</li>
+<li>Report_Medicine:病歷記錄的病人用藥情況</li>
+</ul>
+<h1 id="ER-Diagram"><a href="#ER-Diagram" class="headerlink" title="ER Diagram"></a>ER Diagram</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/qdBYNZI.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h1 id="Relation-Schema"><a href="#Relation-Schema" class="headerlink" title="Relation Schema"></a>Relation Schema</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">Hospital Schema</th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Hospital_ID</td>
+<td style="text-align:center">Hospital_Name</td>
+<td style="text-align:center">Hospital_Address</td>
+<td style="text-align:center">Hospital_Scale</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Department Schema</th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Department_ID</td>
+<td style="text-align:center">Department_Subject</td>
+<td style="text-align:center">Department_People</td>
+<td style="text-align:center">Field</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Employee Schema</th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Doctor_ID</td>
+<td style="text-align:center">Doctor_Name</td>
+<td style="text-align:center">Doctor_Name</td>
+<td style="text-align:center">Doctor_Specialty</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Patient Schema</th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Patient_ID</td>
+<td style="text-align:center">Patient_Name</td>
+<td style="text-align:center">Patient_Age</td>
+<td style="text-align:center">Patient_Disease</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Report Schema</th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Report_ID</td>
+<td style="text-align:center">Report_Disease</td>
+<td style="text-align:center">Report_PatientName</td>
+<td style="text-align:center">Report_Medicine</td>
+</tr>
+</tbody>
+</table>
+<h1 id="Relationship-Introduction"><a href="#Relationship-Introduction" class="headerlink" title="Relationship Introduction"></a>Relationship Introduction</h1><ul>
+<li>每個醫院都會有許多不同的部門，每個部門都是隸屬於某一家醫院。</li>
+<li>每個醫院部門都會招聘不同數量的員工，未退休的員工會屬於某一個部門。</li>
+<li>所有負責醫療工作的員工都會給病人開具病歷證明，所有的病歷證明都是由醫療工作員工開具的。</li>
+<li>所有的病人都有自己的病歷記錄，所有的病歷記錄記錄著該病人的醫療情況。</li>
+<li>負責醫療工作的員工會給病人看病，同時醫院的員工也有可能是病人。</li>
+</ul>
+<h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><p>配置好sql和server之后，就可以通过localhost或者IP来访问系统网址了，这里用的是Tomcat Server來訪問資料庫系統首頁。。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/OAdFgoI.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/czWAFBo.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>左邊的功能列表可以選擇需要操作的Entity進行不同的資料庫操作。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/ukIeIjX.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>以醫院管理為例，進入醫院管理操作介面，系統會自動列出所有的數據庫資料。點擊左上角的<strong>添加</strong>按鈕可以添加新的醫院信息到database；同時可以通過<strong>Search</strong>的選項來索引資料庫裏面的資料；點擊操作欄位的<strong>修改和刪除</strong>可以分別對相應的資料進行修改和刪除；最後點擊右上角的<strong>手動修改和查詢</strong>可以分別通過手動輸入SQL指令來進行修改動作（insert，delete，update）和查詢動作（select）。</p>
+<ul>
+<li>添加介面：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/PDo43C2.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>可以<strong>添加</strong>醫院的相關信息到數據庫。</p>
+<ul>
+<li>選擇操作：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/mYQk0G0.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>系統會給出相應的<strong>檢索</strong>結果：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/UGf1VbP.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>修改和刪除：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/9jEEf1k.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>點擊修改操作系統會自動捕捉當前的資料信息，方便進行<strong>修改</strong>。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/EZVj52s.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>點擊刪除操作系統會提示<strong>是否刪除</strong>，點擊確定則會從資料庫移除相應信息。</p>
+<ul>
+<li>手動修改和刪除：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/eknZV1t.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/fqo6fRa.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>點擊<strong>手動修改和刪除</strong>操作，系統會跳出相應的輸入框，可以通過手動輸入SQL指令來進行Select檢索或者Insert，Update，Delete等操作。</p>
+<ul>
+<li>Nested Query和Aggregate Query（以醫生管理為例）：<br>點擊Nested Query會跳轉至如下畫面。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/9P6SJ1w.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>分別點擊不同的按鈕可以<strong>跳轉</strong>至相應功能對應的介面。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/Cp7doj5.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>通過選項可以自動通過Button的方式呼叫資料庫，通過sql指令也可以進行資料庫的操作。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/df2ElPC.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>通過選項操作同樣可以用button的方式呼叫資料庫操作，sql指令同樣也能夠進行相應的操作。（注：在sql對於Aggregate操作過程中需要對應下方的欄位進行as重命名）</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h1&gt;&lt;p&gt;本系统主要是基于 &lt;code&gt;Struts2 MVC架构&lt;/
+    
+    </summary>
+    
+    
+      <category term="Database" scheme="http://yoursite.com/tags/Database/"/>
+    
+      <category term="System" scheme="http://yoursite.com/tags/System/"/>
+    
+      <category term="Struts MVC" scheme="http://yoursite.com/tags/Struts-MVC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Word2Vec on Wikipedia</title>
+    <link href="http://yoursite.com/2017/08/04/word2vec/"/>
+    <id>http://yoursite.com/2017/08/04/word2vec/</id>
+    <published>2017-08-04T06:51:25.000Z</published>
+    <updated>2017-08-04T07:07:46.791Z</updated>
+    
+    <content type="html"><![CDATA[<p>我们知道语言在人际交往当中充当了重要的角色，理解语言的编码就能够了解对方所要表达的意思。而机器不同于人，无法从繁杂的文字当中快速提取有用的信息，因此需要借助一个能够代表文字语言的编码单位，也就是我们说的<strong>向量（Vector）</strong>。因此训练Word2Vec的模型，用来计算词语之间的相似度似乎成为了解决文字编码问题的不可或缺的重要途径之一。</p>
+<h1 id="配置需求"><a href="#配置需求" class="headerlink" title="配置需求"></a>配置需求</h1><ul>
+<li><code>Python3</code></li>
+<li><code>Gensim</code> &gt;= 2.3.0 (<strong>沒試過更低的版本</strong>)</li>
+<li><code>Opencc</code></li>
+<li><code>jieba</code></li>
+</ul>
+<h1 id="模型训练语料"><a href="#模型训练语料" class="headerlink" title="模型训练语料"></a>模型训练语料</h1><ul>
+<li>维基百科官方提供了大约11G的很好的英文語料： <a href="https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2" target="_blank" rel="external">開源數據鏈接</a>。</li>
+<li>同時也提供了大約1.5G的中文語料： <a href="https://dumps.wikimedia.org/zhwiki/latest/zhwiki-latest-pages-articles.xml.bz2" target="_blank" rel="external">開源數據鏈接</a>。</li>
+</ul>
+<p>其主要的文档格式以 <code>.xml</code> 为主。</p>
+<h1 id="操作流程"><a href="#操作流程" class="headerlink" title="操作流程"></a>操作流程</h1><ul>
+<li>下載相應的Python執行檔：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/EternalFeather/Word2Vec-on-Wikipedia-Corpus.git</div></pre></td></tr></table></figure>
+<h2 id="資料前處理"><a href="#資料前處理" class="headerlink" title="資料前處理"></a>資料前處理</h2><p>前處理第一階段需要將wiki的 <code>.xml</code> 格式的數據轉換成 <code>text</code> 格式的數據:</p>
+<ul>
+<li><p>通過 <code>word2vec_process.py</code> 實現，基本參數包括：</p>
+<ul>
+<li><code>-data</code>： 輸入的維基百科數據集。</li>
+<li><code>-output</code>： 輸出的文件位置和名稱。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python word2vec_process.py -data enwiki-latest-pages-articles.xml.bz2 -output wiki.en.text</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Tips:</strong> </p>
+<ul>
+<li>如果是中文維基百科的語料訓練時，會存在一些繁體和簡體混雜的中文字，如果想要統一字體格式，就可以使用Opencc將字體進行轉換：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">opencc -i wiki.zh.text -o wiki.zh.text.jianti -c zht2zhs.ini</div></pre></td></tr></table></figure>
+<ul>
+<li>中文的維基百科數據接下來就是需要進行斷詞處理了，這裏使用的<strong>中文斷詞工具</strong>是 <code>jieba</code>。</li>
+</ul>
+<p>這裏利用了gensim裏面處理維基百科的class <code>WikiCorpus</code>，通過 <code>get_texts</code> function將每篇文章換行輸出成text文本，並且已經完成了去標點的工作。運行之後就能夠得到英文維基百科的數據文檔 <code>wiki.en.text</code>(參數可自行設定名稱)。</p>
+<h2 id="模型訓練"><a href="#模型訓練" class="headerlink" title="模型訓練"></a>模型訓練</h2><p>有了文章的text數據集之後，無論是word2vec binary版本還是gensim的word2vec，都可以用來訓練我們的模型，不過後者的運算速度比較快。</p>
+<ul>
+<li><p>模型的建立通過 <code>word2vec_model.py</code> 實現，基本參數包括：</p>
+<ul>
+<li><code>-text</code>： 輸入的維基百科文字檔名稱。</li>
+<li><code>-vector</code>： 輸出的向量文檔存儲位置和名稱（默認爲 <strong>wiki.en.text.vector</strong>）。</li>
+<li><code>-core</code>： 多進程運行使用的cpu數量（默認爲全部）。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python word2vec_model.py -text wiki.en.text -vector wiki.en.text.vector -core 8</div></pre></td></tr></table></figure>
+<h2 id="模型測試"><a href="#模型測試" class="headerlink" title="模型測試"></a>模型測試</h2><p>訓練結束之後就能得到一個gensim原始c版本的word2vec的vector格式的模型，這時候我們就可以利用這些模型進行一些文字的評估測試了：</p>
+<ul>
+<li><p>導入模型進行操作通過 <code>word2vec_eval.py</code> 實現，基本參數包括：</p>
+<ul>
+<li><code>-vector</code>： 載入的模型位置和名稱。</li>
+<li><code>-mode</code>： 想要執行模型的功能名稱（包括 <em>similar<strong>【預測相關的words】、</strong>similarity*</em>【判斷兩個words的相似度】等）</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python word2vec_eval.py -vector wiki.en.text.vector -mode similarity</div></pre></td></tr></table></figure>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a href="http://www.52nlp.cn/%E4%B8%AD%E8%8B%B1%E6%96%87%E7%BB%B4%E5%9F%BA%E7%99%BE%E7%A7%91%E8%AF%AD%E6%96%99%E4%B8%8A%E7%9A%84word2vec%E5%AE%9E%E9%AA%8C" target="_blank" rel="external">我愛自然語言處理</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我们知道语言在人际交往当中充当了重要的角色，理解语言的编码就能够了解对方所要表达的意思。而机器不同于人，无法从繁杂的文字当中快速提取有用的信息，因此需要借助一个能够代表文字语言的编码单位，也就是我们说的&lt;strong&gt;向量（Vector）&lt;/strong&gt;。因此训练Word
+    
+    </summary>
+    
+    
+      <category term="Word2Vec" scheme="http://yoursite.com/tags/Word2Vec/"/>
+    
+      <category term="Embedding" scheme="http://yoursite.com/tags/Embedding/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>中文情緒字典（Chinese Sentiment Lexicon）</title>
+    <link href="http://yoursite.com/2017/08/04/sentiment/"/>
+    <id>http://yoursite.com/2017/08/04/sentiment/</id>
+    <published>2017-08-04T06:51:16.000Z</published>
+    <updated>2017-08-04T07:04:18.501Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h1><p>利用 <code>PMI</code> 和 <code>SOC-PMI</code> 等語言統計分析算法，從現有文章中標記一些seed words，通過半監督式學習找出段落中隱含的其他情緒詞匯，從而建立起完整的情緒字典。</p>
+<p>情緒字典的覆蓋範圍包括 <code>名詞</code> 、 <code>動詞</code> 和 <code>形容詞</code> 等部分，每個詞都會有一個正向分數（positive）和一個負向分數（negative）。兩個分數的高低可以判斷這個詞的情緒分布狀況。</p>
+<h1 id="必要配置"><a href="#必要配置" class="headerlink" title="必要配置"></a>必要配置</h1><ul>
+<li><code>Python2</code></li>
+<li><code>JDK</code></li>
+<li><code>jieba</code></li>
+</ul>
+<h1 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h1><ul>
+<li>下載情緒字典程式：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/EternalFeather/-Chinese-Sentiment-Lexicon-.git</div></pre></td></tr></table></figure>
+<ul>
+<li>將預設的Seed Word（也就是自行標記的幾個情緒面向詞匯）放入 <code>SentimentLexicon/data/input/Seedwords.txt</code>  中。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/3KEOqCF.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>將需要提取情緒詞匯的訓練文章放入 <code>SentimentLexicon/data/input/Corpus.txt</code> 中。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/nGJWyIO.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>運行 <code>SL.jar</code> 文件即可開始訓練過程：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar &apos;SL.jar&apos;</div></pre></td></tr></table></figure>
+<h1 id="測試結果"><a href="#測試結果" class="headerlink" title="測試結果"></a>測試結果</h1><ul>
+<li>得到的結果會儲存在 <code>SentimentLexicon/data/Propagation/FinalMatrix.csv</code> 文件中。 </li>
+</ul>
+<p><img src="https://i.imgur.com/Ugyr8cq.png" alt=""></p>
+<p>可以看出在比較詞的正負向上能夠取得比較可觀的結果。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;功能&quot;&gt;&lt;a href=&quot;#功能&quot; class=&quot;headerlink&quot; title=&quot;功能&quot;&gt;&lt;/a&gt;功能&lt;/h1&gt;&lt;p&gt;利用 &lt;code&gt;PMI&lt;/code&gt; 和 &lt;code&gt;SOC-PMI&lt;/code&gt; 等語言統計分析算法，從現有文章中標記一些seed wo
+    
+    </summary>
+    
+    
+      <category term="Sentiment Lexicon" scheme="http://yoursite.com/tags/Sentiment-Lexicon/"/>
+    
+      <category term="NLP" scheme="http://yoursite.com/tags/NLP/"/>
+    
+      <category term="PMI" scheme="http://yoursite.com/tags/PMI/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Gal-game-on-Renpy</title>
     <link href="http://yoursite.com/2017/08/02/gal/"/>
     <id>http://yoursite.com/2017/08/02/gal/</id>
     <published>2017-08-02T07:09:53.000Z</published>
-    <updated>2017-08-02T07:18:57.657Z</updated>
+    <updated>2017-08-04T06:55:14.851Z</updated>
     
     <content type="html"><![CDATA[<h1 id="安裝說明"><a href="#安裝說明" class="headerlink" title="安裝說明"></a>安裝說明</h1><p>Renpy Platform可以用來設計自己專屬的視覺小說遊戲。</p>
 <figure class="image-bubble">
@@ -144,7 +576,6 @@
                 </div>
                 <div class="image-caption"></div>
             </figure>
-<h1 id="KeyWords"><a href="#KeyWords" class="headerlink" title="KeyWords"></a>KeyWords</h1><p>Tags: <code>Renpy</code> <code>Gal-game</code></p>
 ]]></content>
     
     <summary type="html">
@@ -166,7 +597,7 @@
     <link href="http://yoursite.com/2017/08/01/cuda/"/>
     <id>http://yoursite.com/2017/08/01/cuda/</id>
     <published>2017-08-01T08:18:31.000Z</published>
-    <updated>2017-08-01T08:19:59.940Z</updated>
+    <updated>2017-08-04T06:54:57.123Z</updated>
     
     <content type="html"><![CDATA[<h1 id="顯卡規格查詢"><a href="#顯卡規格查詢" class="headerlink" title="顯卡規格查詢"></a>顯卡規格查詢</h1><p>首先需要確定自己顯卡的規格：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lspci -vnn | grep VGA -A 12</div></pre></td></tr></table></figure></p>
 <figure class="image-bubble">
@@ -221,7 +652,6 @@
                 <div class="image-caption"></div>
             </figure>
 <p>如此以來就可以用GPU操作深度學習的框架了。</p>
-<h1 id="KeyWords"><a href="#KeyWords" class="headerlink" title="KeyWords"></a>KeyWords</h1><p>Tags：<code>CUDA</code> <code>cuDNN</code> <code>Deep Learning</code> <code>Tensorflow</code></p>
 ]]></content>
     
     <summary type="html">
@@ -246,7 +676,7 @@
     <link href="http://yoursite.com/2017/07/25/Corpus/"/>
     <id>http://yoursite.com/2017/07/25/Corpus/</id>
     <published>2017-07-25T07:15:05.000Z</published>
-    <updated>2017-07-25T07:16:13.678Z</updated>
+    <updated>2017-08-04T06:54:46.051Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Dialog-Datasets-for-Training-Chatbot"><a href="#Dialog-Datasets-for-Training-Chatbot" class="headerlink" title="Dialog Datasets for Training Chatbot"></a>Dialog Datasets for Training Chatbot</h1><p>在进行Chatbot的研究过程中，除了要有一个漂亮的模型之外，还需要有大量可供训练的语料来强化我们的聊天机器人。越干净的语料就能训练出越接近人类自然语言回复的Chatbot。</p>
 <ul>
@@ -273,7 +703,6 @@
 </li>
 </ul>
 <h1 id="License"><a href="#License" class="headerlink" title="License:"></a>License:</h1><p>公开语料的版权归原作者所有，未经允许不得一个人名义投入盈利性活动。</p>
-<h1 id="Keywords"><a href="#Keywords" class="headerlink" title="Keywords:"></a>Keywords:</h1><p>Tags: <code>Corpus</code> <code>Chatbot</code></p>
 ]]></content>
     
     <summary type="html">
@@ -296,7 +725,7 @@
     <link href="http://yoursite.com/2017/07/25/Python/"/>
     <id>http://yoursite.com/2017/07/25/Python/</id>
     <published>2017-07-25T06:10:56.000Z</published>
-    <updated>2017-07-25T06:12:12.576Z</updated>
+    <updated>2017-08-04T06:55:33.518Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Foundation-Summary"><a href="#Foundation-Summary" class="headerlink" title="Foundation Summary"></a>Foundation Summary</h1><ul>
 <li><strong>Print</strong></li>
@@ -383,7 +812,6 @@
 <h2 id="Matplotlib-Figure"><a href="#Matplotlib-Figure" class="headerlink" title="Matplotlib Figure"></a>Matplotlib Figure</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># ********Matplotlib Figure********:</div><div class="line">import matplotlib.pyplot as plt</div><div class="line">import numpy as np</div><div class="line"></div><div class="line">x = np.linspace(-3, 3, 50)</div><div class="line">y1 = 2 * x + 1</div><div class="line">y2 = x ** 2</div><div class="line">plt.figure()</div><div class="line">plt.plot(x, y1)</div><div class="line">plt.figure(num = 3, figsize = (8, 5))</div><div class="line">plt.plot(x, y1)</div><div class="line">plt.plot(x, y2, color = &apos;red&apos;, linewidth = 1.0, linestyle = &apos;--&apos;)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
 <h2 id="Matplotlib-Setting"><a href="#Matplotlib-Setting" class="headerlink" title="Matplotlib Setting"></a>Matplotlib Setting</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"># ********Matplotlib Setting********:</div><div class="line">import matplotlib.pyplot as plt</div><div class="line">import numpy as np</div><div class="line"></div><div class="line">x = np.linspace(-3, 3, 50)</div><div class="line">y1 = 2 * x + 1</div><div class="line">y2 = x ** 2</div><div class="line">plt.figure()</div><div class="line">plt.plot(x, y2)</div><div class="line">plt.plot(x, y1, color = &apos;red&apos;, linewidth = 1.0, linestyle = &apos;--&apos;)</div><div class="line">plt.xlim((-1, 2))</div><div class="line">plt.ylim((-2, 3))</div><div class="line">plt.xlabel(&apos;I am X&apos;)</div><div class="line">plt.ylabel(&apos;I am Y&apos;)</div><div class="line">new_ticks = np.linspace(-1, 2, 5) # steps</div><div class="line">plt.xticks(new_ticks)</div><div class="line">plt.yticks([-2, -1.8, 0, 1.22, 3], [r&apos;$really\ bad$&apos;, r&apos;$bad$&apos;, r&apos;$normal$&apos;, r&apos;$good$&apos;, r&apos;$really\ good$&apos;]) # alpha need write as &apos;\alpha&apos;</div><div class="line"></div><div class="line"># gca = &apos;get current axis&apos;</div><div class="line">ax = plt.gca()</div><div class="line">ax.spines[&apos;right&apos;].set_color(&apos;none&apos;) # right side of boundarys</div><div class="line">ax.spines[&apos;top&apos;].set_color(&apos;none&apos;)</div><div class="line">ax.xaxis.set_ticks_position(&apos;bottom&apos;)</div><div class="line">ax.yaxis.set_ticks_position(&apos;left&apos;)</div><div class="line">ax.spines[&apos;bottom&apos;].set_position((&apos;data&apos;, 0)) # &apos;data&apos; can set to &apos;outward&apos; , &apos;axes&apos;... </div><div class="line">ax.spines[&apos;left&apos;].set_position((&apos;data&apos;, 0))</div><div class="line"></div><div class="line"># Legend</div><div class="line">x = np.linspace(-3, 3, 50)</div><div class="line">y1 = 2 * x + 1</div><div class="line">y2 = x ** 2</div><div class="line">plt.figure()</div><div class="line">plt.xlim((-1, 2))</div><div class="line">plt.ylim((-2, 3))</div><div class="line">plt.xlabel(&apos;I am X&apos;)</div><div class="line">plt.ylabel(&apos;I am Y&apos;)</div><div class="line">new_ticks = np.linspace(-1, 2, 5) # steps</div><div class="line">plt.xticks(new_ticks)</div><div class="line">plt.yticks([-2, -1.8, 0, 1.22, 3], [r&apos;$really\ bad$&apos;, r&apos;$bad$&apos;, r&apos;$normal$&apos;, r&apos;$good$&apos;, r&apos;$really\ good$&apos;]) # alpha need write as &apos;\alpha&apos;</div><div class="line">l1, = plt.plot(x, y2, label = &apos;up&apos;) # Don&apos;t forget &apos;,&apos;</div><div class="line">l2, = plt.plot(x, y1, color = &apos;red&apos;, linewidth = 1.0, linestyle = &apos;--&apos;, label = &apos;down&apos;)</div><div class="line">plt.legend(handles = [l1, l2], labels = [&apos;line 1&apos;, &apos;line 2&apos;], loc = &apos;best&apos;) # loc = &#123;&apos;best&apos;, &apos;upper&apos;, &apos;lower right&apos;, &apos;center&apos;...&#125;</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
 <h2 id="Matplotlib-Annotation"><a href="#Matplotlib-Annotation" class="headerlink" title="Matplotlib Annotation"></a>Matplotlib Annotation</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"># ********Matplotlib Annotation********:</div><div class="line">import matplotlib.pyplot as plt</div><div class="line">import numpy as np</div><div class="line"></div><div class="line">x = np.linspace(-3, 3, 50)</div><div class="line">y = 2 * x + 1</div><div class="line">plt.figure(num = 1, figsize = (8, 5))</div><div class="line">plt.plot(x, y)</div><div class="line">ax = plt.gca()</div><div class="line">ax.spines[&apos;right&apos;].set_color(&apos;none&apos;)</div><div class="line">ax.spines[&apos;top&apos;].set_color(&apos;none&apos;)</div><div class="line">ax.xaxis.set_ticks_position(&apos;bottom&apos;)</div><div class="line">ax.spines[&apos;bottom&apos;].set_position((&apos;data&apos;, 0))</div><div class="line">ax.yaxis.set_ticks_position(&apos;left&apos;)</div><div class="line">ax.spines[&apos;left&apos;].set_position((&apos;data&apos;, 0))</div><div class="line"></div><div class="line">X0 = 1</div><div class="line">Y0 = 2 * X0 + 1</div><div class="line"># Point</div><div class="line">plt.scatter(X0, Y0, s = 50, color = &apos;b&apos;)</div><div class="line"># Line</div><div class="line">plt.plot([X0, X0], [Y0, 0], &apos;k--&apos;, lw = 2.5)</div><div class="line"># Choice one</div><div class="line">plt.annotate(r&apos;$2x+1=%s$&apos; % Y0, xy = (X0, Y0), xycoords = &apos;data&apos;, xytext = (+30, -30), textcoords = &apos;offset points&apos;, fontsize = 16, arrowprops = dict(arrowstyle = &apos;-&gt;&apos;, connectionstyle = &apos;arc3, rad = .2&apos;))</div><div class="line"># Choice two</div><div class="line">plt.text(-3.7, 3, r&apos;$This\ is\ some\ text.\ \mu\ \sigma_i\ \alpha_t$&apos;, fontdict = &#123;&apos;size&apos;: 16, &apos;color&apos;: &apos;r&apos;&#125;)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
-<h1 id="Keywords"><a href="#Keywords" class="headerlink" title="Keywords:"></a>Keywords:</h1><p>Tags: <code>Python</code> <code>Numpy</code> <code>Pandas</code> <code>Matplotlib</code> </p>
 ]]></content>
     
     <summary type="html">
@@ -409,7 +837,7 @@
     <link href="http://yoursite.com/2017/07/25/RNN/"/>
     <id>http://yoursite.com/2017/07/25/RNN/</id>
     <published>2017-07-25T04:03:41.000Z</published>
-    <updated>2017-08-04T02:47:50.895Z</updated>
+    <updated>2017-08-04T06:55:59.054Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Recurrent-Neural-Netword-RNN-Using-Tensorflow"><a href="#Recurrent-Neural-Netword-RNN-Using-Tensorflow" class="headerlink" title="Recurrent Neural Netword(RNN) Using Tensorflow"></a>Recurrent Neural Netword(RNN) Using Tensorflow</h1><h1 id="Pre-processing"><a href="#Pre-processing" class="headerlink" title="Pre-processing"></a>Pre-processing</h1><h2 id="Datasets"><a href="#Datasets" class="headerlink" title="Datasets"></a>Datasets</h2><p>MNIST database of handwritten digits. <a href="http://yann.lecun.com/exdb/mnist/" target="_blank" rel="external">Click here</a><br>Input data: Image shape(28*28)<br>Output label: 0~9 </p>
 <h2 id="Parameters"><a href="#Parameters" class="headerlink" title="Parameters"></a>Parameters</h2><ul>
@@ -496,7 +924,6 @@
 <li><a href="https://github.com/aymericdamien/TensorFlow-Examples/" target="_blank" rel="external">Googel Tensorflow Example</a></li>
 </ul>
 <h1 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h1><p>In this experiment we use a simple RNN(LSTM) model to predict the handwritten digits which also catch a good consequence in CNN.<br>RNN model is good for using in NLP processing. But how to explore the most useful <strong>determines</strong> whether our model can get an excellent result or not.</p>
-<h1 id="Keywords"><a href="#Keywords" class="headerlink" title="Keywords"></a>Keywords</h1><p>Tags: <code>Machine Learning</code> <code>RNN</code> <code>LSTM</code> <code>Tensorflow</code></p>
 ]]></content>
     
     <summary type="html">
@@ -519,7 +946,7 @@
     <link href="http://yoursite.com/2017/07/25/Remote/"/>
     <id>http://yoursite.com/2017/07/25/Remote/</id>
     <published>2017-07-25T04:00:24.000Z</published>
-    <updated>2017-07-25T04:08:02.329Z</updated>
+    <updated>2017-08-04T06:55:43.042Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Ubuntu上的遠端鏈接比起windows系統自帶的Remote Desktop需要配置的條件更多。網上也有許多不同的版本，本人嘗試之後發現了一些常見的問題，特在此總結可行的一般流程與常見問題的解決方式。</p>
 <h1 id="System-Config"><a href="#System-Config" class="headerlink" title="System Config"></a>System Config</h1><p><code>Ubuntu16.04</code> <code>Windows 10</code></p>
@@ -624,7 +1051,6 @@
 </ul>
 </li>
 </ul>
-<h1 id="Keywords"><a href="#Keywords" class="headerlink" title="Keywords"></a>Keywords</h1><p>Tags: <code>Ubuntu</code> <code>Remote Desktop</code> <code>xrdp</code></p>
 ]]></content>
     
     <summary type="html">
@@ -647,7 +1073,7 @@
     <link href="http://yoursite.com/2017/07/25/Unicode/"/>
     <id>http://yoursite.com/2017/07/25/Unicode/</id>
     <published>2017-07-25T03:52:58.000Z</published>
-    <updated>2017-07-25T04:08:25.789Z</updated>
+    <updated>2017-08-04T07:04:41.769Z</updated>
     
     <content type="html"><![CDATA[<h1 id="什么是编码"><a href="#什么是编码" class="headerlink" title="什么是编码"></a>什么是编码</h1><p>字符串也是一種數據形態，但是比較特殊的是字符串本身也存在一個編碼的問題，就是如何讓計算機來表示相應的字符並存儲。在編程語言中，我們經常會處理文本編碼之間的轉化問題，因為文本可能存在不同的編碼格式，例如 ASCII、GBK、UTF-8等等。最近在做NN的過程中面臨Corpus的unicode編碼問題，因此需要弄清楚python不同版本對編碼問題的處理策略。</p>
 <h2 id="字符的抽象概念"><a href="#字符的抽象概念" class="headerlink" title="字符的抽象概念"></a>字符的抽象概念</h2><p>看了一些網絡上的介紹，發現我們所謂的字符表示文本中單一的一個符號。然而一個字符不是一個字節，例如 “中” 這個字在文本中是一個基礎字符，但是在計算機中卻不是一個字節。一個字符有許多表示方法，不同的表示方法會使用不同的字節數，這就是所謂的編碼。<strong>字符就是文本中的最小單元</strong>。</p>
@@ -701,7 +1127,6 @@
                 </div>
                 <div class="image-caption"></div>
             </figure></p>
-<h1 id="Keywords"><a href="#Keywords" class="headerlink" title="Keywords"></a>Keywords</h1><p>Tags: <code>Python2</code> <code>Python3</code> <code>Unicode</code> <code>编码</code></p>
 ]]></content>
     
     <summary type="html">
@@ -720,7 +1145,7 @@
     <link href="http://yoursite.com/2017/07/25/Ubuntu-sogo/"/>
     <id>http://yoursite.com/2017/07/25/Ubuntu-sogo/</id>
     <published>2017-07-25T03:48:07.000Z</published>
-    <updated>2017-07-25T04:08:20.329Z</updated>
+    <updated>2017-08-04T07:04:32.461Z</updated>
     
     <content type="html"><![CDATA[<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>目前Ubuntu常用的中文输入法有：</p>
 <ul>
@@ -747,7 +1172,6 @@
 <li><strong>Tips</strong>：有些版本會出現搜狗與Fcitx的衝突問題，但是本人沒有遇到這個問題，但是仍然提供一個評價最佳的解決策略：(移除其中一種輸入法架構)<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt remove fcitx*</div><div class="line">$ sudo apt autoremove</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1 id="Keywords"><a href="#Keywords" class="headerlink" title="Keywords"></a>Keywords</h1><p>Tags: <code>Linux</code> <code>Ubuntu 16.04</code> <code>sogou输入法</code> </p>
 ]]></content>
     
     <summary type="html">
