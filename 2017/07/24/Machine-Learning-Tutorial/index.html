@@ -108,7 +108,29 @@
 <meta property="og:image" content="https://i.imgur.com/4PmjIUv.png">
 <meta property="og:image" content="https://i.imgur.com/BbwFVzg.png">
 <meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large Error = {predicted - real}">
-<meta property="og:updated_time" content="2017-08-01T09:11:37.582Z">
+<meta property="og:image" content="https://i.imgur.com/SwuicOP.png">
+<meta property="og:image" content="https://i.imgur.com/nuEIhHL.png">
+<meta property="og:image" content="https://i.imgur.com/aDkQTg8.png">
+<meta property="og:image" content="https://i.imgur.com/3DQQEpE.png">
+<meta property="og:image" content="https://i.imgur.com/B3t3yoO.png">
+<meta property="og:image" content="https://i.imgur.com/ShtfdUk.jpg">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large y = Wx">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large y = AF(Wx)">
+<meta property="og:image" content="https://i.imgur.com/m3ozi0z.png">
+<meta property="og:image" content="https://i.imgur.com/wVrzICJ.png">
+<meta property="og:image" content="https://i.imgur.com/7vHMPnX.png">
+<meta property="og:image" content="https://i.imgur.com/lUfqDIv.png">
+<meta property="og:image" content="https://i.imgur.com/xG5ZxCh.png">
+<meta property="og:image" content="https://i.imgur.com/KSIz2uL.png">
+<meta property="og:image" content="https://i.imgur.com/PSe3Gt2.png">
+<meta property="og:image" content="https://i.imgur.com/TsJRH9M.png">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large y = Wx">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large cost = (Wx - real y)^2">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large cost = (Wx - real y)^2 + abs(W)">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large cost = (Wx - real y)^2 + (W)^2">
+<meta property="og:image" content="https://i.imgur.com/YqPvzph.png">
+<meta property="og:image" content="https://i.imgur.com/AkPuOK7.png">
+<meta property="og:updated_time" content="2017-08-07T03:14:43.752Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习（Machine Learning）简单学">
 <meta name="twitter:description" content="本人对于机器学习这项技术具有强烈的兴趣，但是网络上的文献鱼龙混杂，很难找到真正适合入门级别的新手观看。前一阵子无意间在网络上看到了莫烦Python的教学视频，发现其中的内容丰富有趣并且具有很好的阶层学习框架。于是总结了一些精髓并加入了自己从事机器学习研究所工作的一些见解，总结了一些精华的部分以供大家快速入门和学习。 什么是机器学习机器学习（Machine Learning）是由一帮计算机科学家们希">
@@ -234,7 +256,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#什么是机器学习"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是机器学习</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#应用"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">应用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#算法"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">算法</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#十大常见机器学习算法"><span class="post-toc-number">2.</span> <span class="post-toc-text">十大常见机器学习算法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#线性回归（Linear-Regression）"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">线性回归（Linear Regression）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#逻辑回归（Logistic-Regression）"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">逻辑回归（Logistic Regression）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#决策树（Decision-Tree）"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">决策树（Decision Tree）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Gini"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">Gini</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Information-Gain-amp-Entropy"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">Information Gain & Entropy</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#支持向量机（Support-vector-machine-SVM）"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">支持向量机（Support vector machine,SVM）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#朴素贝叶斯（Naive-Bayesian）"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">朴素贝叶斯（Naive Bayesian）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#K近邻（K-Nearest-Neighbors）"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">K近邻（K Nearest Neighbors）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#欧式距离"><span class="post-toc-number">2.6.1.</span> <span class="post-toc-text">欧式距离</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#曼哈顿距离"><span class="post-toc-number">2.6.2.</span> <span class="post-toc-text">曼哈顿距离</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#明氏距离"><span class="post-toc-number">2.6.3.</span> <span class="post-toc-text">明氏距离</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#汉明距离"><span class="post-toc-number">2.6.4.</span> <span class="post-toc-text">汉明距离</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#K均值（K-means）"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">K均值（K-means）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#随机森林（Random-Forest）"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">随机森林（Random Forest）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#降维（Dimensionality-reduction）"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">降维（Dimensionality reduction）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#主成分分析（PCA）"><span class="post-toc-number">2.9.1.</span> <span class="post-toc-text">主成分分析（PCA）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#因子分析"><span class="post-toc-number">2.9.2.</span> <span class="post-toc-text">因子分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Gradient-Boost-amp-Adaboost"><span class="post-toc-number">2.10.</span> <span class="post-toc-text">Gradient Boost & Adaboost</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Adaboost"><span class="post-toc-number">2.10.1.</span> <span class="post-toc-text">Adaboost</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Gradient-Boost"><span class="post-toc-number">2.10.2.</span> <span class="post-toc-text">Gradient Boost</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#什么是神经网络（Neural-Network）"><span class="post-toc-number">3.</span> <span class="post-toc-text">什么是神经网络（Neural Network）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#神经网络的基本结构"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">神经网络的基本结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#神经元（Neuron）的激活函数（Activation-Function）"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">神经元（Neuron）的激活函数（Activation Function）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#卷及神经网络（CNN）"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">卷及神经网络（CNN）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CNN常用结构"><span class="post-toc-number">3.3.1.</span> <span class="post-toc-text">CNN常用结构</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#递归神经网络（RNN）"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">递归神经网络（RNN）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#RNN常用结构"><span class="post-toc-number">3.4.1.</span> <span class="post-toc-text">RNN常用结构</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#神经网络非监督式学习实现Autoencoder"><span class="post-toc-number">4.</span> <span class="post-toc-text">神经网络非监督式学习实现Autoencoder</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#生成对抗网络（GAN）"><span class="post-toc-number">5.</span> <span class="post-toc-text">生成对抗网络（GAN）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#GAN的应用"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">GAN的应用</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#理解神经网络的“-黑盒子-”"><span class="post-toc-number">6.</span> <span class="post-toc-text">理解神经网络的“ 黑盒子 ”</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#如何优化神经网络（Optimization）"><span class="post-toc-number">7.</span> <span class="post-toc-text">如何优化神经网络（Optimization）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#神经网络梯度下降算法（Gradient-Descent）"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">神经网络梯度下降算法（Gradient Descent）</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#如何评估神经网络的优越性"><span class="post-toc-number">8.</span> <span class="post-toc-text">如何评估神经网络的优越性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据集评估"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">数据集评估</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#为什么要对特征进行标准化（Normalization）"><span class="post-toc-number">9.</span> <span class="post-toc-text">为什么要对特征进行标准化（Normalization）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何标准化"><span class="post-toc-number">9.1.</span> <span class="post-toc-text">如何标准化</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#什么是机器学习"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是机器学习</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#应用"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">应用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#算法"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">算法</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#十大常见机器学习算法"><span class="post-toc-number">2.</span> <span class="post-toc-text">十大常见机器学习算法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#线性回归（Linear-Regression）"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">线性回归（Linear Regression）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#逻辑回归（Logistic-Regression）"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">逻辑回归（Logistic Regression）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#决策树（Decision-Tree）"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">决策树（Decision Tree）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Gini"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">Gini</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Information-Gain-amp-Entropy"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">Information Gain & Entropy</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#支持向量机（Support-vector-machine-SVM）"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">支持向量机（Support vector machine,SVM）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#朴素贝叶斯（Naive-Bayesian）"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">朴素贝叶斯（Naive Bayesian）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#K近邻（K-Nearest-Neighbors）"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">K近邻（K Nearest Neighbors）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#欧式距离"><span class="post-toc-number">2.6.1.</span> <span class="post-toc-text">欧式距离</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#曼哈顿距离"><span class="post-toc-number">2.6.2.</span> <span class="post-toc-text">曼哈顿距离</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#明氏距离"><span class="post-toc-number">2.6.3.</span> <span class="post-toc-text">明氏距离</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#汉明距离"><span class="post-toc-number">2.6.4.</span> <span class="post-toc-text">汉明距离</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#K均值（K-means）"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">K均值（K-means）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#随机森林（Random-Forest）"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">随机森林（Random Forest）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#降维（Dimensionality-reduction）"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">降维（Dimensionality reduction）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#主成分分析（PCA）"><span class="post-toc-number">2.9.1.</span> <span class="post-toc-text">主成分分析（PCA）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#因子分析"><span class="post-toc-number">2.9.2.</span> <span class="post-toc-text">因子分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Gradient-Boost-amp-Adaboost"><span class="post-toc-number">2.10.</span> <span class="post-toc-text">Gradient Boost & Adaboost</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Adaboost"><span class="post-toc-number">2.10.1.</span> <span class="post-toc-text">Adaboost</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Gradient-Boost"><span class="post-toc-number">2.10.2.</span> <span class="post-toc-text">Gradient Boost</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#什么是神经网络（Neural-Network）"><span class="post-toc-number">3.</span> <span class="post-toc-text">什么是神经网络（Neural Network）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#神经网络的基本结构"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">神经网络的基本结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#神经元（Neuron）的激活函数（Activation-Function）"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">神经元（Neuron）的激活函数（Activation Function）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#卷及神经网络（CNN）"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">卷及神经网络（CNN）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CNN常用结构"><span class="post-toc-number">3.3.1.</span> <span class="post-toc-text">CNN常用结构</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#递归神经网络（RNN）"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">递归神经网络（RNN）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#RNN常用结构"><span class="post-toc-number">3.4.1.</span> <span class="post-toc-text">RNN常用结构</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#神经网络非监督式学习实现Autoencoder"><span class="post-toc-number">4.</span> <span class="post-toc-text">神经网络非监督式学习实现Autoencoder</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#生成对抗网络（GAN）"><span class="post-toc-number">5.</span> <span class="post-toc-text">生成对抗网络（GAN）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#GAN的应用"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">GAN的应用</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#理解神经网络的“-黑盒子-”"><span class="post-toc-number">6.</span> <span class="post-toc-text">理解神经网络的“ 黑盒子 ”</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#如何优化神经网络（Optimization）"><span class="post-toc-number">7.</span> <span class="post-toc-text">如何优化神经网络（Optimization）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#神经网络梯度下降算法（Gradient-Descent）"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">神经网络梯度下降算法（Gradient Descent）</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#如何评估神经网络的优越性"><span class="post-toc-number">8.</span> <span class="post-toc-text">如何评估神经网络的优越性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据集评估"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">数据集评估</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#为什么要对特征进行标准化（Normalization）"><span class="post-toc-number">9.</span> <span class="post-toc-text">为什么要对特征进行标准化（Normalization）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何标准化"><span class="post-toc-number">9.1.</span> <span class="post-toc-text">如何标准化</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#如何判断特征的的好坏"><span class="post-toc-number">10.</span> <span class="post-toc-text">如何判断特征的的好坏</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#什么是激励-刺激函数（Activation-Function）"><span class="post-toc-number">11.</span> <span class="post-toc-text">什么是激励/刺激函数（Activation Function）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#什么是模型过拟合（Overfitting）"><span class="post-toc-number">12.</span> <span class="post-toc-text">什么是模型过拟合（Overfitting）</span></a></li></ol>
         </nav>
     </aside>
     
@@ -1115,6 +1137,202 @@
 </li>
 </ul>
 <p>这样的标准化问题不但能够平衡数据间的波动和差异，还能提高学习的效率，让机器学习能够正常地平衡每一个特征变数的优化和调节。</p>
+<h1 id="如何判断特征的的好坏"><a href="#如何判断特征的的好坏" class="headerlink" title="如何判断特征的的好坏"></a>如何判断特征的的好坏</h1><p>机器学习的过程中，特征是我们的模型训练和测试的重要参照指标，好的特征往往能使得模型快速拟合资料的分布，也就能取得更好的预测结果。那么什么样的特征是真正有用的特征（Features）呢？</p>
+<p>在分类问题中，没用的特征会为我们的分类带来不必要的计算和误导，以 <code>Iris Corpus</code> 为例。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/SwuicOP.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/nuEIhHL.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>以花萼宽度的特征来看，两种花的分布大概能够满足如下的分布状况：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/aDkQTg8.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>可以看出在该特征的情况下，两种花的特征分布呈现一种趋于平衡的关系，如此就可以判断光凭这种特征是很难将花的品种区分开来的。因此我们称这样的特征为无意义的特征（不好的特征）。</li>
+</ul>
+<p>此外，如果我们改变特征的选取，转而采用 <strong>花瓣长度</strong> 来作为评判的特征，那么会如何分类呢？</p>
+<ul>
+<li>我们利用Python的可视化library <code>Matplotlib</code> 来观察特征的变化情况吧。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">import matplotlib.pyplot as plt</div><div class="line">import numpy as np</div><div class="line"></div><div class="line">setosa, versicolor = 500, 500</div><div class="line">setosa_length = 1.5 + 0.4 * np.random.randn(setosa)</div><div class="line">versicolor_length = 4.5 + 1.2 * np.random.randn(versicolor)</div><div class="line"></div><div class="line">plt.hist([setosa_length, versicolor_length], stacked = True, color = [&apos;r&apos;, &apos;b&apos;])</div><div class="line">plt.xlabel(&apos;Petal Length&apos;)</div><div class="line">plt.ylabel(&apos;Numbers&apos;)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/3DQQEpE.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li><p>从图中可以看出，当花瓣长度大于等于3之后，我们基本可以断定这种花就是versicolor，相反当花瓣长度小于3的时候，我们就可以很大程度上断定花的种类就是setosa。这样能够明显区分不同事物的特征就是所谓的好的特征。</p>
+</li>
+<li><p>另外，当一种特征在特定的取值上难以区分类别的时候，我们就需要其他新的特征来辅助我们判断事物的种类，这也就是神经网络的特征集合的作用所在了。</p>
+</li>
+</ul>
+<p>特征压缩的方式有很多，常用的包括之前提及的 <strong>Auto-encoder</strong> 等。总而言之，想要得到好的特征信息，我们就需要遵循以下几点：</p>
+<ul>
+<li>避免无意义的信息。</li>
+<li>避免重复性的信息。</li>
+<li>避免复杂的信息。</li>
+</ul>
+<h1 id="什么是激励-刺激函数（Activation-Function）"><a href="#什么是激励-刺激函数（Activation-Function）" class="headerlink" title="什么是激励/刺激函数（Activation Function）"></a>什么是激励/刺激函数（Activation Function）</h1><p>Activation Function是人工神经网络中的一个重要环节，想要探讨它的重要性，那么首先就需要知道为什么我们的神经网络离不开这个结构呢？其实在神经网络的训练过程中，许多问题我们往往无法用单纯的线性方式解决。这时候我们就需要借助Activation Function的帮助了。</p>
+<p>那么什么样的模型表示才是线性的呢？</p>
+<ul>
+<li>所谓的线性方程（Linear Function）就是能够用一条直线反应出模型的变化趋势。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/B3t3yoO.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>比方说随着商品人气的升高，销量也持续不断地上涨。然而并不是所有喜欢这个商品的人都会购买它，因此在销售达到饱和的时候，即使人气还在不断上升，但是销量的增长却开始变慢，这个时候我们就无法用线性的方式表示这个趋势了。因此我们便会选择非线性的方式（NonLinear Function）表示我们的模型变化：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/ShtfdUk.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>我们可以用一个式子来统一描述神经网络的流程：</li>
+</ul>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large y = Wx" style="border:none;"></p>
+<ul>
+<li>而这个时候的模型就是线性的，我们需要借助Activation Function的力量来 <strong>“掰弯”</strong> 这个线性的模型。</li>
+</ul>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large y = AF(Wx)" style="border:none;"></p>
+<ul>
+<li>新的模型表示式中的 <strong>AF</strong> 就是我们的Activation Function。其实 <strong>AF</strong> 的作用并没有想象的那么奇幻，它就是一些非线性方程的集合：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/m3ozi0z.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li><p>通过非线性方程的转换，就可以把连续的输入信号在不同时刻进行不同程度的改变，使它们之间不再遵从线性关系的约束。</p>
+</li>
+<li><p>当然我们可以使用的Activation Function远不止上面的那些，我们甚至可以自己创造适合我们模型的激励函数。但是重要的一点是，这些函数必须是 <strong>可微分</strong> 的，也就是可以通过求导得到相应的梯度。原因是我们之后的Optimization的过程中会使用反向传递的方式更新模型的参数，而反向的核心步骤就是对<strong>原方程微分</strong>，这样才能完整地把误差传递回模型。</p>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/wVrzICJ.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如何选择合适的神经网络是训练一个好的模型的重要先决条件。那么应该怎么选择适度的Activation Function呢？</p>
+<ul>
+<li>在小的模型中，<strong>激励函数</strong>的影响往往没有那么明显，因此我们不需要做太多的考虑。相比之下在大型模型中，由于曾与曾之间的传递复杂度高，因此草率地选择Activation Function会导致<strong>梯度消失</strong>、<strong>梯度爆炸</strong>等问题。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/7vHMPnX.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>一些常见的神经网络结构推荐使用的激励函数也不同，这些关系到模型的特性和实际的应用场景。在CNN中我们推荐使用<strong>Relu</strong>作为层级之间的激励函数；而在RNN中我们则推荐使用<strong>Relu或者Tanh</strong>作为激励函数。</p>
+<h1 id="什么是模型过拟合（Overfitting）"><a href="#什么是模型过拟合（Overfitting）" class="headerlink" title="什么是模型过拟合（Overfitting）"></a>什么是模型过拟合（Overfitting）</h1><p>在训练神经网路的过程中，我们有时会遇到这样的情况：在训练过程中我们对训练资料和预测结果的比对发现，模型的拟合效果非常优秀（也就是Accuracy很高）。而在我们使用测试资料再次试探我们的模型时，发现结果却不尽人意。这时候很可能的情况就是出现了<strong>过拟合（Overfitting）</strong>。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/lUfqDIv.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>以一个例子而言，通过机器学习训练后，我们可以用一条回归直线表示空间中分布的输入信号，这时候的误差范围取决于离直线最远的点。但是如果我们的机器仍不满足这个误差，想要继续降低它的时候，就会出现这个情况：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/xG5ZxCh.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li><p>这时机器改变了原来的拟合线，转而开始依次调整每个点的距离，让回归线不再只是一条直线，而是一条设法穿过每一个点的曲线。这个时候的拟合度固然很高，但是却让模型变得越发不灵活。如果用在测试数据上，那么曲线比起原先的直线就<strong>更难拟合新的数据</strong>，这就是Overfitting的根本原因了。</p>
+</li>
+<li><p>在分类问题上的过拟合主要体现在曲线完美区分所有的数据点（下图圆点），这个时候加入新的数据（下图十字）后发现曲线很难将他们完全区隔开来，这种模型不是我们想要获得的。</p>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/KSIz2uL.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>那么既然过拟合会对模型的预测带来影响，要避免它的发生我们又应该怎么做呢？</p>
+<p>缓解Overfitting的方式有这么几种：</p>
+<ul>
+<li>首先就是<strong>增加</strong>数据量</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/PSe3Gt2.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>随着数据量的增加原先过拟合的曲线也会慢慢变得<strong>平滑</strong>起来，能够覆盖的范围就变大了。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/TsJRH9M.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>其次就是利用正规化（Regularization）</li>
+</ul>
+<p>主要用于解决机器学习过拟合的正规化方法包括了 <strong>L1</strong> 和 <strong>L2</strong> 正规化。</p>
+<p>针对机器学习，我们之前将这个过程简化成：</p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large y = Wx" style="border:none;"><br>而其中的 <strong>W</strong> 就是我们模型所要学习的参数，过拟合的出现就是模型对于 W 的值进行了太大幅度的调整。为了避免这个问题，我们会对这个变化进行一个惩罚，也就是约束的机制。原始的误差<strong>cost</strong>为：</p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large cost = (Wx - real y)^2" style="border:none;"><br>如果 W 变化太大，我们就让cost也跟着变大，也就是 L1 正规化：</p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large cost = (Wx - real y)^2 + abs(W)" style="border:none;"><br>L2 正规化和L1类似，只是在惩罚项的不同：</p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large cost = (Wx - real y)^2 + (W)^2" style="border:none;"><br>用这些方法我们就可以保证得到的模型曲线不会因为数据的关系而变得那么扭曲。</p>
+<ul>
+<li>最后是一种经常用在神经网络训练过程中的方式，叫做Dropout Regularization。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/YqPvzph.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>在训练过程中，我们选择每次都忽略掉一些神经网络的神经元（Neuron）来使得我们的结果不会每次都过分依赖所有的数据信息，这样训练出来的模型就不容易出现Overfitting的情况。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/AkPuOK7.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>LICENCE： 图片摘录自网络引擎，未经授权请勿用于盈利性活动<br>更多详细内容 ： <a href="https://morvanzhou.github.io/" target="_blank" rel="external">Link</a></p>
 
         </div>
@@ -1123,7 +1341,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-08-01T09:11:37.582Z" itemprop="dateUpdated">2017-08-01 17:11:37</time>
+    最后更新时间：<time datetime="2017-08-07T03:14:43.752Z" itemprop="dateUpdated">2017-08-07 11:14:43</time>
 </span><br>
 
 
