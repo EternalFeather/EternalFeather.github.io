@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>十大常见机器学习算法 | 指尖の岁月 | 世间点滴，莫忘于心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Machine Learning,Algorithm">
+    <meta name="description" content="常用的机器学习算法，几乎可以用在所有的数据问题上： 线性回归（Linear Regression）线性回归通常用于根据连续变量估计实际数值等问题上。通过拟合最佳的直线来建立自变量（X，features） 和 因变量（Y，labels） 的关系。这条直线也叫做回归线，并用Y = a* X + b来表示。 在这个等式中：  Y : 因变量（也就是Labels） a : 斜率（也就是Weights） X">
+<meta name="keywords" content="Machine Learning,Algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="十大常见机器学习算法">
+<meta property="og:url" content="http://yoursite.com/2017/08/08/ML-algorithms/index.html">
+<meta property="og:site_name" content="指尖の岁月">
+<meta property="og:description" content="常用的机器学习算法，几乎可以用在所有的数据问题上： 线性回归（Linear Regression）线性回归通常用于根据连续变量估计实际数值等问题上。通过拟合最佳的直线来建立自变量（X，features） 和 因变量（Y，labels） 的关系。这条直线也叫做回归线，并用Y = a* X + b来表示。 在这个等式中：  Y : 因变量（也就是Labels） a : 斜率（也就是Weights） X">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.imgur.com/PSM7e7e.png">
+<meta property="og:image" content="https://i.imgur.com/hq1q9Z5.png">
+<meta property="og:image" content="https://i.imgur.com/8Nj3E0r.png">
+<meta property="og:image" content="https://i.imgur.com/ltVHIxt.png">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large {A \over A + B}">
+<meta property="og:image" content="https://i.imgur.com/9vwwsJt.png">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large Entropy(S) = {-(9 / 14) * log2(9 / 14) - (5 / 14) * log2(5 / 14)}">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large Entropy(Weak) = {-(6 / 8) * log2(6 / 8) - (2 / 8) * log2(2 / 8)}">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large Entropy(Strong) = {-(3 / 6) * log2(3 / 6) - (3 / 6) * log2(3 / 6)}">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large Gain(Wind) = {Entropy(S) -(8 / 14) * Entropy(Weak) - (6 / 14) * Entropy(Strong)}">
+<meta property="og:image" content="https://i.imgur.com/Ea3Jb95.png">
+<meta property="og:image" content="https://i.imgur.com/NGsSXtM.png">
+<meta property="og:image" content="https://i.imgur.com/5seIoZJ.png">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large P(c | x) = {P(x | c) P(c) \over P(x)}">
+<meta property="og:image" content="https://i.imgur.com/gBuFCBd.png">
+<meta property="og:image" content="https://i.imgur.com/eSwuOJV.png">
+<meta property="og:image" content="https://i.imgur.com/qZPw7xC.png">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large Posterior(male) = {P(male) P(height | male) P(weight | male) P(footsize | male) \over evidence}">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large Posterior(female) = {P(female) P(height | female) P(weight | female) P(footsize | female) \over evidence}">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large Evidence = {(Posterior(female) + Posterior(male)) * evidence}">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large P(height | male) = {1 \over \sqrt{2\pi\sigma^2}}exp({-(6 - \mu^2) \over 2\sigma^2})">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large P(weight | male) = ...">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large Posterior Numerator(male) = {6.1984e^{-09}}">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large Posterior Numerator(female) = {5.3778e^{-04}}">
+<meta property="og:image" content="https://i.imgur.com/7sGrxz0.png">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large d(x, y) := {\sqrt{(X1 - Y1)^2 + (X2 - Y2)^2 + ... + (Xn - Yn)^2}}">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large {|X1 - Y1| + |X2 - Y2| + ... + |Xn - Yn|}">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large {(|X1 - Y1|^p + |X2 - Y2|^p + ... + |Xn - Yn|^p)^{1 \over p}}">
+<meta property="og:image" content="https://i.imgur.com/WQlIGo4.png">
+<meta property="og:image" content="https://i.imgur.com/xViexYM.png">
+<meta property="og:image" content="https://i.imgur.com/eOKOw6J.png">
+<meta property="og:updated_time" content="2017-08-08T08:11:02.738Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="十大常见机器学习算法">
+<meta name="twitter:description" content="常用的机器学习算法，几乎可以用在所有的数据问题上： 线性回归（Linear Regression）线性回归通常用于根据连续变量估计实际数值等问题上。通过拟合最佳的直线来建立自变量（X，features） 和 因变量（Y，labels） 的关系。这条直线也叫做回归线，并用Y = a* X + b来表示。 在这个等式中：  Y : 因变量（也就是Labels） a : 斜率（也就是Weights） X">
+<meta name="twitter:image" content="https://i.imgur.com/PSM7e7e.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖の岁月" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/new3.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/one2.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Eternal</h5>
+          <a href="mailto:617844662@qq.com" title="617844662@qq.com" class="mail">617844662@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/EternalFeather" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://EternalFeather.github.io/AboutMe/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                About Me
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">十大常见机器学习算法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">十大常见机器学习算法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-08-08T08:09:23.000Z" itemprop="datePublished" class="page-time">
+  2017-08-08
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#线性回归（Linear-Regression）"><span class="post-toc-number">1.</span> <span class="post-toc-text">线性回归（Linear Regression）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#逻辑回归（Logistic-Regression）"><span class="post-toc-number">2.</span> <span class="post-toc-text">逻辑回归（Logistic Regression）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#决策树（Decision-Tree）"><span class="post-toc-number">3.</span> <span class="post-toc-text">决策树（Decision Tree）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Gini"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">Gini</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Information-Gain-amp-Entropy"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">Information Gain & Entropy</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#支持向量机（Support-vector-machine-SVM）"><span class="post-toc-number">4.</span> <span class="post-toc-text">支持向量机（Support vector machine,SVM）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#朴素贝叶斯（Naive-Bayesian）"><span class="post-toc-number">5.</span> <span class="post-toc-text">朴素贝叶斯（Naive Bayesian）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#K近邻（K-Nearest-Neighbors）"><span class="post-toc-number">6.</span> <span class="post-toc-text">K近邻（K Nearest Neighbors）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#欧式距离"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">欧式距离</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#曼哈顿距离"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">曼哈顿距离</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#明氏距离"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">明氏距离</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#汉明距离"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">汉明距离</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#K均值（K-means）"><span class="post-toc-number">7.</span> <span class="post-toc-text">K均值（K-means）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#随机森林（Random-Forest）"><span class="post-toc-number">8.</span> <span class="post-toc-text">随机森林（Random Forest）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#降维（Dimensionality-reduction）"><span class="post-toc-number">9.</span> <span class="post-toc-text">降维（Dimensionality reduction）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#主成分分析（PCA）"><span class="post-toc-number">9.1.</span> <span class="post-toc-text">主成分分析（PCA）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#因子分析"><span class="post-toc-number">9.2.</span> <span class="post-toc-text">因子分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Gradient-Boost-amp-Adaboost"><span class="post-toc-number">10.</span> <span class="post-toc-text">Gradient Boost & Adaboost</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Adaboost"><span class="post-toc-number">10.1.</span> <span class="post-toc-text">Adaboost</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Gradient-Boost"><span class="post-toc-number">10.2.</span> <span class="post-toc-text">Gradient Boost</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-ML-algorithms"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">十大常见机器学习算法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-08-08 16:09:23" datetime="2017-08-08T08:09:23.000Z"  itemprop="datePublished">2017-08-08</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>常用的机器学习算法，几乎可以用在所有的数据问题上：</p>
+<h2 id="线性回归（Linear-Regression）"><a href="#线性回归（Linear-Regression）" class="headerlink" title="线性回归（Linear Regression）"></a>线性回归（Linear Regression）</h2><p>线性回归通常用于根据<strong>连续变量</strong>估计实际数值等问题上。通过拟合最佳的<strong>直线</strong>来建立<strong>自变量（X，features）</strong> 和 <strong>因变量（Y，labels）</strong> 的关系。这条直线也叫做回归线，并用<strong>Y = a* X + b</strong>来表示。</p>
+<p>在这个等式中：</p>
+<ul>
+<li><code>Y</code> : 因变量（也就是Labels）</li>
+<li><code>a</code> : 斜率（也就是Weights）</li>
+<li><code>X</code> : 自变量（也就是Features）</li>
+<li><code>b</code> : 截距（也就是Bias）</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/PSM7e7e.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>系数 <code>a</code> 和 <code>b</code> 可以通过<strong>最小二乘法</strong>（即让所有pairs带入线性表达式等号两边的方差和最小）获得。</p>
+<h2 id="逻辑回归（Logistic-Regression）"><a href="#逻辑回归（Logistic-Regression）" class="headerlink" title="逻辑回归（Logistic Regression）"></a>逻辑回归（Logistic Regression）</h2><p>逻辑回归虽然名字中带有<strong>回归</strong>字样，但其实是一个<strong>分类</strong>算法而不是回归算法。该算法根据已知的一系列因变量估计<strong>离散的数值</strong>（0或1，代表假和真）。该算法通过将数据拟合进一个逻辑函数来预估一个事件发生的<strong>概率</strong>。由于其估计的对象是概率，所以输出的值大都在0和1之间。</p>
+<p>逻辑回归通常用于解决二分类的问题，例如判断人是男是女等。逻辑回归就是通过人的一些基本性状特征来判断属于男女的概率。</p>
+<p>从数学角度看，几率的对数使用的是<strong>预测变量的线性组合</strong>模型。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Probability of event occurence / not occurence</span></div><div class="line">odds = p / (<span class="number">1</span> - p)</div><div class="line">ln(odds) = ln(p / (<span class="number">1</span> - p))</div><div class="line">logit(p) = ln(p / (<span class="number">1</span> - p)) = b0 + b1X1 + b2X2 + ... + bnXn</div></pre></td></tr></table></figure></p>
+<p>式子中 <code>p</code> 指的是特征出现的概率，它选用使观察样本可能性最大的值（<strong>极大似然估计</strong>）作为参数，而不是通过最小二乘法得到。</p>
+<ul>
+<li><p>那么为什么要取对数log呢？</p>
+<ul>
+<li>简而言之就是对数这种方式是复制阶梯函数最好的方法之一。</li>
+</ul>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/hq1q9Z5.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>关于改进模型的方法：<ul>
+<li>加入交互项（<strong>X1 * X2</strong>等）</li>
+<li>对输入输出进行正规化</li>
+<li>使用非线性模型</li>
+</ul>
+</li>
+</ul>
+<h2 id="决策树（Decision-Tree）"><a href="#决策树（Decision-Tree）" class="headerlink" title="决策树（Decision Tree）"></a>决策树（Decision Tree）</h2><p>该算法属于监督式学习的一部分，主要用来处理分类的问题，它能够适用于分类连续因变量。我们将主体分成两个或者更多的类群，根据重要的属性或者自变量来尽可能多地区分开来。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/8Nj3E0r.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>根据不同的决策属性，我们可以依次将输入进行分类，最终会得到一个标签（Label）。为了把总体分成不同组别，需要用到许多技术，比如<strong>Gini、Information Gain</strong> 和 <strong>Entropy</strong> 等。</li>
+</ul>
+<h3 id="Gini"><a href="#Gini" class="headerlink" title="Gini"></a>Gini</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/ltVHIxt.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>图中的实际分配曲线（红线）和绝对平衡线（绿线）之间的<strong>面积</strong>为A，和绝对不平衡线（蓝线）之间的面积为B，则横纵坐标之间的比例的<strong>Gini系数</strong>为：</p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large {A \over A + B}" style="border:none;"></p>
+<ul>
+<li>A为零时，Gini系数为0，表示完全平衡。B为零时，Gini系数为1，表示完全不平衡。</li>
+</ul>
+<h3 id="Information-Gain-amp-Entropy"><a href="#Information-Gain-amp-Entropy" class="headerlink" title="Information Gain &amp; Entropy"></a>Information Gain &amp; Entropy</h3><p>在我们建立决策树的时候，常常会有许多属性，那么用哪一个属性作为数的根节点呢？这个时候就需要用到 <strong>信息增益（Information Gain）</strong> 来衡量一个属性区分以上数据样本的能力强弱。信息增益越大的属性作为数的根节点，就能使得这棵树更加简洁。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/9vwwsJt.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>以图中数据为例，要想知道信息增益，就必须先算出分类系的<strong>熵值（Entropy）</strong>。最终结果的label是yes或者no，所以统计数量之后共有9个yes和5个no。这时候<strong>P（“yes”） = 9 / 14，P（“no”） = 5 / 14</strong>。这里的熵值计算公式为：</li>
+</ul>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large Entropy(S) = {-(9 / 14) * log2(9 / 14) - (5 / 14) * log2(5 / 14)}" style="border:none;"></p>
+<ul>
+<li>之后就可以计算每一个属性特征的信息增益（Gain）了。以wind属性为例，Wind为Weak的共有8条，其中yes的有6条，no的有2条；为Strong的共有6条，其中yes的有3条，no的也有3条。因此相应的熵值为：</li>
+</ul>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large Entropy(Weak) = {-(6 / 8) * log2(6 / 8) - (2 / 8) * log2(2 / 8)}" style="border:none;"></p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large Entropy(Strong) = {-(3 / 6) * log2(3 / 6) - (3 / 6) * log2(3 / 6)}" style="border:none;"></p>
+<ul>
+<li>现在就可以计算Wind属性的<strong>信息增益</strong>了：</li>
+</ul>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large Gain(Wind) = {Entropy(S) -(8 / 14) * Entropy(Weak) - (6 / 14) * Entropy(Strong)}" style="border:none;"></p>
+<h2 id="支持向量机（Support-vector-machine-SVM）"><a href="#支持向量机（Support-vector-machine-SVM）" class="headerlink" title="支持向量机（Support vector machine,SVM）"></a>支持向量机（Support vector machine,SVM）</h2><p>SVM是一种常用的机器学习分类方式。在这个算法过程中，我们将每一笔数据在<strong>N维度的空间中用点表示（N为特征总数，Features）</strong>，每个特征的值是一个坐标的值。</p>
+<p>如果以二维空间为例，此时有两个特征变量，我们会在空间中画出这两个变量的分布情况，每个点都有两个坐标（分别为tuples所具有的特征值组合）。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/Ea3Jb95.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>现在我们找一条直线将两组不同的数据在维度空间中分开。分割的曲线满足让两个分组中的距离最近的两个点到直线的距离<strong>动态最优化</strong>（都尽可能最近）。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/NGsSXtM.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>那么看到这里一定很多人和我一样有一个疑问，那就是这种线性分类的SVM和之前提到的逻辑回归（Logistic Regression）有什么<strong>区别</strong>呢？</li>
+</ul>
+<p>其实他们在二维空间的<strong>线性分类</strong>中都扮演了重要的角色，其主要区别大致可分为两类：</p>
+<ul>
+<li><p>寻找最优超平面的方式不同。</p>
+<ul>
+<li>形象来说就是Logistic模型找的超平面（二维中就是线）是尽可能让所有点都远离它。而SVM寻找的超平面，是只让最靠近的那些点远离，这些点也因此被称为<strong>支持向量样本</strong>，因此模型才叫<strong>支持向量机</strong>。</li>
+</ul>
+</li>
+<li><p>SVM可以处理非线性的情况。</p>
+<ul>
+<li>比Logistic更强大的是，SVM还可以处理<strong>非线性</strong>的情况（经过优化之后的Logistic也可以，但是却更为复杂）。</li>
+</ul>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/5seIoZJ.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="朴素贝叶斯（Naive-Bayesian）"><a href="#朴素贝叶斯（Naive-Bayesian）" class="headerlink" title="朴素贝叶斯（Naive Bayesian）"></a>朴素贝叶斯（Naive Bayesian）</h2><p>在假设变量间<strong>相互独立</strong>的前提下，根据贝叶斯定理（Bayesian Theorem）可以推得朴素贝叶斯这个分类方法。通俗来说，一个朴素贝叶斯分类器假设分类的特性和其他特性不相关。朴素贝叶斯模型容易创建，而且在非监督式学习的大型数据样本集中非常有用，虽然简单，却能超越复杂的分类方法。其基本思想就是：对于给出的待分类项，求解<strong>在此项出现的条件下各个目标类别出现的概率</strong>，哪个最大，就认为此待分类项属于哪个类别。</p>
+<p>贝叶斯定理提供了从P（c）、P（x）和P（x | c）计算后验概率P（c | x）的方法:</p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large P(c | x) = {P(x | c) P(c) \over P(x)}" style="border:none;"></p>
+<p>式子中的变量表示如下：</p>
+<ul>
+<li>P（c | x）是已知预测变量（属性特征）的前提下，目标发生的后验概率。</li>
+<li>P（c）是目标发生的先验概率。</li>
+<li>P（x | c）是已知目标发生的前提下，预测变量发生的概率。</li>
+<li>P（x）是预测变量的先验概率。</li>
+</ul>
+<p>举一个例子：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/gBuFCBd.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>这是一个训练资料集，提供一些身体特征，用来预测人的性别。此时假设特征之间独立且满足高斯分布，则得到下表：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/eSwuOJV.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>通过计算方差、均值等参数，同时确认Label出现的频率来判断训练集的样本分布概率，P（male） = P（female） = 0.5。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/qZPw7xC.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>此时给出测试资料，我们希望通过计算得到性别的后验概率从而判断样本的类型：</li>
+</ul>
+<p><strong>男子的后验概率</strong>:</p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large Posterior(male) = {P(male) P(height | male) P(weight | male) P(footsize | male) \over evidence}" style="border:none;"></p>
+<p><strong>女子的后验概率</strong>:</p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large Posterior(female) = {P(female) P(height | female) P(weight | female) P(footsize | female) \over evidence}" style="border:none;"></p>
+<p>证据因子（evidence）通常为常数，是用来对结果进行归一化的参数。</p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large Evidence = {(Posterior(female) + Posterior(male)) * evidence}" style="border:none;"></p>
+<ul>
+<li>因此我们可以计算出相应结果：</li>
+</ul>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large P(height | male) = {1 \over \sqrt{2\pi\sigma^2}}exp({-(6 - \mu^2) \over 2\sigma^2})" style="border:none;"></p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large P(weight | male) = ..." style="border:none;"></p>
+<ul>
+<li>最后可以得出后验概率:</li>
+</ul>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large Posterior Numerator(male) = {6.1984e^{-09}}" style="border:none;"></p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large Posterior Numerator(female) = {5.3778e^{-04}}" style="border:none;"></p>
+<ul>
+<li>因此女性的概率较大，我们估计结果为女性。</li>
+</ul>
+<h2 id="K近邻（K-Nearest-Neighbors）"><a href="#K近邻（K-Nearest-Neighbors）" class="headerlink" title="K近邻（K Nearest Neighbors）"></a>K近邻（K Nearest Neighbors）</h2><p>该算法可以用于分类和回归问题，然而我们更常将其被用于解决分类问题上。KNN能够存储所有的案例，通过对比周围K个样本中的大概率情况，从而决定新的对象应该分配在哪一个类别。新的样本会被分配到它的K个最近最普遍的类别中去，因此KNN算法也是一个基于距离函数的算法。</p>
+<p>这些<strong>距离函数</strong>可以是欧氏距离、曼哈顿距离、明氏距离或是汉明距离。前三个距离函数用于<strong>连续函数</strong>，最后一个用于<strong>分类变量</strong>。如果K = 1，新的样本就会被直接分到距离最近的那个样本所属的类别中。因此选择K是一个关系到模型精确度的问题。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/7sGrxz0.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>如图所示，如果我们取K = 3，即为中间的圆圈内，我们可以直观地看出此时绿点应该被归为红三角的一类。而如果K = 5，此时延伸到虚线表示的圆，则此时绿点应该被归为蓝色的类。</li>
+</ul>
+<p>在选择KNN之前，我们需要考虑的事情有：</p>
+<ul>
+<li>KNN在K数量大的时候的计算成本很高。</li>
+<li>变量（Features）应该先标准化（normalized），不然会被更高数量单位级别的范围带偏。</li>
+<li>越是<strong>干净</strong>的资料效果越好，如果存在偏离度较高的杂讯噪声，那么在类别判断时就会收到干扰。</li>
+</ul>
+<h3 id="欧式距离"><a href="#欧式距离" class="headerlink" title="欧式距离"></a>欧式距离</h3><p>空间中点X = （X1，X2，X3，…，Xn）与点Y = （Y1，Y2，Y3，…，Yn）的欧氏距离为：</p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large d(x, y) := {\sqrt{(X1 - Y1)^2 + (X2 - Y2)^2 + ... + (Xn - Yn)^2}}" style="border:none;"></p>
+<h3 id="曼哈顿距离"><a href="#曼哈顿距离" class="headerlink" title="曼哈顿距离"></a>曼哈顿距离</h3><p>在平面上，坐标（X1，X2，…，Xn）的点和坐标（Y1，Y2，…，Yn）的点之间的曼哈顿距离为:</p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large {|X1 - Y1| + |X2 - Y2| + ... + |Xn - Yn|}" style="border:none;"></p>
+<h3 id="明氏距离"><a href="#明氏距离" class="headerlink" title="明氏距离"></a>明氏距离</h3><p>两点 P = (X1，X2，…，Xn) 和 Q = （Y1，Y2，…，Yn）之间的明氏距离为:</p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large {(|X1 - Y1|^p + |X2 - Y2|^p + ... + |Xn - Yn|^p)^{1 \over p}}" style="border:none;"></p>
+<ul>
+<li>其中p取1时为曼哈顿距离，p取2时为欧氏距离。</li>
+</ul>
+<h3 id="汉明距离"><a href="#汉明距离" class="headerlink" title="汉明距离"></a>汉明距离</h3><p>对于固定长度n，汉明距离是该长度字符串向量空间上的度量，即表示长度n中不同字符串的个数。</p>
+<p>例子：</p>
+<ul>
+<li><strong>“toned”</strong> 和 <strong>“roses”</strong> 之间的汉明距离就是3。因为其中 <strong>t - &gt; r，n -&gt; s，d -&gt; s</strong> 三个字符不相同。</li>
+</ul>
+<h2 id="K均值（K-means）"><a href="#K均值（K-means）" class="headerlink" title="K均值（K-means）"></a>K均值（K-means）</h2><p>K-means方法是一种<strong>非监督式学习</strong>的算法，能够解决<strong>聚类</strong>问题。使用K-means算法将一个数据样本归入一定数量的集群中（假设有K个）中，每一个集群的数据点都是均匀齐次的，并且异于其它集群。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/WQlIGo4.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>K-means算法如何形成<strong>集群</strong>？</p>
+<ul>
+<li>给一个集群选择K个点，这些点称为质心。</li>
+<li>给每一个数据点与距离最接近的质心形成一个集群，也就是K个集群。</li>
+<li>根据现有的类别成员，找出每个类别的质心。</li>
+<li>当有新的样本输入后，找到距离每个数据点最近的质心，并与质心对应的集群归为一类，计算新的质心位置，重复这个过程直到数据收敛，即质心位置不再改变。</li>
+<li>如果新的数据点到多个质心的距离相同，则将这个数据点作为<strong>新的质心</strong>。</li>
+</ul>
+<p>如何决定K值？</p>
+<ul>
+<li>K-means算法涉及到集群问题，每个集群都有自己的质心。一个集群的内的质心和个数据点之间的距离的平方和形成了这个集群的平方值之和。我们能够直观地想象出当集群的内部的数据点增加时，K值会跟着下降（数据点越多，分散开来每个质心能够包揽的范围就变大了，这时候其他的集群就会被吞并或者分解）。<strong>集群元素数量的最优值</strong>也就是在集群的平方值之和最小的时候取得（每个点到质心的距离和最小，分类最精确）。</li>
+</ul>
+<h2 id="随机森林（Random-Forest）"><a href="#随机森林（Random-Forest）" class="headerlink" title="随机森林（Random Forest）"></a>随机森林（Random Forest）</h2><p>Random Forest是表示<strong>决策树总体</strong>的一个专有名词。在算法中我们有一系列的决策树（因此为<strong>森林</strong>）。为了根据一个新的对象特征将其分类，每一个决策树都有一个分类结果，称之为这个决策树<strong>投票</strong>给某一个分类群。这个森林选择获得其中（所有决策树）<strong>投票数最多</strong>的分类。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/xViexYM.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>Random Forest中的Decision Tree是如何形成的？</p>
+<ul>
+<li>如果训练集的样本数量为N，则从N个样本中用重置抽样的方式随机抽取样本。这个样本将作为决策树的训练资料。</li>
+<li>假如有N个输入特征变量，则定义一个数字<strong>m &lt;&lt; M</strong>。m表示从M中随机选中的变量，这m个变量中最好的切分特征会被用来当成节点的决策特征（利用Information Gain等方式）。在构建其他决策树的时候，m的值<strong>保持不变</strong>。</li>
+<li>尽可能大地建立每一个数的节点分支。</li>
+</ul>
+<h2 id="降维（Dimensionality-reduction）"><a href="#降维（Dimensionality-reduction）" class="headerlink" title="降维（Dimensionality reduction）"></a>降维（Dimensionality reduction）</h2><p>当今的社会中信息的捕捉量都是呈上升的趋势。各种研究信息数据都在尽可能地捕捉完善，生怕遗漏一些关键的特征值。对于这些数据中包含许多特征变量的数据而言，看似为我们的模型建立提供了充足的<strong>训练材料</strong>。但是这里却存在一个问题，那就是<strong>如何从上百甚至是上千种特征中区分出样本的类别呢？</strong>样本特征的<strong>重要程度</strong>又该如何评估呢？</p>
+<ul>
+<li>其实随着输入数据特征变量的增多，模型很难拟合众多样本变量（高维度）的数据分类规则。这样训练出来的模型不但<strong>效果差</strong>，而且<strong>消耗大量的时间</strong>。</li>
+<li>这个时候，降维算法和别的一些算法（比如<strong>Decision Tree</strong>、<strong>Random Forest</strong>、<strong>主成分分析（PCA）</strong> 和 <strong>因子分析</strong>）就能帮助我们实现根据相关矩阵，压缩维度空间之后总结特征规律，最终再逐步还原到高维度空间的训练模式。</li>
+</ul>
+<h3 id="主成分分析（PCA）"><a href="#主成分分析（PCA）" class="headerlink" title="主成分分析（PCA）"></a>主成分分析（PCA）</h3><p>在多元统计分析中，PCA是一种分析、简化数据集的技术，经常用于减少数据集的维数，同时保留数据集中的<strong>对方差贡献最大</strong>的那些特征变量。</p>
+<ul>
+<li>该算法会根据不同维度的压缩（在这个维度上的<strong>投影</strong>）来测试<strong>各个维度对方差的影响</strong>，从而对每一个维度进行重新排序（影响最大的放在第一维度）。之后只需要取有限个数的维度进行训练，就能够保证模型拟合最佳的数据特征了。</li>
+</ul>
+<h3 id="因子分析"><a href="#因子分析" class="headerlink" title="因子分析"></a>因子分析</h3><p>该算法主要是从关联矩阵内部的依赖关系出发，把一些重要信息重叠，将错综复杂的变量归结为少数几个不相关的综合因子的多元统计方法。基本思想是：根据<strong>相关性大小</strong>把变量分租，使得同组内的变量之间相关性高，但不同组的变量不相关或者相关性低。每组变量代表一个基本结构，即公共因子。</p>
+<h2 id="Gradient-Boost-amp-Adaboost"><a href="#Gradient-Boost-amp-Adaboost" class="headerlink" title="Gradient Boost &amp; Adaboost"></a>Gradient Boost &amp; Adaboost</h2><p>当我们想要处理很多数据来做一个具有高度预测能力的预测模型时，我们会用到Gradient Boost和AdaBoost这两种Boosting算法。<strong>Boosting算法</strong>是一种集成学习算法，它结合了建立在多个基础估计值上的预测结果，来增强单个估计值的准确度。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/eOKOw6J.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="Adaboost"><a href="#Adaboost" class="headerlink" title="Adaboost"></a>Adaboost</h3><p>Bossting能够对一份数据建立多个模型（如分类模型），通常这些模型都比较简单，称为<strong>弱分类器（Weak Learner）</strong>。每次分类都将上一次分错的数据权重值调大（放大的圆圈），然后再次进行分类，最终得到更好的结果。最终所有学习器（在这里值分类器）共同组成完整的模型。</p>
+<h3 id="Gradient-Boost"><a href="#Gradient-Boost" class="headerlink" title="Gradient Boost"></a>Gradient Boost</h3><p>与Adaboost不同的是，Gradient Boost在迭代的时候选择梯度下降的方向来保证最后的结果最好。损失函数（Loss function）用来描述模型的误差程度，如果模型没有Over fitting，那么loss的值越大则误差越高。如果我们的模型能够让损失函数值下降，说明它在不断改进，而最好的方式就是让函数在<strong>梯度的方向</strong>上改变。（类似神经网络的<strong>Gradient Descend</strong>）</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-08-08T08:11:02.738Z" itemprop="dateUpdated">2017-08-08 16:11:02</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/08/08/ML-algorithms/" target="_blank" rel="external">http://yoursite.com/2017/08/08/ML-algorithms/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/one2.jpg" alt="Eternal">
+            Eternal
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/08/08/ML-algorithms/&title=《十大常见机器学习算法》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/08/08/ML-algorithms/&title=《十大常见机器学习算法》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/08/08/ML-algorithms/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《十大常见机器学习算法》 — 指尖の岁月&url=http://yoursite.com/2017/08/08/ML-algorithms/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/08/ML-algorithms/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/08/04/database/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">医疗管理系统</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'eternalfeather';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢您~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Eternal &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/08/08/ML-algorithms/&title=《十大常见机器学习算法》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/08/08/ML-algorithms/&title=《十大常见机器学习算法》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/08/08/ML-algorithms/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《十大常见机器学习算法》 — 指尖の岁月&url=http://yoursite.com/2017/08/08/ML-algorithms/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/08/ML-algorithms/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3aQW7jMAwFUN//0i4w24GdTzIuaulpVQSBzacCDEnpOOJ1/lv/fzL5/LxdxxMLAwPjtYzkcVevT5BJWPfvjagYGBgbMO6T7D2jlwmTTUliw8DAwMhfloRSDREDAwPjicfdf/MP/W5gYGC8kFEt4O4DnbesD/biGBgYL2RUDwZ+8+8HzzcwMDBewjhbKykEk2Y4OeyM4sHAwFiaMRn0V4vLhJRczojSLgYGxkKMPKAJe5Kao63HwMBYmpGHnozJvpWOv3wwgIGB8XJGPoi/T7XzC2T5Rlz+bmBgYCzKqF6YSEq0ZAuq18sK4zYMDIxFGdUx3CTovBBMqBgYGDswkoIsaSYng7neEzAwMPZhTELMx2F5Us7fcjk1xMDAWJTRayYnLW6VUdhcDAyMDRj5qGt+kaI3jPtQdGJgYCzH6A3CquO5yRWxaOMwMDA2Y0yKufy4sdcYY2Bg7MnoJc3eoWPvWLRQ22JgYGzDyFvK3tC/d8HiC/8TDAyMlzPycCfjueqQrtxIY2BgbMzoNbrVBJofiH7oyDEwMBZlJA1q7wXV4V31AgcGBsYOjLO4qrtSTdbVFvrIa1IMDIzXMuZlWZ40E9L8gAEDA2NVRnV8P29Q80Fb4S0YGBgbMHqXKnplYq/I+wDDwMDAKF4qrY7Y8tLzcrMwMDAwilcrkqAf77MxMDCWY1QD6iGTbWoWkRgYGEszJkk5T9nzprd6FIGBgbEE4we8rZNhafmDyQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Welcome back!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂) Hello!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
