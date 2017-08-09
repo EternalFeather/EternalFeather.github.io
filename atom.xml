@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-08T08:11:02.738Z</updated>
+  <updated>2017-08-09T03:11:43.872Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,148 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>挖掘神经网络的本质</title>
+    <link href="http://yoursite.com/2017/08/09/Feature/"/>
+    <id>http://yoursite.com/2017/08/09/Feature/</id>
+    <published>2017-08-09T03:10:11.000Z</published>
+    <updated>2017-08-09T03:11:43.872Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Features-amp-Feature-Representation"><a href="#Features-amp-Feature-Representation" class="headerlink" title="Features &amp; Feature Representation"></a>Features &amp; Feature Representation</h1><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>在神经网络训练过程中，我们往往会因为无法理解输入和输出数据之间的关系而面临无从选择神经网络结构模块的问题。为了进一步理解神经网络的功能和明白每一层神经网络层对输出的贡献程度，我们就必须了解这些输入在经过神经网络处理后是如何改变和反应在输出数据中的。</p>
+<h1 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h1><p>以传统的分类问题为例，想要利用神经网络解决分类的问题，就必须明确我们的输入数据拥有的哪些 <strong>特征（Features）</strong> 能够帮助我们区分这些输入从而将他们分配到不同的 <strong>类别（Labels）</strong>。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/jzBDTBp.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>不同的特征数据对分类的结果具有不同的影响力，这也使得我们的神经网络需要学习一个能够区分特征的能力，而这个能力就是我们所谓的 <strong>权重值（Weights）</strong>。不同的权重值控制输入的特征值能够以不同的力度作用在最终的结果上，从而达到区分标记的作用。</p>
+<ul>
+<li>以二维空间的散点二分类问题为例子，图中的点具有两个Label值，分别为 <strong>“蓝色”</strong> 和 <strong>“橙色”</strong>。而反应他们分布情况的特征可能有很多，比如空间的坐标值（X1 和 X2）或是距离原点（0, 0）的距离等。这里我们取坐标值作为输入的特征值。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/2wzMVJM.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>特征值的输入方式有很多，除了特征值自己本身，我们还可以通过数学模型将这些特征值进行组合和转换，从而衍生出另一种特征值。这和神经网络层所做的事情十分类似，他们都是通过现有的特征想方设法组合出一些更加具有代表性的区分特征，从而拉近输入数据和Label之间的距离。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/QVsmwpV.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/dV8dNYU.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>假设我们的特征值 <strong>X1</strong> 能够将数据空间的分布从<strong>X1 = 0</strong>处切分开来。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/J3lsiIP.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/UQ2aBYH.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>而组合特征值 <strong>X1X2</strong> 能够将数据空间的分布从<strong>X1 = 0和X2 = 0</strong>处同时切分开来，这时我们就可以利用这些特征表示法对最终的分布集合进行一个调整：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/WZbaqm1.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>图中左边为我们选择使用的输入特征值和对应的区分方式。经过3层的神经网络层，它能够将这些特征的区分方式进行组合（动态增强某些部分）和调整（动态削弱某个部分），得到另外一个特征的表示（Feature Representation），这些表示方式会对最后的模型进行直接的影响。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/xIKLGIq.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>神经网络的全连接（Fully Connected）也是有权重之分的，图中橙色的连接表示传入的Feature对当前的特征构建是有负向的影响（需要削弱）的，而相反蓝色的连接表示传入的Feature对当前的特征构建是有正向影响（需要加强）的。而线条的深浅则表示Feature对神经网络层的作用强度，越深的颜色表示影响越强烈。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/X2SQyYj.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>如果我们观察每一个神经网络层中产生的任何一个新的特征表示（Feature Representation），我们就能观察到它们是如何作用在神经网络分配中的。原先的Feature无法在图中画出圆形的间隔区域，因此我们需要通过神经网络的计算来对Feature进行 <strong>变形和组合</strong>，让这些Feature能够更好地拟合我们的数据集。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/vSK3uLp.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>训练过程中，神经网络会通过反向传递的方式动态调整layer中的Feature Representation，让这些形成的分割区域在经过了每次迭代之后能够更好的优化边缘，形成更完美的分类器。如果资料内部的噪声（Noise）比较少的时候，甚至可以达到100%的区分率（即loss = 0）。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/SBUWfnO.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>但是现实生活中的数据是无法做到完全没有噪声干扰的，些许的噪声都会让资料集看起来无法完全区隔开来（如上图所示）。这时候我们通常就会选择使用维度扩充的方式，让他们在更高维度上进行收敛（也就是寻找其他特征，其中X1为第一维度，X2为第二维度），然后在将这些特征压缩成其他的Feature Representation。</li>
+</ul>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>训练完毕的模型可以很好地通过Feature Representation将数据集在有限维度空间中区隔开来。但是不能忽视的一点是，我们的模型是用来最终判断资料特性而选择的模型，不是为了完全拟合训练数据的产物。因此我们往往不会选择训练误差最小的模型作为我们的最终模型，原因是因为这些模型的灵活度太低。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/iMVS7Rs.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>如上图所示，深色的点表示我们测试集资料，不难看出测试集的分布情况和训练集还是具有一定的差距的，如果我们的模型过分依赖训练集的边缘特性，那么在预测过程中就没有办法很好地区分那些全新的（训练集中未出现的）数据，反而造成测试误差的提升。因此我们需要通过类似Cross Validation等评估方式来让模型训练结果保持在较好的一个的动态范围内。</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Features-amp-Feature-Representation&quot;&gt;&lt;a href=&quot;#Features-amp-Feature-Representation&quot; class=&quot;headerlink&quot; title=&quot;Features &amp;amp; Feature
+    
+    </summary>
+    
+    
+      <category term="Feature" scheme="http://yoursite.com/tags/Feature/"/>
+    
+      <category term="Feature Representation" scheme="http://yoursite.com/tags/Feature-Representation/"/>
+    
+      <category term="Neural Netword" scheme="http://yoursite.com/tags/Neural-Netword/"/>
+    
+  </entry>
   
   <entry>
     <title>十大常见机器学习算法</title>
