@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>tensorflow快速入门 | 指尖の岁月 | 世间点滴，莫忘于心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Tensorflow">
+    <meta name="description" content="介绍（Introduction）Tensorflow是一个使用数据流图（Data flow graphs）技术进行数值运算的函式库。每一张图都是由节点（Node）和边（Edge）组成的。Tensorflow具有以下几点特性： 灵活性Tensorflow不是一个严格意义上的神经网络函式库，只要是能够使用数据流图来描述的计算问题，都能够通过Tensorflow来实现。与此同时还能够用简单的Python">
+<meta name="keywords" content="Tensorflow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tensorflow快速入门">
+<meta property="og:url" content="http://yoursite.com/2017/08/14/tensorflow/index.html">
+<meta property="og:site_name" content="指尖の岁月">
+<meta property="og:description" content="介绍（Introduction）Tensorflow是一个使用数据流图（Data flow graphs）技术进行数值运算的函式库。每一张图都是由节点（Node）和边（Edge）组成的。Tensorflow具有以下几点特性： 灵活性Tensorflow不是一个严格意义上的神经网络函式库，只要是能够使用数据流图来描述的计算问题，都能够通过Tensorflow来实现。与此同时还能够用简单的Python">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-14T06:09:41.304Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tensorflow快速入门">
+<meta name="twitter:description" content="介绍（Introduction）Tensorflow是一个使用数据流图（Data flow graphs）技术进行数值运算的函式库。每一张图都是由节点（Node）和边（Edge）组成的。Tensorflow具有以下几点特性： 灵活性Tensorflow不是一个严格意义上的神经网络函式库，只要是能够使用数据流图来描述的计算问题，都能够通过Tensorflow来实现。与此同时还能够用简单的Python">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖の岁月" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/new3.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/one2.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Eternal</h5>
+          <a href="mailto:617844662@qq.com" title="617844662@qq.com" class="mail">617844662@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/EternalFeather" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://EternalFeather.github.io/AboutMe/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                About Me
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">tensorflow快速入门</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">tensorflow快速入门</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-08-14T06:08:47.000Z" itemprop="datePublished" class="page-time">
+  2017-08-14
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#介绍（Introduction）"><span class="post-toc-number">1.</span> <span class="post-toc-text">介绍（Introduction）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#灵活性"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">灵活性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#可迁移性"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">可迁移性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#高效性"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">高效性</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#配置支持"><span class="post-toc-number">2.</span> <span class="post-toc-text">配置支持</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Tensorflow的结构"><span class="post-toc-number">3.</span> <span class="post-toc-text">Tensorflow的结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据流图（Graph）"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">数据流图（Graph）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#节点（Ops）"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">节点（Ops）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#边（Edge）"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">边（Edge）</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Tensorflow的常见使用步骤"><span class="post-toc-number">4.</span> <span class="post-toc-text">Tensorflow的常见使用步骤</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#创建数据流图"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">创建数据流图</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#在Session中执行数据流图"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">在Session中执行数据流图</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#运算中的数据结构Tensors"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">运算中的数据结构Tensors</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#变量Variable"><span class="post-toc-number">4.3.1.</span> <span class="post-toc-text">变量Variable</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#抓取（Fetches）和填充（Feeds）"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">抓取（Fetches）和填充（Feeds）</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Tensorflow范例"><span class="post-toc-number">5.</span> <span class="post-toc-text">Tensorflow范例</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#拟合曲线的计算"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">拟合曲线的计算</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MNIST手写识别"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">MNIST手写识别</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-tensorflow"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">tensorflow快速入门</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-08-14 14:08:47" datetime="2017-08-14T06:08:47.000Z"  itemprop="datePublished">2017-08-14</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="介绍（Introduction）"><a href="#介绍（Introduction）" class="headerlink" title="介绍（Introduction）"></a>介绍（Introduction）</h1><p>Tensorflow是一个使用数据流图（Data flow graphs）技术进行数值运算的函式库。每一张图都是由节点（Node）和边（Edge）组成的。Tensorflow具有以下几点特性：</p>
+<h2 id="灵活性"><a href="#灵活性" class="headerlink" title="灵活性"></a>灵活性</h2><p>Tensorflow不是一个严格意义上的神经网络函式库，只要是能够使用数据流图来描述的计算问题，都能够通过Tensorflow来实现。与此同时还能够用简单的Python来实现高层次的功能。</p>
+<h2 id="可迁移性"><a href="#可迁移性" class="headerlink" title="可迁移性"></a>可迁移性</h2><p>Tensorflow可以在任何具备CPU或者GPU的设备上运行，无需考虑复杂的环境配置问题，。</p>
+<h2 id="高效性"><a href="#高效性" class="headerlink" title="高效性"></a>高效性</h2><p>Tensorflow可以提升神经网络的训练效率，且具备代码统一的有优势，便于和同行分享。</p>
+<h1 id="配置支持"><a href="#配置支持" class="headerlink" title="配置支持"></a>配置支持</h1><ul>
+<li><code>Python</code></li>
+<li><code>C++</code></li>
+<li><code>CUDA</code>   (GPU环境)</li>
+<li><code>CUDNN</code> （GPU环境）</li>
+</ul>
+<h1 id="Tensorflow的结构"><a href="#Tensorflow的结构" class="headerlink" title="Tensorflow的结构"></a>Tensorflow的结构</h1><h2 id="数据流图（Graph）"><a href="#数据流图（Graph）" class="headerlink" title="数据流图（Graph）"></a>数据流图（Graph）</h2><p>数据流图是一种描述有向图的数值计算过程产物。图中的节点通常是代表数学运算，但也可以表示数据的输入、输出和读写等操作。图中的边（Edge）表示节点之间的某种关联，负责在节点之间传递各种数据单元，而Tensorflow的基本运算单元是Tensor。Tensorflow的flow也因此得名。</p>
+<p>节点可以被分配到多个设备上运算，也就是所谓的异步并行操作。因为是有向图，所以只有等到先前的节点结束工作时，当前的节点才能够执行相应的操作。</p>
+<h2 id="节点（Ops）"><a href="#节点（Ops）" class="headerlink" title="节点（Ops）"></a>节点（Ops）</h2><p>Tensorflow中的节点也被称为Operation。一个Ops通常使用0个或者以上的Tensors，通过执行某个特定的运算，产生新的Tensors。一个Tensor表示的是一个<strong>多维数组</strong>，例如[batch, height, width, channels]这样的形式，数组中的数多为浮点数。</p>
+<h2 id="边（Edge）"><a href="#边（Edge）" class="headerlink" title="边（Edge）"></a>边（Edge）</h2><p>Tensorflow各节点之间的通道被成为边，也可以理解为流（FLow），作用是在每个节点的计算过程中传输数据Tensor。因为是有向图的关系，边的传输方向也是有自己的规则，因此在Tensorflow的运算过程中往往需要安排好节点和边的关系。</p>
+<h1 id="Tensorflow的常见使用步骤"><a href="#Tensorflow的常见使用步骤" class="headerlink" title="Tensorflow的常见使用步骤"></a>Tensorflow的常见使用步骤</h1><ul>
+<li>将计算流程表示成图的形式</li>
+<li>通过Session来执行图计算</li>
+<li>将数据表示为Tensors</li>
+<li>通过Variable储存模型的状态数值</li>
+<li>使用feeds和fetches来填充数据和抓取数据</li>
+</ul>
+<p>Tensorflow运行中通过Session来执行图中各节点的运算，Session将Ops放置到CPU或者GPU中，然后执行他们。执行完毕后，返回相应的结果（Tensors），在Python中这些Tensors的形式是numpy ndarray的objects。</p>
+<h2 id="创建数据流图"><a href="#创建数据流图" class="headerlink" title="创建数据流图"></a>创建数据流图</h2><p>Tensorflow在使用过程中通常分为<strong>施工阶段</strong> 和 <strong>建设阶段</strong>两部分。在施工阶段我们创建一个神经网络的结构和功能，在建设阶段通过Session来反复执行我们所构建的神经网络。</p>
+<p>和大多数编程语言类似，Tensorflow的Constant是一种没有输入的ops（常量），但是它本身可以作为其他ops的输入。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">import tensorflow as tf</div><div class="line">matrix1 = tf.constant([[3., 3.]])</div><div class="line">matrix2 = tf.constant([[2.], [2.]])</div><div class="line">product = tf.matmul(matrix1, matrix2)</div></pre></td></tr></table></figure>
+<p>这时我们已经在一个Default的Graph里面加入了三个Nodes，两个Constant ops和一个matmul的ops。为了能够得到两个矩阵运算的结果，我们就必须使用<strong>session来启动图</strong>。</p>
+<h2 id="在Session中执行数据流图"><a href="#在Session中执行数据流图" class="headerlink" title="在Session中执行数据流图"></a>在Session中执行数据流图</h2><p>刚才已经完成了施工的阶段，现在要开始建设阶段了，这样才能实作出我们想要的结果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sess = tf.Session()</div><div class="line">result = sess.run(product)</div><div class="line">print(result)</div><div class="line">sess.close()</div></pre></td></tr></table></figure>
+<p>用定义式的Session执行需要一个结束的判定，或者我们可以使用with的方式来定义我们的执行过程:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">with tf.Session() as sess:</div><div class="line">    result = sess.run(product)</div><div class="line">    print(result)</div></pre></td></tr></table></figure>
+<p>Tensorflow这些节点可以被分配到不同的设备上进行计算。如果是GPU，默认会在第一个GPU（id = 0）上执行，如果想在其他的GPU上执行相应的session，需要进行手动配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">with tf.Session() as sess:</div><div class="line">    # 也可以用‘/cpu:0’</div><div class="line">    with tf.device(&quot;/gpu:1&quot;):</div><div class="line">        matrix1 = tf.constant([[3., 3.]])</div><div class="line">        matrix2 = tf.constant([[2.], [2.]])</div><div class="line">        product = tf.matmul(matrix1, matrix2)</div><div class="line">        print(sess.run(product))</div></pre></td></tr></table></figure>
+<p>在一些交互界面（例如Ipython或者cmd）运行tensorflow的时候，我们往往不需要编译全局而用分布式运算的方式。因此我们可以使用InteractiveSession和eval()、Ops_name.run()等方式来进行分布式运算:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">import tensorflow as tf</div><div class="line">sess = tf.InteractiveSession()</div><div class="line"></div><div class="line">a = tf.Variable([1.0, 2.0])</div><div class="line">a.initializer.run()</div><div class="line">b = tf.constant([3.0, 3.0])</div><div class="line"></div><div class="line">sub = tf.subtract(a, b)</div><div class="line">print(sub.eval())</div><div class="line"></div><div class="line">sess.close()</div></pre></td></tr></table></figure>
+<h2 id="运算中的数据结构Tensors"><a href="#运算中的数据结构Tensors" class="headerlink" title="运算中的数据结构Tensors"></a>运算中的数据结构Tensors</h2><p>Tensorflow中使用的数据结构不同于其他语言中的结构，而是一种叫作Tensor的结构，它的本质是一个多维的数据集的表示形式，用来在数据流图中的各节点之间传递信息，一个Tensor具有固定的类型和大小（静态型别）。</p>
+<h3 id="变量Variable"><a href="#变量Variable" class="headerlink" title="变量Variable"></a>变量Variable</h3><p>变量在图的执行过程中，保持着自己特有的状态信息，能够为图模型的运作保存变化的数值信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">import tensorflow as tf</div><div class="line">state = tf.Variable(0, name = &quot;counter&quot;)</div><div class="line">one = tf.constant(1)</div><div class="line">new_value = tf.add(state, one)</div><div class="line"># 赋值函数</div><div class="line">update = tf.assign(state, new_value)</div><div class="line"></div><div class="line">init_op = tf.initializer_all_variables()</div><div class="line"></div><div class="line">with tf.Session() as sess:</div><div class="line">    sess.run(init_op)</div><div class="line">    print(sess.run(state))</div><div class="line">    for _ in range(3):</div><div class="line">        sess.run(update)</div><div class="line">        print(sess.run(state))</div></pre></td></tr></table></figure>
+<p>一般我们会将神经网络的参数初始化为一些变量，等到训练的时候再通过Session来对参数进行更新。</p>
+<h2 id="抓取（Fetches）和填充（Feeds）"><a href="#抓取（Fetches）和填充（Feeds）" class="headerlink" title="抓取（Fetches）和填充（Feeds）"></a>抓取（Fetches）和填充（Feeds）</h2><p>我们在使用神经网络的过程中，每一个节点的图往往不是封闭的，也就是说它们需要传入和输出一些东西。而为了抓取ops的输出，我们需要执行Session的run函数，然后通过print的方式抓取它们的参数:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">import tensorflow as tf</div><div class="line">input1 = tf.constant(3.0)</div><div class="line">input2 = tf.constant(2.0)</div><div class="line">input3 = tf.constant(5.0)</div><div class="line">intermed = tf.add(input2, input3)</div><div class="line">mul = tf.multiply(input1, intermed)</div><div class="line"></div><div class="line">with tf.Session() as sess:</div><div class="line">    result = sess.run(mul)</div><div class="line">    print(result)</div></pre></td></tr></table></figure>
+<ul>
+<li>其中的result计算过程中，虽然mul的计算过程需要用到intermed的计算结果，但是我们不需要另外写入sess.run(intermed)。原因是Tensorflow是一个有向图集，因此我们定义后面的图，它就会自动去追溯先前的所有图并且实作它们。</li>
+</ul>
+<p>有的时候我们在计算过程中有些参数我们是在之后<strong>建设</strong>的过程中才会得到的，因此我们在施工的时候就可以先用一个占位符把它的位置保留：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">import tensorflow as tf</div><div class="line">input1 = tf.placeholder(tf.float32)</div><div class="line">input2 = tf.placeholder(tf.float32)</div><div class="line">output = tf.multiply(input1, input2)</div><div class="line"></div><div class="line">with tf.Session() as sess:</div><div class="line">    print(sess.run(output, feed_dict = &#123;input1 : [7.], input2: [2.]&#125;))</div></pre></td></tr></table></figure>
+<p>或者传入一个numpy array：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">import tensorflow as tf</div><div class="line">import numpy as np</div><div class="line"></div><div class="line">n = 5</div><div class="line">a = tf.placeholder(dtype = tf.float32)</div><div class="line">b = tf.placeholder(&quot;float&quot;, [None, n])</div><div class="line">output = tf.multiply(a, b)</div><div class="line"></div><div class="line">with tf.Session() as sess:</div><div class="line">    temp = np.asarray([[1., 2., 3., 4., 5.]])</div><div class="line">    print(sess.run(output, feed_dict = &#123;a: [2.], b: temp&#125;))</div></pre></td></tr></table></figure>
+<h1 id="Tensorflow范例"><a href="#Tensorflow范例" class="headerlink" title="Tensorflow范例"></a>Tensorflow范例</h1><h2 id="拟合曲线的计算"><a href="#拟合曲线的计算" class="headerlink" title="拟合曲线的计算"></a>拟合曲线的计算</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">import tensorflow as tf</div><div class="line">import numpy as np</div><div class="line"></div><div class="line">x_data = np.random.randn(100).astype(&quot;float32&quot;)</div><div class="line">y_data = x_data * 0.1 + 0.3</div><div class="line"></div><div class="line">W = tf.Variable(tf.random_uniform([1], -1.0, 1.0))</div><div class="line">b = tf.Variable(tf.zeros([1]))</div><div class="line">y = W * x_data + b</div><div class="line"></div><div class="line">loss = tf.reduce_mean(tf.square(y - y_data))</div><div class="line">optimizer = tf.train.GradientDescentOptimizer(0.1).minimize(loss)</div><div class="line"></div><div class="line">init = tf.initialize_all_variables()</div><div class="line"></div><div class="line">sess = tf.Session()</div><div class="line">sess.run(init)</div><div class="line"></div><div class="line">for step in range(101):</div><div class="line">    sess.run(optimizer)</div><div class="line">    if step % 20 == 0:</div><div class="line">        print(step, sess.run(W), sess.run(b))</div></pre></td></tr></table></figure>
+<h2 id="MNIST手写识别"><a href="#MNIST手写识别" class="headerlink" title="MNIST手写识别"></a>MNIST手写识别</h2><p>利用线性分类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">from tensorflow.examples.tutorials.mnist import input_data</div><div class="line"># mnist.train, mnist.test, mnist.validation</div><div class="line">mnist = input_data.read_data_sets(&quot;MNIST_data/&quot;, one_hot = True)</div><div class="line">import tensorflow as tf</div><div class="line">import numpy as np</div><div class="line"></div><div class="line">batch_size = 64</div><div class="line">train_iter = 1000</div><div class="line"></div><div class="line"># input_size = [batch_size, 28, 28]; output_size = one_hot</div><div class="line">x = tf.placeholder(tf.float32, [None, 784])</div><div class="line">y = tf.placeholder(tf.float32, [None, 10])</div><div class="line"></div><div class="line">W = tf.Variable(tf.zeros([784, 10]))</div><div class="line">b = tf.Variable(tf.zeros([10]))</div><div class="line">pred = tf.nn.softmax(tf.matmul(x, W) + b)</div><div class="line"></div><div class="line">loss = -tf.reduce_sum(y * tf.log(pred))</div><div class="line">optimizer = tf.train.GradientDescentOptimizer(0.01).minimize(loss)</div><div class="line">correct_prediction = tf.equal(tf.argmax(pred, 1), tf.argmax(y, 1))</div><div class="line">accuracy = tf.reduce_mean(tf.cast(correct_prediction, &quot;float&quot;))</div><div class="line"></div><div class="line">init = tf.initialize_all_variables()</div><div class="line"></div><div class="line">sess = tf.Session()</div><div class="line">sess.run(init)</div><div class="line"></div><div class="line">for step in range(train_iter):</div><div class="line">    batch_xs, batch_ys = mnist.train.next_batch(64)</div><div class="line">    sess.run(optimizer, feed_dict = &#123;x: batch_xs, y: batch_ys&#125;)</div><div class="line">    if step % 100 == 0:</div><div class="line">        print(sess.run(accuracy, feed_dict = &#123;x: mnist.test.images, y: mnist.test.labels&#125;))</div></pre></td></tr></table></figure>
+<p>利用RNN（GRU）神经网络：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line">from tensorflow.examples.tutorials.mnist import input_data</div><div class="line">import tensorflow as tf</div><div class="line">import numpy as np</div><div class="line">mnist = input_data.read_data_sets(&quot;MNIST/&quot;, one_hot = True)</div><div class="line"></div><div class="line">n_input = 28</div><div class="line">time_step = 28</div><div class="line">n_hidden = 128</div><div class="line">n_output = 10</div><div class="line"></div><div class="line">learning_rate = 0.001</div><div class="line">train_iters = 1000</div><div class="line">batch_size = 64</div><div class="line"></div><div class="line">x = tf.placeholder(tf.float32, [None, time_step, n_input])</div><div class="line">y = tf.placeholder(tf.float32, [None, n_output])</div><div class="line"></div><div class="line">W = &#123;</div><div class="line">	&apos;hidden&apos; : tf.Variable(tf.random_normal([n_input, n_hidden])),</div><div class="line">	&apos;output&apos; : tf.Variable(tf.random_normal([n_hidden, n_output]))</div><div class="line">&#125;</div><div class="line"></div><div class="line">b = &#123;</div><div class="line">	&apos;hidden&apos; : tf.Variable(tf.random_normal([n_hidden])),</div><div class="line">	&apos;output&apos; : tf.Variable(tf.random_normal([n_output]))</div><div class="line">&#125;</div><div class="line"></div><div class="line">def RNN(x, W, b):</div><div class="line">	x = tf.transpose(x, [1, 0, 2])</div><div class="line">	x = tf.reshape(x, [-1, n_input])</div><div class="line">	x = tf.matmul(x, W[&apos;hidden&apos;]) + b[&apos;hidden&apos;]</div><div class="line">	x = tf.split(x, time_step, 0)</div><div class="line"></div><div class="line">	lstm_cell = tf.nn.rnn_cell.GRUCell(n_hidden)</div><div class="line">	outputs, _ = tf.contrib.rnn.static_rnn(lstm_cell, x, dtype = tf.float32)</div><div class="line">	return tf.matmul(outputs[-1], W[&apos;output&apos;]) + b[&apos;output&apos;]</div><div class="line"></div><div class="line">pred = RNN(x, W, b)</div><div class="line"></div><div class="line">loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits = pred, labels = y))</div><div class="line">optimizer = tf.train.AdamOptimizer(learning_rate = learning_rate).minimize(loss)</div><div class="line"></div><div class="line">corrent_pred = tf.equal(tf.argmax(pred, 1), tf.argmax(y, 1))</div><div class="line">accuracy = tf.reduce_mean(tf.cast(corrent_pred, tf.float32))</div><div class="line"></div><div class="line">init = tf.global_variables_initializer()</div><div class="line"></div><div class="line">with tf.Session() as sess:</div><div class="line">	with tf.device(&apos;/cpu:0&apos;):</div><div class="line">		sess.run(init)</div><div class="line">		for step in range(train_iters):</div><div class="line">			batch_x, batch_y = mnist.train.next_batch(batch_size)</div><div class="line">			batch_x = batch_x.reshape(batch_size, time_step, n_input)</div><div class="line">			sess.run(optimizer, feed_dict = &#123;x: batch_x, y: batch_y&#125;)</div><div class="line">			if step % 100 == 0:</div><div class="line">				acc = sess.run(accuracy, feed_dict = &#123;x: batch_x, y: batch_y&#125;)</div><div class="line">				cost = sess.run(loss, feed_dict = &#123;x: batch_x, y: batch_y&#125;)</div><div class="line">				print(&quot;MSG : Epoch &#123;&#125;, Training_accuracy = &#123;:.6f&#125;, Training_loss = &#123;:.5f&#125;&quot;.format((step // 100) + 1, acc, cost))</div><div class="line"></div><div class="line">		test_data = mnist.test.images.reshape(-1, time_step, n_input)</div><div class="line">		test_labels = mnist.test.labels</div><div class="line">		print(&quot;MSG : Testing_accuracy = &#123;:.6f&#125;&quot;.format(sess.run(accuracy, feed_dict = &#123;x: test_data, y: test_labels&#125;)))</div></pre></td></tr></table></figure>
+<p>利用CNN神经网络：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div></pre></td><td class="code"><pre><div class="line">from tensorflow.examples.tutorials.mnist import input_data</div><div class="line">import tensorflow as tf</div><div class="line">mnist = input_data.read_data_sets(&apos;MNIST/&apos;, one_hot = True)</div><div class="line"></div><div class="line">time_step = 28</div><div class="line">n_input = 28</div><div class="line">n_output = 10</div><div class="line">n_hidden = 1024</div><div class="line">learning_rate = 0.001</div><div class="line">train_iters = 20000</div><div class="line">batch_size = 64</div><div class="line">dropout = 0.5</div><div class="line"></div><div class="line">strides_size = 1</div><div class="line">kernal_size = 2</div><div class="line">window_size = 5</div><div class="line"></div><div class="line">def weight_variable(shape):</div><div class="line">	initial = tf.truncated_normal(shape, stddev = 0.1)</div><div class="line">	return tf.Variable(initial)</div><div class="line"></div><div class="line"></div><div class="line">def bias_variable(shape):</div><div class="line">	initial = tf.constant(0.1, shape = shape)</div><div class="line">	return tf.Variable(initial)</div><div class="line"></div><div class="line"></div><div class="line">def conv(x, W):</div><div class="line">	return tf.nn.conv2d(x, W, strides = [strides_size] * 4, padding = &apos;SAME&apos;)</div><div class="line"></div><div class="line"></div><div class="line">def max_pooling(x):</div><div class="line">	return tf.nn.max_pool(x, ksize = [1, window_size, window_size, 1], strides = [1, 2, 2, 1], padding = &apos;SAME&apos;)</div><div class="line"></div><div class="line"></div><div class="line">x = tf.placeholder(tf.float32, [None, time_step, n_input])</div><div class="line">x_image = tf.reshape(x, [-1, time_step, n_input, 1])</div><div class="line">y = tf.placeholder(tf.float32, [None, n_output])</div><div class="line">keep_prob = tf.placeholder(tf.float32)</div><div class="line"></div><div class="line"># conv1 layer</div><div class="line">W_conv1 = weight_variable([window_size, window_size, 1, 32])</div><div class="line">b_conv1 = bias_variable([32])</div><div class="line"></div><div class="line"># conv2 layer</div><div class="line">W_conv2 = weight_variable([window_size, window_size, 32, 64])</div><div class="line">b_conv2 = bias_variable([64])</div><div class="line"></div><div class="line"># linear flatten layer</div><div class="line">W_fc1 = weight_variable([7*7*64, n_hidden])</div><div class="line">b_fc1 = bias_variable([n_hidden])</div><div class="line"></div><div class="line"># softmax layer</div><div class="line">W_fc2 = weight_variable([n_hidden, n_output])</div><div class="line">b_fc2 = bias_variable([n_output])</div><div class="line"></div><div class="line"></div><div class="line">def CNN(x, W_conv1, b_conv1, W_conv2, b_conv2, W_fc1, b_fc1, W_fc2, b_fc2, keep_prob):</div><div class="line">	# [-1, 28, 28, 1]</div><div class="line">	h_conv1 = tf.nn.relu(conv(x, W_conv1) + b_conv1)</div><div class="line">	h_pool1 = max_pooling(h_conv1)</div><div class="line">	h_pool1_drop = tf.nn.dropout(h_pool1, keep_prob)</div><div class="line"></div><div class="line">	# [-1, 14, 14, 32]</div><div class="line">	h_conv2 = tf.nn.relu(conv(h_pool1_drop, W_conv2) + b_conv2)</div><div class="line">	h_pool2 = max_pooling(h_conv2)</div><div class="line">	h_pool2_drop = tf.nn.dropout(h_pool2, keep_prob)</div><div class="line"></div><div class="line">	# [-1, 7, 7, 64]</div><div class="line">	h_fc1 = tf.reshape(h_pool2_drop, [-1, 7*7*64])</div><div class="line">	h_fc1 = tf.nn.relu(tf.matmul(h_fc1, W_fc1) + b_fc1)</div><div class="line">	h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)</div><div class="line"></div><div class="line">	# [-1, n_hidden] -&gt; [-1, n_output]</div><div class="line">	# return tf.softmax(tf.matmul(h_fc1_drop, W_fc2) + b_fc2)</div><div class="line">	return tf.matmul(h_fc1_drop, W_fc2) + b_fc2</div><div class="line"></div><div class="line">pred = CNN(x_image, W_conv1, b_conv1, W_conv2, b_conv2, W_fc1, b_fc1, W_fc2, b_fc2, keep_prob)</div><div class="line"></div><div class="line"># loss = -tf.reduce_sum(y * tf.log(pred))</div><div class="line">loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits = pred, labels = y))</div><div class="line">optimizer = tf.train.AdamOptimizer(learning_rate = learning_rate).minimize(loss)</div><div class="line"></div><div class="line">corrent_pred = tf.equal(tf.argmax(pred, 1), tf.argmax(y, 1))</div><div class="line">accuracy = tf.reduce_mean(tf.cast(corrent_pred, tf.float32))</div><div class="line"></div><div class="line">init = tf.global_variables_initializer()</div><div class="line"></div><div class="line">with tf.Session() as sess:</div><div class="line">	with tf.device(&apos;/gpu:0&apos;):</div><div class="line">		sess.run(init)</div><div class="line">		for step in range(train_iters):</div><div class="line">			batch_x, batch_y = mnist.train.next_batch(batch_size)</div><div class="line">			batch_x = batch_x.reshape(batch_size, time_step, n_input)</div><div class="line">			sess.run(optimizer, feed_dict = &#123;x: batch_x, y: batch_y, keep_prob: dropout&#125;)</div><div class="line">			if step % 100 == 0:</div><div class="line">				acc = sess.run(accuracy, feed_dict = &#123;x: batch_x, y: batch_y, keep_prob: 1.0&#125;)</div><div class="line">				cost = sess.run(loss, feed_dict = &#123;x: batch_x, y: batch_y, keep_prob: 1.0&#125;)</div><div class="line">				print(&quot;MSG : Epoch &#123;&#125;, Training accuracy = &#123;:.6f&#125;, Training loss = &#123;:.5f&#125;&quot;.format((step // 100) + 1, acc, cost))</div><div class="line"></div><div class="line">		test_data = mnist.test.images.reshape(-1, time_step, n_input)</div><div class="line">		test_labels = mnist.test.labels</div><div class="line">		print(sess.run(accuracy, feed_dict = &#123;x: test_data, y: test_labels, keep_prob: 1.0&#125;))</div></pre></td></tr></table></figure>
+<p>至此，基本能够掌握Tensorflow在神经网络构建过程中的一些流程细节。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-08-14T06:09:41.304Z" itemprop="dateUpdated">2017-08-14 14:09:41</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/08/14/tensorflow/" target="_blank" rel="external">http://yoursite.com/2017/08/14/tensorflow/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/one2.jpg" alt="Eternal">
+            Eternal
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tensorflow/">Tensorflow</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/08/14/tensorflow/&title=《tensorflow快速入门》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/08/14/tensorflow/&title=《tensorflow快速入门》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/08/14/tensorflow/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《tensorflow快速入门》 — 指尖の岁月&url=http://yoursite.com/2017/08/14/tensorflow/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/14/tensorflow/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/08/09/Feature/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">挖掘神经网络的本质</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'eternalfeather';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢您~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Eternal &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/08/14/tensorflow/&title=《tensorflow快速入门》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/08/14/tensorflow/&title=《tensorflow快速入门》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/08/14/tensorflow/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《tensorflow快速入门》 — 指尖の岁月&url=http://yoursite.com/2017/08/14/tensorflow/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/14/tensorflow/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABu0lEQVR42u3aQY6DMAwF0N7/0sy2UlX4dnDKSC+rqp0JDxZfjs3rFa/jbb1/8/lr8v3nDjcvXFzcZe5xus5xCau3w9fdcHFxN3KrF8ijKn8E5wZcXNznc6tFz3mJg4uL+3+5EzGHi4v7ZG5Sjpxvml9y01kNFxd3gZt3Kec+j/R3cXFxW9yjtZKipNooia6Li4u7hVsNnbkWat5wwcXFneb2wqjaHs2bpxePAxcXdyM3KV+qAXRXhEVPERcXd4BbDalqMVQd3H79jIuLu4W7vtG9XdvCPri4uMPc9SZp9chUbbLg4uLu564MVvOcqbZZmyNYXFzcZW7S1kzucuVvmmc1XFzcMW4SRr3L945AzdzFxcW9ldsLkWpsrbzO1XxPBBcXd4FbBd01IFkqm3BxcYe5CbT34mZS+uTN2a8zYVxc3AFudQTyqyMQLi7uTu5RXOdhtz4+iWoxXFzcYW4vXO5CrDdfcHFx57h5eM01UAoHKlxc3I3c3jikWprkaXpxVsPFxX0MN0fnwdd8NwQXF/cx3Lw0qd7Y0qgVFxd3jFs9/KwMXKu3cTH5wcXFHeBObJ2HVO9/cXFxx7h/SWsu5e7Or3sAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Welcome back!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂) Hello!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
