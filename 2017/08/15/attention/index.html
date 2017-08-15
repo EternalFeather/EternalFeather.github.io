@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>An Implementation of Attention is all you need with Chinese Corpus | 指尖の岁月 | 世间点滴，莫忘于心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Transformer,Attention is all you need,Conversation Model">
+    <meta name="description" content="LinkGithub Requirements Numpy &amp;gt;= 1.13.1 Tensorflow-gpu &amp;gt;= 1.2.1 tqdm nltk  Construction DetailsAs we all know Translation System can be used in implementing conversational model just by replacin">
+<meta name="keywords" content="Transformer,Attention is all you need,Conversation Model">
+<meta property="og:type" content="article">
+<meta property="og:title" content="An Implementation of Attention is all you need with Chinese Corpus">
+<meta property="og:url" content="http://yoursite.com/2017/08/15/attention/index.html">
+<meta property="og:site_name" content="指尖の岁月">
+<meta property="og:description" content="LinkGithub Requirements Numpy &amp;gt;= 1.13.1 Tensorflow-gpu &amp;gt;= 1.2.1 tqdm nltk  Construction DetailsAs we all know Translation System can be used in implementing conversational model just by replacin">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.imgur.com/x5FRdRo.png">
+<meta property="og:image" content="https://i.imgur.com/YfKUgIC.png">
+<meta property="og:image" content="https://i.imgur.com/wZW34e8.png">
+<meta property="og:image" content="https://i.imgur.com/p5MSVVQ.png">
+<meta property="og:image" content="https://i.imgur.com/y2Q9yM8.png">
+<meta property="og:image" content="https://i.imgur.com/MJdMnvt.png">
+<meta property="og:updated_time" content="2017-08-15T09:46:10.921Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="An Implementation of Attention is all you need with Chinese Corpus">
+<meta name="twitter:description" content="LinkGithub Requirements Numpy &amp;gt;= 1.13.1 Tensorflow-gpu &amp;gt;= 1.2.1 tqdm nltk  Construction DetailsAs we all know Translation System can be used in implementing conversational model just by replacin">
+<meta name="twitter:image" content="https://i.imgur.com/x5FRdRo.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖の岁月" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/new3.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/one2.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Eternal</h5>
+          <a href="mailto:617844662@qq.com" title="617844662@qq.com" class="mail">617844662@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/EternalFeather" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://EternalFeather.github.io/AboutMe/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                About Me
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">An Implementation of Attention is all you need with Chinese Corpus</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">An Implementation of Attention is all you need with Chinese Corpus</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-08-15T09:42:49.000Z" itemprop="datePublished" class="page-time">
+  2017-08-15
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Link"><span class="post-toc-number">1.</span> <span class="post-toc-text">Link</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Requirements"><span class="post-toc-number">2.</span> <span class="post-toc-text">Requirements</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Construction-Details"><span class="post-toc-number">3.</span> <span class="post-toc-text">Construction Details</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Usage"><span class="post-toc-number">4.</span> <span class="post-toc-text">Usage</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Results"><span class="post-toc-number">5.</span> <span class="post-toc-text">Results</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Comparison"><span class="post-toc-number">6.</span> <span class="post-toc-text">Comparison</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Implement-feedforward-through-fully-connected"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">Implement feedforward through fully connected.</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Implement-feedforward-through-convolution-in-only-one-dimention"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">Implement feedforward through convolution in only one dimention.</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Reference"><span class="post-toc-number">7.</span> <span class="post-toc-text">Reference:</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-attention"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">An Implementation of Attention is all you need with Chinese Corpus</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-08-15 17:42:49" datetime="2017-08-15T09:42:49.000Z"  itemprop="datePublished">2017-08-15</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h1><p><a href="https://github.com/EternalFeather/Transformer-in-generating-dialogue" target="_blank" rel="external">Github</a></p>
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
+<li>Numpy &gt;= 1.13.1</li>
+<li>Tensorflow-gpu &gt;= 1.2.1</li>
+<li>tqdm</li>
+<li>nltk</li>
+</ul>
+<h1 id="Construction-Details"><a href="#Construction-Details" class="headerlink" title="Construction Details"></a>Construction Details</h1><p>As we all know Translation System can be used in implementing conversational model just by replacing the paris of two different sentences to questions and answers. After all, the basic conversation model named “Sequence-to-Sequence” is develped from translation system. Therefore, why we not to improve the efficiency of conversation model in generating dialogues?<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/x5FRdRo.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>This is the structure of transformer which is the core of implementing our model. Now let’s split it into several points:</p>
+<ul>
+<li>First one is Input Datasets(Get the batch datasets from generator, which is represented as a list of token ids in this experiment).</li>
+<li>Second one is Embedding layers(Including two parts:<strong>Dataset Embedding</strong> and <strong>Positional Embedding</strong>)<ul>
+<li>Dataset Embedding transform input token ids into a one-hot vector whose size is the length of vocabulary.</li>
+<li>Positional Embedding also called positional encoding. It considered the index of each word in the list of sentence as the position symbol.</li>
+<li>Third we have a multi-head attention model to split the output of embedding layers into many pieces and run through different attention models parallelly. Finally we can get the result by concating all the outputs from every models.</li>
+<li>Finally, going through a feed forward layer and combining with residual items, so that we can get the result. </li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/YfKUgIC.png" alt=""></p>
+<h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><ul>
+<li>STEP 1. Download dialogue corpus with format like sample datasets and extract them to <code>data/</code> folder.</li>
+<li>STEP 2. Adjust hyper parameters in <code>params.py</code> if you want.</li>
+<li>STEP 3. Run <code>make_dic.py</code> to generate vocabulary files to a new folder named <code>dictionary</code>.</li>
+<li>STEP 4. Run <code>train.py</code> to build the model. Checkpoint will be stored in <code>checkpoint</code> folder while the tensorflow event files can be found in <code>logdir</code>. </li>
+<li>STEP 5. Run <code>eval.py</code> to evaluate the result with testing data. Result will be stored in <code>Results</code> folder.</li>
+</ul>
+<h1 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line">- Source: 肥 宅 初 夜 可 以 賣 多 少 `</div><div class="line">- Ground Truth: 肥 宅 還 是 去 打 手 槍 吧</div><div class="line">- Predict: 肥 宅 還 是 去 打 手 槍 吧</div><div class="line"></div><div class="line">- Source: 兇 的 女 生 484 都 很 胸</div><div class="line">- Ground Truth: 我 看 都 是 醜 的 比 較 凶</div><div class="line">- Predict: 我 看 都 是 醜 的 比 較 &lt;UNK&gt;</div><div class="line"></div><div class="line">- Source: 留 髮 不 留 頭</div><div class="line">- Ground Truth: 還 好 我 早 就 禿 頭 了</div><div class="line">- Predict: 還 好 我 早 就 禿 頭 了</div><div class="line"></div><div class="line">- Source: 當 人 好 痛 苦 R 的 八 卦</div><div class="line">- Ground Truth: 去 中 國 就 不 用 當 人 了</div><div class="line">- Predict: 去 中 國 就 不 會 有 了 -</div><div class="line"></div><div class="line">- Source: 有 沒 有 今 天 捷 運 的 八 卦</div><div class="line">- Ground Truth: 有 - 真 的 有 多</div><div class="line">- Predict: 有 - 真 的 有 多</div><div class="line"></div><div class="line">- Source: 2016 帶 走 了 什 麼 `</div><div class="line">- Ground Truth: HellKitty 麥 當 勞 歡 樂 送 開 門 -</div><div class="line">- Predict: &lt;UNK&gt; 麥 當 勞 歡 樂 送 開 門 -</div><div class="line"></div><div class="line">- Source: 有 沒 有 多 益 很 賺 的 八 卦</div><div class="line">- Ground Truth: 比 大 型 包 裹 貴</div><div class="line">- Predict: 比 大 型 包 &lt;UNK&gt; 貴</div><div class="line"></div><div class="line">- Source: 邊 緣 人 收 到 地 震 警 報 了</div><div class="line">- Ground Truth: 都 跑 到 窗 邊 了 才 來</div><div class="line">- Predict: 都 跑 到 &lt;UNK&gt; 邊 了 才 來</div><div class="line"></div><div class="line">- Source: 車 震</div><div class="line">- Ground Truth: 沒 被 刪 版 主 是 有 眼 睛 der</div><div class="line">- Predict: 沒 被 刪 版 主 是 有 眼 睛 der</div><div class="line"></div><div class="line">- Source: 在 家 跌 倒 的 八 卦 `</div><div class="line">- Ground Truth: 傷 到 腦 袋 - 可 憐</div><div class="line">- Predict: 傷 到 腦 袋 - 可 憐</div><div class="line"></div><div class="line">- Source: 大 家 很 討 厭 核 核 嗎 `</div><div class="line">- Ground Truth: 核 核 欠 幹 阿</div><div class="line">- Predict: 核 核 欠 幹 阿</div><div class="line"></div><div class="line">- Source: 館 長 跟 黎 明 打 誰 贏 -</div><div class="line">- Ground Truth: 我 愛 黎 明 - 我 愛 黎 明 -</div><div class="line">- Predict: 我 愛 &lt;UNK&gt; 明 - 我 愛 &lt;UNK&gt; 明 -</div><div class="line"></div><div class="line">- Source: 嘻 嘻 打 打</div><div class="line">- Ground Truth: 媽 的 智 障 姆 咪 滾 喇 幹</div><div class="line">- Predict: 媽 的 智 障 姆 咪 滾 喇 幹</div><div class="line"></div><div class="line">- Source: 經 典 電 影 台 詞</div><div class="line">- Ground Truth: 超 時 空 要 愛 裡 滿 滿 的 梗</div><div class="line">- Predict: 超 時 空 要 愛 裡 滿 滿 滿 的</div><div class="line"></div><div class="line">- Source: 2B 守 得 住 街 亭 嗎 `</div><div class="line">- Ground Truth: 被 病 毒 滅 亡 真 的 會 -</div><div class="line">- Predict: &lt;UNK&gt; 守 得 住</div></pre></td></tr></table></figure>
+<h1 id="Comparison"><a href="#Comparison" class="headerlink" title="Comparison"></a>Comparison</h1><h2 id="Implement-feedforward-through-fully-connected"><a href="#Implement-feedforward-through-fully-connected" class="headerlink" title="Implement feedforward through fully connected."></a>Implement feedforward through fully connected.</h2><ul>
+<li>Training Accuracy</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/wZW34e8.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>Training Loss</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/p5MSVVQ.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="Implement-feedforward-through-convolution-in-only-one-dimention"><a href="#Implement-feedforward-through-convolution-in-only-one-dimention" class="headerlink" title="Implement feedforward through convolution in only one dimention."></a>Implement feedforward through convolution in only one dimention.</h2><ul>
+<li>Training Accuracy</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/y2Q9yM8.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>Training Loss</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/MJdMnvt.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h1><p>Thanks for <a href="https://github.com/Kyubyong/transformer" target="_blank" rel="external">Transformer</a></p>
+<ul>
+<li>本文在原先的模组上添加了Attention is all you need提到的Position encoding的部分</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-08-15T09:46:10.921Z" itemprop="dateUpdated">2017-08-15 17:46:10</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/08/15/attention/" target="_blank" rel="external">http://yoursite.com/2017/08/15/attention/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/one2.jpg" alt="Eternal">
+            Eternal
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Attention-is-all-you-need/">Attention is all you need</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Conversation-Model/">Conversation Model</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Transformer/">Transformer</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/08/15/attention/&title=《An Implementation of Attention is all you need with Chinese Corpus》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/08/15/attention/&title=《An Implementation of Attention is all you need with Chinese Corpus》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/08/15/attention/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《An Implementation of Attention is all you need with Chinese Corpus》 — 指尖の岁月&url=http://yoursite.com/2017/08/15/attention/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/15/attention/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/08/14/tensorflow/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">tensorflow快速入门</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'eternalfeather';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢您~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Eternal &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/08/15/attention/&title=《An Implementation of Attention is all you need with Chinese Corpus》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/08/15/attention/&title=《An Implementation of Attention is all you need with Chinese Corpus》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/08/15/attention/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《An Implementation of Attention is all you need with Chinese Corpus》 — 指尖の岁月&url=http://yoursite.com/2017/08/15/attention/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/15/attention/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAByElEQVR42u3aQY6DMAwF0N7/0ow0q0pT4DtOMlR6WaECyaMLK7bzesXj+B1nvxxvI7/7d85pAxcXt809LsfZ8mMzJJ90NgMuLu5+7nXwug49eQhL6Dc2XFzch3Gvl0zu5sERFxf3W7hzcyxcXNznc/upS/5h1/NPy9VwcXEb3E7QmXW9sL6Li4tb5B7FUX138uq4uLhbuEkDNVkgL6OMtWkL/V5cXNw2N0laxq6vA1ly9yaE4eLiLuN22iTVjcvYn/LhF1xc3MXcfNJOkzVvmdwERFxc3I3cPB2aVZ3NP+ZDFQcXF3cxN7lRDVWzPuBmTlxc3MXcvO3RKaB0CiW4uLj7uUkgqzZZk6MbedpT3uLg4uI2uPkySWjLG6i4uLjP5+apSP8IRfL8TSsFFxd3MbdaEBk7oNlPinBxcXdyq82M6pPVoslNaMPFxd3IHUtXxrYp1cIoLi7uf3HzMVYArbZkyp1YXFzcqdxqQOkUO/pz4uLi7uRWg1f1rTztiTZDuLi4G7nV7UgVOhhBcXFxH8/tFFCqpdXTmXFxcR/JzY9VVUFR+xYXF3cjtxNc8iMUY6WQwbIILi5ug9svmI5tg/LncXFxN3J/AC6LvlUrgQuLAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Welcome back!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂) Hello!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

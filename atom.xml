@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-14T06:09:41.304Z</updated>
+  <updated>2017-08-15T09:46:10.921Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,108 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>An Implementation of Attention is all you need with Chinese Corpus</title>
+    <link href="http://yoursite.com/2017/08/15/attention/"/>
+    <id>http://yoursite.com/2017/08/15/attention/</id>
+    <published>2017-08-15T09:42:49.000Z</published>
+    <updated>2017-08-15T09:46:10.921Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h1><p><a href="https://github.com/EternalFeather/Transformer-in-generating-dialogue" target="_blank" rel="external">Github</a></p>
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
+<li>Numpy &gt;= 1.13.1</li>
+<li>Tensorflow-gpu &gt;= 1.2.1</li>
+<li>tqdm</li>
+<li>nltk</li>
+</ul>
+<h1 id="Construction-Details"><a href="#Construction-Details" class="headerlink" title="Construction Details"></a>Construction Details</h1><p>As we all know Translation System can be used in implementing conversational model just by replacing the paris of two different sentences to questions and answers. After all, the basic conversation model named “Sequence-to-Sequence” is develped from translation system. Therefore, why we not to improve the efficiency of conversation model in generating dialogues?<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/x5FRdRo.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>This is the structure of transformer which is the core of implementing our model. Now let’s split it into several points:</p>
+<ul>
+<li>First one is Input Datasets(Get the batch datasets from generator, which is represented as a list of token ids in this experiment).</li>
+<li>Second one is Embedding layers(Including two parts:<strong>Dataset Embedding</strong> and <strong>Positional Embedding</strong>)<ul>
+<li>Dataset Embedding transform input token ids into a one-hot vector whose size is the length of vocabulary.</li>
+<li>Positional Embedding also called positional encoding. It considered the index of each word in the list of sentence as the position symbol.</li>
+<li>Third we have a multi-head attention model to split the output of embedding layers into many pieces and run through different attention models parallelly. Finally we can get the result by concating all the outputs from every models.</li>
+<li>Finally, going through a feed forward layer and combining with residual items, so that we can get the result. </li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/YfKUgIC.png" alt=""></p>
+<h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><ul>
+<li>STEP 1. Download dialogue corpus with format like sample datasets and extract them to <code>data/</code> folder.</li>
+<li>STEP 2. Adjust hyper parameters in <code>params.py</code> if you want.</li>
+<li>STEP 3. Run <code>make_dic.py</code> to generate vocabulary files to a new folder named <code>dictionary</code>.</li>
+<li>STEP 4. Run <code>train.py</code> to build the model. Checkpoint will be stored in <code>checkpoint</code> folder while the tensorflow event files can be found in <code>logdir</code>. </li>
+<li>STEP 5. Run <code>eval.py</code> to evaluate the result with testing data. Result will be stored in <code>Results</code> folder.</li>
+</ul>
+<h1 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line">- Source: 肥 宅 初 夜 可 以 賣 多 少 `</div><div class="line">- Ground Truth: 肥 宅 還 是 去 打 手 槍 吧</div><div class="line">- Predict: 肥 宅 還 是 去 打 手 槍 吧</div><div class="line"></div><div class="line">- Source: 兇 的 女 生 484 都 很 胸</div><div class="line">- Ground Truth: 我 看 都 是 醜 的 比 較 凶</div><div class="line">- Predict: 我 看 都 是 醜 的 比 較 &lt;UNK&gt;</div><div class="line"></div><div class="line">- Source: 留 髮 不 留 頭</div><div class="line">- Ground Truth: 還 好 我 早 就 禿 頭 了</div><div class="line">- Predict: 還 好 我 早 就 禿 頭 了</div><div class="line"></div><div class="line">- Source: 當 人 好 痛 苦 R 的 八 卦</div><div class="line">- Ground Truth: 去 中 國 就 不 用 當 人 了</div><div class="line">- Predict: 去 中 國 就 不 會 有 了 -</div><div class="line"></div><div class="line">- Source: 有 沒 有 今 天 捷 運 的 八 卦</div><div class="line">- Ground Truth: 有 - 真 的 有 多</div><div class="line">- Predict: 有 - 真 的 有 多</div><div class="line"></div><div class="line">- Source: 2016 帶 走 了 什 麼 `</div><div class="line">- Ground Truth: HellKitty 麥 當 勞 歡 樂 送 開 門 -</div><div class="line">- Predict: &lt;UNK&gt; 麥 當 勞 歡 樂 送 開 門 -</div><div class="line"></div><div class="line">- Source: 有 沒 有 多 益 很 賺 的 八 卦</div><div class="line">- Ground Truth: 比 大 型 包 裹 貴</div><div class="line">- Predict: 比 大 型 包 &lt;UNK&gt; 貴</div><div class="line"></div><div class="line">- Source: 邊 緣 人 收 到 地 震 警 報 了</div><div class="line">- Ground Truth: 都 跑 到 窗 邊 了 才 來</div><div class="line">- Predict: 都 跑 到 &lt;UNK&gt; 邊 了 才 來</div><div class="line"></div><div class="line">- Source: 車 震</div><div class="line">- Ground Truth: 沒 被 刪 版 主 是 有 眼 睛 der</div><div class="line">- Predict: 沒 被 刪 版 主 是 有 眼 睛 der</div><div class="line"></div><div class="line">- Source: 在 家 跌 倒 的 八 卦 `</div><div class="line">- Ground Truth: 傷 到 腦 袋 - 可 憐</div><div class="line">- Predict: 傷 到 腦 袋 - 可 憐</div><div class="line"></div><div class="line">- Source: 大 家 很 討 厭 核 核 嗎 `</div><div class="line">- Ground Truth: 核 核 欠 幹 阿</div><div class="line">- Predict: 核 核 欠 幹 阿</div><div class="line"></div><div class="line">- Source: 館 長 跟 黎 明 打 誰 贏 -</div><div class="line">- Ground Truth: 我 愛 黎 明 - 我 愛 黎 明 -</div><div class="line">- Predict: 我 愛 &lt;UNK&gt; 明 - 我 愛 &lt;UNK&gt; 明 -</div><div class="line"></div><div class="line">- Source: 嘻 嘻 打 打</div><div class="line">- Ground Truth: 媽 的 智 障 姆 咪 滾 喇 幹</div><div class="line">- Predict: 媽 的 智 障 姆 咪 滾 喇 幹</div><div class="line"></div><div class="line">- Source: 經 典 電 影 台 詞</div><div class="line">- Ground Truth: 超 時 空 要 愛 裡 滿 滿 的 梗</div><div class="line">- Predict: 超 時 空 要 愛 裡 滿 滿 滿 的</div><div class="line"></div><div class="line">- Source: 2B 守 得 住 街 亭 嗎 `</div><div class="line">- Ground Truth: 被 病 毒 滅 亡 真 的 會 -</div><div class="line">- Predict: &lt;UNK&gt; 守 得 住</div></pre></td></tr></table></figure>
+<h1 id="Comparison"><a href="#Comparison" class="headerlink" title="Comparison"></a>Comparison</h1><h2 id="Implement-feedforward-through-fully-connected"><a href="#Implement-feedforward-through-fully-connected" class="headerlink" title="Implement feedforward through fully connected."></a>Implement feedforward through fully connected.</h2><ul>
+<li>Training Accuracy</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/wZW34e8.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>Training Loss</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/p5MSVVQ.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="Implement-feedforward-through-convolution-in-only-one-dimention"><a href="#Implement-feedforward-through-convolution-in-only-one-dimention" class="headerlink" title="Implement feedforward through convolution in only one dimention."></a>Implement feedforward through convolution in only one dimention.</h2><ul>
+<li>Training Accuracy</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/y2Q9yM8.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>Training Loss</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/MJdMnvt.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h1><p>Thanks for <a href="https://github.com/Kyubyong/transformer" target="_blank" rel="external">Transformer</a></p>
+<ul>
+<li>本文在原先的模组上添加了Attention is all you need提到的Position encoding的部分</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Link&quot;&gt;&lt;a href=&quot;#Link&quot; class=&quot;headerlink&quot; title=&quot;Link&quot;&gt;&lt;/a&gt;Link&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/EternalFeather/Transformer-in-gene
+    
+    </summary>
+    
+    
+      <category term="Transformer" scheme="http://yoursite.com/tags/Transformer/"/>
+    
+      <category term="Attention is all you need" scheme="http://yoursite.com/tags/Attention-is-all-you-need/"/>
+    
+      <category term="Conversation Model" scheme="http://yoursite.com/tags/Conversation-Model/"/>
+    
+  </entry>
   
   <entry>
     <title>tensorflow快速入门</title>
@@ -1178,11 +1280,11 @@
     
       <category term="Tensorflow" scheme="http://yoursite.com/tags/Tensorflow/"/>
     
+      <category term="Deep Learning" scheme="http://yoursite.com/tags/Deep-Learning/"/>
+    
       <category term="CUDA" scheme="http://yoursite.com/tags/CUDA/"/>
     
       <category term="cuDNN" scheme="http://yoursite.com/tags/cuDNN/"/>
-    
-      <category term="Deep Learning" scheme="http://yoursite.com/tags/Deep-Learning/"/>
     
   </entry>
   
