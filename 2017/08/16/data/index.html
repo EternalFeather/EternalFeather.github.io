@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>数据挖掘（Data Mining）十大经典算法 | 指尖の岁月 | 世间点滴，莫忘于心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Machine Learning,Data Mining">
+    <meta name="description" content="算法介绍（Introduction）C4.5C4.5是机器学习中的一个分类决策树（Decision Tree）算法，它是决策树的一个核心，ID3的改进算法。因此想要构造C4.5的结构，只需要了解决策树的构造方法即可实现大半。而总的来说就是每次选择一个好的特征以及分裂点作为当前节点的判断条件（树的分岔路口）。 C4.5相比于ID3改进的方面包括： 使用了信息增益率作为选择节点的标准。  传统的ID3">
+<meta name="keywords" content="Machine Learning,Data Mining">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据挖掘（Data Mining）十大经典算法">
+<meta property="og:url" content="http://yoursite.com/2017/08/16/data/index.html">
+<meta property="og:site_name" content="指尖の岁月">
+<meta property="og:description" content="算法介绍（Introduction）C4.5C4.5是机器学习中的一个分类决策树（Decision Tree）算法，它是决策树的一个核心，ID3的改进算法。因此想要构造C4.5的结构，只需要了解决策树的构造方法即可实现大半。而总的来说就是每次选择一个好的特征以及分裂点作为当前节点的判断条件（树的分岔路口）。 C4.5相比于ID3改进的方面包括： 使用了信息增益率作为选择节点的标准。  传统的ID3">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.imgur.com/g2ND7QL.jpg">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large PR(A) = PR(B) + PR(C) + PR(D)">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large PR(A) = {PR(B) \over 2} + {PR(C) \over 1} + {PR(D) \over 3}">
+<meta property="og:updated_time" content="2017-08-16T09:27:21.190Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据挖掘（Data Mining）十大经典算法">
+<meta name="twitter:description" content="算法介绍（Introduction）C4.5C4.5是机器学习中的一个分类决策树（Decision Tree）算法，它是决策树的一个核心，ID3的改进算法。因此想要构造C4.5的结构，只需要了解决策树的构造方法即可实现大半。而总的来说就是每次选择一个好的特征以及分裂点作为当前节点的判断条件（树的分岔路口）。 C4.5相比于ID3改进的方面包括： 使用了信息增益率作为选择节点的标准。  传统的ID3">
+<meta name="twitter:image" content="https://i.imgur.com/g2ND7QL.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖の岁月" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/new3.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/one2.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Eternal</h5>
+          <a href="mailto:617844662@qq.com" title="617844662@qq.com" class="mail">617844662@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/EternalFeather" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://EternalFeather.github.io/AboutMe/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                About Me
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">数据挖掘（Data Mining）十大经典算法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">数据挖掘（Data Mining）十大经典算法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-08-16T09:25:15.000Z" itemprop="datePublished" class="page-time">
+  2017-08-16
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#算法介绍（Introduction）"><span class="post-toc-number">1.</span> <span class="post-toc-text">算法介绍（Introduction）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#C4-5"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">C4.5</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#C4-5相比于ID3改进的方面包括："><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">C4.5相比于ID3改进的方面包括：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#The-K-means-Algorithm-K-means"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">The K-means Algorithm(K-means)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Support-Vector-Machine（SVM）"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Support Vector Machine（SVM）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#The-Apriori-algorithm"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">The Apriori algorithm</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关联度分析的基本概念"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">关联度分析的基本概念</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#最大期望（EM）算法"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">最大期望（EM）算法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PageRank"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">PageRank</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AdaBoost"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">AdaBoost</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#K-nearest-neighbor-classification-KNN"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">K-nearest neighbor classification(KNN)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Naive-Bayes"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">Naive Bayes</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CART（分类与回归树）"><span class="post-toc-number">1.10.</span> <span class="post-toc-text">CART（分类与回归树）</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-data"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">数据挖掘（Data Mining）十大经典算法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-08-16 17:25:15" datetime="2017-08-16T09:25:15.000Z"  itemprop="datePublished">2017-08-16</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="算法介绍（Introduction）"><a href="#算法介绍（Introduction）" class="headerlink" title="算法介绍（Introduction）"></a>算法介绍（Introduction）</h1><h2 id="C4-5"><a href="#C4-5" class="headerlink" title="C4.5"></a>C4.5</h2><p>C4.5是机器学习中的一个分类决策树（Decision Tree）算法，它是决策树的一个核心，ID3的改进算法。因此想要构造C4.5的结构，只需要了解决策树的构造方法即可实现大半。而总的来说就是每次选择一个好的特征以及分裂点作为当前节点的判断条件（树的分岔路口）。</p>
+<h3 id="C4-5相比于ID3改进的方面包括："><a href="#C4-5相比于ID3改进的方面包括：" class="headerlink" title="C4.5相比于ID3改进的方面包括："></a>C4.5相比于ID3改进的方面包括：</h3><ul>
+<li><p>使用了信息增益率作为选择节点的标准。</p>
+<ul>
+<li>传统的ID3算法使用了<a href="https://eternalfeather.github.io/2017/08/08/ML-algorithms/#Information-Gain-amp-Entropy" target="_blank" rel="external">信息增益(Information Gain)</a>作为衡量节点优异度的标准，也就是熵值（Entropy）的变化程度，而这个情况往往会导致选择属性的时候偏向选择取值多的属性。例如同样是跑步，一个人的速度为5m/s，另一个人的速度为3m/s，之后两人分别加速到了10m/s和6m/s。如果利用信息增益来评估两人的速度变化，那么显然前者的信息增益更强（10-5 &gt; 6-3）。然而如果使用信息增益率来说两人的加速度是一致的((10-5) / 5 = (6-3) / 3)。</li>
+</ul>
+</li>
+<li><p>在构建决策树的过程中对分支进行了修剪。</p>
+<ul>
+<li>剪去那些只有几个节点的分支，因为选择方式少而单一，容易造成Overfitting。</li>
+</ul>
+</li>
+<li><p>能够处理不完整的数据。</p>
+</li>
+</ul>
+<h2 id="The-K-means-Algorithm-K-means"><a href="#The-K-means-Algorithm-K-means" class="headerlink" title="The K-means Algorithm(K-means)"></a>The K-means Algorithm(K-means)</h2><p><a href="https://eternalfeather.github.io/2017/08/08/ML-algorithms/#K均值（K-means）" target="_blank" rel="external">K-means算法</a>在机器学习中属于一个聚类算法，它是把n个对象根据他们的属性差异（Feature维度空间中的距离）来将彼此分成K群。它与处理混合正态分布的最大期望类似，因为都是试图找到数据中的聚类中心。<br>K-means计算假设对象属性来自于空间向量，并且目标是使各个群组内部的误差最小化。</p>
+<h2 id="Support-Vector-Machine（SVM）"><a href="#Support-Vector-Machine（SVM）" class="headerlink" title="Support Vector Machine（SVM）"></a>Support Vector Machine（SVM）</h2><p><a href="https://eternalfeather.github.io/2017/08/08/ML-algorithms/#支持向量机（Support-vector-machine-SVM）" target="_blank" rel="external">支持向量机</a>是一种监督式学习的方法，被广泛应用在分类和回归的分析中。它的原理是将空间中的向量映射到一个更高纬度的空间中，然后在空间中找到一个最大间隔超平面。通俗的来说就是在原有的维度空间中无法分割的情况下，我们先提高向量表示的维度空间，然后在高纬度空间中找到一个超平面，能够将不同类别的向量集合分割开来。我们在这个超平面两侧各取两个平行的超平面，然后最大化这两个平面的距离。</p>
+<h2 id="The-Apriori-algorithm"><a href="#The-Apriori-algorithm" class="headerlink" title="The Apriori algorithm"></a>The Apriori algorithm</h2><p>Apriori算法是一种最有影响力关联法则应用算法。其核心是结合了关联法则和递归的思想，我们会定义一个最小支持度（minimum support）来生成我们的频繁数据集。<br>首先从所有数据中计算出频繁项集L1，之后再利用L1生成L2项集，以此类推最后能够得到频繁k项集。每次检索需要扫描所有数据一次。</p>
+<h3 id="关联度分析的基本概念"><a href="#关联度分析的基本概念" class="headerlink" title="关联度分析的基本概念"></a>关联度分析的基本概念</h3><ul>
+<li><p>支持度</p>
+<ul>
+<li>关联规则 A-&gt;B 的支持度（Support）= P（AB），指的是A和B同时发生的概率</li>
+</ul>
+</li>
+<li><p>置信度</p>
+<ul>
+<li>A对B的置信度（confidence）= P（B | A）= P（AB）/ P（A），指的是A发生的情况下B发生的概率</li>
+</ul>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/g2ND7QL.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="最大期望（EM）算法"><a href="#最大期望（EM）算法" class="headerlink" title="最大期望（EM）算法"></a>最大期望（EM）算法</h2><p>在统计计算中，最大期望算法是在概率模型中寻找最大似然估计或者最大后验估计的算法，其中概率模型依赖于无法观测的隐性变量（Latent Variable）。</p>
+<p>举个例子就是：</p>
+<ul>
+<li>两个人分食物，我们没有必要利用十分精确的仪器来将食物分成完全相等的两份，而是先随便将食物分成两群，然后观察是否一样多，把比较多的那一份取出一部分到少的那一群。久而久之两群的差距就会越来越小最后收敛。</li>
+</ul>
+<h2 id="PageRank"><a href="#PageRank" class="headerlink" title="PageRank"></a>PageRank</h2><p>PageRank，又称网页排名，是一种根据相互的超链接计算关联度的技术。它通过网页的外部链接和内部链接的数量和质量来衡量网站的价值。PageRank背后的机制是投票，也就是每一次访问网页的链接都是对该页面的一次投票，票数越多代表网站的权重越高。</p>
+<p>假设有一个4个对象组成的小团体A，B，C，D。如果所有对象都提到A，那么A的PageRank值就是B，C，D三个PageRanks的总和。<br>即:</p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large PR(A) = PR(B) + PR(C) + PR(D)" style="border:none;"></p>
+<p>如果此时B有提到C，D也有提到A，B，C。由于一个页面不能出现两次，因此权重会被一个权重分配：</p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large PR(A) = {PR(B) \over 2} + {PR(C) \over 1} + {PR(D) \over 3}" style="border:none;"></p>
+<h2 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h2><p><a href="https://eternalfeather.github.io/2017/08/08/ML-algorithms/#Adaboost" target="_blank" rel="external">AdaBoost</a>是一种迭代的算法，其核心思想是针对同一个训练集训练不同的分类器，也叫作弱分类器。然后通过把这些弱分类器整合起来，构造出一个最终的强分类器。<br>AdaBoost算法本身是通过动态改变数据的分布情况来实现的，根据每次训练样本的正确与否，以及上次分类的准确率，来调整每个样本的权重比例。然后再将结果送给下一次分类器的迭代中进行训练，以此类推。</p>
+<h2 id="K-nearest-neighbor-classification-KNN"><a href="#K-nearest-neighbor-classification-KNN" class="headerlink" title="K-nearest neighbor classification(KNN)"></a>K-nearest neighbor classification(KNN)</h2><p><a href="https://eternalfeather.github.io/2017/08/08/ML-algorithms/#K近邻（K-Nearest-Neighbors）" target="_blank" rel="external">KNN算法</a>可以用于分类和回归问题，然而我们更常将其被用于解决分类问题上。KNN能够存储所有的案例，通过对比周围K个样本中的大概率情况，从而决定新的对象应该分配在哪一个类别。新的样本会被分配到它的K个最近最普遍的类别中去，因此KNN算法也是一个基于距离函数的算法。</p>
+<h2 id="Naive-Bayes"><a href="#Naive-Bayes" class="headerlink" title="Naive Bayes"></a>Naive Bayes</h2><p>在所有的分类模型中，应用最为广泛的无非是两种分类模型了，它们分别是决策树模型和<a href="https://eternalfeather.github.io/2017/08/08/ML-algorithms/#朴素贝叶斯（Naive-Bayesian）" target="_blank" rel="external">朴素贝叶斯（Naive Bayes）</a>模型。在结构上，Naive Bayes所需估计的参数较少，对缺失数据不太敏感，算法也比较简单。<br>Naive Bayes模型假设属性之间相互独立。通俗来说，一个朴素贝叶斯分类器假设分类的特性和其他特性不相关。朴素贝叶斯模型容易创建，而且在非监督式学习的大型数据样本集中非常有用，虽然简单，却能超越复杂的分类方法。其基本思想就是：对于给出的待分类项，求解在此项出现的条件下各个目标类别出现的概率，哪个最大，就认为此待分类项属于哪个类别。</p>
+<h2 id="CART（分类与回归树）"><a href="#CART（分类与回归树）" class="headerlink" title="CART（分类与回归树）"></a>CART（分类与回归树）</h2><p>Classification and Regression Trees是在分类树下面总结两个关键的思想。一个是关于递归的划分自变量空间，第二个是用验证数据对树结构进行剪枝。<br>我们知道分类树的输出是样本的类别标签。回归树的输出则是一个固定的数值。而CART包含了上述的两种决策树。它的结构是一棵二叉树，且每个非叶子节点都有两个Child，所以叶子节点数总是比非叶子节点数多1。<br>CART中用于选择变量的不纯性度量标准是用<a href="https://eternalfeather.github.io/2017/08/08/ML-algorithms/#Gini" target="_blank" rel="external">Gini指数</a>来处理的，也就是说树内部的属性越杂乱，Gini指数就越大。如果目标变量是离散的，并且具有两个以上的类别，则CART可能考虑将这些目标类别进行合并，最终合并成两个超类别（这个过程叫做双化）。如果目标变量是连续的，则CART会找出一组基于树的回归方程来预测目标变量的结果。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-08-16T09:27:21.190Z" itemprop="dateUpdated">2017-08-16 17:27:21</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/08/16/data/" target="_blank" rel="external">http://yoursite.com/2017/08/16/data/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/one2.jpg" alt="Eternal">
+            Eternal
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Mining/">Data Mining</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/08/16/data/&title=《数据挖掘（Data Mining）十大经典算法》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/08/16/data/&title=《数据挖掘（Data Mining）十大经典算法》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/08/16/data/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数据挖掘（Data Mining）十大经典算法》 — 指尖の岁月&url=http://yoursite.com/2017/08/16/data/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/16/data/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/08/15/attention/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">An Implementation of Attention is all you need with Chinese Corpus</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'eternalfeather';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢您~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Eternal &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/08/16/data/&title=《数据挖掘（Data Mining）十大经典算法》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/08/16/data/&title=《数据挖掘（Data Mining）十大经典算法》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/08/16/data/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数据挖掘（Data Mining）十大经典算法》 — 指尖の岁月&url=http://yoursite.com/2017/08/16/data/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/16/data/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABuklEQVR42u3aS44DIQwFwNz/0hlpVlnk84zB6UjFqhUBKTYW2L7d4nH/H4/fj6M689XabQMXF7fNvb8dCSKhrO355Ei4uLiD3Dx4VQ9ZpX+w4eLiXoy7FpiSPXFxcX+Xm/yS7IyLi/sr3OplJZn5HnH8rYaLi9vgriVM934fz+/i4uJuqkrkAeXEqif74OLijnCrj5ZkZpIQyR9XtzUELi5ug9svh/QTIkmAw8XFvQ53V1okX/Xh8Li4uOPcTvvUWoNXnkItTMLFxW1z8+tFfoC1zGf1KYWLi3uOm6Q4k3Jpv5LTqgbj4uJu5SaJyzyd0S+rLNZ7cXFxj3HzR04nCOZzXq7CxcU9zE3+LE9nVA+Mi4t7ZW710tNvzqgmSXFxcSe5a9eOfoEkL5a8rP/g4uIe425OWBRDWLVwi4uLO8nd1VCVcKuHx8XF/RY3H2tNFcnjJzoGLi7uCHfXlSW5xFRbN1qNHbi4uG1uErzyxMdaWqQQ4HBxcQe51YLKWjNW6/GDi4t7SW4O7a/aEMhwcXEHuUmaNW+zKLdz4eLiDnKrf9k5UiuxgouLO8LtJEyr4anakIGLizvO/QPGbEP6dDJ58wAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Welcome back!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂) Hello!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
