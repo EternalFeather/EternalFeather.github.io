@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-16T09:27:21.190Z</updated>
+  <updated>2017-08-21T02:34:48.442Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,85 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>自编码（Auto-encoder）</title>
+    <link href="http://yoursite.com/2017/08/21/auto-encoder/"/>
+    <id>http://yoursite.com/2017/08/21/auto-encoder/</id>
+    <published>2017-08-21T02:33:32.000Z</published>
+    <updated>2017-08-21T02:34:48.442Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="什么是自编码"><a href="#什么是自编码" class="headerlink" title="什么是自编码"></a>什么是自编码</h1><p>在神经网络训练过程中，往往会需要输入<strong>大量的信息</strong>，而这些信息对于计算机的学习来说具有十分巨大的负担。想想人类的学习过程，如果一次性塞给我们大量的信息，不但达不到很好的学习效果，还会浪费大量的时间。</p>
+<p>因此我们需要一个特殊的神经网络来将原本的信息进行压缩，提取其中最具有代表性的信息，这个网络就是所谓的编码器（encoder）。之后再通过放大压缩后的信息，重现原始资料的全部信息，也就是 解码（decoder） 的过程。而我们所需要做的就是取得编码器压缩之后的简要信息，送入神经网络进行学习，从而达到我们的目的。</p>
+<h1 id="General-Auto-encoder"><a href="#General-Auto-encoder" class="headerlink" title="General Auto-encoder"></a>General Auto-encoder</h1><p>通常我们会利用神经网络的结构将输入和输出的vector进行维度的变化，从而拟合二者，而auto-encoder就是利用非监督式学习来自动找到能够表示输入信号的低维度（Low Dimension）特征向量。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/w1FOwlL.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如上图所示，如果单独想要依靠一个神经网络得到好的特征向是不可能的。因为是非监督式学习，对于NN Encoder而言，我们无法评估结果code的好坏；相对的NN Decoder而言我们无从得到code的信息。因此两者必须相互沟通，共同训练才能达到最终的目的。</p>
+<h1 id="Deep-Auto-encoder"><a href="#Deep-Auto-encoder" class="headerlink" title="Deep Auto-encoder"></a>Deep Auto-encoder</h1><p>如果说传统的Auto-encoder只是使用了简单的机器学习方法或是简单的神经网络作为encoder和decoder的内部构造，那么Deep Auto-encoder就是将这些网络结构替换成了更为复杂，从资料形态和特征出发的神经网络。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/u3zi7BE.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>从图中可以看出，Deep Auto-encoder能够利用神经网络的特性将输入和输出（同样的输入资料）进行转换，最终得到资料的精华部分（code）。因此我们可以说：</p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large Deep\ Auto\ Encoder\ Network = DNN\ encoder + DNN\ decoder" style="border:none;"></p>
+<ul>
+<li>下图是通过PCA和t-SNE对输入信号进行降维后在二维空间中的手写数字分类结果：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/gmqBwil.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>而经过Deep Auto-encoder之后的结果如下：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/0NRrwu8.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>不难看出，Auto-encoder在特征的分类上还是有一定程度能够超越传统的主成分分析模型。</p>
+<h1 id="Sequence-to-Sequence-Auto-encoder"><a href="#Sequence-to-Sequence-Auto-encoder" class="headerlink" title="Sequence-to-Sequence Auto-encoder"></a>Sequence-to-Sequence Auto-encoder</h1><p>Sequence-to-Sequence的Auto-encoder主要是用在提取输入信号是一个<strong>时序的特征向量</strong>。这个时候我们需要借助RNN的模型来对时序特征向量进行encode和decode的动作。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/fzLQuVT.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>同样的利用Sequence-to-Sequence Model定义的Encoder对输入信号进行编码，输出的Vector通过Decoder重新解码。不同的是解码的结果需要拟合的是原先编码前的信号。如此一来解码器和编码器就能够准确地将<strong>原始输入信号的特征压缩和保存了</strong>。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/WL6H0GX.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>Encoder输出的Vector就是我们需要的输入信息的精华，其中的Feature都能够对信息本身造成关键性的影响。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;什么是自编码&quot;&gt;&lt;a href=&quot;#什么是自编码&quot; class=&quot;headerlink&quot; title=&quot;什么是自编码&quot;&gt;&lt;/a&gt;什么是自编码&lt;/h1&gt;&lt;p&gt;在神经网络训练过程中，往往会需要输入&lt;strong&gt;大量的信息&lt;/strong&gt;，而这些信息对于计算机的学习
+    
+    </summary>
+    
+    
+      <category term="Auto-Encoder" scheme="http://yoursite.com/tags/Auto-Encoder/"/>
+    
+  </entry>
   
   <entry>
     <title>数据挖掘（Data Mining）十大经典算法</title>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>自编码（Auto-encoder） | 指尖の岁月 | 世间点滴，莫忘于心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Auto-Encoder">
+    <meta name="description" content="什么是自编码在神经网络训练过程中，往往会需要输入大量的信息，而这些信息对于计算机的学习来说具有十分巨大的负担。想想人类的学习过程，如果一次性塞给我们大量的信息，不但达不到很好的学习效果，还会浪费大量的时间。 因此我们需要一个特殊的神经网络来将原本的信息进行压缩，提取其中最具有代表性的信息，这个网络就是所谓的编码器（encoder）。之后再通过放大压缩后的信息，重现原始资料的全部信息，也就是 解码（">
+<meta name="keywords" content="Auto-Encoder">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自编码（Auto-encoder）">
+<meta property="og:url" content="http://yoursite.com/2017/08/21/auto-encoder/index.html">
+<meta property="og:site_name" content="指尖の岁月">
+<meta property="og:description" content="什么是自编码在神经网络训练过程中，往往会需要输入大量的信息，而这些信息对于计算机的学习来说具有十分巨大的负担。想想人类的学习过程，如果一次性塞给我们大量的信息，不但达不到很好的学习效果，还会浪费大量的时间。 因此我们需要一个特殊的神经网络来将原本的信息进行压缩，提取其中最具有代表性的信息，这个网络就是所谓的编码器（encoder）。之后再通过放大压缩后的信息，重现原始资料的全部信息，也就是 解码（">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.imgur.com/w1FOwlL.png">
+<meta property="og:image" content="https://i.imgur.com/u3zi7BE.png">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large Deep\ Auto\ Encoder\ Network = DNN\ encoder + DNN\ decoder">
+<meta property="og:image" content="https://i.imgur.com/gmqBwil.png">
+<meta property="og:image" content="https://i.imgur.com/0NRrwu8.png">
+<meta property="og:image" content="https://i.imgur.com/fzLQuVT.png">
+<meta property="og:image" content="https://i.imgur.com/WL6H0GX.png">
+<meta property="og:updated_time" content="2017-08-21T02:34:48.442Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自编码（Auto-encoder）">
+<meta name="twitter:description" content="什么是自编码在神经网络训练过程中，往往会需要输入大量的信息，而这些信息对于计算机的学习来说具有十分巨大的负担。想想人类的学习过程，如果一次性塞给我们大量的信息，不但达不到很好的学习效果，还会浪费大量的时间。 因此我们需要一个特殊的神经网络来将原本的信息进行压缩，提取其中最具有代表性的信息，这个网络就是所谓的编码器（encoder）。之后再通过放大压缩后的信息，重现原始资料的全部信息，也就是 解码（">
+<meta name="twitter:image" content="https://i.imgur.com/w1FOwlL.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖の岁月" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/new3.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/one2.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Eternal</h5>
+          <a href="mailto:617844662@qq.com" title="617844662@qq.com" class="mail">617844662@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/EternalFeather" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://EternalFeather.github.io/AboutMe/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                About Me
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">自编码（Auto-encoder）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">自编码（Auto-encoder）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-08-21T02:33:32.000Z" itemprop="datePublished" class="page-time">
+  2017-08-21
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#什么是自编码"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是自编码</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#General-Auto-encoder"><span class="post-toc-number">2.</span> <span class="post-toc-text">General Auto-encoder</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Deep-Auto-encoder"><span class="post-toc-number">3.</span> <span class="post-toc-text">Deep Auto-encoder</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Sequence-to-Sequence-Auto-encoder"><span class="post-toc-number">4.</span> <span class="post-toc-text">Sequence-to-Sequence Auto-encoder</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-auto-encoder"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">自编码（Auto-encoder）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-08-21 10:33:32" datetime="2017-08-21T02:33:32.000Z"  itemprop="datePublished">2017-08-21</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="什么是自编码"><a href="#什么是自编码" class="headerlink" title="什么是自编码"></a>什么是自编码</h1><p>在神经网络训练过程中，往往会需要输入<strong>大量的信息</strong>，而这些信息对于计算机的学习来说具有十分巨大的负担。想想人类的学习过程，如果一次性塞给我们大量的信息，不但达不到很好的学习效果，还会浪费大量的时间。</p>
+<p>因此我们需要一个特殊的神经网络来将原本的信息进行压缩，提取其中最具有代表性的信息，这个网络就是所谓的编码器（encoder）。之后再通过放大压缩后的信息，重现原始资料的全部信息，也就是 解码（decoder） 的过程。而我们所需要做的就是取得编码器压缩之后的简要信息，送入神经网络进行学习，从而达到我们的目的。</p>
+<h1 id="General-Auto-encoder"><a href="#General-Auto-encoder" class="headerlink" title="General Auto-encoder"></a>General Auto-encoder</h1><p>通常我们会利用神经网络的结构将输入和输出的vector进行维度的变化，从而拟合二者，而auto-encoder就是利用非监督式学习来自动找到能够表示输入信号的低维度（Low Dimension）特征向量。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/w1FOwlL.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如上图所示，如果单独想要依靠一个神经网络得到好的特征向是不可能的。因为是非监督式学习，对于NN Encoder而言，我们无法评估结果code的好坏；相对的NN Decoder而言我们无从得到code的信息。因此两者必须相互沟通，共同训练才能达到最终的目的。</p>
+<h1 id="Deep-Auto-encoder"><a href="#Deep-Auto-encoder" class="headerlink" title="Deep Auto-encoder"></a>Deep Auto-encoder</h1><p>如果说传统的Auto-encoder只是使用了简单的机器学习方法或是简单的神经网络作为encoder和decoder的内部构造，那么Deep Auto-encoder就是将这些网络结构替换成了更为复杂，从资料形态和特征出发的神经网络。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/u3zi7BE.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>从图中可以看出，Deep Auto-encoder能够利用神经网络的特性将输入和输出（同样的输入资料）进行转换，最终得到资料的精华部分（code）。因此我们可以说：</p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large Deep\ Auto\ Encoder\ Network = DNN\ encoder + DNN\ decoder" style="border:none;"></p>
+<ul>
+<li>下图是通过PCA和t-SNE对输入信号进行降维后在二维空间中的手写数字分类结果：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/gmqBwil.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>而经过Deep Auto-encoder之后的结果如下：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/0NRrwu8.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>不难看出，Auto-encoder在特征的分类上还是有一定程度能够超越传统的主成分分析模型。</p>
+<h1 id="Sequence-to-Sequence-Auto-encoder"><a href="#Sequence-to-Sequence-Auto-encoder" class="headerlink" title="Sequence-to-Sequence Auto-encoder"></a>Sequence-to-Sequence Auto-encoder</h1><p>Sequence-to-Sequence的Auto-encoder主要是用在提取输入信号是一个<strong>时序的特征向量</strong>。这个时候我们需要借助RNN的模型来对时序特征向量进行encode和decode的动作。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/fzLQuVT.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>同样的利用Sequence-to-Sequence Model定义的Encoder对输入信号进行编码，输出的Vector通过Decoder重新解码。不同的是解码的结果需要拟合的是原先编码前的信号。如此一来解码器和编码器就能够准确地将<strong>原始输入信号的特征压缩和保存了</strong>。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/WL6H0GX.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>Encoder输出的Vector就是我们需要的输入信息的精华，其中的Feature都能够对信息本身造成关键性的影响。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-08-21T02:34:48.442Z" itemprop="dateUpdated">2017-08-21 10:34:48</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/08/21/auto-encoder/" target="_blank" rel="external">http://yoursite.com/2017/08/21/auto-encoder/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/one2.jpg" alt="Eternal">
+            Eternal
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Auto-Encoder/">Auto-Encoder</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/08/21/auto-encoder/&title=《自编码（Auto-encoder）》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/08/21/auto-encoder/&title=《自编码（Auto-encoder）》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/08/21/auto-encoder/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《自编码（Auto-encoder）》 — 指尖の岁月&url=http://yoursite.com/2017/08/21/auto-encoder/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/21/auto-encoder/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/08/16/data/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">数据挖掘（Data Mining）十大经典算法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'eternalfeather';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢您~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Eternal &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/08/21/auto-encoder/&title=《自编码（Auto-encoder）》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/08/21/auto-encoder/&title=《自编码（Auto-encoder）》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/08/21/auto-encoder/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《自编码（Auto-encoder）》 — 指尖の岁月&url=http://yoursite.com/2017/08/21/auto-encoder/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/21/auto-encoder/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3aQW7DMAwFUd//0inQVYrU9nzSLmpxtAqMRNbLgqBIbhter+/1/vl9XfX88zsXLxkyZDyWQbb73Jofa2+H4zPEVBkyZAxgkCB7/CsSNAmS4GXIkCHjOB1MAy5Z/O+TIUOGjNp25EC1JzJkyJCRXmLJK9Ng2gniMmTImMOoNQb+5vPt/Q0ZMmT8e0b/2pm2B2qthZOTyJAhY2nGcdp3x2zDMYMgt9p2MmTIeCyjc5ROYO0U2n75vgwZMgYw0kJ/5/JJdogvtDJkyBjJqIXFNIDyQv9JyJYhQ8YARq1wn45ZxAkfT0NlyJAxhpGOWdQGJniBjwdrGTJkzGTUNuXpY420+ysZMmQMY/Bci1xH0+fFepoMGTIGMNLyVgfWmgrZ21mGDBlLM3jQrDUg+XH527eaUoYMGQ9nICVoD6DSWDjSETQeZMiQsTQDDTTg9uRVxTveNpAhQ8YcRnqJ5UMYtfCajoDIkCFjAqP2gs54Wb9IJ0OGjDmMfvKXltJIGpq2UWXIkDGBkZbS0nJYq4hGklcZMmQszSCFsGMqf5KW1WrpowwZMlZivMJVSxNJwpcOXvx4IkOGjKUZaZgjV9zOvBYv1dWCtQwZMp7LqDUR02ZAegGOA64MGTIGMGpBNn1xJxyf7C9DhgwZoN3YueKmO6BpERkyZIxkkNtwpyFKdo4jtwwZMhZi9IPjHcE3KNXJkCFjaUZarK8NZ/AWJinwXdDfkCFDxjMYX5vkVuR18E1PAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Welcome back!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂) Hello!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
