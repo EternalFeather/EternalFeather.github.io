@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-21T02:34:48.442Z</updated>
+  <updated>2017-08-29T09:29:29.377Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,74 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Single Cycle MIPS CPU</title>
+    <link href="http://yoursite.com/2017/08/29/CPU/"/>
+    <id>http://yoursite.com/2017/08/29/CPU/</id>
+    <published>2017-08-29T09:28:33.000Z</published>
+    <updated>2017-08-29T09:29:29.377Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>The goal of this experience is to understand how a single-cycle MIPS work and how to use Verilog hardware description language (Verilog HDL) to model electronic systems. We need to implement a single cycle MIPS CPU that can execute all the instructions shown in the MIPS ISA section. We need to follow the instruction table and satisfy all the requirements .In addition, we need to verify our CPU by using Modelsim. Testing steps will provide test fixtures that will run a MIPS program for the CPU.</p>
+<h1 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h1><ul>
+<li><code>Verilog</code></li>
+<li><code>ModelSim</code></li>
+</ul>
+<h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><ul>
+<li>The single-cycle CPU use one cycle to execute instruction. There are five main components in CPU: controller, regfile, arithmetic logic unit (ALU), program counter(PC), and jump controller.</li>
+<li>The controller control most of the multiplexers, DM write enable, ALU, Jump Controller, and regfile. The file Controller.v implements the controller.</li>
+<li>The regfile is used to store data between memory and the functional units. The file Regfile.v implements the regfile.</li>
+<li>The arithmetic logic unit do arithmetic and bitwise operations. The file ALU.v implements the arithmetic logic unit.</li>
+<li>The program counter is stored in the PC module. The file PC.v implements the program counter. It is triggered by positive clock edges.</li>
+<li>The jump controller select a memory address and send to PC. The file Jump_Ctrl.v implements the jump controller.</li>
+<li>The instruction memory is used to store instructions and it is implemented in IM.v files. The data memory is used to store data and it is implemented in DM.v file.</li>
+<li>The MIPS ISA is shown in the following. Figure 2 shows the R-type instructions in the MIPS ISA. Figure 3 shows the I-type instructions in the MIPS ISA. Figure 4 shows the J-type instructions in the MIPS ISA.</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/jJ6ajUH.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/d89KFdi.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/MeLucnx.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>Figure 5 shows the datapath of the single-cycle CPU. This single-cycle CPU is similar to the single-cycle in the textbook. However, to simply the CPU design, only smaller instruction and data memory are used and only 18-bit addresses are needed to obtain data in the memory.</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/71fKMwP.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Overview&quot;&gt;&lt;a href=&quot;#Overview&quot; class=&quot;headerlink&quot; title=&quot;Overview&quot;&gt;&lt;/a&gt;Overview&lt;/h1&gt;&lt;p&gt;The goal of this experience is to understand h
+    
+    </summary>
+    
+    
+      <category term="Verilog" scheme="http://yoursite.com/tags/Verilog/"/>
+    
+      <category term="CPU" scheme="http://yoursite.com/tags/CPU/"/>
+    
+  </entry>
   
   <entry>
     <title>自编码（Auto-encoder）</title>
