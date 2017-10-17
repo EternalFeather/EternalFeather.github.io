@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>对抗生成网络(GAN) | 指尖の岁月 | 世间点滴，莫忘于心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="GAN,Deep Learning">
+    <meta name="description" content="对抗生成网络（Generative Adversarial Network, GAN）介绍（Introduction）当今AI时代在人工智慧领域取得许多伟大的突破，其中机器学习与深度学习等计算机算法的崛起更是带来了一波又一波的浪潮。如今的深度学习模型已经数不胜数，而Generative Adversarial Network就是其中耀眼的一部分。在Quora上Facebook的AI研究团队主任Ya">
+<meta name="keywords" content="GAN,Deep Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对抗生成网络(GAN)">
+<meta property="og:url" content="http://yoursite.com/2017/10/17/GAN/index.html">
+<meta property="og:site_name" content="指尖の岁月">
+<meta property="og:description" content="对抗生成网络（Generative Adversarial Network, GAN）介绍（Introduction）当今AI时代在人工智慧领域取得许多伟大的突破，其中机器学习与深度学习等计算机算法的崛起更是带来了一波又一波的浪潮。如今的深度学习模型已经数不胜数，而Generative Adversarial Network就是其中耀眼的一部分。在Quora上Facebook的AI研究团队主任Ya">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.imgur.com/3HJh3Vq.png">
+<meta property="og:image" content="https://i.imgur.com/qLfZcNo.png">
+<meta property="og:image" content="https://i.imgur.com/JH5nUxS.png">
+<meta property="og:image" content="https://i.imgur.com/E6Xi2Xl.png">
+<meta property="og:image" content="https://i.imgur.com/DuJAJr1.png">
+<meta property="og:image" content="https://i.imgur.com/dVJEQG0.png">
+<meta property="og:image" content="https://i.imgur.com/pt3i9UX.png">
+<meta property="og:image" content="https://i.imgur.com/LYWAFnw.png">
+<meta property="og:image" content="https://i.imgur.com/mh6jOyu.png">
+<meta property="og:image" content="https://i.imgur.com/pvOvZv4.png">
+<meta property="og:image" content="https://i.imgur.com/4ofbgc3.png">
+<meta property="og:image" content="https://i.imgur.com/iqhoAGe.png">
+<meta property="og:image" content="https://i.imgur.com/TTe5Zhw.png">
+<meta property="og:image" content="https://i.imgur.com/OrbOJnv.png">
+<meta property="og:image" content="https://i.imgur.com/v1N0tD7.png">
+<meta property="og:image" content="https://i.imgur.com/ktbNjER.png">
+<meta property="og:image" content="https://i.imgur.com/jNBZ9Jp.png">
+<meta property="og:image" content="https://i.imgur.com/aR05euq.png">
+<meta property="og:image" content="https://i.imgur.com/upBP2iP.png">
+<meta property="og:image" content="https://i.imgur.com/cf2TtUT.png">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large ||D(x _{1}) - D(x _{2})|| \leq K ||x _{1} - x _{2}||">
+<meta property="og:image" content="https://i.imgur.com/UguRdtq.png">
+<meta property="og:image" content="https://i.imgur.com/4JmnKrn.png">
+<meta property="og:image" content="https://i.imgur.com/dV7AZrt.png">
+<meta property="og:image" content="https://i.imgur.com/l4yYXxR.png">
+<meta property="og:image" content="https://i.imgur.com/tidc0Ip.png">
+<meta property="og:image" content="https://i.imgur.com/FkPZQzY.png">
+<meta property="og:image" content="https://i.imgur.com/TERNFKa.png">
+<meta property="og:image" content="https://i.imgur.com/J4eNy6M.png">
+<meta property="og:image" content="https://i.imgur.com/gaHxy42.png">
+<meta property="og:image" content="https://i.imgur.com/qknd7jy.png">
+<meta property="og:image" content="https://i.imgur.com/72TTfky.png">
+<meta property="og:image" content="https://i.imgur.com/pejHfsi.png">
+<meta property="og:image" content="https://i.imgur.com/LF1aUSa.png">
+<meta property="og:image" content="https://i.imgur.com/hn804Zn.png">
+<meta property="og:image" content="https://i.imgur.com/l7ohobS.png">
+<meta property="og:image" content="https://i.imgur.com/Ziam2Aw.png">
+<meta property="og:image" content="https://i.imgur.com/FnrwtHR.png">
+<meta property="og:image" content="https://i.imgur.com/75q09l4.png">
+<meta property="og:image" content="https://i.imgur.com/kCcFoFQ.png">
+<meta property="og:image" content="https://i.imgur.com/Aw35RPg.png">
+<meta property="og:image" content="https://i.imgur.com/vmqNkzX.png">
+<meta property="og:image" content="https://i.imgur.com/ENtDXOp.png">
+<meta property="og:image" content="https://i.imgur.com/899BYmb.png">
+<meta property="og:image" content="https://i.imgur.com/rRe88if.png">
+<meta property="og:image" content="https://i.imgur.com/fRqZLsu.png">
+<meta property="og:image" content="https://i.imgur.com/BZ283yx.png">
+<meta property="og:image" content="https://i.imgur.com/YqZ2dJk.png">
+<meta property="og:image" content="https://i.imgur.com/vZSsbgv.png">
+<meta property="og:image" content="https://i.imgur.com/2iWi9S2.png">
+<meta property="og:image" content="https://i.imgur.com/Pn64xtb.png">
+<meta property="og:image" content="https://i.imgur.com/iVAKPT4.png">
+<meta property="og:image" content="https://i.imgur.com/2Wa1pnl.png">
+<meta property="og:image" content="https://i.imgur.com/2lLehdU.png">
+<meta property="og:image" content="https://i.imgur.com/rZxxaMv.png">
+<meta property="og:image" content="https://i.imgur.com/I7MIMTO.png">
+<meta property="og:image" content="https://i.imgur.com/3EtailO.png">
+<meta property="og:image" content="https://i.imgur.com/il9vg7y.png">
+<meta property="og:image" content="https://i.imgur.com/nbDuGGn.png">
+<meta property="og:image" content="https://i.imgur.com/0S2qt1X.png">
+<meta property="og:image" content="https://i.imgur.com/kVWISaV.png">
+<meta property="og:image" content="https://i.imgur.com/fZq8eQt.png">
+<meta property="og:image" content="https://i.imgur.com/0zdd0iY.png">
+<meta property="og:image" content="https://i.imgur.com/5SPToYI.png">
+<meta property="og:image" content="https://i.imgur.com/gWNkcVu.png">
+<meta property="og:image" content="https://i.imgur.com/IEKMQP0.png">
+<meta property="og:image" content="https://i.imgur.com/T2g8iPg.png">
+<meta property="og:image" content="https://i.imgur.com/5AL8ssb.png">
+<meta property="og:image" content="https://i.imgur.com/8BfZ2PJ.png">
+<meta property="og:image" content="https://i.imgur.com/UpJKs64.png">
+<meta property="og:image" content="https://i.imgur.com/arTM2Py.png">
+<meta property="og:updated_time" content="2017-10-17T15:58:33.134Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="对抗生成网络(GAN)">
+<meta name="twitter:description" content="对抗生成网络（Generative Adversarial Network, GAN）介绍（Introduction）当今AI时代在人工智慧领域取得许多伟大的突破，其中机器学习与深度学习等计算机算法的崛起更是带来了一波又一波的浪潮。如今的深度学习模型已经数不胜数，而Generative Adversarial Network就是其中耀眼的一部分。在Quora上Facebook的AI研究团队主任Ya">
+<meta name="twitter:image" content="https://i.imgur.com/3HJh3Vq.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖の岁月" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/new3.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/one2.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Eternal</h5>
+          <a href="mailto:617844662@qq.com" title="617844662@qq.com" class="mail">617844662@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/EternalFeather" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://EternalFeather.github.io/AboutMe/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                About Me
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">对抗生成网络(GAN)</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">对抗生成网络(GAN)</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-17T15:55:32.000Z" itemprop="datePublished" class="page-time">
+  2017-10-17
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#对抗生成网络（Generative-Adversarial-Network-GAN）"><span class="post-toc-number">1.</span> <span class="post-toc-text">对抗生成网络（Generative Adversarial Network, GAN）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#介绍（Introduction）"><span class="post-toc-number">2.</span> <span class="post-toc-text">介绍（Introduction）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#用途（Usage）"><span class="post-toc-number">3.</span> <span class="post-toc-text">用途（Usage）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#主要思想（Basic-Idea）"><span class="post-toc-number">4.</span> <span class="post-toc-text">主要思想（Basic Idea）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#生成器（Generator）"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">生成器（Generator）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#判别器（Discriminator）"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">判别器（Discriminator）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#GAN网络-GAN-Network"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">GAN网络(GAN Network)</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#为什么需要GAN（Why-GAN）"><span class="post-toc-number">5.</span> <span class="post-toc-text">为什么需要GAN（Why GAN）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Why-generator-cannot-learn-by-itself"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">Why generator cannot learn by itself</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Why-discriminator-don’t-generate-object-itself"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">Why discriminator don’t generate object itself</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#How-discriminator-and-generator-interact"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">How discriminator and generator interact</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#如何提升GAN的效能（How-to-improve-GAN）"><span class="post-toc-number">6.</span> <span class="post-toc-text">如何提升GAN的效能（How to improve GAN）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Binary-classifier-as-Discriminator"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">Binary classifier as Discriminator</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Least-Square-GAN（LSGAN）"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">Least Square GAN（LSGAN）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Wasserstein-GAN（WGAN）"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">Wasserstein GAN（WGAN）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Lipschitz-function-利普希茨函数"><span class="post-toc-number">6.3.1.</span> <span class="post-toc-text">Lipschitz function(利普希茨函数)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Sentence-Generation-Real-sentence-V-S-WGAN"><span class="post-toc-number">6.3.2.</span> <span class="post-toc-text">Sentence Generation(Real sentence V.S. WGAN)</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Loss-sensitive-GAN-LSGAN"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">Loss-sensitive GAN(LSGAN)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Energy-based-GAN-EBGAN"><span class="post-toc-number">6.5.</span> <span class="post-toc-text">Energy-based GAN(EBGAN)</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#如何评估GAN的结果好坏（Evaluation）"><span class="post-toc-number">7.</span> <span class="post-toc-text">如何评估GAN的结果好坏（Evaluation）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#为什么GAN很难训练"><span class="post-toc-number">8.</span> <span class="post-toc-text">为什么GAN很难训练</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Conditional-GAN"><span class="post-toc-number">9.</span> <span class="post-toc-text">Conditional GAN</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Modifying-Input-Code"><span class="post-toc-number">9.1.</span> <span class="post-toc-text">Modifying Input Code</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#InfoGAN"><span class="post-toc-number">9.1.1.</span> <span class="post-toc-text">InfoGAN</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Controlling-By-Input-Objects"><span class="post-toc-number">9.2.</span> <span class="post-toc-text">Controlling By Input Objects</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Paired-Data"><span class="post-toc-number">9.2.1.</span> <span class="post-toc-text">Paired Data</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Unpaired-Data"><span class="post-toc-number">9.2.2.</span> <span class="post-toc-text">Unpaired Data</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Cycle-GAN"><span class="post-toc-number">9.2.2.1.</span> <span class="post-toc-text">Cycle GAN</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Unsupervised"><span class="post-toc-number">9.2.3.</span> <span class="post-toc-text">Unsupervised</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Feature-Extraction"><span class="post-toc-number">9.3.</span> <span class="post-toc-text">Feature Extraction</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Domain-Independent-Feature"><span class="post-toc-number">9.3.1.</span> <span class="post-toc-text">Domain Independent Feature</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Domain-Adversarial-Training"><span class="post-toc-number">9.3.1.1.</span> <span class="post-toc-text">Domain-Adversarial Training</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Improving-Auto-encoder"><span class="post-toc-number">9.3.2.</span> <span class="post-toc-text">Improving Auto-encoder</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#VAE-GAN"><span class="post-toc-number">9.3.2.1.</span> <span class="post-toc-text">VAE-GAN</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#BiGAN"><span class="post-toc-number">9.3.2.2.</span> <span class="post-toc-text">BiGAN</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#GAN-Examples"><span class="post-toc-number">10.</span> <span class="post-toc-text">GAN Examples</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Anime-Face-Generation"><span class="post-toc-number">10.1.</span> <span class="post-toc-text">Anime Face Generation</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Decision-Making-and-Control"><span class="post-toc-number">11.</span> <span class="post-toc-text">Decision Making and Control</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#What-do-we-miss"><span class="post-toc-number">11.1.</span> <span class="post-toc-text">What do we miss?</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Reinforcement-Learning"><span class="post-toc-number">11.1.1.</span> <span class="post-toc-text">Reinforcement Learning</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Neural-network"><span class="post-toc-number">11.1.2.</span> <span class="post-toc-text">Neural network</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#RNN-Generation-with-GAN"><span class="post-toc-number">12.</span> <span class="post-toc-text">RNN Generation with GAN</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Sentence-Generation"><span class="post-toc-number">12.1.</span> <span class="post-toc-text">Sentence Generation</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SeqGAN"><span class="post-toc-number">12.1.1.</span> <span class="post-toc-text">SeqGAN</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Chat-bot-with-GAN"><span class="post-toc-number">12.2.</span> <span class="post-toc-text">Chat-bot with GAN</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Actor-Critic"><span class="post-toc-number">12.2.1.</span> <span class="post-toc-text">Actor + Critic</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Inverse-Reinforcement-Learning"><span class="post-toc-number">13.</span> <span class="post-toc-text">Inverse Reinforcement Learning</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#对比GAN和IRL"><span class="post-toc-number">13.1.</span> <span class="post-toc-text">对比GAN和IRL</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Reference"><span class="post-toc-number">14.</span> <span class="post-toc-text">Reference</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-GAN"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">对抗生成网络(GAN)</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-17 23:55:32" datetime="2017-10-17T15:55:32.000Z"  itemprop="datePublished">2017-10-17</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="对抗生成网络（Generative-Adversarial-Network-GAN）"><a href="#对抗生成网络（Generative-Adversarial-Network-GAN）" class="headerlink" title="对抗生成网络（Generative Adversarial Network, GAN）"></a>对抗生成网络（Generative Adversarial Network, GAN）</h1><h1 id="介绍（Introduction）"><a href="#介绍（Introduction）" class="headerlink" title="介绍（Introduction）"></a>介绍（Introduction）</h1><p>当今AI时代在人工智慧领域取得许多伟大的突破，其中机器学习与深度学习等计算机算法的崛起更是带来了一波又一波的浪潮。如今的深度学习模型已经数不胜数，而Generative Adversarial Network就是其中耀眼的一部分。在Quora上Facebook的AI研究团队主任Yann LeCun说了这样一句话：<strong>“Adversarial training is the coolest thing since sliced bread.”</strong></p>
+<ul>
+<li>说起GAN的种类，可谓是层出不穷：<br><a href="https://github.com/hindupuravinash/the-gan-zoo" target="_blank" rel="external">https://github.com/hindupuravinash/the-gan-zoo</a></li>
+<li>在训练GAN网络的同时也存在许多Tricks:<br><a href="https://github.com/soumith/ganhacks" target="_blank" rel="external">https://github.com/soumith/ganhacks</a></li>
+</ul>
+<h1 id="用途（Usage）"><a href="#用途（Usage）" class="headerlink" title="用途（Usage）"></a>用途（Usage）</h1><ul>
+<li><code>Drawing</code><br><a href="https://zhuanlan.zhihu.com/p/24767059" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/24767059</a></li>
+<li><code>Writing Poems</code></li>
+</ul>
+<h1 id="主要思想（Basic-Idea）"><a href="#主要思想（Basic-Idea）" class="headerlink" title="主要思想（Basic Idea）"></a>主要思想（Basic Idea）</h1><p>GAN的本质和大多数的神经网络模型一样,都是通过一系列Function的变化来拟合输入和输出的关系。GAN内部可以分为两个部分：1、Generator 2、Discriminator ，顾名思义Generator的职责就是根据输入的Vector中所隐含的Feature信息来生成结果所需要的形式（如图片或文字等）。</p>
+<h2 id="生成器（Generator）"><a href="#生成器（Generator）" class="headerlink" title="生成器（Generator）"></a>生成器（Generator）</h2><ul>
+<li><code>Input</code> : Vector</li>
+<li><code>Hidden</code> : NN or Function</li>
+<li><code>Output</code> : Image or Text …</li>
+</ul>
+<p>Generator的输入为一个固定维度的Vector，经过隐藏层的变化之后得到相应的输出。而这个隐藏层内部可以是一个<strong>神经网络（Neural Network）</strong> 或者是一个 <strong>方法（Function）</strong>。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/3HJh3Vq.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如图所示，Input端的Vector中不同的Feature会有不同的含义，而它们都决定了最终结果输出时候所具有的<strong>某个特征</strong>（Each dimension of input vector represents some characteristics）。只是这个特征被计算机量化成了一个人为无法辨识的数字罢了。只要能够掌握这些Features所代表的<strong>特征含义</strong>，我们就能够根据<strong>自己的意愿</strong>来调整结果的形态了。</p>
+<ul>
+<li><strong>Tips：</strong> 我们可以通过改变特征值来改变特征在结果中的表现。这个侧面说明了特征feature在数值上是连续的。只有当信号在一定区间范围内是<strong>连续的分布</strong>时，我们才能根据自己的意愿去调整特征的表象。</li>
+</ul>
+<h2 id="判别器（Discriminator）"><a href="#判别器（Discriminator）" class="headerlink" title="判别器（Discriminator）"></a>判别器（Discriminator）</h2><ul>
+<li><code>Input</code> : Image or Text …</li>
+<li><code>Hidden</code> : NN or Function</li>
+<li><code>Output</code> : Scalar (Always normalize to 0~1)</li>
+</ul>
+<p>Discriminator的结构和Generator类似，只是它的输入转而变成了Generator所产生的输出而已。输入同样经过一系列隐藏层（NN或Function）得到相应的结果，而结果是一个Scalar，表示<strong>对输入的评价</strong>（Larger value means real, smaller value means fake）。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/qLfZcNo.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="GAN网络-GAN-Network"><a href="#GAN网络-GAN-Network" class="headerlink" title="GAN网络(GAN Network)"></a>GAN网络(GAN Network)</h2><p>GAN的工作原理就是依靠生成器和判别器的对抗来让彼此变得更强，一个类似进化论的概念。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/JH5nUxS.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>以图中的例子来说：生成器不断产生不同的图片，然后由初代的判别器判断图片的好坏，直到能够符合第一代的判别器的要求。这时判别器已经<strong>没有能力再去打击生成器</strong>说它不够强大了，而这个情况并不是判别器想要看到的，于是它只能通过利用Real Images来训练我们的判别网络，使之<strong>进化</strong>到L2，而此时生成器也需要继续改变才能适应新的判别器的判别方式。就这样一方越来越好，一方越来越严格，<strong>两个模型都在不断变得更强</strong>（This is where the term “adversarial” comes from）。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/E6Xi2Xl.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h1 id="为什么需要GAN（Why-GAN）"><a href="#为什么需要GAN（Why-GAN）" class="headerlink" title="为什么需要GAN（Why GAN）"></a>为什么需要GAN（Why GAN）</h1><p>了解了GAN的运作机制后，很多人可能会有这样一些疑问：</p>
+<h2 id="Why-generator-cannot-learn-by-itself"><a href="#Why-generator-cannot-learn-by-itself" class="headerlink" title="Why generator cannot learn by itself"></a>Why generator cannot learn by itself</h2><ul>
+<li><strong>Question1</strong> ： 既然生成器能够生成物件，那么为什么生成器不自己学习那些Real images呢？</li>
+</ul>
+<p><strong>第一个问题是：</strong> 我们的Generator是从随机的code信息中生成相应的物件（object），但是这些<strong>code又从何而来</strong>呢？</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/DuJAJr1.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>我们可以借助Auto-Encoding的方式来帮助找寻code。利用encoder和decoder的联合作用，就能够利用已知的数据产生数据表示向量，也就是我们的code。</p>
+<p><strong>第二个问题是：</strong> 我们已经解决了code的来源问题，那么针对code中不同的Feature我们虽然能够准确辨识，但是对于结果的Feature Representation而言都太过绝对了。一个值表示一个特征，如果我们想要的特征不在这些Code向量的表示范围内，应该如何改变它们呢？</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/dVJEQG0.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>这个时候直觉的做法应该是找两个最<strong>接近</strong>这个特征的其他特征，然后通过<strong>加权组合</strong>来建构新的特征。而这种方式可以通过VAE来实现：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/pt3i9UX.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>Variational Auto-encoder通过将Auto-encoder中encoder生成的code向量进行维度的拆分。利用一部分特征维度来进行<strong>分布扩散</strong>，最后和剩下的保留维度特征进行加总得到一个新的code向量。</p>
+<ul>
+<li>为什么要这么做呢？它的结果又会对Feature Representation造成哪些影响呢？</li>
+</ul>
+<p>我们可以通过下面这种图来理解：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/LYWAFnw.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>传统的Auto-encoder让我们每一个Feature都能够对应结果产生的某一个特定的Feature Representation，但是相对的浮动范围却很有限（相当于一个个<strong>离散的点</strong>）。如果Feature的向量和真实的向量存在<strong>些许偏差</strong>，产生的code将无法表示成为特定的Representation。而VAE将某些<strong>特征向量的分布进行了拓展</strong>，使得<strong>原本离散的点在一定范围内连续了起来</strong>。这样即使code的特征向量存在偏差，还是能够运用这些偏差进行调试。此外<strong>最关键的一点</strong>，如果让两个向量的特征拓展后存在交集，那么<strong>交集上的特征将具有两个特征的加权组合结果</strong>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Vector -&gt; Encoder -&gt; Low dimension code + Noise -&gt; decoder -&gt; Vector</div></pre></td></tr></table></figure>
+<ul>
+<li>那么回归问题，既然这些问题都解决了，还存在什么使得GAN的Generator不能自己训练呢？</li>
+</ul>
+<p>那么就是所谓的<strong>第三个问题了：</strong> 原来，如果直接训练我们的神经网络让他来自行判断并产生objects，势必会存在这样的问题——结果越像训练资料越好（这是SGD的想法）。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/mh6jOyu.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>图中上半部分由于改变了一个新的像素点，因此误差error = 1，神经网络觉得是比较好的结果，但是在人为看来却不再是2这个数字了；相对的下半部分结果多了6个像素点error = 6，神经网络觉得它不够优秀，需要重新训练，但是在人为的角度却是ok的。</p>
+<ul>
+<li>导致这种问题的原因在于，我们的神经网络输出层往往是根据结果的类别所建立的one-hot vector，而这就使得结果的层级之间处于相对平行的状态，层内的neuron之间无法相互传递信息所导致的：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/pvOvZv4.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>neuron之间无法沟通就会使得输出结果<strong>无法掌握全局的最优</strong>情况。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/4ofbgc3.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>上图是Generator产生的two-dimension的one-hot vector。从结果可以看出，在X2的坐标轴上，蓝点的分布十分散乱，这是因为神经网络在考虑输出的时候，负责输出X2结果的neuron没有考虑X1的分布情况；相对的X1的情况也是一样。</p>
+<p><strong>因此</strong>，我们迫切需要一个能够将输出结果进行统整的结构，而最适合的结构就是神经网络了。因此我们<strong>引入了Discriminator来整合Generator的输出结果</strong>。</p>
+<h2 id="Why-discriminator-don’t-generate-object-itself"><a href="#Why-discriminator-don’t-generate-object-itself" class="headerlink" title="Why discriminator don’t generate object itself"></a>Why discriminator don’t generate object itself</h2><ul>
+<li><strong>Question2</strong> ： 既然判别器能够学习什么样的物件是好的物件，那为什么判别器不自己生成物件呢？</li>
+</ul>
+<p>判别器在训练过程中，我们通过Real Data作为输入来让它能够识别好的物件：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/iqhoAGe.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li><p>但是这种训练只能让模型拟合好的例子，对于不好的例子随着训练的进行模型会一直降低它们的分数（Scalar），到最后模型就成为了一个<strong>二分类器了</strong>（只有0和1），显然这个不是我们想要的结果。</p>
+</li>
+<li><p>如何选择negative examples呢？</p>
+</li>
+</ul>
+<p>我们不能够选择那些距离real sample很远的examples作为反面例子，而是需要选择<strong>尽可能接近的</strong>作为反面教材，因为只有这样模型才能学到细致的区分特性。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/TTe5Zhw.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>我们还需要给我们的模型一些<strong>反面的训练数据</strong>，好让它能够预测scalar值介于0和1之间的情况从而进行SGD的动态更新。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/OrbOJnv.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>总而言之就是判别器比起生成器无法保证每次产生的结果都能够用在提升模型效能，特别是在模型的结构是“Deep”的时候。另一个重要的一点就是我们可以通过Argmax函数确定好的模型，但是却 <strong>无法判断哪些生成的图片是不好的（Difficult to recognize the negative sampling）</strong> 。(因为不够灵活，不符合训练资料的很难判定为好的图片)</p>
+<h2 id="How-discriminator-and-generator-interact"><a href="#How-discriminator-and-generator-interact" class="headerlink" title="How discriminator and generator interact"></a>How discriminator and generator interact</h2><ul>
+<li><strong>Question3</strong> ： 判别器和生成器之间是如何互动的呢？</li>
+</ul>
+<p>GAN神经网络被广泛应用在<strong>Structured Learning</strong>领域中，而这种机器学习方式的可靠指出在于它能够适应更加复杂的环境。对于<strong>One-shot、Zero-shot Learning</strong>的问题上，传统的机器学习分类模式讲究的是利用监督式学习的方法用大量例子来拟合网络结构。而Structured Learning除了能够拟合那些带有Label的数据外，还能够在输出范围较大的时候<strong>主动去尝试拟合</strong>那些模型从未处理过的数据类别。从而<strong>创造出全新的类别成员</strong>，因此该学习方式也要求模型的结构更加智能。</p>
+<p>利用Structured Learning的这些特性，我们就能够将两个神经网络结合进行训练，让他们彼此竞争相互学习，最后双双得到提升。</p>
+<ul>
+<li><strong>General Algorithm</strong></li>
+</ul>
+<p>在训练两个网络的时候，我们通过一些positive examples和由Generator随机生成的negative examples来作为训练数据。在每个迭代中，利用positive examples训练Discriminator，将数据标记为1。然后将Generator生成的negative examples标记成0，利用Gradient Ascent的方式提升GAN网络的最大似然结果（argmax）。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/v1N0tD7.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>Gradient Ascent是用来提高Generator产生结果的最大似然分数（scalar），如果评估标准换成计算Discriminator的反馈和Generator生成结果之间的误差时，则用的是Gradient Descent。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/ktbNjER.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h1 id="如何提升GAN的效能（How-to-improve-GAN）"><a href="#如何提升GAN的效能（How-to-improve-GAN）" class="headerlink" title="如何提升GAN的效能（How to improve GAN）"></a>如何提升GAN的效能（How to improve GAN）</h1><p>了解了GAN的用途之后，我们就要开始了解如何才能提升GAN的效能，GAN的种类有很多，不同的GAN网络具有自己独特的功能。但是在训练过程中仍然有一些细节是共通的。</p>
+<h2 id="Binary-classifier-as-Discriminator"><a href="#Binary-classifier-as-Discriminator" class="headerlink" title="Binary classifier as Discriminator"></a>Binary classifier as Discriminator</h2><p>训练效果的好坏只是评估模型的学习能力如何，关键还是要看在实战（Testing）中的表现。为了能让模型更灵活而不仅仅是依赖于训练资料，我们要防止过拟合的出现。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/jNBZ9Jp.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>那么防止过拟合的方法又可以有哪些呢？</p>
+<h2 id="Least-Square-GAN（LSGAN）"><a href="#Least-Square-GAN（LSGAN）" class="headerlink" title="Least Square GAN（LSGAN）"></a>Least Square GAN（LSGAN）</h2><p>首先想到的应该就是用线性的方法取代传统的非线性模型，用简化边缘区分度的方式来防止过拟合的出现。而将传统二分类的Sigmoid function换成Linear的方式就是LSGAN的做法，即利用最小二乘法拟合一条直线来对样本进行分类。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/aR05euq.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="Wasserstein-GAN（WGAN）"><a href="#Wasserstein-GAN（WGAN）" class="headerlink" title="Wasserstein GAN（WGAN）"></a>Wasserstein GAN（WGAN）</h2><p>既然Discriminator是将real data的结果当成1，而来自Generator的结果当成0，那么就必然希望real data训练出来的分数越大越好，Generator产生结果的分数越小越好。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/upBP2iP.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p><strong>Original WGAN</strong>的做法势必会带来一些问题：</p>
+<ul>
+<li><p>Generator的学习过程是有一定的幅度的，根据<strong>Shrinkage</strong>的想法每次走一小步的结果去逼近最终答案比起每次走一大步去逼近更容易防止过拟合。因此我们要求Discirminator的分类曲线的区分度需要满足1-Lipschitz function（利普希茨函数）。</p>
+</li>
+<li><p>对优越值的无限优化会导致模型无法收敛。</p>
+</li>
+<li><p>过大的误差反而会增大Generator的学习负担，入不敷出。因此我们会选择设定一个阈值，当超过这个阈值的时候我们就利用Clipping的方式将值重置为阈值。这就是<strong>Improved WGAN</strong>模型的思想。</p>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/cf2TtUT.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="Lipschitz-function-利普希茨函数"><a href="#Lipschitz-function-利普希茨函数" class="headerlink" title="Lipschitz function(利普希茨函数)"></a>Lipschitz function(利普希茨函数)</h3><p>该函数要求函数满足算子：</p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large ||D(x _{1}) - D(x _{2})|| \leq K ||x _{1} - x _{2}||" style="border:none;"></p>
+<p>而1-Lipschitz 就是当K=1时的函数。从函数关系式不难看出需要满足这个的条件就是在任意时刻函数的斜率不能高于1。</p>
+<h3 id="Sentence-Generation-Real-sentence-V-S-WGAN"><a href="#Sentence-Generation-Real-sentence-V-S-WGAN" class="headerlink" title="Sentence Generation(Real sentence V.S. WGAN)"></a>Sentence Generation(Real sentence V.S. WGAN)</h3><p>我们用one-hot vector表示句子：</p>
+<p><strong>Real sentence:</strong><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/UguRdtq.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br><strong>Generator:</strong><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/4JmnKrn.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>可以看出利用三角函数进行分类的WGAN在句子生成上能够做到比较好的效果。</p>
+<h2 id="Loss-sensitive-GAN-LSGAN"><a href="#Loss-sensitive-GAN-LSGAN" class="headerlink" title="Loss-sensitive GAN(LSGAN)"></a>Loss-sensitive GAN(LSGAN)</h2><p>传统的WGAN会无限提升优质物件的scalar并且降低不理想物件的scalar值，这样训练的结果会让模型变得异常严格，难以客观评估。因此Loss-sensitive GAN就提出了利用<strong>分布式拟合</strong>的方法一步步逼近最终的结果：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/dV7AZrt.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li><p>我们可以先定义一个“好”的标准，并把生成器的结果编辑为“不好”。利用每一次训练慢慢减小这两者之间的差距。然后再将原先“好”的标准定义为“不好”，把更接近real data的图片定义为“好”，如此一点点进步。</p>
+</li>
+<li><p>利用LSGAN训练需要保证两极端值不能无限增长和下降，因此需要辅助以Improved WGAN或者Energy-based GAN作为Discriminator的训练瞄准。</p>
+</li>
+</ul>
+<h2 id="Energy-based-GAN-EBGAN"><a href="#Energy-based-GAN-EBGAN" class="headerlink" title="Energy-based GAN(EBGAN)"></a>Energy-based GAN(EBGAN)</h2><p>如果一个物件足够优秀并且特征明确，我们就一定能够通过autoencoder的方式提取code特性。Energy-based GAN的Discriminator正式利用了autoencoder的方式进行训练的。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/l4yYXxR.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>我们的目的是要最大化结果scalar X，从而使误差为0。与WGAN不同的是，利用autoencoder训练的Discriminator会尽可能让优化区间在一个<strong>有限</strong>的区间内增长。对于下降的趋势不需要太过强烈，同样通过clipping的方式进行修剪：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/tidc0Ip.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>EBGAN的训练过程中，我们会分成两个部分，最大化Real object，和最小化Gen object。而我们设置一个region来限制对gen的惩罚，因为惩罚远比reconstruct要容易，而因为这个限制，我们的模型最后只能通过提高Real object的值来更新参数。</li>
+</ul>
+<p>如此一来通过Gen区间不断向Real Data移动，最终得到一个有限的区间就是所谓的“优秀区间”。为了避免区间之间的过度太剧烈，同样能够让评估曲线满足Lipschitz function的条件。</p>
+<h1 id="如何评估GAN的结果好坏（Evaluation）"><a href="#如何评估GAN的结果好坏（Evaluation）" class="headerlink" title="如何评估GAN的结果好坏（Evaluation）"></a>如何评估GAN的结果好坏（Evaluation）</h1><p>对于模型结果的评估，通常利用连个指标来区分，其中一个就是<strong>Likelihood</strong>，而另一个是<strong>Quality</strong>。</p>
+<ul>
+<li>Likelihood顾名思义就是生成的Object和Real Data特征分布的相似程度。</li>
+<li>Quality则是指生成的Object中优秀样本的多少，无需和Real Data完全相似，而是关注训练样本本身是否优秀。</li>
+</ul>
+<p>如下列举两种极端条件：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/FkPZQzY.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如上图所示，生成样本和评估样本结果的相似度为0，但是其样本本身的质量OK。也就是生成器完全没有学习特征的匹配，而是尽可能提升结果的质量。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/TERNFKa.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>相对而言对于模型训练相似度高的模型，如果换一种新的样本主题（不同的特征组合），那么结果就会急速下降。也就是模型本身过于拟合那些特征的分布，而忽略了灵活变通的能力。</p>
+<ul>
+<li>有了上面两个例子，我们所要得到的就是介于两者之间，既能够一定程度上还原样本的特征分布，又能产生不错的结果的模型。</li>
+</ul>
+<h1 id="为什么GAN很难训练"><a href="#为什么GAN很难训练" class="headerlink" title="为什么GAN很难训练"></a>为什么GAN很难训练</h1><p>我们的generator能够产生一个范围作为它自身认为的正确的范围，然后通过和正确结果的范围误差来缩小距离（likelihood）。如下图所示：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/J4eNy6M.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>但是generator无法计算两者之间的差距，因此需要Discriminator来判断两者是否相似，然后通过不同的GAN模型来达成不同的判别器的目的，用来以不同的方式评估范围的差距，然后更新范围。因此不同的GAN就是用不同的方法来实作error的计算。panelty的不同会让两者形状更新不同，谁包含谁范围会不一样大。</p>
+<ul>
+<li>那么GAN的训练究竟有那些难点呢？</li>
+</ul>
+<p>选择一个合适的结构来表示我们的feature是十分重要的，因为这个关系到optimizer对结果优化时候计算误差的标准。不同的标准带来的结果也不一样：</p>
+<ul>
+<li>Jensen–Shannon divergence（JSD）</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/gaHxy42.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/qknd7jy.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/72TTfky.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>JSD利用传统的KL散度（Kullback–Leibler divergence）来衡量两个几率分布之间的差异性。因而也被称作<strong>information radius (IRad)</strong> 或 <strong>total divergence to the average</strong>。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/pejHfsi.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>由图中可以看出：JS计算相似度的时候关注的是数值本身的差异性，而忽略了数值之间的相对距离因素。所以如果使用JSD进行评估的话，会导致样本训练过程中无法判断模型训练趋势的好坏。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/LF1aUSa.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>Earth Mover’s Distance（EMD）</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/hn804Zn.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>EMD与JSD都是评估两个几率分布的差异性，不同的是EMD通过region D计算两个样本之间的相对距离，从而反应从一个样本转换到另一个样本的cost。这种评估方式无意可以让训练的reward变得清晰。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/l7ohobS.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h1 id="Conditional-GAN"><a href="#Conditional-GAN" class="headerlink" title="Conditional GAN"></a>Conditional GAN</h1><p>条件生成模型顾名思义就是能够按照我们设定的条件参数来动态生成一些相关的物件特征的模型。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/Ziam2Aw.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如上图所示，我们输入的特征给Generator的Noise不再只是一连串毫无关联的特征向量，而是含有一些人为标记的<strong>条件参数</strong>。</p>
+<p>要实现Conditional Generation需要具备一些要求。</p>
+<h2 id="Modifying-Input-Code"><a href="#Modifying-Input-Code" class="headerlink" title="Modifying Input Code"></a>Modifying Input Code</h2><p>要想让生成器产生的资料具有人为规定的特定特征表现，最直观的思维就是理解Input Code中每一个变量对应的含义，然后有选择性地改变它们。为此就衍生出了所谓的<strong>InfoGAN</strong>。</p>
+<h3 id="InfoGAN"><a href="#InfoGAN" class="headerlink" title="InfoGAN"></a>InfoGAN</h3><p>我们通过可视化模型特征向量可以在维度空间中构建特征的表示（Representation）。我们理想中的特征往往是均匀分布的，然而事实真是如此吗？</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/FnrwtHR.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>事实上特征的分布比我们想象的还要杂乱，并不容易发现其中的关联性。例如改变了一个特征对结果没有变化，而改变两个特征结果却发生了变化，然而单独改变其中一者又会是另外一种结果。因此对于这些众多的特征组合，我们应该如何发现其中有用的信息呢？</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/75q09l4.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>通过训练一个decoder来对特征进行压缩，其结果就是生成能够有效还原物件本身的特征集合（Code）。如图所示：Z的特征包括了有用的c和没用的特征Z’，通过autoencoder的方式能够利用X重新生成X。而训练的过程中，我们的classifier得到的中间产物（hidden layer output）就包含了我们所要的特征集合（Code）。通过共享decoder和Discriminator input part的参数，我们就能够完美的将X的特征毫无泄漏地输入Discriminator中。</p>
+<ul>
+<li>AutoEncoder还可以用来解决特征消失和模型缺口的问题（Mode Collapse）</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/kCcFoFQ.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如图所示，我们模型在训练过程中会根据自身参数选择特征，而如果对特征的前处理不够完整，模型可能会遗漏掉一些重要的特征，这个过程就被称为“Missing Mode”。而为了避免这种问题，我们就可以使用infoGAN的方式来对特征进行前处理。</p>
+<h2 id="Controlling-By-Input-Objects"><a href="#Controlling-By-Input-Objects" class="headerlink" title="Controlling By Input Objects"></a>Controlling By Input Objects</h2><p>Input Data的不同种类也会对训练模型产生不同程度的影响。一般的Input可以分为3个类别：Paired data、Unpaired data、Unsupervised。</p>
+<h3 id="Paired-Data"><a href="#Paired-Data" class="headerlink" title="Paired Data"></a>Paired Data</h3><p>传统的监督式学习就是使用了Paired Data，一个pair包含了input和label两个部分。以依照描述生成图片为例：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/Aw35RPg.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如果输入包括了input：Description 和 label：image。这时候Traditional Supervised Learning就会通过训练学习文字和图片之间的对应关系。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/vmqNkzX.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>Traditional Supervised Neural Network通过设定输入为一段描述，输出为一张对应的图片。通过梯度下降的方式拟合描述的文字和图片之间的权重。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/ENtDXOp.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>测试时同样输入一段描述，根据权重生成图片。而这个图片往往是所有满足该描述的图片的加权平均结果，因此会是一个相对模糊的结果（Blurry Result）。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/899BYmb.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>GAN的方式不同与传统的监督式神经网络拟合描述和图片，而是利用生成器生成一个分布表示描述下所有可能图片的出现条件。然后用判别器判断新的描述是否落在分布的合理位置。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/rRe88if.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如果输入包括Image和Distribution，则我们的判别器不单单是判断图片产生的好不好，还会挖掘描述和图片之间的关联程度，依照关联度判断是否输出相应的图片。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/fRqZLsu.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如上图所示，利用条件分布来表示图片和描述是GAN的一个优势所在。不同与Traditional Supervised Learning只是单纯建立描述到图片的映射关系，GAN网络还能判断从图片到描述的关联程度。我们还可以将判别器产生的结果加入训练资料来完善分布曲线。</p>
+<h3 id="Unpaired-Data"><a href="#Unpaired-Data" class="headerlink" title="Unpaired Data"></a>Unpaired Data</h3><p>除了成对存在的Paired Data之外，还存在一些原本只有单独出现的数据，通过对数据本身进行一些改变而生成另一组数据，这样的数据在原先的训练集中并不存在（没有label），因此称之为<strong>Unpaired Data</strong>。</p>
+<ul>
+<li>以图片的风格转换为例：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/BZ283yx.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>上图中展示了两种不同风格的图片，每种图片具有自己的Datasets，我们需要利用这些data将Domain X的图片转换成Domain Y的图片。</p>
+<p>如果按照GAN的训练思路来看，我们可能很容易想到下面的训练方式：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/YqZ2dJk.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>通过Generator训练生成随机的图片（即随意改变原先图片的像素值）。然后通过Discriminator来判断生成的图片和Domain Y图片的相似程度。但是这样的方式存在一个很大的问题：</p>
+<ul>
+<li>在判别器的作用下，为了让判别器觉得产生的图片好，因此生成器可能选择完全无视Input的图片，只需要致力于生成带有特定Feature的Output，这样就会偏离我们的目的。为了解决这个问题，我们引入了<strong>Cycle GAN</strong>的概念。</li>
+</ul>
+<h4 id="Cycle-GAN"><a href="#Cycle-GAN" class="headerlink" title="Cycle GAN"></a>Cycle GAN</h4><p>在处理Unpaired Data的时候，我们需要注意让生成器不会完全放弃生成器原本输入的信息，那么如何锁住一个输入信息的Feature呢？</p>
+<ul>
+<li>AutoEncoder应该是一个绝佳的选择，能够通过建立AutoEncoder的网络来提取和压缩Generator的Input Data中潜在的Feature。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/vZSsbgv.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>有了AutoEncoder的限制和Discriminator的辅助我们就能够对生成的中间产物进行scalar的计算了。但这种判断方式也要求两个Domain的feature不能相差太大。</p>
+<h3 id="Unsupervised"><a href="#Unsupervised" class="headerlink" title="Unsupervised"></a>Unsupervised</h3><p>我们只有一堆物件（如图片），却没有图片的Label，因此我们利用所有图片的Features来对Input进行Embedding(Feature Embedding)。此时我们在组合Feature的时候，不需要将两个Feature进行直接的组合，而是在Embedding的Code中寻找Vector相似的那个Output作为新的Output。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/2iWi9S2.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="Feature-Extraction"><a href="#Feature-Extraction" class="headerlink" title="Feature Extraction"></a>Feature Extraction</h2><p>有了输入资料和模型架构，剩下的就是需要让输入的资料能够表示成模型能够识别和方便处理的<strong>形态</strong>了。而这个所谓的形态就是资料feature的表示和提取。</p>
+<h3 id="Domain-Independent-Feature"><a href="#Domain-Independent-Feature" class="headerlink" title="Domain Independent Feature"></a>Domain Independent Feature</h3><p>在使用神经网络训练和识别不同Domain的Feature时，神经元除了需要学习物件本身的特征之外，还需要区分不同的Domain。使用Traditional Neural Network拟合Training Data的同时，网络也会记住Training Data的Domain Feature，这样在预测Testing Data的时候一定会产生很大的问题。（问题本质：Training Data和Testing Data之间存在本质区别的Domain Feature）</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/Pn64xtb.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h4 id="Domain-Adversarial-Training"><a href="#Domain-Adversarial-Training" class="headerlink" title="Domain-Adversarial Training"></a>Domain-Adversarial Training</h4><p>如果使用Training Data Domain Feature来预测Testing Data Domain Feature势必会有很大的误差，因此我们除了训练Label本身的特征，还需要训练Domain Feature的差异性。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/iVAKPT4.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如上图所示：为了解决Domian依赖的问题，我们需要训练三个不同的网络来组合成一个总体的大网络结构。这个大网络中的训练目的各有些许不同，Feature Extractor的结果会极力接近Label predictor(Minimize Label Loss)，同时<strong>排斥</strong>Domain classifier(Maximize Domain Loss)。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/2Wa1pnl.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>要实现排斥Domain Label的结果，我们需要对Domain classifier的反馈进行一个负向的更新，这样就能够让Domain的Information完全消失，摆脱Domain的束缚。</p>
+<h3 id="Improving-Auto-encoder"><a href="#Improving-Auto-encoder" class="headerlink" title="Improving Auto-encoder"></a>Improving Auto-encoder</h3><p>Auto-encoder在对Generator的训练过程中的特征降维以及保持特征本质特征等方面做出了极大的贡献。如何应用Auto-encoder也成为了GAN的一个重要过程。</p>
+<h4 id="VAE-GAN"><a href="#VAE-GAN" class="headerlink" title="VAE-GAN"></a>VAE-GAN</h4><p>之前提到的利用VAE不仅能保存物件特征，还能够通过扩散特征的表示范围来产生新的特征。而利用这样的方法能够有效提升Generator的效能。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/2lLehdU.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h4 id="BiGAN"><a href="#BiGAN" class="headerlink" title="BiGAN"></a>BiGAN</h4><p>与VAE相似的BiGAN network利用一个双向的网络结构来进行训练。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/rZxxaMv.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>Encoder输入为real data，输出为固定Dimension的code z。而Decoder利用这个code z重新还原data的模样，成为generated data。实际上就是将AutoEncoder网络拆分开来训练。</p>
+<p>这个时候因为Encoder的输入为real data，这种思想就是希望获取真实资料的所有信息，因此与Discriminator的目的一致。此时Discriminator network就会尽可能提高Encoder的scalar值，而降低Decoder的scalar值。相反，Decoder的目的就是所谓的Generator所要做的事情，因此Encoder和Decoder在训练过程中就会尽可能提高code到object的转换能力，相对的encoder的能力就会相对减小了。</p>
+<h1 id="GAN-Examples"><a href="#GAN-Examples" class="headerlink" title="GAN Examples"></a>GAN Examples</h1><p>当今的GAN network被广泛应用于图片的生成和Dataset的产生。</p>
+<h2 id="Anime-Face-Generation"><a href="#Anime-Face-Generation" class="headerlink" title="Anime Face Generation"></a>Anime Face Generation</h2><p>Example Code:</p>
+<ul>
+<li><a href="https://github.com/mattya/chainer-DCGAN" target="_blank" rel="external">https://github.com/mattya/chainer-DCGAN</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/24767059" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/24767059</a></li>
+<li><a href="https://github.com/jayleicn/animeGAN" target="_blank" rel="external">https://github.com/jayleicn/animeGAN</a></li>
+</ul>
+<p>Dataset Collection:</p>
+<ul>
+<li><a href="http://konachan.net/post/show/239400/aikatsu-clouds-flowers-hikami_sumire-hiten_goane_r" target="_blank" rel="external">http://konachan.net/post/show/239400/aikatsu-clouds-flowers-hikami_sumire-hiten_goane_r</a></li>
+<li><a href="https://drive.google.com/open?id=0BwJmB7alR-AvMHEtczZZN0EtdzQ" target="_blank" rel="external">https://drive.google.com/open?id=0BwJmB7alR-AvMHEtczZZN0EtdzQ</a></li>
+</ul>
+<p>Text-to-image:</p>
+<ul>
+<li><a href="https://github.com/paarthneekhara/text-to-image" target="_blank" rel="external">https://github.com/paarthneekhara/text-to-image</a></li>
+</ul>
+<h1 id="Decision-Making-and-Control"><a href="#Decision-Making-and-Control" class="headerlink" title="Decision Making and Control"></a>Decision Making and Control</h1><p>Widely Studies:</p>
+<ul>
+<li>Gym: <a href="https://gym.openai.com/" target="_blank" rel="external">https://gym.openai.com/</a></li>
+<li>Universe: <a href="https://openai.com/blog/universe/" target="_blank" rel="external">https://openai.com/blog/universe/</a></li>
+</ul>
+<p>无论是GAN还是普通的神经网络结构，在解决特定问题的过程中都离不开决策和调控的平衡问题。AI的精髓在与自我调控和学习，因此神经网络结构不同，也会导致机器认知和判断决策的不同：</p>
+<ul>
+<li>Self-driving car</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/I7MIMTO.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>Dialogue System</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/3EtailO.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>Go playing</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/il9vg7y.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="What-do-we-miss"><a href="#What-do-we-miss" class="headerlink" title="What do we miss?"></a>What do we miss?</h2><p>当Decision making的议题出现之后，紧跟着的一个棘手的问题就是：Machine dosen’t know the influence of each action.而这个问题的根本原因就在于模型所有的行为都取决于它能够接收到的资讯，对于那些具有延迟性或者<strong>没有办法及时反馈</strong>的reward就没有办法很好地照顾到。</p>
+<p>针对这种情况现有的解决方案：</p>
+<ul>
+<li><p>Reinforcement Learning</p>
+<ul>
+<li>从环境中获得reward。</li>
+</ul>
+</li>
+<li><p>Learning by demonstration</p>
+<ul>
+<li>从过往经验中学习和总结。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Reinforcement-Learning"><a href="#Reinforcement-Learning" class="headerlink" title="Reinforcement Learning"></a>Reinforcement Learning</h3><p>一个好的强化学习模型能够针对环境中的变化做出总结，并试图理解环境的本质。例如Alpha Go综合了Policy-based、Value-based和Model-based等不同模式于一身，这些模式相互协调帮助模型更好地学习环境中的反馈。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/nbDuGGn.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li><p>首先根据环境得到一个状态S，根据状态再去预测接下来的行为a，如此反复最终达到一个结果状态结束。</p>
+</li>
+<li><p>以上过程中我们的每一个时刻表示为（S，a）的pair，所以全局的Actor、Environment信息就能够表示成：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/0S2qt1X.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+</li>
+<li><p>而根据S和推导出来的a，我们就能够得到一个环境的反馈（可能不是即时的），最终的Reward可以表示成：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/kVWISaV.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+</li>
+<li><p>最后，最大化reward就是我们模型所到达到的目标了。</p>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/fZq8eQt.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>对于Reward的计算有一些值得注意的地方：</li>
+</ul>
+<p><img src="" alt="Uploading file..._8mxhhffj3"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/0zdd0iY.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>以上是Reward进行反向传递时候的<strong>误差</strong>，因为一般情况下，可能会出现无论如何改变参数，决策的行为会一直被判断成positive的情况（环境很温和），这种情况往往会让模型产生极端分化。因此我们通常会加入一个Baseline来减缓这种太过温和的环境反馈，让模型从一个相对优越的起点开始学习，降低学习成本。</p>
+<h3 id="Neural-network"><a href="#Neural-network" class="headerlink" title="Neural network"></a>Neural network</h3><p>除了强化学习的方式以外，神经网络也能够作为行为预测的模型。利用NN来predict最终结果所要表示行为的one-hot vector，利用argmax来选择几率最大的行为输出也是一种Actor的决策方式。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/5SPToYI.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li><p>与Reinforcement Learning结构相似的，神经网络只是将Actor的决策交给神经元来计算得到。Actor模型需要对环境进行编码，然后再利用权重计算得到相应的行为分数，取最大的行为进行输出。</p>
+</li>
+<li><p>然而传统的神经网络利用SGD等梯度下降的方式进行反向传递更新参数，而在环境中的决策问题往往是不可微分的，行为与行为之间属于离散分布，这个时候通常会借助强化学习的Policy Gradient来帮助输出的决策。</p>
+</li>
+</ul>
+<h1 id="RNN-Generation-with-GAN"><a href="#RNN-Generation-with-GAN" class="headerlink" title="RNN Generation with GAN"></a>RNN Generation with GAN</h1><p>GAN在自然语言生成方面的应用：</p>
+<h2 id="Sentence-Generation"><a href="#Sentence-Generation" class="headerlink" title="Sentence Generation"></a>Sentence Generation</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/gWNkcVu.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>具体操作流程如下：</p>
+<ul>
+<li>Initialize generator G and discriminator D</li>
+<li><p>In each iteration:</p>
+<ul>
+<li>Sample real sentences x from datasets</li>
+<li>Generate sentences x’ by G</li>
+<li>Update D to increase D(x) and decrease D(x’)</li>
+<li>Update G such that increase scalar</li>
+</ul>
+</li>
+<li><p>到了这里就会有一个<strong>关键的问题</strong>出现了：在句子生成的序列化决策行为上，我们可以对GAN网络做反向传递吗？</p>
+<ul>
+<li>答案是No！因为vocabulary字典序列的不连续性（Discrete），反向传递改变的细微变化无法改变原先的结果。</li>
+<li>因此我们会使用输出为固定行为的Policy Gradient来取代输出为一个区间范围取值的传统神经网络模型。以一个例子来看：如果我的结果是token，而传统神经网络通过预测token’的取值来逼近结果，然而如果预测的token不在字典集中就会回传UNK，因为token的数值能够进行梯度下降的运算。但是Policy Gradient是通过计算每一个token出现的概率来选择合适的token输出，因此更新的参数也只是token出现的概率，避免了梯度下降计算的误差出现的UNK现象。（NN：label=1，prediction_sequence = [0.2, 0.4, 0.5, 0.8, 0.9, 0.95, 1.0]；PG：label=1，prediction_sequence = [0, 0, 1, 0, 1, 1, 1]）</li>
+</ul>
+</li>
+</ul>
+<h3 id="SeqGAN"><a href="#SeqGAN" class="headerlink" title="SeqGAN"></a>SeqGAN</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/IEKMQP0.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>Neural Network + GAN + Reinforcement learning = SeqGAN</li>
+</ul>
+<p>SeqGAN</p>
+<ul>
+<li>Consider the discriminator as reward function</li>
+<li>Consider the output of discriminator as total reward</li>
+<li>Update generator to increase discriminator to get maximum total reward</li>
+<li>Generator is a neural network updated with reinforcement learning</li>
+</ul>
+<h2 id="Chat-bot-with-GAN"><a href="#Chat-bot-with-GAN" class="headerlink" title="Chat-bot with GAN"></a>Chat-bot with GAN</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/T2g8iPg.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>GAN在聊天机器人的应用和Sentence Generation十分类似，都是应用序列化决策的方式决定句子的生成问题。其主要的注意点如下：</p>
+<ul>
+<li>Genrator is composed of Encoder and Decoder</li>
+<li>Using paired or unpaired data to train with conditional GAN</li>
+<li>Reinforcement learning and attention mechanism are useful for obtaining reward and conmunicating context</li>
+</ul>
+<h3 id="Actor-Critic"><a href="#Actor-Critic" class="headerlink" title="Actor + Critic"></a>Actor + Critic</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/5AL8ssb.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>Actor通过神经网络预测当下的输出行为，通过TD或MC的方式结合环境因素进行模拟，最后根据Learning Critic来判断行为的reward新型反向更新。</p>
+<p><a href="https://hackmd.io/IYdgTAxgzALFBsBaAnAViiRMYCMwoAYATVRVAgqVZARmQDN54ag=?view#actor-critic" target="_blank" rel="external">更多介绍</a></p>
+<h1 id="Inverse-Reinforcement-Learning"><a href="#Inverse-Reinforcement-Learning" class="headerlink" title="Inverse Reinforcement Learning"></a>Inverse Reinforcement Learning</h1><p>Inverse Reinforcement Learning的思想其实就是<strong>跟着大佬走不吃亏！</strong>。</p>
+<p>在训练过程中我们需要通过一些专家序列（Expert sequence）的行为新型模拟，然后制定相应的reward function，根据这个function一步步优化我们的模型。细节如下：</p>
+<ul>
+<li>Define a principle</li>
+<li>Initialize an actor</li>
+<li>In each iteration<ul>
+<li>The actor interacts with the environment to obtain some trajectories</li>
+<li>Define a reward function, which makes the trajectories of the teacher better than the actor</li>
+<li>The actor learns to maximize the reward based on the new reward function</li>
+</ul>
+</li>
+<li>Output the reward funciton and the actor learned from the reward function</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/8BfZ2PJ.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="对比GAN和IRL"><a href="#对比GAN和IRL" class="headerlink" title="对比GAN和IRL"></a>对比GAN和IRL</h2><p>GAN网络和IRL在结构和功能上具有一定的相似性：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/UpJKs64.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>GAN通过discriminator的到的scalar来评估Generator的好坏，进而促使Generator以提高scalar为目标不断提升。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/arTM2Py.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>IRL的Expert相当于GAN中的Discriminator，Actor则相当于Generator。Reward function反馈给Expert一个较高的分数，而给予Actor一个较低的分数，促使Actor为了提高奖励就不断向Expert靠拢，一步步得到提升。</li>
+</ul>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a href="https://www.youtube.com/watch?v=0CKeqXl5IY0&amp;lc=z13zuxbglpvsgbgpo04cg1bxuoraejdpapo0k" target="_blank" rel="external">Generative Adversarial Network</a></p>
+<p><a href="https://www.youtube.com/watch?v=0CKeqXl5IY0&amp;lc=z13zuxbglpvsgbgpo04cg1bxuoraejdpapo0k" target="_blank" rel="external">Improving Generative Adversarial Network</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-10-17T15:58:33.134Z" itemprop="dateUpdated">2017-10-17 23:58:33</time>
+</span><br>
+
+
+        
+        如果我的文章对你有帮助，请打个赏。谢谢～～
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/one2.jpg" alt="Eternal">
+            Eternal
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GAN/">GAN</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/10/17/GAN/&title=《对抗生成网络(GAN)》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/10/17/GAN/&title=《对抗生成网络(GAN)》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/10/17/GAN/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《对抗生成网络(GAN)》 — 指尖の岁月&url=http://yoursite.com/2017/10/17/GAN/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/10/17/GAN/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/08/29/CPU/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Single Cycle MIPS CPU</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'eternalfeather';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢您~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Eternal &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/10/17/GAN/&title=《对抗生成网络(GAN)》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/10/17/GAN/&title=《对抗生成网络(GAN)》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/10/17/GAN/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《对抗生成网络(GAN)》 — 指尖の岁月&url=http://yoursite.com/2017/10/17/GAN/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/10/17/GAN/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABx0lEQVR42u3aQW7DIBAF0Nz/0q7UVaUq9H8wxJUeK8tB+JHFiJnh9YrH9T3G768f4/ecZOZtAxcXd5l7DceYO97SmPju13cGXFzc89w8SOXbaENbFEBxcXEfxk3o4zA0XhMXF/c/csefH28m/ztwcXGfw02Snzxsjbn5ari4uJ/itgXTHc8b67u4uLgl9ypHfvTZ8nVcXNwj3KQFsvL+rkZLsRAuLu4yN09R2qCWrJwHOFxc3JPcdurc1au2WZsHVlxc3N3cZNG5RsjKzOhchouLu407dwRJjkR5uMxDJy4u7m5u3i5tDzfrxdN6Ki4u7q3c9rndZH5Ja0u/FxcXd8Pdhvy406LzS2C4uLhnuPme2oRnLhHCxcV9DneuhDGXxiSst60UXFzcI9y8kJEnP+OPtQWU+s4ILi7uMjc/XqyXSucSJFxc3E9x85LlXJnjrhYLLi7uSe69RY22bVOsgIuLe4TbBpTxc9G3iddZasHi4uIucPPrFG2Zo23BRhvGxcU9yM2PI3no+aMpMhVGcXFxn8Zt0568cVskRbi4uI/krlzSyg83uLi4T+CuBJeVJKcuvuDi4h7hrhRM25bJXKDExcU9yP0CKbjdRIDpaS0AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Welcome back!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂) Hello!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
