@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-10-17T15:58:33.134Z</updated>
+  <updated>2017-10-17T16:10:52.441Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://yoursite.com/2017/10/17/GAN/"/>
     <id>http://yoursite.com/2017/10/17/GAN/</id>
     <published>2017-10-17T15:55:32.000Z</published>
-    <updated>2017-10-17T15:58:33.134Z</updated>
+    <updated>2017-10-17T16:10:52.441Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="对抗生成网络（Generative-Adversarial-Network-GAN）"><a href="#对抗生成网络（Generative-Adversarial-Network-GAN）" class="headerlink" title="对抗生成网络（Generative Adversarial Network, GAN）"></a>对抗生成网络（Generative Adversarial Network, GAN）</h1><h1 id="介绍（Introduction）"><a href="#介绍（Introduction）" class="headerlink" title="介绍（Introduction）"></a>介绍（Introduction）</h1><p>当今AI时代在人工智慧领域取得许多伟大的突破，其中机器学习与深度学习等计算机算法的崛起更是带来了一波又一波的浪潮。如今的深度学习模型已经数不胜数，而Generative Adversarial Network就是其中耀眼的一部分。在Quora上Facebook的AI研究团队主任Yann LeCun说了这样一句话：<strong>“Adversarial training is the coolest thing since sliced bread.”</strong></p>
+    <content type="html"><![CDATA[<h1 id="介绍（Introduction）"><a href="#介绍（Introduction）" class="headerlink" title="介绍（Introduction）"></a>介绍（Introduction）</h1><p>当今AI时代在人工智慧领域取得许多伟大的突破，其中机器学习与深度学习等计算机算法的崛起更是带来了一波又一波的浪潮。如今的深度学习模型已经数不胜数，而Generative Adversarial Network就是其中耀眼的一部分。在Quora上Facebook的AI研究团队主任Yann LeCun说了这样一句话：<strong>“Adversarial training is the coolest thing since sliced bread.”</strong></p>
 <ul>
 <li>说起GAN的种类，可谓是层出不穷：<br><a href="https://github.com/hindupuravinash/the-gan-zoo" target="_blank" rel="external">https://github.com/hindupuravinash/the-gan-zoo</a></li>
 <li>在训练GAN网络的同时也存在许多Tricks:<br><a href="https://github.com/soumith/ganhacks" target="_blank" rel="external">https://github.com/soumith/ganhacks</a></li>
@@ -828,7 +828,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;对抗生成网络（Generative-Adversarial-Network-GAN）&quot;&gt;&lt;a href=&quot;#对抗生成网络（Generative-Adversarial-Network-GAN）&quot; class=&quot;headerlink&quot; title=&quot;对抗生成网络（G
+      &lt;h1 id=&quot;介绍（Introduction）&quot;&gt;&lt;a href=&quot;#介绍（Introduction）&quot; class=&quot;headerlink&quot; title=&quot;介绍（Introduction）&quot;&gt;&lt;/a&gt;介绍（Introduction）&lt;/h1&gt;&lt;p&gt;当今AI时代在人工智慧领域取
     
     </summary>
     
