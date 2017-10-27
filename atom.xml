@@ -2322,9 +2322,9 @@
     </summary>
     
     
-      <category term="Tensorflow" scheme="http://yoursite.com/tags/Tensorflow/"/>
-    
       <category term="Deep Learning" scheme="http://yoursite.com/tags/Deep-Learning/"/>
+    
+      <category term="Tensorflow" scheme="http://yoursite.com/tags/Tensorflow/"/>
     
       <category term="CUDA" scheme="http://yoursite.com/tags/CUDA/"/>
     
@@ -2607,7 +2607,7 @@
     <link href="http://yoursite.com/2017/07/25/Remote/"/>
     <id>http://yoursite.com/2017/07/25/Remote/</id>
     <published>2017-07-25T04:00:24.000Z</published>
-    <updated>2017-09-07T12:32:45.776Z</updated>
+    <updated>2017-10-27T13:27:29.065Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Ubuntu上的遠端鏈接比起windows系統自帶的Remote Desktop需要配置的條件更多。網上也有許多不同的版本，本人嘗試之後發現了一些常見的問題，特在此總結可行的一般流程與常見問題的解決方式。</p>
 <h1 id="System-Config"><a href="#System-Config" class="headerlink" title="System Config"></a>System Config</h1><p><code>Ubuntu16.04</code> <code>Windows 10</code></p>
@@ -2700,7 +2700,7 @@
 </li>
 <li><strong>解決方法：</strong><ul>
 <li>vncserver : 1~9 (冒号兩邊都需要空格)</li>
-<li>在xrdp設定檔中將prot從-1改為ask剛才開啟的port（vncserver設1則開啟5901以此類推）</li>
+<li>在xrdp設定檔中將port從-1改為ask剛才開啟的port（vncserver設1則開啟5901以此類推）</li>
 </ul>
 </li>
 <li>遠端桌面連接進入出現灰色網格，無圖像，滑鼠變成X：<ul>
@@ -4958,9 +4958,9 @@
     </summary>
     
     
-      <category term="Machine Learning" scheme="http://yoursite.com/tags/Machine-Learning/"/>
-    
       <category term="Deep Learning" scheme="http://yoursite.com/tags/Deep-Learning/"/>
+    
+      <category term="Machine Learning" scheme="http://yoursite.com/tags/Machine-Learning/"/>
     
       <category term="Reinforcement Learning" scheme="http://yoursite.com/tags/Reinforcement-Learning/"/>
     
