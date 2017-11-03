@@ -3126,7 +3126,7 @@
     <link href="http://yoursite.com/2017/07/25/Remote/"/>
     <id>http://yoursite.com/2017/07/25/Remote/</id>
     <published>2017-07-25T04:00:24.000Z</published>
-    <updated>2017-10-27T13:27:29.065Z</updated>
+    <updated>2017-11-03T08:47:50.634Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Ubuntu上的遠端鏈接比起windows系統自帶的Remote Desktop需要配置的條件更多。網上也有許多不同的版本，本人嘗試之後發現了一些常見的問題，特在此總結可行的一般流程與常見問題的解決方式。</p>
 <h1 id="System-Config"><a href="#System-Config" class="headerlink" title="System Config"></a>System Config</h1><p><code>Ubuntu16.04</code> <code>Windows 10</code></p>
@@ -3134,7 +3134,12 @@
 <ul>
 <li>sudo apt-get install ubuntu-desktop</li>
 </ul>
-<p>2、若只是從Windows鏈接到Ubuntu則跳過第一步，直接安裝遠端桌面軟體xrdp</p>
+<p>2、若只是從Windows鏈接到Ubuntu則跳過第一步，確保Ubuntu系統安裝了vnc服務，大部分系統會自行安裝，可以通過重複安裝確認。</p>
+<ul>
+<li>sudo apt-get install vnc4server（大部分只支持tightvncserver，建议选择后者）<br>或</li>
+<li>sudo apt-get install tightvncserver</li>
+</ul>
+<p>3、安裝遠端桌面軟體xrdp</p>
 <ul>
 <li><p>sudo apt-get install xrdp</p>
 <ul>
@@ -3157,7 +3162,7 @@
 <ul>
 <li>sudo service xrdp restart</li>
 </ul>
-<p>3、此時可以查看service port看是否處於LISTEN的狀態。</p>
+<p>4、此時可以查看service port看是否處於LISTEN的狀態。</p>
 <ul>
 <li>netstat -utl</li>
 </ul>
@@ -3168,11 +3173,6 @@
 <li>port 59XX</li>
 </ul>
 <p><img src="https://i.imgur.com/0BgAP4w.png" alt=""></p>
-<p>4、確保Ubuntu系統安裝了vnc服務，大部分系統會自行安裝，可以通過重複安裝確認。</p>
-<ul>
-<li>sudo apt-get install vnc4server<br>或</li>
-<li>sudo apt-get install tightvncserver</li>
-</ul>
 <p>5、由於xrdp會開放3389的port作為遠端圖形化界面的窗口，因此還需要有相應的圖形化桌面套件。<br><strong>Ubuntu常用的桌面套件有三種，選擇一種安裝即可</strong></p>
 <ul>
 <li>安裝與設定Xfce<ul>
@@ -3218,8 +3218,8 @@
 </ul>
 </li>
 <li><strong>解決方法：</strong><ul>
-<li>vncserver : 1~9 (冒号兩邊都需要空格)</li>
-<li>在xrdp設定檔中將port從-1改為ask剛才開啟的port（vncserver設1則開啟5901以此類推）</li>
+<li>vncserver : 1~9 (引號兩邊都需要空格)</li>
+<li>在xrdp設定檔中將prot從-1改為ask剛才開啟的port（vncserver設1則開啟5901以此類推）</li>
 </ul>
 </li>
 <li>遠端桌面連接進入出現灰色網格，無圖像，滑鼠變成X：<ul>
@@ -3230,6 +3230,11 @@
 <li>安裝三種遠端桌面套件的一種（詳見步驟5）</li>
 </ul>
 </li>
+</ul>
+<h2 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h2><p>一定要先安装tightvncserver等vnc服务才能安装xrdp，不要重复安装server。<br>如果需要卸载xrdp和vnc server，可以使用：</p>
+<ul>
+<li>sudo apt-get purge xrdp</li>
+<li>sudo apt-get purge tightvncserver</li>
 </ul>
 ]]></content>
     
