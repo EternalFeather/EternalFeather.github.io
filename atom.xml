@@ -60,7 +60,7 @@
     <link href="http://yoursite.com/2017/11/09/exam/"/>
     <id>http://yoursite.com/2017/11/09/exam/</id>
     <published>2017-11-09T05:31:15.000Z</published>
-    <updated>2017-11-09T05:34:10.202Z</updated>
+    <updated>2017-11-09T05:39:56.534Z</updated>
     
     <content type="html"><![CDATA[<h1 id="操作系統与计算机结构"><a href="#操作系統与计算机结构" class="headerlink" title="操作系統与计算机结构"></a>操作系統与计算机结构</h1><ul>
 <li><p>ThreadPool，Jdk原生线程池，四个参数详细解释原理，当线程池中poolSize达到corePoolSize且阻塞队列已满，再来一个任务，如何处理。</p>
@@ -206,6 +206,8 @@
 <li><p>基础算法编程: <a href="https://eternalfeather.github.io/2017/11/02/Algorithm/" target="_blank" rel="external">Link</a></p>
 </li>
 <li><p>经典演算法实例：<a href="https://github.com/EternalFeather/Standard-Algorithms" target="_blank" rel="external">Link</a></p>
+</li>
+<li><p>排序算法和比较：<a href="https://eternalfeather.github.io/2017/11/09/sorted/" target="_blank" rel="external">Link</a></p>
 </li>
 </ul>
 <h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>其他的问题可以参考<a href="https://www.nowcoder.com/" target="_blank" rel="external">牛客网</a>专项练习和公司专题。</p>
