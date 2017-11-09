@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>算法工程师笔面试汇总 | 指尖の岁月 | 世间点滴，莫忘于心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Algorithm">
+    <meta name="description" content="操作系統与计算机结构 ThreadPool，Jdk原生线程池，四个参数详细解释原理，当线程池中poolSize达到corePoolSize且阻塞队列已满，再来一个任务，如何处理。  多线程实现同步的方式，互斥同步，非阻塞同步。  程序的编译、链接过程。  死锁的条件是什么？以及如何处理死锁问题？条件：互斥条件（Mutual exclusion）：1、资源不能被共享，只能由一个进程使用。2、请求与保">
+<meta name="keywords" content="Algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法工程师笔面试汇总">
+<meta property="og:url" content="http://yoursite.com/2017/11/09/exam/index.html">
+<meta property="og:site_name" content="指尖の岁月">
+<meta property="og:description" content="操作系統与计算机结构 ThreadPool，Jdk原生线程池，四个参数详细解释原理，当线程池中poolSize达到corePoolSize且阻塞队列已满，再来一个任务，如何处理。  多线程实现同步的方式，互斥同步，非阻塞同步。  程序的编译、链接过程。  死锁的条件是什么？以及如何处理死锁问题？条件：互斥条件（Mutual exclusion）：1、资源不能被共享，只能由一个进程使用。2、请求与保">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-11-09T05:34:10.202Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法工程师笔面试汇总">
+<meta name="twitter:description" content="操作系統与计算机结构 ThreadPool，Jdk原生线程池，四个参数详细解释原理，当线程池中poolSize达到corePoolSize且阻塞队列已满，再来一个任务，如何处理。  多线程实现同步的方式，互斥同步，非阻塞同步。  程序的编译、链接过程。  死锁的条件是什么？以及如何处理死锁问题？条件：互斥条件（Mutual exclusion）：1、资源不能被共享，只能由一个进程使用。2、请求与保">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖の岁月" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/new3.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/one2.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Eternal</h5>
+          <a href="mailto:617844662@qq.com" title="617844662@qq.com" class="mail">617844662@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/EternalFeather" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://EternalFeather.github.io/AboutMe/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                About Me
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">算法工程师笔面试汇总</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">算法工程师笔面试汇总</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-11-09T05:31:15.000Z" itemprop="datePublished" class="page-time">
+  2017-11-09
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#操作系統与计算机结构"><span class="post-toc-number">1.</span> <span class="post-toc-text">操作系統与计算机结构</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#计算机网络"><span class="post-toc-number">2.</span> <span class="post-toc-text">计算机网络</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#程式语言"><span class="post-toc-number">3.</span> <span class="post-toc-text">程式语言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#机器学习、算法和自然语言处理"><span class="post-toc-number">4.</span> <span class="post-toc-text">机器学习、算法和自然语言处理</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#其他"><span class="post-toc-number">5.</span> <span class="post-toc-text">其他</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-exam"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">算法工程师笔面试汇总</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-11-09 13:31:15" datetime="2017-11-09T05:31:15.000Z"  itemprop="datePublished">2017-11-09</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="操作系統与计算机结构"><a href="#操作系統与计算机结构" class="headerlink" title="操作系統与计算机结构"></a>操作系統与计算机结构</h1><ul>
+<li><p>ThreadPool，Jdk原生线程池，四个参数详细解释原理，当线程池中poolSize达到corePoolSize且阻塞队列已满，再来一个任务，如何处理。</p>
+</li>
+<li><p>多线程实现同步的方式，互斥同步，非阻塞同步。</p>
+</li>
+<li><p>程序的编译、链接过程。</p>
+</li>
+<li><p>死锁的条件是什么？以及如何处理死锁问题？<br>条件：互斥条件（Mutual exclusion）：<br>1、资源不能被共享，只能由一个进程使用。<br>2、请求与保持条件（Hold and wait）：已经得到资源的进程可以再次申请新的资源。<br>3、非剥夺条件（No pre-emption）：已经分配的资源不能从相应的进程中被强制地剥夺。<br>4、循环等待条件（Circular wait）：系统中若干进程组成环路，该环路中每个进程都在等待相邻进程正占用的资源。<br>解决方法：<br>1、忽略该问题。例如鸵鸟算法，该算法可以应用在极少发生死锁的的情况下。为什么叫鸵鸟算法呢，因为传说中鸵鸟看到危险就把头埋在地底下，可能鸵鸟觉得看不到危险也就没危险了吧。跟掩耳盗铃有点像。<br>2、检测死锁并且恢复。<br>3、仔细地对资源进行动态分配，以避免死锁。<br>4、通过破除死锁四个必要条件之一，来防止死锁产生。（Synchronize）</p>
+</li>
+<li><p>请阐述动态链接库与静态链接库的区别。<br><strong>静态链接库</strong>是 <strong>.lib</strong> 格式的文件，一般在工程的设置界面加入工程中，程序编译时会把lib文件的代码加入你的程序中因此<strong>会增加代码大小</strong>，你的程序一运行lib代码强制被<strong>装入你程序的运行空间</strong>，<strong>不能手动移除</strong>lib代码。<br><strong>动态链接库</strong>是程序运行时动态装入内存的模块，格式 <strong>.dll</strong> ，在程序运行时可以随意加载和移除，节省内存空间。<br>在大型的软件项目中一般要实现很多功能，如果把所有单独的功能写成一个个lib文件的话，程序运行的时候要占用很大的内存空间，导致运行缓慢；但是如果将功能写成dll文件，就可以在用到该功能的时候调用功能对应的dll文件，不用这个功能时将dll文件移除内存，这样可以节省内存空间。</p>
+</li>
+<li><p>请阐述进程与线程的区别。<br><strong>从概念上</strong>：<br>进程：一个程序对一个数据集的动态执行过程，是分配资源的基本单位。<br>线程：一个进程内的基本调度单位。线程的划分尺度小于进程，一个进程包含一个或者更多的线程。<br><strong>从执行过程中来看</strong>：<br>进程：拥有独立的内存单元，而多个线程共享内存，从而提高了应用程序的运行效率。<br>线程：每一个独立的线程，都有一个程序运行的入口、顺序执行序列、和程序的出口。但是线程不能够独立的执行，必须依存在应用程序中，由应用程序提供多个线程执行控制。<br><strong>从逻辑角度来看（重要区别）</strong>：<br>多线程的意义在于一个应用程序中，有多个执行部分可以同时执行。但是，操作系统并没有将多个线程看做多个独立的应用，来实现进程的调度和管理及资源分配。</p>
+</li>
+<li><p>用户进程间通信主要哪几种方式？<br>主要有以下6种：<br>1、管道：管道是单向的、先进先出的、无结构的、固定大小的字节流，它把一个进程的标准输出和另一个进程的标准输入连接在一起。写进程在管道的尾端写入数据，读进程在管道的道端读出数据。数据读出后将从管道中移走，其它读进程都不能再读到这些数据。管道提供了简单的流控制机制。进程试图读空管道时，在有数据写入管道前，进程将一直阻塞。同样地，管道已经满时，进程再试图写管道，在其它进程从管道中移走数据之前，写进程将一直阻塞。<br>无名管道：管道是一种半双工的通信方式，数据只能单向流动，而且只能在具有亲缘关系（通常是指父子进程关系）的进程间使用。<br>命名管道：命名管道也是半双工的通信方式，在文件系统中作为一个特殊的设备文件而存在，但是它允许无亲缘关系进程间的通信。当共享管道的进程执行完所有的I/O操作以后，命名管道将继续保存在文件系统中以便以后使用。<br>2、信号量：信号量是一个计数器，可以用来控制多个进程对共享资源的访问。它常作为一种锁机制，防止某进程正在访问共享资源时，其它进程也访问该资源。因此，主要作为进程间以及同一进程内不同线程之间的同步手段。<br>3、消息队列：消息队列是由消息的链表，存放在内核中并由消息队列标识符标识。消息队列克服了信号传递信息少、管道只能承载无格式字节流以及缓冲区大小受限等缺点。<br>4、信号：信号是一种比较复杂的通信方式，用于通知接收进程某个事件已经发生。<br>5、共享内存：共享内存就是映射一段能被其它进程所访问的内存，这段共享内存由一个进程创建，但多个进程都可以访问。共享内存是最快的IPC方式，它是针对其它进程间通信方式运行效率低而专门设计的。它往往与其它通信机制（如信号量）配合使用，来实现进程间的同步和通信。<br>6、套接字：套接字也是一种进程间通信机制，与其它通信机制不同的是，它可用于不同机器间的进程通信。</p>
+</li>
+<li><p>巨量化数据处理模型Hadoop和Spark的基本原理和区别。</p>
+</li>
+<li><p>Python垃圾回收机制（gc）：引用计数、标记回收、分代回收。</p>
+</li>
+<li><p>MySQL第一、二、三范式要求。（属性原子性；不存在函数依赖；不存在传递依赖）</p>
+</li>
+<li><p>CDN(Content Delivery Network)工作机制。（能够根据实时网络流量和各节点的链接、负载状况以及到用户的距离和响应时间等综合信息，将用户请求重新定向至离用户最近的服务节点上，解决网络拥挤和提高访问响应速度）</p>
+</li>
+</ul>
+<h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><p><a href="https://www.nowcoder.com/discuss/1937" target="_blank" rel="external">Link</a></p>
+<ul>
+<li><p>OSI七层结构和功能。</p>
+</li>
+<li><p>TCP四层结构和功能。</p>
+</li>
+<li><p>五层协议的基本机构。</p>
+</li>
+<li><p>IP地址的分类，ABC三类以及Internet上保留地址用于内部。</p>
+</li>
+<li><p>IP地址和子网掩码相与得到主机号。</p>
+</li>
+<li><p>ARP地址解析协议工作流程。</p>
+</li>
+<li><p>基本网络协议。（ICMP、TFTP、HTTP、DHCP、NAT、DHCP）</p>
+</li>
+<li><p>三次握手和四次挥手。</p>
+</li>
+<li><p>在浏览器中输入网址后执行的全部过程。（DNS -&gt; IP找server -&gt; 打包报文段 -&gt; 选择和传输路由（ARP） -&gt; 通过协议进行端对端传输）</p>
+</li>
+<li><p>TCP和UDP的区别（传输可靠性和面向连接，传输单位，数据安全性）。</p>
+</li>
+<li><p>报文段和用户数据报结构。(TCP -&gt; 首 + 数据，固定部分20字节，UDP -&gt; 首 + 数据，固定部分20字节)</p>
+</li>
+<li><p>TCP协议端口。（FTP、Telnet、SMTP、POP3、HTTP）</p>
+</li>
+<li><p>UDP协议端口。（DNS、SNMP、TFTP）</p>
+</li>
+<li><p>DNS域名系统的工作原理。</p>
+</li>
+<li><p>面向连接和非面向连接服务的特点是什么？</p>
+</li>
+<li><p>TCP三次握手可以改成两次吗？为什么？</p>
+</li>
+<li><p>TCP和UDP的12字节伪首部。<br>TCP：源IP地址（4）+目的IP地址（4）+0（1）+6(TCP标识符)(1)+TCP长度(2)<br>UDP：源IP地址（4）+目的IP地址（4）+0（1）+17(UDP标识符)(1)+UDP长度（2）</p>
+</li>
+<li><p>什么是交换器、路由器、网关和主机。</p>
+</li>
+</ul>
+<h1 id="程式语言"><a href="#程式语言" class="headerlink" title="程式语言"></a>程式语言</h1><ul>
+<li><p>解释Synchronize关键字的锁优化技术，偏向锁，轻量级锁，重量级锁，这些锁是如何存储的，偏向锁撤销升级为轻量级锁的过程</p>
+</li>
+<li><p>volatile关键字语义，内存屏障如何实现，JMM对内存屏障做了哪些优化，volatile的语义增强。</p>
+</li>
+<li><p>Integer与int的区别。</p>
+</li>
+<li><p>hashMap为什么会造成死循环。<a href="http://blog.csdn.net/zhuqiuhui/article/details/51849692" target="_blank" rel="external">Link</a></p>
+</li>
+<li><p>C++如何实现动态绑定（Virtual动态绑定，利用基类动态指针和当前静态类型指针指向同一个对象的Virtual函数）。<a href="http://blog.csdn.net/chgaowei/article/details/6427731" target="_blank" rel="external">Link</a></p>
+</li>
+<li><p>C++虚函数，虚函数表，虚指针，内存模型。</p>
+</li>
+<li><p>指针数组和数组指针的区别。</p>
+</li>
+<li><p>malloc-free和new-delete的区别。<a href="http://www.jianshu.com/p/bda7e83591ff" target="_blank" rel="external">Link</a></p>
+</li>
+<li><p>sizeof和strlen的区别。<a href="http://www.cnblogs.com/carekee/articles/1630789.html" target="_blank" rel="external">Link</a></p>
+</li>
+<li><p>C++中父类构造函数，子类构造函数，父类派生函数，子类派生函数训醒顺序。<a href="http://blog.csdn.net/u013467442/article/details/48682663" target="_blank" rel="external">Link</a></p>
+</li>
+<li><p>C++ STL里面的vector的实现机制。(Vector的底层实现一般是连续的内存(数组)。deque的实现是连续的内存块，list的是双链表，set和map是红黑树)<a href="http://blog.csdn.net/linux_ever/article/details/50974924" target="_blank" rel="external">Link</a></p>
+</li>
+<li><p><strong>(STL)</strong> STL的容器可以分为以下几个大类:<br>1、 顺序（序列）容器:有 vector,list,deque , string,stack(适配器类), queue(适配器类), priority queues(适配器类)。<br>2、关联容器:有set, multiset,map,multimap, bitset,hash_set, hash_map, hash_multiset, hash_multimap。</p>
+</li>
+<li><p>怎么防止单例模式被破坏。<a href="https://sing1.github.io/2017/08/15/%E9%98%B2%E6%AD%A2%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E8%A2%AB%E5%8F%8D%E5%B0%84%E6%94%BB%E5%87%BB/" target="_blank" rel="external">Link</a></p>
+</li>
+<li><p>LRU（Least Recently Used）cache 设计数据结构，怎么实现。<a href="https://yikun.github.io/2015/04/03/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AALRU-Cache%EF%BC%9F/" target="_blank" rel="external">Link</a></p>
+</li>
+<li><p>熟悉基本的设计模式：单例、工厂、观察者、装饰者以及MVC等模式。</p>
+</li>
+<li><p>Java中HashMap和HashTable的不同之处。（包括线程安全性，可否为null以及遍历方式，初始值与扩容方式，hash算法实现等等）</p>
+</li>
+</ul>
+<h1 id="机器学习、算法和自然语言处理"><a href="#机器学习、算法和自然语言处理" class="headerlink" title="机器学习、算法和自然语言处理"></a>机器学习、算法和自然语言处理</h1><ul>
+<li><p>SSD（Single Shot MultiBox Detector）的思路和里面的网络结构</p>
+</li>
+<li><p>讲下LR模型，LR模型为什么采用似然估计损失函数。</p>
+</li>
+<li><p>说下基本主题的LDA模型。</p>
+</li>
+<li><p>doc2vec中向量怎么产生的。（word2vec + TokenID）</p>
+</li>
+<li><p>说下频繁序列挖掘prefixspan 算法。（对比Apriori算法的过程和缺点，讲解该算法的优势，只需要扫描一次序列数据集，目标是挖掘出满足最小支持度的频繁序列，长度为1的前缀开始挖掘序列模式，搜索对应的投影数据库的频繁序列，然后递归的挖掘长度为2的前缀所对应的频繁序列。以此类推，一直递归到对应的投影数据库为空或者对应投影数据库中各项的支持度计数小于阈值为止。整个过程就是前缀不断的增长，产生1，2…N 频繁序列，对应的投影数据库不断缩小直至为空。<strong>优点</strong>：PrefixSpan算法由于不用产生候选序列，且投影数据库缩小的很快，内存消耗比较稳定，作频繁序列模式挖掘的时候效果很高。）</p>
+</li>
+<li><p>说说RBM编码器，Restricted Boltzmann Machine (RBM)限制波尔兹曼机。<a href="http://blog.csdn.net/zouxy09/article/details/8781396" target="_blank" rel="external">Link</a><br>作用：<br>1.降维，类似稀疏自动编码器<br>2.用RBM训练得到的权重举证和偏移量作为BP神经网路的初始值，避免陷入局部极小值<br>3.可以估计联合分布P(v,h)，进而求出P(h|v)。生成式模型<br>4.直接计算P(h|v)进行分类。判别式模型</p>
+</li>
+<li><p><strong>(序列标注)</strong> 适合序列标注问题的模型：<br>1、HMM<br>2、CRF<br>3、RNN</p>
+</li>
+<li><p><strong>(反向传递)</strong> 在电影票房预测工作中，假如使用梯度下降优化均方差损失函数，并且希望模型训练效更偏重于票房较大的电影样本。<br><strong>能：</strong> 1、在训练数据中直接复制大票房电影的数据。2、修改损失函数，使其偏重大票房电影的误差。3、针对大票房数据，在训练时增加学习步长。(增大Learning rate相当于增大了权重值)<br><strong>不能：</strong> 增加大票房电影独有的特征，例如访问流量是否大于一定阈值。（不一定对训练有帮助，反而容易干扰学习方向）</p>
+</li>
+<li><p><strong>(降维)</strong> 降维算法的实现有：<br>1、Latent Dirichlet Allocation(LDA)把文件投影到topic空间，降低了文件有效特征数。<br>2、Word2Vec利用word embedding表示词的向量，将传统的dim维度稀疏的向量one-hot vector压缩到n维的向量，n&lt;&lt;dim。<br>3、Principal component analysis(PCA)主成分分析，将特征通过在某个维度上的映射来降维。<br>4、AutoEncoder神经网络压缩特征向量常用的方法。</p>
+</li>
+<li><p><strong>(过拟合)</strong> 防止过拟合的方法：<br>1、使用正则化项<br>2、扩增训练数据集<br>3、决策树模型剪枝<br>4、early stop</p>
+</li>
+<li><p><strong>(生成、判别式模型)</strong> 判别式(Discriminative model)和生成式(Generative model)模型分类：<br>判别式 ： 线性回归、逻辑回归、神经网络、SVM、高斯处理(Gaussian Process)、条件随机场(CRF)、CART<br>生成式 ： 朴素贝叶斯、KNN、混合高斯模型、HMM、Sigmoid Belief Networks、马尔科夫随机场、深度信念网络(DBN)</p>
+</li>
+</ul>
+<ul>
+<li><strong>(无约束优化)</strong> 用来解决无约束优化的算法：（SMO用来解约束优化算法）<br>1、随机梯度下降<br>2、LBFGS<br>3、共轭梯度法<br>4、拟牛顿法</li>
+</ul>
+<ul>
+<li><p><strong>(二叉树)</strong> 一颗高度为4的平衡二叉树，其最少节点数为 : 7<br>深度为n的平衡二叉树（Balance binary tree）至少有F（n）个节点，那么F（n）满足：F(n) = F(n-1)+F(n-2)+1</p>
+</li>
+<li><p><strong>(二叉树)</strong> 一共三个结点的二叉树可能出现多少种结构 : 5<br>节点形态数 = 卡特兰数 = C(2n, n) / (n+1)</p>
+</li>
+<li><p><strong>(哈弗曼编码)</strong> 现有一段文本，其中只有A，B，C，D，E包含五个字母，它们出现的次数分别是A出现1次，B出现2次，C出现10次，D出现6次，E出现4次，那么经过哈弗曼编码后，各个字母对应的编码可能是下面哪一组？</p>
+</li>
+<li><p>word2vec、sent2vec（doc2vec）如何得到向量？</p>
+</li>
+<li><p>词嵌入（Word Embedding）过程中，如何找到相似的字符。</p>
+</li>
+<li><p>传统机器学习、深度学习考点：<a href="https://eternalfeather.github.io/2017/07/24/Machine-Learning-Tutorial/" target="_blank" rel="external">Link</a></p>
+</li>
+<li><p>常见数据挖掘算法：<a href="https://eternalfeather.github.io/2017/08/16/data/" target="_blank" rel="external">Link</a></p>
+</li>
+<li><p>卡方检定基本功能。（同质性、适合度、独立性分析）</p>
+</li>
+<li><p>基础算法编程: <a href="https://eternalfeather.github.io/2017/11/02/Algorithm/" target="_blank" rel="external">Link</a></p>
+</li>
+<li><p>经典演算法实例：<a href="https://github.com/EternalFeather/Standard-Algorithms" target="_blank" rel="external">Link</a></p>
+</li>
+</ul>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>其他的问题可以参考<a href="https://www.nowcoder.com/" target="_blank" rel="external">牛客网</a>专项练习和公司专题。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-11-09T05:34:10.202Z" itemprop="dateUpdated">2017-11-09 13:34:10</time>
+</span><br>
+
+
+        
+        如果我的文章对你有帮助，请打个赏。谢谢～～
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/one2.jpg" alt="Eternal">
+            Eternal
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">Algorithm</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/11/09/exam/&title=《算法工程师笔面试汇总》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/11/09/exam/&title=《算法工程师笔面试汇总》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/11/09/exam/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《算法工程师笔面试汇总》 — 指尖の岁月&url=http://yoursite.com/2017/11/09/exam/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/11/09/exam/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/11/09/sorted/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Sorting Algorithms</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/11/02/Algorithm/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">剑指offer算法编程题（Python、C++、Java）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'eternalfeather';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢您~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Eternal &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/11/09/exam/&title=《算法工程师笔面试汇总》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/11/09/exam/&title=《算法工程师笔面试汇总》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/11/09/exam/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《算法工程师笔面试汇总》 — 指尖の岁月&url=http://yoursite.com/2017/11/09/exam/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/11/09/exam/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABy0lEQVR42u3ay2rDQAwF0Pz/T6fQVaDYvZJs1YUzq5DYzhkvhB7zesXr/b0+P3+u6pVH9162cHFxx9z36fqJyJ92/v35xg63hIuLu8itBq9JwMpfBy4u7vO5vTQoeSYuLu7/5Z6jz3G914GLi/u33EkSc/60pEC6pVbDxcUdcHsN02s/397fxcXFvWgqkTc7egGo/O+4uLgr3GrRkrDyMiZ5BaMaCxcXt8WtBqleStT79TCE4eLi3szNL0oGpb1jFklRFPVycHFxL+LOS538cEaePB2+Dlxc3EVudYzaK2+SoPlLWMTFxV3h5klMPjqdjGoKLVdcXNzbuNXy46qUqLlVXFzcFW6ScOQDj3yTvfkILi7uDrc3lc1Ll7xkwsXFfSa3VzlVmxq9ZAgXF3eTO7ktL1dybhQEcXFxb+bmyUdeulQPZhWaLLi4uIvcvFzJA1lhXBp3R3FxcTe5+UpSomqxVNgGLi7uCrcaUJLG6Pz6SaGFi4t7FTcPXtUA1HtOdDwLFxd3hZunI5NEZ1T84OLiPpKbtDx6BzhuCWS4uLiL3HwcUgVF7RVcXNxF7lVN0uSuaiuk2RbBxcUdcOeHq3rj1aRdgouLu879AvHilYzo87M2AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Welcome back!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂) Hello!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

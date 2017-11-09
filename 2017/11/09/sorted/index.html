@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Sorting Algorithms | 指尖の岁月 | 世间点滴，莫忘于心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Sorted Algorithm">
+    <meta name="description" content="排序算法是经典算法的重要一环，不仅需要了解如何实现，更应该注意每一种排序适用的范围以及相应的时间空间复杂度要求。 插入排序（Insertion sort）时间复杂度：Best = O（n）， Worst = O（n^2^）空间复杂度：O（1）稳定性：稳定 Code（C++）：12345678910111213141516171819202122232425262728293031323334353">
+<meta name="keywords" content="Sorted Algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sorting Algorithms">
+<meta property="og:url" content="http://yoursite.com/2017/11/09/sorted/index.html">
+<meta property="og:site_name" content="指尖の岁月">
+<meta property="og:description" content="排序算法是经典算法的重要一环，不仅需要了解如何实现，更应该注意每一种排序适用的范围以及相应的时间空间复杂度要求。 插入排序（Insertion sort）时间复杂度：Best = O（n）， Worst = O（n^2^）空间复杂度：O（1）稳定性：稳定 Code（C++）：12345678910111213141516171819202122232425262728293031323334353">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-11-09T05:36:51.672Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sorting Algorithms">
+<meta name="twitter:description" content="排序算法是经典算法的重要一环，不仅需要了解如何实现，更应该注意每一种排序适用的范围以及相应的时间空间复杂度要求。 插入排序（Insertion sort）时间复杂度：Best = O（n）， Worst = O（n^2^）空间复杂度：O（1）稳定性：稳定 Code（C++）：12345678910111213141516171819202122232425262728293031323334353">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖の岁月" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/new3.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/one2.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Eternal</h5>
+          <a href="mailto:617844662@qq.com" title="617844662@qq.com" class="mail">617844662@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/EternalFeather" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://EternalFeather.github.io/AboutMe/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                About Me
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Sorting Algorithms</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Sorting Algorithms</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-11-09T05:36:07.000Z" itemprop="datePublished" class="page-time">
+  2017-11-09
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#插入排序（Insertion-sort）"><span class="post-toc-number">1.</span> <span class="post-toc-text">插入排序（Insertion sort）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#选择排序（Selection-sort）"><span class="post-toc-number">2.</span> <span class="post-toc-text">选择排序（Selection sort）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#希尔排序（Shell-sort）"><span class="post-toc-number">3.</span> <span class="post-toc-text">希尔排序（Shell sort）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#堆排序（Heap-sort）"><span class="post-toc-number">4.</span> <span class="post-toc-text">堆排序（Heap sort）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#冒泡排序（Bubble-sort）"><span class="post-toc-number">5.</span> <span class="post-toc-text">冒泡排序（Bubble sort）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#摇晃-鸡尾酒排序（Shaker-sort）"><span class="post-toc-number">6.</span> <span class="post-toc-text">摇晃/鸡尾酒排序（Shaker sort）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#快速排序（Quick-sort）"><span class="post-toc-number">7.</span> <span class="post-toc-text">快速排序（Quick sort）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#归并排序（Merge-sort）"><span class="post-toc-number">8.</span> <span class="post-toc-text">归并排序（Merge sort）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基数-桶排序（Radix-sort）"><span class="post-toc-number">9.</span> <span class="post-toc-text">基数/桶排序（Radix sort）</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-sorted"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Sorting Algorithms</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-11-09 13:36:07" datetime="2017-11-09T05:36:07.000Z"  itemprop="datePublished">2017-11-09</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>排序算法是经典算法的重要一环，不仅需要了解如何实现，更应该注意每一种排序适用的范围以及相应的时间空间复杂度要求。</p>
+<h1 id="插入排序（Insertion-sort）"><a href="#插入排序（Insertion-sort）" class="headerlink" title="插入排序（Insertion sort）"></a>插入排序（Insertion sort）</h1><p>时间复杂度：Best = O（n）， Worst = O（n^2^）<br>空间复杂度：O（1）<br>稳定性：稳定</p>
+<p>Code（C++）：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include &lt;iostream&gt;</span></div><div class="line"><span class="comment">#include &lt;vector&gt;</span></div><div class="line"><span class="comment">#include &lt;cstdio&gt;</span></div><div class="line"></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">void insert_sort(vector&lt;int&gt;&amp; data)&#123;</div><div class="line">        int temp, j;</div><div class="line">        for (int i = <span class="number">1</span>; i &lt; data.size(); i++)&#123;</div><div class="line">            temp = data[i];</div><div class="line">            for (j = i; j &gt; <span class="number">0</span> &amp;&amp; temp &lt; data[j - <span class="number">1</span>]; j--)&#123;</div><div class="line">                data[j] = data[j - <span class="number">1</span>];</div><div class="line">            &#125;</div><div class="line">            data[j] = temp;</div><div class="line">        &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()&#123;</div><div class="line">        int len;</div><div class="line">        int cond;</div><div class="line">        vector&lt;int&gt; data;</div><div class="line">        <span class="keyword">string</span> ans = <span class="string">""</span>;</div><div class="line">        cin &gt;&gt; len;</div><div class="line">        for (int i = <span class="number">0</span>; i &lt; len; i++)&#123;</div><div class="line">            cin &gt;&gt; cond;</div><div class="line">            data.push_back(cond);</div><div class="line">        &#125;</div><div class="line">        insert_sort(data);</div><div class="line">        for (int i = <span class="number">0</span>; i &lt; data.size(); i++)&#123;</div><div class="line">            char temp[<span class="number">64</span>];</div><div class="line">            sprintf(temp, <span class="string">"%d"</span>, data[i]);</div><div class="line">            <span class="keyword">string</span> s(temp);</div><div class="line">            ans += s.c_str();</div><div class="line">            ans += <span class="string">" "</span>;</div><div class="line">        &#125;</div><div class="line">        cout &lt;&lt; ans &lt;&lt; endl;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="选择排序（Selection-sort）"><a href="#选择排序（Selection-sort）" class="headerlink" title="选择排序（Selection sort）"></a>选择排序（Selection sort）</h1><p>时间复杂度：Best = O（n^2^）， Worst = O（n^2^）<br>空间复杂度：O（1）<br>稳定性：不稳定</p>
+<p>Code（C++）：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include &lt;iostream&gt;</span></div><div class="line"><span class="comment">#include &lt;vector&gt;</span></div><div class="line"><span class="comment">#include &lt;cstdio&gt;</span></div><div class="line"></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">void swap(vector&lt;int&gt;&amp; data, int i, int j)&#123;</div><div class="line">	int temp = data[i];</div><div class="line">	data[i] = data[j];</div><div class="line">	data[j] = temp;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void selection_sort(vector&lt;int&gt;&amp; data)&#123;</div><div class="line">	for (int i = <span class="number">0</span>; i &lt; data.size(); i++)&#123;</div><div class="line">		int min = i;</div><div class="line">		for (int j = i + <span class="number">1</span>; j &lt; data.size(); j++)&#123;</div><div class="line">			<span class="keyword">if</span> (data[j] &lt; data[min])&#123;</div><div class="line">				min = j;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> (i != min)&#123;</div><div class="line">			swap(data, i, min);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()&#123;</div><div class="line">	int len;</div><div class="line">	int cond;</div><div class="line">	<span class="keyword">string</span> ans = <span class="string">""</span>;</div><div class="line">	vector&lt;int&gt; data;</div><div class="line">	cin &gt;&gt; len;</div><div class="line">	for (int i = <span class="number">0</span>; i &lt; len; i++)&#123;</div><div class="line">		cin &gt;&gt; cond;</div><div class="line">		data.push_back(cond);</div><div class="line">	&#125;</div><div class="line">	selection_sort(data)</div><div class="line">	for (int i = <span class="number">0</span>; i &lt; data.size(); i++)&#123;</div><div class="line">		char temp[<span class="number">64</span>];</div><div class="line">		sprintf(temp, <span class="string">"%d"</span>, data[i]);</div><div class="line">		<span class="keyword">string</span> s(temp);</div><div class="line">		ans += s.c_str();</div><div class="line">		ans += <span class="string">" "</span>;</div><div class="line">	&#125;</div><div class="line">	cout &lt;&lt; ans &lt;&lt; endl;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="希尔排序（Shell-sort）"><a href="#希尔排序（Shell-sort）" class="headerlink" title="希尔排序（Shell sort）"></a>希尔排序（Shell sort）</h1><p>时间复杂度：Best = O（n）， Worst = O（n^2^）<br>空间复杂度：O（1）<br>稳定性：不稳定</p>
+<p>Code（C++）：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include &lt;iostream&gt;</span></div><div class="line"><span class="comment">#include &lt;string&gt;</span></div><div class="line"><span class="comment">#include &lt;vector&gt;</span></div><div class="line"><span class="comment">#include &lt;cstdio&gt;</span></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">void Shell_sort(vector&lt;int&gt;&amp; data, int gap)&#123;</div><div class="line">	for (; gap &gt; <span class="number">0</span>; gap = gap / <span class="number">2</span>)&#123;</div><div class="line">		for (int i = gap; i &lt; data.size(); i++)&#123;</div><div class="line">			int candidate = data[i];</div><div class="line">			int j = i - gap;</div><div class="line">			for (; j &gt;= <span class="number">0</span> &amp;&amp; data[j] &gt; candidate; j -= gap)&#123;</div><div class="line">				data[j + gap] = data[j];</div><div class="line">			&#125;</div><div class="line">			data[j + gap] = candidate;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()&#123;</div><div class="line">	int len, cond, gap;</div><div class="line">	vector&lt;int&gt; data;</div><div class="line">	<span class="keyword">string</span> ans = <span class="string">""</span>;</div><div class="line">	cin &gt;&gt; len;</div><div class="line">	for (int i = <span class="number">1</span>; i &lt; len; i++)&#123;</div><div class="line">		cin &gt;&gt; cond;</div><div class="line">		data.push_back(cond);</div><div class="line">	&#125;</div><div class="line">	gap = data.size() / <span class="number">2</span>;</div><div class="line">	Shell_sort(data, gap);</div><div class="line">	for (int i = <span class="number">0</span>; i &lt; data.size(); i++)&#123;</div><div class="line">		char temp[<span class="number">64</span>];</div><div class="line">		sprintf(temp, <span class="string">"%d"</span>, data[i]);</div><div class="line">		<span class="keyword">string</span> s(temp);</div><div class="line">		ans += s.c_str();</div><div class="line">		ans += <span class="string">" "</span>;</div><div class="line">	&#125;</div><div class="line">	cout &lt;&lt; ans &lt;&lt; endl;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="堆排序（Heap-sort）"><a href="#堆排序（Heap-sort）" class="headerlink" title="堆排序（Heap sort）"></a>堆排序（Heap sort）</h1><p>时间复杂度：Best = O（nlogn）， Worst = O（nlogn）<br>空间复杂度：O（1）<br>稳定性：不稳定</p>
+<p>Code（C++）：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include &lt;iostream&gt;</span></div><div class="line"><span class="comment">#include &lt;string&gt;</span></div><div class="line"><span class="comment">#include &lt;cstdio&gt;</span></div><div class="line"><span class="comment">#include &lt;vector&gt;</span></div><div class="line"><span class="comment">#include &lt;cmath&gt;</span></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">void swap(vector&lt;int&gt;&amp; data, int i, int j)&#123;</div><div class="line">	int candidate = data[i];</div><div class="line">	data[i] = data[j];</div><div class="line">	data[j] = candidate;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void heapify(vector&lt;int&gt;&amp; data, int root, int length)&#123;</div><div class="line">	int leftChild = root * <span class="number">2</span> + <span class="number">1</span>;</div><div class="line">	int rightChild = root * <span class="number">2</span> + <span class="number">2</span>;</div><div class="line">	int max = -<span class="number">1</span>;</div><div class="line"></div><div class="line">	<span class="keyword">if</span> (leftChild &lt; length &amp;&amp; (data[leftChild] &gt; data[root]))</div><div class="line">		max = leftChild;</div><div class="line">	<span class="keyword">else</span></div><div class="line">		max = root;</div><div class="line">	<span class="keyword">if</span> (rightChild &lt; length &amp;&amp; (data[rightChild] &gt; data[max]))</div><div class="line">		max = rightChild;</div><div class="line"></div><div class="line">	<span class="keyword">if</span> (max != root)&#123;</div><div class="line">		swap(data, root, max);</div><div class="line">		heapify(data, max, length);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void heap_sort(vector&lt;int&gt;&amp; data)&#123;</div><div class="line">	for (int i = floor(data.size() / <span class="number">2</span>) - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</div><div class="line">		heapify(data, i, data.size());</div><div class="line">	&#125;</div><div class="line">	for (int i = data.size() - <span class="number">1</span>; i &gt; <span class="number">0</span>; i--)&#123;</div><div class="line">		swap(data, i, <span class="number">0</span>);</div><div class="line">		heapify(data, <span class="number">0</span>, i);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()&#123;</div><div class="line">	int len, cond;</div><div class="line">	vector&lt;int&gt; data;</div><div class="line">	<span class="keyword">string</span> ans = <span class="string">""</span>;</div><div class="line">	cin &gt;&gt; len;</div><div class="line">	for (int i = <span class="number">0</span>; i &lt; len; i++)&#123;</div><div class="line">		cin &gt;&gt; cond;</div><div class="line">		data.push_back(cond);</div><div class="line">	&#125;</div><div class="line">	heap_sort(data);</div><div class="line">	for (int i = <span class="number">0</span>; i &lt; data.size(); i++)&#123;</div><div class="line">		char temp[<span class="number">64</span>];</div><div class="line">		sprintf(temp, <span class="string">"%d"</span>, data[i]);</div><div class="line">		<span class="keyword">string</span> s(temp);</div><div class="line">		ans += s.c_str();</div><div class="line">		ans += <span class="string">" "</span>;</div><div class="line">	&#125;</div><div class="line">	cout &lt;&lt; ans &lt;&lt; endl;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="冒泡排序（Bubble-sort）"><a href="#冒泡排序（Bubble-sort）" class="headerlink" title="冒泡排序（Bubble sort）"></a>冒泡排序（Bubble sort）</h1><p>时间复杂度：Best = O（n）， Worst = O（n^2^）<br>空间复杂度：O（1）<br>稳定性：稳定</p>
+<p>Code（C++）：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include &lt;iostream&gt;</span></div><div class="line"><span class="comment">#include &lt;vector&gt;</span></div><div class="line"><span class="comment">#include &lt;cstdio&gt;</span></div><div class="line"><span class="comment">#include &lt;string&gt;</span></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">void swap(vector&lt;int&gt;&amp; data, int i, int j)&#123;</div><div class="line">	int temp = data[i];</div><div class="line">	data[i] = data[j];</div><div class="line">	data[j] = temp;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void bubble_sort(vector&lt;int&gt;&amp; data)&#123;</div><div class="line">	bool flag = <span class="keyword">true</span>;</div><div class="line">	for (int i = <span class="number">0</span>; i &lt; data.size() - <span class="number">1</span> &amp;&amp; flag; i++)&#123;</div><div class="line">		flag = <span class="keyword">false</span>;</div><div class="line">		for (int j = <span class="number">0</span>; j &lt; data.size() - i - <span class="number">1</span>; j++)&#123;</div><div class="line">			<span class="keyword">if</span> (data[j + <span class="number">1</span>] &lt; data[j])&#123;</div><div class="line">				swap(data, j + <span class="number">1</span>, j);</div><div class="line">				flag = <span class="keyword">true</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()&#123;</div><div class="line">	int len, cond;</div><div class="line">	vector&lt;int&gt; data;</div><div class="line">	<span class="keyword">string</span> ans = <span class="string">""</span>;</div><div class="line">	cin &gt;&gt; len;</div><div class="line">	for (int i = <span class="number">0</span>; i &lt; len; i++)&#123;</div><div class="line">		cin &gt;&gt; cond;</div><div class="line">		data.push_back(cond);</div><div class="line">	&#125;</div><div class="line">	bubble_sort(data);</div><div class="line">	for (int i = <span class="number">0</span>; i &lt; data.size(); i++)&#123;</div><div class="line">		char temp[<span class="number">64</span>];</div><div class="line">		sprintf(temp, <span class="string">"%d"</span>, data[i]);</div><div class="line">		<span class="keyword">string</span> s(temp);</div><div class="line">		ans += s.c_str();</div><div class="line">		ans += <span class="string">" "</span>;</div><div class="line">	&#125;</div><div class="line">	cout &lt;&lt; ans &lt;&lt; endl;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="摇晃-鸡尾酒排序（Shaker-sort）"><a href="#摇晃-鸡尾酒排序（Shaker-sort）" class="headerlink" title="摇晃/鸡尾酒排序（Shaker sort）"></a>摇晃/鸡尾酒排序（Shaker sort）</h1><p>时间复杂度：Best = O（n）， Worst = O（n^2^）<br>空间复杂度：O（1）<br>稳定性：稳定</p>
+<p>Code（C++）：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include &lt;iostream&gt;</span></div><div class="line"><span class="comment">#include &lt;string&gt;</span></div><div class="line"><span class="comment">#include &lt;cstdio&gt;</span></div><div class="line"><span class="comment">#include &lt;vector&gt;</span></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">void swap(vector&lt;int&gt;&amp; data, int i, int j)&#123;</div><div class="line">	int temp = data[i];</div><div class="line">	data[i] = data[j];</div><div class="line">	data[j] = temp;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void shaker_sort(vector&lt;int&gt;&amp; data)&#123;</div><div class="line">	int left = <span class="number">0</span>;</div><div class="line">	int right = data.size() - <span class="number">1</span>;</div><div class="line">	int shift = <span class="number">0</span>;</div><div class="line"></div><div class="line">	<span class="keyword">while</span> (left &lt; right)&#123;</div><div class="line">		for (int i = left; i &lt; right; i++)&#123;</div><div class="line">			<span class="keyword">if</span> (data[i] &gt; data[i + <span class="number">1</span>])&#123;</div><div class="line">				swap(data, i, i + <span class="number">1</span>);</div><div class="line">				shift = i;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		right = shift;</div><div class="line">		for (int i = right; i &gt; left; i--)&#123;</div><div class="line">			<span class="keyword">if</span> (data[i] &lt; data[i - <span class="number">1</span>])&#123;</div><div class="line">				swap(data, i, i - <span class="number">1</span>);</div><div class="line">				shift = i;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		left = shift;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()&#123;</div><div class="line">	int len, cond;</div><div class="line">	vector&lt;int&gt; data;</div><div class="line">	<span class="keyword">string</span> ans = <span class="string">""</span>;</div><div class="line">	cin &gt;&gt; len;</div><div class="line">	for (int i = <span class="number">0</span>; i &lt; len; i++)&#123;</div><div class="line">		cin &gt;&gt; cond;</div><div class="line">		data.push_back(cond);</div><div class="line">	&#125;</div><div class="line">	shaker_sort(data);</div><div class="line">	for (int i = <span class="number">0</span>; i &lt; data.size(); i++)&#123;</div><div class="line">		char temp[<span class="number">64</span>];</div><div class="line">		sprintf(temp, <span class="string">"%d"</span>, data[i]);</div><div class="line">		<span class="keyword">string</span> s(temp);</div><div class="line">		ans += s.c_str();</div><div class="line">		ans += <span class="string">" "</span>;</div><div class="line">	&#125;</div><div class="line">	cout &lt;&lt; ans &lt;&lt; endl;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="快速排序（Quick-sort）"><a href="#快速排序（Quick-sort）" class="headerlink" title="快速排序（Quick sort）"></a>快速排序（Quick sort）</h1><p>时间复杂度：Best = O（nlogn）， Worst = O（n^2^）<br>空间复杂度：O（nlogn）<br>稳定性：不稳定</p>
+<p>Code（C++）：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include &lt;iostream&gt;</span></div><div class="line"><span class="comment">#include &lt;string&gt;</span></div><div class="line"><span class="comment">#include &lt;cstdio&gt;</span></div><div class="line"><span class="comment">#include &lt;vector&gt;</span></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">void swap(vector&lt;int&gt;&amp; data, int i, int j)&#123;</div><div class="line">	int temp = data[i];</div><div class="line">	data[i] = data[j];</div><div class="line">	data[j] = temp;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void Quick_sort(vector&lt;int&gt;&amp; data, int first, int last)&#123;</div><div class="line">	<span class="keyword">if</span> (first &lt; last)&#123;</div><div class="line">		int pivot = data[first];</div><div class="line">		int left = first + <span class="number">1</span>;</div><div class="line">		int right = last;</div><div class="line">		<span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</div><div class="line">			<span class="keyword">while</span> (data[left] &lt;= pivot)&#123;</div><div class="line">				<span class="keyword">if</span> (left != right)</div><div class="line">					left++;</div><div class="line">				<span class="keyword">else</span></div><div class="line">					<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">while</span> (data[right] &gt; pivot)</div><div class="line">				right--;</div><div class="line">			<span class="keyword">if</span> (left &lt; right)</div><div class="line">				swap(data, left, right);</div><div class="line">			<span class="keyword">else</span></div><div class="line">				<span class="keyword">break</span>;</div><div class="line">		&#125;</div><div class="line">		swap(data, right, first);</div><div class="line">		Quick_sort(data, first, right - <span class="number">1</span>);</div><div class="line">		Quick_sort(data, right + <span class="number">1</span>, last);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()&#123;</div><div class="line">	int len, cond;</div><div class="line">	vector&lt;int&gt; data;</div><div class="line">	<span class="keyword">string</span> ans = <span class="string">""</span>;</div><div class="line">	cin &gt;&gt; len;</div><div class="line">	for (int i = <span class="number">0</span>; i &lt; len; i++)&#123;</div><div class="line">		cin &gt;&gt; cond;</div><div class="line">		data.push_back(cond);</div><div class="line">	&#125;</div><div class="line">	Quick_sort(data, <span class="number">0</span>, data.size() - <span class="number">1</span>);</div><div class="line">	for (int i = <span class="number">0</span>; i &lt; data.size(); i++)&#123;</div><div class="line">		char temp[<span class="number">64</span>];</div><div class="line">		sprintf(temp, <span class="string">"%d"</span>, data[i]);</div><div class="line">		<span class="keyword">string</span> s(temp);</div><div class="line">		ans += s.c_str();</div><div class="line">		ans += <span class="string">" "</span>;</div><div class="line">	&#125;</div><div class="line">	cout &lt;&lt; ans &lt;&lt; endl;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="归并排序（Merge-sort）"><a href="#归并排序（Merge-sort）" class="headerlink" title="归并排序（Merge sort）"></a>归并排序（Merge sort）</h1><p>时间复杂度：Best = O（nlogn）， Worst = O（nlogn）<br>空间复杂度：O（n）<br>稳定性：稳定</p>
+<p>Code（C++）：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include &lt;iostream&gt;</span></div><div class="line"><span class="comment">#include &lt;string&gt;</span></div><div class="line"><span class="comment">#include &lt;cstdio&gt;</span></div><div class="line"><span class="comment">#include &lt;vector&gt;</span></div><div class="line"><span class="comment">#include &lt;cmath&gt;</span></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">int* merge(int* left, int* right, int len, int l, int r)&#123;</div><div class="line">	int* sorted = new int[len];</div><div class="line">	int leftsize = <span class="number">0</span>, rightsize = <span class="number">0</span>;</div><div class="line"></div><div class="line">	for (int i = <span class="number">0</span>; i &lt; l + r; i++)&#123;</div><div class="line">		<span class="keyword">if</span> (leftsize == l)</div><div class="line">			sorted[i] = right[rightsize++];</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (rightsize == r)</div><div class="line">			sorted[i] = left[leftsize++];</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (left[leftsize] &lt; right[rightsize])</div><div class="line">			sorted[i] = left[leftsize++];</div><div class="line">		<span class="keyword">else</span></div><div class="line">			sorted[i] = right[rightsize++];</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> sorted;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int* merge_sort(int* data, int len)&#123;</div><div class="line">	<span class="keyword">if</span> (len &gt; <span class="number">1</span>)&#123;</div><div class="line">		int* left = new int[len];</div><div class="line">		int* right = new int[len];</div><div class="line">		int middle = ceil(len / <span class="number">2</span>);</div><div class="line">		int cout_l = <span class="number">0</span>, cout_r = <span class="number">0</span>;</div><div class="line"></div><div class="line">		for (int i = <span class="number">0</span>; i &lt; middle; i++)&#123;</div><div class="line">			left[i] = data[i];</div><div class="line">			cout_l++;</div><div class="line">		&#125;</div><div class="line">		for (int j = middle; j &lt; len; j++)&#123;</div><div class="line">			right[j - middle] = data[j];</div><div class="line">			cout_r++;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		left = merge_sort(left, cout_l);</div><div class="line">		right = merge_sort(right, cout_r);</div><div class="line">		<span class="keyword">return</span> merge(left, right, len, cout_l, cout_r);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> data;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()&#123;</div><div class="line">	int len, cond;</div><div class="line">	int* data = new int[len];</div><div class="line">	int* result = new int[len];</div><div class="line">	<span class="keyword">string</span> ans = <span class="string">""</span>;</div><div class="line">	cin &gt;&gt; len;</div><div class="line">	for (int i = <span class="number">0</span>; i &lt; len; i++)&#123;</div><div class="line">		cin &gt;&gt; cond;</div><div class="line">		data[i] = cond;</div><div class="line">	&#125;</div><div class="line">	result = merge_sort(data, len);</div><div class="line">	for (int i = <span class="number">0</span>; i &lt; len; i++)&#123;</div><div class="line">		char temp[<span class="number">64</span>];</div><div class="line">		sprintf(temp, <span class="string">"%d"</span>, result[i]);</div><div class="line">		<span class="keyword">string</span> s(temp);</div><div class="line">		ans += s.c_str();</div><div class="line">		ans += <span class="string">" "</span>;</div><div class="line">	&#125;</div><div class="line">	cout &lt;&lt; ans &lt;&lt; endl;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="基数-桶排序（Radix-sort）"><a href="#基数-桶排序（Radix-sort）" class="headerlink" title="基数/桶排序（Radix sort）"></a>基数/桶排序（Radix sort）</h1><p>时间复杂度：Best = O（d<em>(n+r)）， Worst = O（d</em>(n+r)），其中d代表回合数，n代表数组长度，r代表基数（桶）大小<br>空间复杂度：O（nr）<br>稳定性：稳定</p>
+<p>Code（C++）：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include &lt;iostream&gt;</span></div><div class="line"><span class="comment">#include &lt;string&gt;</span></div><div class="line"><span class="comment">#include &lt;vector&gt;</span></div><div class="line"><span class="comment">#include &lt;cstdio&gt;</span></div><div class="line"><span class="comment">#include &lt;cmath&gt;</span></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">void init_bucket(int** buckets, int count[], int len)&#123;</div><div class="line">	for (int i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</div><div class="line">		buckets[i] = new int[len];</div><div class="line">		count[i] = <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int* radix_sort(int* data, int len)&#123;</div><div class="line">	int max = <span class="number">100</span>;</div><div class="line">	int dataindex = <span class="number">0</span>, radix = <span class="number">1</span>;</div><div class="line">	int** buckets = new int*[<span class="number">10</span>];</div><div class="line">	int count[len];</div><div class="line"></div><div class="line">	init_bucket(buckets, count, len);</div><div class="line"></div><div class="line">	<span class="keyword">while</span>(radix &lt;= max)&#123;</div><div class="line">		for (int i = <span class="number">0</span>; i &lt; len; i++)&#123;</div><div class="line">			int LSD = (int)ceil(data[i] / radix) % <span class="number">10</span>;</div><div class="line">			buckets[LSD][count[LSD]] = data[i];</div><div class="line">			count[LSD]++;</div><div class="line">		&#125;</div><div class="line">		radix *= <span class="number">10</span>;</div><div class="line"></div><div class="line">		dataindex = <span class="number">0</span>;</div><div class="line">		for (int i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</div><div class="line">			<span class="keyword">if</span> (count[i] != <span class="number">0</span>)&#123;</div><div class="line">				for (int j = <span class="number">0</span>; j &lt; count[i]; j++)&#123;</div><div class="line">					data[dataindex++] = buckets[i][j];</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			count[i] = <span class="number">0</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> data;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()&#123;</div><div class="line">	int len, cond;</div><div class="line">	int* data = new int[len];</div><div class="line">	<span class="keyword">string</span> ans = <span class="string">""</span>;</div><div class="line">	cin &gt;&gt; len;</div><div class="line">	for (int i = <span class="number">0</span>; i &lt; len; i++)&#123;</div><div class="line">		cin &gt;&gt; cond;</div><div class="line">		data[i] = cond;</div><div class="line">	&#125;</div><div class="line">	int* result = radix_sort(data, len);</div><div class="line">	for (int i = <span class="number">0</span>; i &lt; len; i++)&#123;</div><div class="line">		char temp[<span class="number">64</span>];</div><div class="line">		sprintf(temp, <span class="string">"%d"</span>, data[i]);</div><div class="line">		<span class="keyword">string</span> s(temp);</div><div class="line">		ans += s.c_str();</div><div class="line">		ans += <span class="string">" "</span>;</div><div class="line">	&#125;</div><div class="line">	cout &lt;&lt; ans &lt;&lt; endl;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-11-09T05:36:51.672Z" itemprop="dateUpdated">2017-11-09 13:36:51</time>
+</span><br>
+
+
+        
+        如果我的文章对你有帮助，请打个赏。谢谢～～
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/one2.jpg" alt="Eternal">
+            Eternal
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sorted-Algorithm/">Sorted Algorithm</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/11/09/sorted/&title=《Sorting Algorithms》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/11/09/sorted/&title=《Sorting Algorithms》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/11/09/sorted/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Sorting Algorithms》 — 指尖の岁月&url=http://yoursite.com/2017/11/09/sorted/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/11/09/sorted/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/11/09/exam/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">算法工程师笔面试汇总</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'eternalfeather';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢您~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Eternal &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/11/09/sorted/&title=《Sorting Algorithms》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/11/09/sorted/&title=《Sorting Algorithms》 — 指尖の岁月&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/11/09/sorted/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Sorting Algorithms》 — 指尖の岁月&url=http://yoursite.com/2017/11/09/sorted/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/11/09/sorted/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABxklEQVR42u3aSW7DMBAEQP//087VQCK5m5uNoHgyZEIqXgaz8PGI1/NlvT652vN75/2TxQsXF3ea+7xdLffq/fmRrvbg4uKe5yafSX4nAS45/OVzXFzcr+QmISkJdri4uP+JO5YMtQkTLi7uN3DbFORNiTJxyGW1Gi4u7gQ371Lu+72lv4uLizvEfZYrP1Iyhqm/jouLe4SbB5RVo9M2kOHi4n6WOx9uxtBJJhP9jYuLu4HbPsk/3B6jTnFwcXG3cecvVbStz8FLYLi4uMe5Y02QduwxNrDBxcU9z52fWcxcyChaJ7i4uJu5eVqTpyn3hVObDP0x+cHFxd3MbVsbeYskCXDtkAYXF/ckt4W2DZG2+Bksq3BxcTdwk1bFTAGTN02iUQ0uLu5mbh568vFqm/osuJiFi4u7gbtjRNqWPXWthouLe4SbND7yYDe23rwHFxd3M3d+mDrWEMlTK1xc3PPcNri0Fy/ycDkWOnFxcfdx8+CVFC3t/uRtRfTFxcVdym0bnXmSNFMgFRezcHFxP8pNQtV8OVR3TXBxcb+Au+pg9TtxcXEPcscaH+0YtT0YLi7up7jzc9o3FybKLGXBdU9cXNxx7g86JHGw/UrC7gAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Welcome back!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂) Hello!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
