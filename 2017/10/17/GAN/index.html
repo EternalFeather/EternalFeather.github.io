@@ -13,17 +13,17 @@
     
     
     
-    <title>对抗生成网络(GAN) | 指尖の岁月 | 世间点滴，莫忘于心</title>
+    <title>New GANs(对抗生成网络) | 指尖の岁月 | 世间点滴，莫忘于心</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="Deep Learning,GAN">
+    <meta name="keywords" content="GAN,Deep Learning">
     <meta name="description" content="介绍（Introduction）当今AI时代在人工智慧领域取得许多伟大的突破，其中机器学习与深度学习等计算机算法的崛起更是带来了一波又一波的浪潮。如今的深度学习模型已经数不胜数，而Generative Adversarial Network就是其中耀眼的一部分。在Quora上Facebook的AI研究团队主任Yann LeCun说了这样一句话：“Adversarial training is th">
-<meta name="keywords" content="Deep Learning,GAN">
+<meta name="keywords" content="GAN,Deep Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="对抗生成网络(GAN)">
+<meta property="og:title" content="New GANs(对抗生成网络)">
 <meta property="og:url" content="http://yoursite.com/2017/10/17/GAN/index.html">
 <meta property="og:site_name" content="指尖の岁月">
 <meta property="og:description" content="介绍（Introduction）当今AI时代在人工智慧领域取得许多伟大的突破，其中机器学习与深度学习等计算机算法的崛起更是带来了一波又一波的浪潮。如今的深度学习模型已经数不胜数，而Generative Adversarial Network就是其中耀眼的一部分。在Quora上Facebook的AI研究团队主任Yann LeCun说了这样一句话：“Adversarial training is th">
@@ -94,14 +94,21 @@
 <meta property="og:image" content="https://i.imgur.com/5SPToYI.png">
 <meta property="og:image" content="https://i.imgur.com/gWNkcVu.png">
 <meta property="og:image" content="https://i.imgur.com/IEKMQP0.png">
+<meta property="og:image" content="https://i.imgur.com/kZxEVMl.png">
+<meta property="og:image" content="https://i.imgur.com/nyVgK9D.png">
+<meta property="og:image" content="https://i.imgur.com/tD1cBC1.png">
+<meta property="og:image" content="https://i.imgur.com/KPz3T6V.png">
+<meta property="og:image" content="https://i.imgur.com/QUzJCOk.png">
+<meta property="og:image" content="https://i.imgur.com/cnRIfiS.png">
+<meta property="og:image" content="https://i.imgur.com/10wKIdR.png">
 <meta property="og:image" content="https://i.imgur.com/T2g8iPg.png">
 <meta property="og:image" content="https://i.imgur.com/5AL8ssb.png">
 <meta property="og:image" content="https://i.imgur.com/8BfZ2PJ.png">
 <meta property="og:image" content="https://i.imgur.com/UpJKs64.png">
 <meta property="og:image" content="https://i.imgur.com/arTM2Py.png">
-<meta property="og:updated_time" content="2017-10-19T08:46:37.731Z">
+<meta property="og:updated_time" content="2017-11-30T12:06:13.437Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="对抗生成网络(GAN)">
+<meta name="twitter:title" content="New GANs(对抗生成网络)">
 <meta name="twitter:description" content="介绍（Introduction）当今AI时代在人工智慧领域取得许多伟大的突破，其中机器学习与深度学习等计算机算法的崛起更是带来了一波又一波的浪潮。如今的深度学习模型已经数不胜数，而Generative Adversarial Network就是其中耀眼的一部分。在Quora上Facebook的AI研究团队主任Yann LeCun说了这样一句话：“Adversarial training is th">
 <meta name="twitter:image" content="https://i.imgur.com/3HJh3Vq.png">
     
@@ -180,7 +187,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">对抗生成网络(GAN)</div>
+        <div class="flex-col header-title ellipsis">New GANs(对抗生成网络)</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -202,7 +209,7 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">对抗生成网络(GAN)</h1>
+        <h1 class="title">New GANs(对抗生成网络)</h1>
         <h5 class="subtitle">
             
                 <time datetime="2017-10-17T15:55:32.000Z" itemprop="datePublished" class="page-time">
@@ -233,7 +240,7 @@
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">对抗生成网络(GAN)</h1>
+        <h1 class="post-card-title">New GANs(对抗生成网络)</h1>
         <div class="post-meta">
             <time class="post-time" title="2017-10-17 23:55:32" datetime="2017-10-17T15:55:32.000Z"  itemprop="datePublished">2017-10-17</time>
 
@@ -806,7 +813,7 @@
                 <div class="image-caption"></div>
             </figure>
 <p>Encoder输入为real data，输出为固定Dimension的code z。而Decoder利用这个code z重新还原data的模样，成为generated data。实际上就是将AutoEncoder网络拆分开来训练。利用Discriminator来辅助两个网络的训练，解决AutoEncoder中Encoder和Decoder无法分开训练的问题。</p>
-<p>这个时候因为Encoder的输入为real data，这种思想就是希望获取真实资料的所有信息，因此与Discriminator的目的一致。此时Discriminator network就会尽可能提高Encoder的scalar值，而降低Decoder的scalar值。相反，Decoder的目的就是所谓的Generator所要做的事情，因此Decoder在训练过程中就会尽可能提高code到object的转换能力，而原信息的必要性随着Decoder能力的提升要求也越来越松。</p>
+<p>这个时候对于Encoder而言，其思想就相当于GAN网络中的Discriminator，通过真实资料提取信息，从而尽可能地学习原始资料的全部特征分布。因此为了提高Encoder的编码能力，我们需要让Discriminator尽可能降低Image x的scalar同时提高code z的scalar。通俗的理解也就是尽可能降低图片可以提供特征的条件，在这种严苛的条件下训练Encoder能够提取到尽可能高scalar的code z。相反，对于Decoder而言，则其思想就相当于GAN网络中的Generator，通过模糊的特征杂讯（noise）来生成物件。因此为了提高Decoder的解码能力，我们就需要让Discriminator尽可能提高Image x的scalar，同时降低code z的scalar。通俗理解为我们需要让结果达到一个高scalar的分数，同时要让我们的模型尽可能在最严苛的环境（code z的scalar很小，可以理解为杂讯很多）下训练。</p>
 <h1 id="GAN-Examples"><a href="#GAN-Examples" class="headerlink" title="GAN Examples"></a>GAN Examples</h1><p>当今的GAN network被广泛应用于图片的生成和Dataset的产生。</p>
 <h2 id="Anime-Face-Generation"><a href="#Anime-Face-Generation" class="headerlink" title="Anime Face Generation"></a>Anime Face Generation</h2><p>Example Code:</p>
 <ul>
@@ -981,6 +988,64 @@
 <li>Update generator to increase discriminator to get maximum total reward</li>
 <li>Generator is a neural network updated with reinforcement learning</li>
 </ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/kZxEVMl.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li><strong>GAN在自然语言处理上出现的问题：</strong></li>
+</ul>
+<p><strong>问题一：</strong> 我们知道，GAN在自然语言处理方面仍无法得到让人满意的结果，其原因主要可分为三类：首先，GAN主要应用于连续的数据类型上，在离散数据例如文字方面的问题上并不适用。最初的GANs仅仅定义在实数领域上，通过判别器输出的误差反向传递给生成器，利用梯度下降的方式进行优化更新。然而在离散的数据范围内，由于结果是通过sampling的方式取得，因此每一个离散的点微分结果等于零，因此来自判别器的误差无法通过梯度下降的方式进行反向传递更新优化。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/nyVgK9D.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/tD1cBC1.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如果保留softmax之后的结果作为传入判别器的latent codes反向传递误差，则会让判别器学到许多“作弊”的手段，例如输入的vector的每一项是一个介于0和1之间的数，而最终的结果是只包含一个1其他全是0的one-hot vector，这样的误差会让判别器认为只要存在0和1之外的数，这个生成结果就不算完美，如此一来模型的训练就会陷入瓶颈。</p>
+<p>针对上面的问题，通常的方式是采用Reinforcement learning的方式来取代传统的Gradient Descent Optimization。或者使用类似Gumbel-softmax等特助分布函数来取代传统的softmax作为Discriminator的输入。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/KPz3T6V.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p><strong>问题二：</strong> GAN在利用RNN等序列化生成模型作为生成器的时候，也会面临因为MLE误差函数所带来的error累积问题。随着句子长度的增加，生成器的训练就容易出现exposure bias的问题，从而让判别器的结果飘忽不定，模型难以优化更新。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/QUzJCOk.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p><strong>问题三：</strong> 在生成句子的同时，判别器对生成器产生的反馈是一个全局的作用，也就是说这个标准是针对句子中每一个词都有相同的作用力度。这样的方式会带来一些潜在的问题，迷惑生成模型的更新思路，从而难以判断序列生成过程中每一个步骤的优劣程度，对模型的更新产生影响。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/cnRIfiS.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>针对这个问题，通常的解决办法是采用Mento-Carlo Search的方式对每一个subsequence进行单独深度扩展，从而评估每一个部分的reward值。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/10wKIdR.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h2 id="Chat-bot-with-GAN"><a href="#Chat-bot-with-GAN" class="headerlink" title="Chat-bot with GAN"></a>Chat-bot with GAN</h2><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -1053,7 +1118,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-10-19T08:46:37.731Z" itemprop="dateUpdated">2017-10-19 16:46:37</time>
+    最后更新时间：<time datetime="2017-11-30T12:06:13.437Z" itemprop="dateUpdated">2017-11-30 20:06:13</time>
 </span><br>
 
 
@@ -1088,7 +1153,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/10/17/GAN/&title=《对抗生成网络(GAN)》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/10/17/GAN/&title=《New GANs(对抗生成网络)》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -1098,7 +1163,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/10/17/GAN/&title=《对抗生成网络(GAN)》 — 指尖の岁月&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/10/17/GAN/&title=《New GANs(对抗生成网络)》 — 指尖の岁月&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -1108,7 +1173,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《对抗生成网络(GAN)》 — 指尖の岁月&url=http://yoursite.com/2017/10/17/GAN/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《New GANs(对抗生成网络)》 — 指尖の岁月&url=http://yoursite.com/2017/10/17/GAN/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -1231,7 +1296,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/10/17/GAN/&title=《对抗生成网络(GAN)》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/10/17/GAN/&title=《New GANs(对抗生成网络)》 — 指尖の岁月&pic=http://yoursite.com/img/one2.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -1241,7 +1306,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/10/17/GAN/&title=《对抗生成网络(GAN)》 — 指尖の岁月&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/10/17/GAN/&title=《New GANs(对抗生成网络)》 — 指尖の岁月&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -1251,7 +1316,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《对抗生成网络(GAN)》 — 指尖の岁月&url=http://yoursite.com/2017/10/17/GAN/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《New GANs(对抗生成网络)》 — 指尖の岁月&url=http://yoursite.com/2017/10/17/GAN/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
