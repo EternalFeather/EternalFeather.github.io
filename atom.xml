@@ -3045,7 +3045,7 @@
     <link href="http://yoursite.com/2017/08/01/cuda/"/>
     <id>http://yoursite.com/2017/08/01/cuda/</id>
     <published>2017-08-01T08:18:31.000Z</published>
-    <updated>2018-01-03T09:22:05.869Z</updated>
+    <updated>2018-01-09T09:24:07.452Z</updated>
     
     <content type="html"><![CDATA[<h1 id="顯卡規格查詢"><a href="#顯卡規格查詢" class="headerlink" title="顯卡規格查詢"></a>顯卡規格查詢</h1><p>首先需要確定自己顯卡的規格：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lspci -vnn | grep VGA -A 12</div></pre></td></tr></table></figure></p>
 <figure class="image-bubble">
@@ -3056,7 +3056,11 @@
                 <div class="image-caption"></div>
             </figure>
 <p>其中<code>nvidia_375</code>就是顯卡的規格指數，後面會用到。</p>
-<h1 id="安裝CUDA"><a href="#安裝CUDA" class="headerlink" title="安裝CUDA"></a>安裝CUDA</h1><p>前往<a href="https://developer.nvidia.com/cuda-80-ga2-download-archive" target="_blank" rel="external">CUDA 8.0下載</a>頁面選擇好系統參數進行下載。</p>
+<h1 id="安裝CUDA"><a href="#安裝CUDA" class="headerlink" title="安裝CUDA"></a>安裝CUDA</h1><p>首先確保本機沒有其他版本的cuda。<br>可以通過執行:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get autoremove --purge cuda</div></pre></td></tr></table></figure></p>
+<p>前往<code>/usr/local/</code>路徑下確認cuda已經清空，如果殘留有cuda或cuda+版本號的文件，可通過指令進行刪除：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo rm -r /usr/local/cuda</div></pre></td></tr></table></figure></p>
+<p>如果此時執行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nvidia-smi</div></pre></td></tr></table></figure></p>
+<p>之後沒有反應，就可以開始進行下一步操作。</p>
+<p>前往<a href="https://developer.nvidia.com/cuda-80-ga2-download-archive" target="_blank" rel="external">CUDA 8.0下載</a>頁面選擇好系統參數進行下載。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -3064,7 +3068,7 @@
                 </div>
                 <div class="image-caption"></div>
             </figure>
-<h2 id="配置CUDA環境"><a href="#配置CUDA環境" class="headerlink" title="配置CUDA環境"></a>配置CUDA環境</h2><p>Installation Instructions:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install cuda</div></pre></td></tr></table></figure></p>
+<h2 id="配置CUDA環境"><a href="#配置CUDA環境" class="headerlink" title="配置CUDA環境"></a>配置CUDA環境</h2><p>Installation Instructions:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install cuda-8-0</div></pre></td></tr></table></figure></p>
 <h1 id="安裝cuDNN"><a href="#安裝cuDNN" class="headerlink" title="安裝cuDNN"></a>安裝cuDNN</h1><p>前往<a href="https://developer.nvidia.com/rdp/cudnn-download" target="_blank" rel="external">cuDNN下載</a>點擊同意並選擇規格後開始下載。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
