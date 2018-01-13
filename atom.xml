@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-11-09T05:36:51.672Z</updated>
+  <updated>2018-01-13T15:40:11.495Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,552 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>design_pattern</title>
+    <link href="http://yoursite.com/2018/01/13/design-pattern/"/>
+    <id>http://yoursite.com/2018/01/13/design-pattern/</id>
+    <published>2018-01-13T15:39:42.000Z</published>
+    <updated>2018-01-13T15:40:11.495Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Strategy-Pattern"><a href="#Strategy-Pattern" class="headerlink" title="Strategy Pattern"></a>Strategy Pattern</h1><h2 id="Design-Aspect"><a href="#Design-Aspect" class="headerlink" title="Design Aspect"></a>Design Aspect</h2><p><strong>An algorithm</strong></p>
+<ul>
+<li>Define a family of algorithms, encapsulate each one, and make them interchangeable.</li>
+<li>Strategy lets the algorithm vary independently from clients that use it.</li>
+</ul>
+<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><ul>
+<li>Multiple classes will be modified if new behaviors are to be added.</li>
+<li>All duplicate code will be modified if the behavior is to be changed.</li>
+</ul>
+<h2 id="Graph"><a href="#Graph" class="headerlink" title="Graph"></a>Graph</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/BTffYtH.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h2><p><strong>Step 1.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// Strategy.java</div><div class="line">public interface Strategy&#123;</div><div class="line">    public int doOperation(int num1, int num2);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 2.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// OperationAdd.java</div><div class="line">public class OperationAdd implements Strategy&#123;</div><div class="line">    @Override</div><div class="line">    public int doOperation(int num1, int num2)&#123;</div><div class="line">        return num1 + num2;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// OperationSubstrate.java</div><div class="line">public class OperationSubstrate implements Strategy&#123;</div><div class="line">    @Override</div><div class="line">    public int doOperation(int num1, int num2)&#123;</div><div class="line">        return num1 - num2;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// OperationMultiply.java</div><div class="line">public class OperationMultiply implements Strategy&#123;</div><div class="line">    @Override</div><div class="line">    public int doOperation(int num1, int num2)&#123;</div><div class="line">        return num1 * num2;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 3.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// Context.java</div><div class="line">public class Context&#123;</div><div class="line">    private Strategy strategy;</div><div class="line">    </div><div class="line">    public Context(Strategy strategy)&#123;</div><div class="line">        this.strategy = strategy;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public int executeStrategy(int num1, int num2)&#123;</div><div class="line">        return strategy.doOperation(num1, num2);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 4.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// StrategyPatternDemo.java</div><div class="line">public class StrategyPatternDemo&#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        Context context = new Context(new OperationAdd());</div><div class="line">        System.out.println(&quot;10 + 5 = &quot; + context.executeStrategy(10, 5));</div><div class="line">    </div><div class="line">        context = new Context(new OperationSubstract());</div><div class="line">        System.out.println(&quot;10 - 5 = &quot; + context.executeStrategy(10, 5));</div><div class="line">    </div><div class="line">        context = new Context(new OperationMultiply());</div><div class="line">        System.out.println(&quot;10 * 5 = &quot; + context.executeStrategy(10, 5));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Example-Statement"><a href="#Example-Statement" class="headerlink" title="Example Statement"></a>Example Statement</h2><ul>
+<li>In a duck Game,<ul>
+<li>There are four types of ducks in the game: MallardDuck, RedheadDuck, RubberDuck, and DecoyDuck.</li>
+<li>All types of the ducks have the same swim behavior but are with different displays.</li>
+<li>Some ducks can fly with wings, but some cannot fly.</li>
+<li>A duck can quack, squeak, or be silent. </li>
+</ul>
+</li>
+</ul>
+<h1 id="Observer-Pattern"><a href="#Observer-Pattern" class="headerlink" title="Observer Pattern"></a>Observer Pattern</h1><h2 id="Design-Aspect-1"><a href="#Design-Aspect-1" class="headerlink" title="Design Aspect"></a>Design Aspect</h2><p><strong>Number of objects that depend on another object; how the dependent objects stay up to date</strong></p>
+<ul>
+<li>Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.</li>
+</ul>
+<h2 id="Problem-1"><a href="#Problem-1" class="headerlink" title="Problem"></a>Problem</h2><ul>
+<li>The code will be modified if a new display/presentation is going to be added.</li>
+</ul>
+<h2 id="Graph-1"><a href="#Graph-1" class="headerlink" title="Graph"></a>Graph</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/jwft3uU.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="Steps-1"><a href="#Steps-1" class="headerlink" title="Steps"></a>Steps</h2><p><strong>Step 1.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">// Subject.java</div><div class="line">import java.util.ArrayList;</div><div class="line">import java.util.List;</div><div class="line"></div><div class="line">public class Subject &#123;</div><div class="line">    private List&lt;Observer&gt; observers = new ArrayList&lt;Observer&gt;();</div><div class="line">    private int state;</div><div class="line"></div><div class="line">    public int getState()&#123;</div><div class="line">        return state;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setState(int state)&#123;</div><div class="line">        this.state = state;</div><div class="line">        notifyAllObservers();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void attach(Observer observer)&#123;</div><div class="line">        observers.add(observer);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void notifyAllObservers()&#123;</div><div class="line">        for (Observer observer : observers)&#123;</div><div class="line">            observer.update();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 2.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// Observer.java</div><div class="line">public abstract class Observer &#123;</div><div class="line">    protected Subject subject;</div><div class="line">    public abstract void update();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 3.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// BinaryObserver.java</div><div class="line">public class BinaryObserver extends Observer &#123;</div><div class="line">    public BinaryObserver(Subject subject)&#123;</div><div class="line">        this.subject = subject;</div><div class="line">        this.subject.attach(this);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public void update() &#123;</div><div class="line">        System.out.println(&quot;Binary String: &quot; + Integer.toBinaryString(subject.getState()));</div><div class="line">    &#125;    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// OctalObserver.java</div><div class="line">public class BinaryObserver extends Observer &#123;</div><div class="line">    public BinaryObserver(Subject subject)&#123;</div><div class="line">        this.subject = subject;</div><div class="line">        this.subject.attach(this);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public void update() &#123;</div><div class="line">        System.out.println(&quot;Octal String: &quot; + Integer.toOctalString(subject.getState()));</div><div class="line">    &#125;    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// BinaryObserver.java</div><div class="line">public class HexaObserver extends Observer &#123;</div><div class="line">    public BinaryObserver(Subject subject)&#123;</div><div class="line">        this.subject = subject;</div><div class="line">        this.subject.attach(this);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public void update() &#123;</div><div class="line">        System.out.println(&quot;Hex String: &quot; + Integer.toHexString(subject.getState()));</div><div class="line">    &#125;    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>Step 4.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">// ObserverPatternDemo.java</div><div class="line">public class ObserverPatternDemo&#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        Subject subject = new Subject();</div><div class="line">    </div><div class="line">        new HexaObserver(subject);</div><div class="line">        new OctalObserver(subject);</div><div class="line">        new BinaryObserver(subject);</div><div class="line">        </div><div class="line">        System.out.println(&quot;First state change: 15&quot;);</div><div class="line">        subject.setState(15);</div><div class="line">        System.out.println(&quot;Second state change: 10&quot;);</div><div class="line">        subject.setState(10);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Example-Statement-1"><a href="#Example-Statement-1" class="headerlink" title="Example Statement"></a>Example Statement</h2><ul>
+<li>In a spreadsheet application,<ul>
+<li>A spreadsheet object, bar chart object, and pie chart object can depict information in the same application data object by using different presentations.</li>
+<li>When the user changes the information in the spreadsheet, the bar chart reflects the changes immediately, and vice versa. </li>
+<li>Both a spreadsheet object and bar chart object can depict information in the same application data object by using different presentations.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Decorator-Pattern"><a href="#Decorator-Pattern" class="headerlink" title="Decorator Pattern"></a>Decorator Pattern</h1><h2 id="Design-Aspect-2"><a href="#Design-Aspect-2" class="headerlink" title="Design Aspect"></a>Design Aspect</h2><p><strong>Responsibilities of an object without subclassing</strong></p>
+<ul>
+<li>Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.</li>
+</ul>
+<h2 id="Problem-2"><a href="#Problem-2" class="headerlink" title="Problem"></a>Problem</h2><ul>
+<li>A class will be modified if you want to attach additional responsibilities(decorators) to an object dynamically.</li>
+<li>One way to add responsibilities is with inheritance.</li>
+<li>A client is difficult to control how and when to decorate the component with a object.</li>
+</ul>
+<h2 id="Graph-2"><a href="#Graph-2" class="headerlink" title="Graph"></a>Graph</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/lc2G5HJ.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="Steps-2"><a href="#Steps-2" class="headerlink" title="Steps"></a>Steps</h2><p><strong>Step 1.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// Shape.java</div><div class="line">public interface Shape&#123;</div><div class="line">    void draw();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 2.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">// Rectangle.java</div><div class="line">public class Rectangle implement Shape &#123;</div><div class="line">    @Override</div><div class="line">    public void draw()&#123;</div><div class="line">        System.out.println(&quot;Shape: Rectangle&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// Circle.java</div><div class="line">public class Circle implement Shape&#123;</div><div class="line">    @Override</div><div class="line">    public void draw()&#123;</div><div class="line">        System.out.println(&quot;Shape: Circle&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 3.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// ShapeDecorator.java</div><div class="line">public abstract class ShapeDecorator implements Shape&#123;</div><div class="line">    protected Shape decoratedShape;</div><div class="line">    </div><div class="line">    public ShapeDecorator(Shape decoratedShape)&#123;</div><div class="line">        this decoratedShape = decoratedShape;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public void draw()&#123;</div><div class="line">        decoratedShape.draw();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 4.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">// RedShapeDecorator.java</div><div class="line">public class RedShapeDecorator extends ShapeDecorator&#123;    </div><div class="line">    public RedShapeDecorator(Shape decoratedShape)&#123;</div><div class="line">        super(decoratedShape);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public void draw()&#123;</div><div class="line">        decoratedShape.draw();</div><div class="line">        setRedBorder(decoratedShape);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    private void setRedBorder(Shape decoratedShape)&#123;</div><div class="line">        System.out.println(&quot;Border Color: Red&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 5.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// DecoratorPatternDemo.java</div><div class="line">public class DecoratorPatternDemo&#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        Shape circle = new Circle();</div><div class="line">        Shape redCircle = new RedShapeDecorator(new Circle());</div><div class="line">        Shape redRectangle = new RedShapeDecorator(new Rectangle());</div><div class="line">        System.out.println(&quot;\nCircle of red border&quot;);</div><div class="line">        redCircle.draw();</div><div class="line">        System.out.println(&quot;\nRectangle of red border&quot;);</div><div class="line">        redRectangle.draw();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Example-Statement-2"><a href="#Example-Statement-2" class="headerlink" title="Example Statement"></a>Example Statement</h2><ul>
+<li>In FileViewer,<ul>
+<li>We have a TextView object that displays text in a window.</li>
+<li>TextView has no scroll bars by default, because we might not always need them.</li>
+<li>We can also add a thick black border around the TextView.</li>
+<li>It is highly likely that we will support various file formats for display in the future.</li>
+</ul>
+</li>
+<li>Starbuzz Coffee,<ul>
+<li>Starbuzz Coffee shops are scrambling to update their ordering systems to match their beverage offerings (e.g. HouseBlend, DarkRoast, Decaf and Espresso) to summate how they cost.</li>
+<li>In addition to your coffee, you can also ask for several condiments like steamed milk, soy, and mocha, and have these, so they really need to get them built into their order system</li>
+</ul>
+</li>
+</ul>
+<h1 id="Factory-Method-Pattern"><a href="#Factory-Method-Pattern" class="headerlink" title="Factory Method Pattern"></a>Factory Method Pattern</h1><h2 id="Design-Aspect-3"><a href="#Design-Aspect-3" class="headerlink" title="Design Aspect"></a>Design Aspect</h2><p><strong>Subclass of object that is instantiated</strong></p>
+<ul>
+<li>Define an interface for creating an object, but let subclasses decide which class to instantiate. Facotry Method lets a class defer instantiation to subclasses.</li>
+</ul>
+<h2 id="Problem-3"><a href="#Problem-3" class="headerlink" title="Problem"></a>Problem</h2><ul>
+<li>As the objects being created changes over time, we need to modify the code of the creator object for the creations over and over again.</li>
+</ul>
+<h2 id="Graph-3"><a href="#Graph-3" class="headerlink" title="Graph"></a>Graph</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/2ZXbYqh.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="Steps-3"><a href="#Steps-3" class="headerlink" title="Steps"></a>Steps</h2><p><strong>Step 1.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// Shape.java</div><div class="line">public interface Shape&#123;</div><div class="line">    void draw();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 2.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// Rectangle.java</div><div class="line">public class Rectangle implements Shape&#123;</div><div class="line">    @Override</div><div class="line">    public void draw()&#123;</div><div class="line">        System.out.println(&quot;Inside Rectangle::draw() method.&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// Circle.java</div><div class="line">public class Circle implements Shape&#123;</div><div class="line">    @Override</div><div class="line">    public void draw()&#123;</div><div class="line">        System.out.println(&quot;Inside Circle::draw() method.&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// Square.java</div><div class="line">public class Square implements Shape&#123;</div><div class="line">    @Override</div><div class="line">    public void draw()&#123;</div><div class="line">        System.out.println(&quot;Inside Square::draw() method.&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 3.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">// ShapeFactory.java</div><div class="line">public abstract class ShapeFactory&#123;</div><div class="line">    public abstract Shape getShape();</div><div class="line">&#125;</div><div class="line"></div><div class="line">// CircleFactory.java</div><div class="line">public class CircleFactory extends ShapeFactory&#123;</div><div class="line">    public Shape getShape()&#123;</div><div class="line">        return new Circle();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// RectangleFactory.java</div><div class="line">public class RectangleFactory extends ShapeFactory&#123;</div><div class="line">    public Shape getShape()&#123;</div><div class="line">        return new Rectangle();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// SquareFactory.java</div><div class="line">public class SquareFactory extends ShapeFactory&#123;</div><div class="line">    public Shape getShape()&#123;</div><div class="line">        return new Square();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 4.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">// FactoryPatternDemo.java</div><div class="line">public class FactoryPatternDemo &#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        ShapeFactory circleFactory = new CircleFactory();</div><div class="line">        ShapeFactory rectangleFactory = new RectangleFactory();</div><div class="line">        ShapeFactory squareFactory = new SquareFactory();</div><div class="line">                                           </div><div class="line">        Shape circle = circleFactory.getShape();</div><div class="line">        Shape rectangle = rectangleFactory.getShape();</div><div class="line">        Shape square = squareFactory.getShape();</div><div class="line">    </div><div class="line">        circle.draw();</div><div class="line">        rectangle.draw();</div><div class="line">        square.draw();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Example-Statement-3"><a href="#Example-Statement-3" class="headerlink" title="Example Statement"></a>Example Statement</h2><ul>
+<li>Powerful Document Viewer,<ul>
+<li>A powerful application can present multiple documents at the same time.</li>
+<li>These documents include DrawingDocument, TextDocument, and so on.</li>
+<li>The application is responsible for managing documents and will create them as required.</li>
+</ul>
+</li>
+<li>Pizza Store,<ul>
+<li>The store makes more than one type of pizza: Cheese Pizza, Greek Pizza, and Pepperoni Pizza </li>
+<li>Each pizza has different way to prepare, and has the same way to bake, to cut, and to box. </li>
+<li>To make this store more competitive, you may add a new flavor of pizza or remove unpopular ones.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Abstract-Factory-Pattern"><a href="#Abstract-Factory-Pattern" class="headerlink" title="Abstract Factory Pattern"></a>Abstract Factory Pattern</h1><h2 id="Design-Aspect-4"><a href="#Design-Aspect-4" class="headerlink" title="Design Aspect"></a>Design Aspect</h2><p><strong>Families of product objects</strong></p>
+<ul>
+<li>Provide an interface for creating families of related or dependent objects without specifying their concrete classes.</li>
+</ul>
+<h2 id="Problem-4"><a href="#Problem-4" class="headerlink" title="Problem"></a>Problem</h2><ul>
+<li>As the families of related or dependent objects are added, we need to write new object classes for the new families.</li>
+</ul>
+<h2 id="Graph-4"><a href="#Graph-4" class="headerlink" title="Graph"></a>Graph</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/7vbZGES.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="Steps-4"><a href="#Steps-4" class="headerlink" title="Steps"></a>Steps</h2><p><strong>Step 1.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">// Window.java</div><div class="line">public interface Window&#123;</div><div class="line">    void build();</div><div class="line">&#125;</div><div class="line"></div><div class="line">// Scrollbar.java</div><div class="line">public interface Scrollbar&#123;</div><div class="line">    void build();</div><div class="line">&#125;</div><div class="line"></div><div class="line">// Button.java</div><div class="line">public interface Button&#123;</div><div class="line">    void build();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 2.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">// MotifWindow.java</div><div class="line">public class MotifWindow implements Window&#123;</div><div class="line">    @Override</div><div class="line">    public void build()&#123;</div><div class="line">        System.out.println(&quot;Inside MotifWindow::build() method.&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">// PMWindow.java</div><div class="line">public class PMWindow implements Window&#123;</div><div class="line">    @Override</div><div class="line">    public void build()&#123;</div><div class="line">        System.out.println(&quot;Inside PMWindow::build() method.&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// MotifScrollbar.java</div><div class="line">public class MotifScrollbar implements Scrollbar&#123;</div><div class="line">    @Override</div><div class="line">    public void build()&#123;</div><div class="line">        System.out.println(&quot;Inside MotifScrollbar::build() method.&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// PMScrollbar.java</div><div class="line">public class PMScrollbar implements Scrollbar&#123;</div><div class="line">    @Override</div><div class="line">    public void build()&#123;</div><div class="line">        System.out.println(&quot;Inside PMScrollbar::buildl() method.&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// MotifButton.java</div><div class="line">public class MotifButton implements Button&#123;</div><div class="line">    @Override</div><div class="line">    public void build()&#123;</div><div class="line">        System.out.println(&quot;Inside MotifButton::build() method.&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// PMButton.java</div><div class="line">public class PMButton implements Button&#123;</div><div class="line">    @Override</div><div class="line">    public void build()&#123;</div><div class="line">        System.out.println(&quot;Inside PMButton::build() method.&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 3.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// WidgetFactory.java</div><div class="line">public interface WidgetFactory&#123;</div><div class="line">    public Window createWindow();</div><div class="line">    public Scrollbar createScrollbar();</div><div class="line">    public Button createButton();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 4.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">// MotifWidgetFactory.java</div><div class="line">public class MotifWidgetFactory implements WidgetFactory&#123;</div><div class="line">    public Window createWindow()&#123;</div><div class="line">        return new MotifWindow();</div><div class="line">    &#125;</div><div class="line">    public Scrollbar createScrollbar()&#123;</div><div class="line">        return new MotifScrollbar();</div><div class="line">    &#125;</div><div class="line">    public Button createButton()&#123;</div><div class="line">        return new MotifButton();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">// PMWidgetFactory.java</div><div class="line">public class PMWidgetFactory implements WidgetFactory&#123;</div><div class="line">    public Window createWindow()&#123;</div><div class="line">        return new PMWindow();</div><div class="line">    &#125;</div><div class="line">    public Scrollbar createScrollbar()&#123;</div><div class="line">        return new PMScrollbar();</div><div class="line">    &#125;</div><div class="line">    public Button createButton()&#123;</div><div class="line">        return new PMButton();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 5.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// GUIApplication.java</div><div class="line">public class GUIApplication&#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        WidgetFactory motifWidgetFactory = new MotifWidgetFactory();</div><div class="line">        WidgetFactory pmWidgetFactory = new PMWidgetFactory();</div><div class="line">        motifWidgetFactory.createWindow().build();</div><div class="line">        motifWidgetFactory.createScrollbar().build();</div><div class="line">        motifWidgetFactory.createButton().build();</div><div class="line">        pmWidgetFactory.createWindow().build();</div><div class="line">        pmWidgetFactory.createScrollbar().build();</div><div class="line">        pmWidgetFactory.createButton().build();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Example-Statement-4"><a href="#Example-Statement-4" class="headerlink" title="Example Statement"></a>Example Statement</h2><ul>
+<li>A GUI Application with Multiple Styles<ul>
+<li>A GUI Application consists of some kinds of widgets like window, scroll bar, and button.</li>
+<li>Each widget in the GUI application has two or more implementations according to different lookand-feel standards, such as Motif and Presentation Manager.</li>
+<li>The GUI application can switch its look-and-feel style from one to another.</li>
+</ul>
+</li>
+<li>Pizza Store<ul>
+<li>In a pizza store system, two flavors of pizza are offered: Cheese Pizza and Pepperoni Pizza.</li>
+<li>Each flavor of pizza can be categorized into two styles: New York Style and Chicago Style.</li>
+<li>Different pizza style needs different dough and sauce: </li>
+<li>NY Style: Thin Crust Dough, Marinara Sauce</li>
+<li>Chicago Style: Thick Crust Dough, Plum Tomato Sauce</li>
+</ul>
+</li>
+</ul>
+<h1 id="Iterator-Pattern"><a href="#Iterator-Pattern" class="headerlink" title="Iterator Pattern"></a>Iterator Pattern</h1><h2 id="Design-Aspect-5"><a href="#Design-Aspect-5" class="headerlink" title="Design Aspect"></a>Design Aspect</h2><p><strong>How an aggregate’s elements are accessed, traversed</strong></p>
+<ul>
+<li>Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.</li>
+</ul>
+<h2 id="Problem-5"><a href="#Problem-5" class="headerlink" title="Problem"></a>Problem</h2><ul>
+<li>The method of accessing the elements of two aggregate objects with different representations will be modified if a new aggregate object with different representation is added.</li>
+</ul>
+<h2 id="Graph-5"><a href="#Graph-5" class="headerlink" title="Graph"></a>Graph</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/qG3lxSm.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="Steps-5"><a href="#Steps-5" class="headerlink" title="Steps"></a>Steps</h2><p><strong>Step 1.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// Iterator.java</div><div class="line">public interface Iterator&#123;</div><div class="line">    public boolean hasNext();</div><div class="line">    public Object next();</div><div class="line">&#125;</div><div class="line"></div><div class="line">// Container.java</div><div class="line">public interface Container&#123;</div><div class="line">    public Iterator getIterator();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 2.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">// NameRepository.java</div><div class="line">public class NameRepository implements Container&#123;</div><div class="line">    public String name[] = &#123;&quot;Robert&quot;, &quot;John&quot;, &quot;Julie&quot;, &quot;Lora&quot;&#125;;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public Iterator getIterator()&#123;</div><div class="line">        return new NameIterator();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    private class NameIterator implements Iterator&#123;</div><div class="line">        int index;</div><div class="line">        </div><div class="line">        @Override</div><div class="line">        public boolean hasNext()&#123;</div><div class="line">            if (index &lt; names.length)&#123;</div><div class="line">                return true;</div><div class="line">            &#125;</div><div class="line">            return false;</div><div class="line">        &#125;</div><div class="line">    </div><div class="line">        @Override</div><div class="line">        public Object next()&#123;</div><div class="line">            if (this.hasNext())&#123;</div><div class="line">                return names[index++];</div><div class="line">            &#125;</div><div class="line">            return null;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 3.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// IteratorPatternDemo.java</div><div class="line">public class IteratorPatternDemo&#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        NameRepository nameRepository = new NameRepository();</div><div class="line">        for (Iterator iter = nameRepository.getIterator(); iter.hasNext();)&#123;</div><div class="line">            String name = (String)iter.next();</div><div class="line">            System.out.println(&quot;Name : &quot; + name);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Example-Statement-5"><a href="#Example-Statement-5" class="headerlink" title="Example Statement"></a>Example Statement</h2><ul>
+<li>Print Out Items in Different Data Structures,<ul>
+<li>A List data structure is implemented with a String array which can contain a series of String objects.</li>
+<li>We can access List by calling the get() method with an index, and know how many Strings inside the List with a public attribute: length.</li>
+<li>Furthermore, another data structure called SkipList which consists of a series of SkipNodes.</li>
+<li>Each SkipNode can be accessed by invoking the getNode() method in SkipList with an index. And we have the idea about the size of SkipList with its size() method.</li>
+<li>Now we have to traverse both List and SkipList to print out those object items in the two different data structures for some purpose. </li>
+</ul>
+</li>
+<li>Merge Tow Menus<ul>
+<li>A waitress of Pancake House keeps a breakfast menu which uses an ArrayList to hold its menu items.</li>
+<li>And a waitress of Diner keeps a lunch menu which uses an Array to hold its menu items.</li>
+<li>Now, these two restaurants are merged and tend to provide service in one place, so a waitress should keep both menus on hand.</li>
+<li>How to the waitress print two different menu representations at a time?</li>
+</ul>
+</li>
+</ul>
+<h1 id="Composite-Pattern"><a href="#Composite-Pattern" class="headerlink" title="Composite Pattern"></a>Composite Pattern</h1><h2 id="Design-Aspect-6"><a href="#Design-Aspect-6" class="headerlink" title="Design Aspect"></a>Design Aspect</h2><p><strong>Structure and composition of an object</strong></p>
+<ul>
+<li>Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly.</li>
+</ul>
+<h2 id="Problem-6"><a href="#Problem-6" class="headerlink" title="Problem"></a>Problem</h2><ul>
+<li>The user can group components to form larger components, which in turn can be grouped to form still larger components.</li>
+</ul>
+<h2 id="Graph-6"><a href="#Graph-6" class="headerlink" title="Graph"></a>Graph</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/GgSJ042.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="Steps-6"><a href="#Steps-6" class="headerlink" title="Steps"></a>Steps</h2><p><strong>Step 1.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">// Employee.java</div><div class="line">import java.util.ArrayList;</div><div class="line">import java.util.List;</div><div class="line"></div><div class="line">public class Employee&#123;</div><div class="line">    private String name;</div><div class="line">    private String dept;</div><div class="line">    private int salary;</div><div class="line">    private List&lt;Employee&gt; subordinates;</div><div class="line"></div><div class="line">    public Employee(String name, String dept, int sal)&#123;</div><div class="line">        this.name = name;</div><div class="line">        this.dept = dept;</div><div class="line">        this.salary = sal;</div><div class="line">        subordinates = new ArrayList&lt;Employee&gt;();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void add(Employee e)&#123;</div><div class="line">        subordinates.add(e);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void remove(Employee e)&#123;</div><div class="line">        subordinates.remove(e);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public List&lt;Employee&gt; getSubordinates()&#123;</div><div class="line">        return subordinates;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public String toString()&#123;</div><div class="line">        return (&quot;Employee : [Name : &quot; + name + &quot;, dept : &quot; + dept + &quot;, salary : &quot; + salary + &quot; ]&quot;);    </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 2.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">// CompositePatternDemo.java</div><div class="line">public class CompositePatternDemo&#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        Employee CEO = new Employee(&quot;John&quot;, &quot;CEO&quot;, 30000);</div><div class="line">        Employee headSales = new Employee(&quot;Robert&quot;, &quot;Head Sales&quot;, 20000);</div><div class="line">        Employee headMarketing = new Employee(&quot;Micheal&quot;, &quot;Head Marketing&quot;, 20000);</div><div class="line">        Employee clerk1 = new Employee(&quot;Laura&quot;, &quot;Marketing&quot;, 10000);</div><div class="line">        Employee clerk2 = new Employee(&quot;Bob&quot;, &quot;Marketing&quot;, 10000);</div><div class="line">        Employee salesExcutive1 = new Employee(&quot;Richard&quot;, &quot;Sales&quot;, 10000);</div><div class="line">        Employee salesExcutive2 = new Employee(&quot;Rob&quot;, &quot;Sales&quot;, 10000);</div><div class="line">    </div><div class="line">        CEO.add(headSales);</div><div class="line">        CEO.add(headMarketing);</div><div class="line">        headSales.add(salesExcutive1);</div><div class="line">        headSales.add(salesExcutive2);</div><div class="line">        headMarketing.add(clerk1);</div><div class="line">        headMarketing.add(clerk2);</div><div class="line">    </div><div class="line">        System.out.println(CEO);</div><div class="line">        for (Employee headEmployee : CEO.getSubordinates())&#123;</div><div class="line">            System.out.println(headEmployee);</div><div class="line">            for (Employee employee : headEmployee.getSubordinates())&#123;</div><div class="line">                System.out.println(employee);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Example-Statement-6"><a href="#Example-Statement-6" class="headerlink" title="Example Statement"></a>Example Statement</h2><ul>
+<li>In schematic capture application,<ul>
+<li>There are some basic components can be drawn such as Text, Line, and Rectangle.</li>
+<li>The user can group basic components to form larger components, which in turn can be grouped to form still larger components.</li>
+</ul>
+</li>
+<li>Merge two menus extends,<ul>
+<li>A dessert submenu is going to be added to the Diner menu.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Facade-Pattern"><a href="#Facade-Pattern" class="headerlink" title="Facade Pattern"></a>Facade Pattern</h1><h2 id="Design-Aspect-7"><a href="#Design-Aspect-7" class="headerlink" title="Design Aspect"></a>Design Aspect</h2><p><strong>Interface to a subsystem</strong></p>
+<ul>
+<li>Provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.</li>
+</ul>
+<h2 id="Problem-7"><a href="#Problem-7" class="headerlink" title="Problem"></a>Problem</h2><ul>
+<li>A common design goal is to minimize the communication and dependencies between subsystems.</li>
+</ul>
+<h2 id="Graph-7"><a href="#Graph-7" class="headerlink" title="Graph"></a>Graph</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/rzkQza3.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="Steps-7"><a href="#Steps-7" class="headerlink" title="Steps"></a>Steps</h2><p><strong>Step 1.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// Shape.java</div><div class="line">public interface Shape&#123;</div><div class="line">    void draw();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 2.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">// Rectangle.java</div><div class="line">pulic class Rectangle implements Shape&#123;</div><div class="line">    @Override</div><div class="line">    public void draw()&#123;</div><div class="line">        System.out.println(&quot;Rectangle::draw()&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">// Circle.java</div><div class="line">pulic class Circle implements Shape&#123;</div><div class="line">    @Override</div><div class="line">    public void draw()&#123;</div><div class="line">        System.out.println(&quot;Circle::draw()&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">// Square.java</div><div class="line">pulic class Square implements Shape&#123;</div><div class="line">    @Override</div><div class="line">    public void draw()&#123;</div><div class="line">        System.out.println(&quot;Square::draw()&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 3.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// ShapeMaker.java</div><div class="line">public class ShapeMaker&#123;</div><div class="line">    private Shape circle;</div><div class="line">    private Shape rectangle;</div><div class="line">    private Shape square;</div><div class="line">    </div><div class="line">    public ShapeMaker()&#123;</div><div class="line">        circle = new Circle();</div><div class="line">        rectangle = new Rectangle();</div><div class="line">        square = new Square();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public void drawCircle()&#123;</div><div class="line">        circle.draw();</div><div class="line">    &#125;</div><div class="line">    public void drawRectangle()&#123;</div><div class="line">        rectangle.draw();</div><div class="line">    &#125;</div><div class="line">    public void drawSquare()&#123;</div><div class="line">        square.draw();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 4.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// FacadePatternDemo.java</div><div class="line">public class FacadePatternDemo&#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        ShapeMaker shapeMaker = new ShapeMaker();</div><div class="line">        shapeMaker.drawCircle();</div><div class="line">        shapeMaker.drawRectangle();</div><div class="line">        shapeMakder.drawSquare();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Example-Statement-7"><a href="#Example-Statement-7" class="headerlink" title="Example Statement"></a>Example Statement</h2><ul>
+<li>A Programming Environment<ul>
+<li>A compiler subsystem contains classes such as Scanner, Parser, ProgramNode, and BytecodeStream.</li>
+<li>The client classes need to use Scanner, Parser, ProgramNode, and BytecodeStream to compile some code. </li>
+</ul>
+</li>
+<li>Home Sweet Home Theater<ul>
+<li>A Home Theater consists of an amplifier, a DVD player, a projector, a screen, a popcorn popper, and theater lights.</li>
+<li>A user can watch a movie through the following process:</li>
+<li>Turn on the popcorn popper</li>
+<li>Start the popper popping</li>
+<li>Dim the lights</li>
+<li>Put the screen down</li>
+<li>Turn the projector on</li>
+<li>Turn the sound amplifier on</li>
+<li>Turn the DVD player on</li>
+<li>Start the DVD player playing</li>
+</ul>
+</li>
+</ul>
+<h1 id="Template-Method-Pattern"><a href="#Template-Method-Pattern" class="headerlink" title="Template Method Pattern"></a>Template Method Pattern</h1><h2 id="Design-Aspect-8"><a href="#Design-Aspect-8" class="headerlink" title="Design Aspect"></a>Design Aspect</h2><p><strong>Steps of an algorithm</strong></p>
+<ul>
+<li>Define the skeleton of an algorithm in an operation, deferring some steps to subclasses.</li>
+<li>Templete Method lets subclasses redefine certain steps of an algorithm without changing the algorithm’s structure.</li>
+</ul>
+<h2 id="Problem-8"><a href="#Problem-8" class="headerlink" title="Problem"></a>Problem</h2><ul>
+<li>Two classes with code duplications would be modified at the same time if the duplicate code is being changed.</li>
+</ul>
+<h2 id="Graph-8"><a href="#Graph-8" class="headerlink" title="Graph"></a>Graph</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/ra4WMe7.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="Steps-8"><a href="#Steps-8" class="headerlink" title="Steps"></a>Steps</h2><p><strong>Step 1.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// Game.java</div><div class="line">public abstract class Game&#123;</div><div class="line">    abstract void initialize();</div><div class="line">    abstract void statePlay();</div><div class="line">    abstract void endPlay();</div><div class="line">    </div><div class="line">    public final void play()&#123;</div><div class="line">        initialize();</div><div class="line">        startPlay();</div><div class="line">        endPlay();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 2.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">// Cricket.java</div><div class="line">public class Cricket extends Game&#123;</div><div class="line">    @Override</div><div class="line">    void endPlay()&#123;</div><div class="line">        System.out.println(&quot;Cricket Game Finished!&quot;);</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    void initialize()&#123;</div><div class="line">        System.out.println(&quot;Cricket Game Inisialized!&quot;);</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    void startPlay()&#123;</div><div class="line">        System.out.println(&quot;Cricket Game Start!&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// Football.java</div><div class="line">public class Football extends Game&#123;</div><div class="line">    @Override</div><div class="line">    void endPlay()&#123;</div><div class="line">        System.out.println(&quot;Football Game Finished!&quot;);</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    void initialize()&#123;</div><div class="line">        System.out.println(&quot;Football Game Inisialized!&quot;);</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    void startPlay()&#123;</div><div class="line">        System.out.println(&quot;Football Game Start!&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 3.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// TemplatePatternDemo.java</div><div class="line">public class TemplatePatternDemo&#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        Game game = new Cricket();</div><div class="line">        game.play();</div><div class="line">        System.out.println();</div><div class="line">        game = new Football();</div><div class="line">        game.play();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Example-Statement-8"><a href="#Example-Statement-8" class="headerlink" title="Example Statement"></a>Example Statement</h2><ul>
+<li>Opening Documents in Applications<ul>
+<li>In order to open a text document, a text application</li>
+<li>will:</li>
+<li>Check if the text document can be opened</li>
+<li>Create a text document object and hold a reference of the text document object.</li>
+<li>Add the text document object to the Application.</li>
+<li>Read text document.</li>
+<li>Opening Documents in Applications</li>
+<li>There is another new requirement.</li>
+<li>Opening a spreadsheet document with a spreadsheet application carries the same steps in the algorithm(process) as the text document.</li>
+<li>Check if the spreadsheet document can be opened.</li>
+<li>Create a spreadsheet document object and hold a reference of the spreadsheet document object.</li>
+<li>Add the spreadsheet document object to the Application.</li>
+<li>Read spreadsheet document.</li>
+<li>Prepare Caffeine Beverages</li>
+<li>Please follow these recipes precisely when preparing Starbuzz beverages</li>
+<li>Starbuzz Coffee Recipe</li>
+<li>Boil some water </li>
+<li>Brew coffee in boiling water</li>
+<li>Pour Coffee in cup</li>
+<li>Add sugar and milk</li>
+<li>Starbuzz Tea Recipe</li>
+<li>Boil some water</li>
+<li>Steep tea in boiling water</li>
+<li>Pour tea in cup</li>
+<li>Add lemon</li>
+</ul>
+</li>
+</ul>
+<h1 id="Command-Pattern"><a href="#Command-Pattern" class="headerlink" title="Command Pattern"></a>Command Pattern</h1><h2 id="Design-Aspect-9"><a href="#Design-Aspect-9" class="headerlink" title="Design Aspect"></a>Design Aspect</h2><p><strong>When and how a request is fulfilled</strong></p>
+<ul>
+<li>Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.</li>
+</ul>
+<h2 id="Problem-9"><a href="#Problem-9" class="headerlink" title="Problem"></a>Problem</h2><ul>
+<li>The invoker object is subject to be modified once the set of the actions on a receiver is changed.</li>
+</ul>
+<h2 id="Graph-9"><a href="#Graph-9" class="headerlink" title="Graph"></a>Graph</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/9Vyj5FB.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="Steps-9"><a href="#Steps-9" class="headerlink" title="Steps"></a>Steps</h2><p><strong>Step 1.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// Order.java</div><div class="line">public interface Order&#123;</div><div class="line">    void execute();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 2.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// Stock.java</div><div class="line">public class Stock&#123;</div><div class="line">    private String name = &quot;ABC&quot;;</div><div class="line">    private int quantity = 10;</div><div class="line"></div><div class="line">    public void buy()&#123;</div><div class="line">        System.out.println(&quot;Stock [ Name: &quot; + name + &quot;, Quantity: &quot; + quantity + &quot; ] bought&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void sell()&#123;</div><div class="line">        System.out.println(&quot;Stock [ Name: &quot; + name + &quot;Quantity: &quot; + quantity + &quot; ] sold&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 3.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">// BuyStock.java</div><div class="line">public class BuyStock implements Order&#123;</div><div class="line">    private Stock abcStock;</div><div class="line">    public BuyStock(Stock abcStock)&#123;</div><div class="line">        this.abcStock = abcStock;</div><div class="line">    &#125;</div><div class="line">    public void execute()&#123;</div><div class="line">        abcstock.buy();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// SellStock.java</div><div class="line">public class SellStock implements Order&#123;</div><div class="line">    private Stock abcStock;</div><div class="line">    public SellStock(Stock abcStock)&#123;</div><div class="line">        this.abcStock = abcStock;</div><div class="line">    &#125;</div><div class="line">    public void execute()&#123;</div><div class="line">        abcStock.sell();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 4.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">// Broker.java</div><div class="line">import java.util.ArrayList;</div><div class="line">import java.util.List;</div><div class="line"></div><div class="line">public class Broker&#123;</div><div class="line">    private List&lt;Order&gt; orderList = new ArrayList&lt;Order&gt;();</div><div class="line"></div><div class="line">    public void takeOrder(Order order)&#123;</div><div class="line">        orderList.add(order);</div><div class="line">    &#125;</div><div class="line">    public void placeOrders()&#123;</div><div class="line">        for (Order order : orderList)&#123;</div><div class="line">            order.execute();</div><div class="line">        &#125;</div><div class="line">        orderList.clear();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 5.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">// CommandPatternDemo.java</div><div class="line">public class CommandPatternDemo&#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        Stock abcStock = new Stock();</div><div class="line">    </div><div class="line">        BuyStock buyStockOrder = new BuyStockOrder(abcStock);</div><div class="line">        SellStock sellStockOrder = new SellStockOrder(abcStock);</div><div class="line">    </div><div class="line">        Broker broker = new Broker();</div><div class="line">        broker.takeOrder(buyStockOrder);</div><div class="line">        broker.takeOrder(sellStockOrder);</div><div class="line">    </div><div class="line">        broker.placeOrder();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Example-Statement-9"><a href="#Example-Statement-9" class="headerlink" title="Example Statement"></a>Example Statement</h2><ul>
+<li>Remote Control,<ul>
+<li>The remote control can control a stereo remotely.</li>
+<li>While a stereo is switched on by the remote control, the CD and volume will be set at the same time.</li>
+</ul>
+</li>
+<li>Cut, Copy, Paste on a Document,<ul>
+<li>An editor application carries a document.</li>
+<li>A menu in the editor application contains some menu items which performs three specific operations such as cut, copy, and paste on a document.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Adapter-Pattern"><a href="#Adapter-Pattern" class="headerlink" title="Adapter Pattern"></a>Adapter Pattern</h1><h2 id="Design-Aspect-10"><a href="#Design-Aspect-10" class="headerlink" title="Design Aspect"></a>Design Aspect</h2><p><strong>Interface to an object</strong></p>
+<ul>
+<li>Convert the interface of a class inter another interface clients expect. Adapter lets classes work together that couldn’t otherwise because of incompatible interfaces.</li>
+</ul>
+<h2 id="Problem-10"><a href="#Problem-10" class="headerlink" title="Problem"></a>Problem</h2><ul>
+<li>The request method of the requester object should be modified once it changes its receiver class with a new interface.</li>
+</ul>
+<h2 id="Graph-10"><a href="#Graph-10" class="headerlink" title="Graph"></a>Graph</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/xfy4ow5.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="Steps-10"><a href="#Steps-10" class="headerlink" title="Steps"></a>Steps</h2><p><strong>Step 1.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// MediaPlayer.java</div><div class="line">public interface MediaPlayer&#123;</div><div class="line">    public void play(String audioType, String fileName);</div><div class="line">&#125;</div><div class="line"></div><div class="line">// AdvancedMediaPlayer.java</div><div class="line">public interface AdvancedMediaPlayer&#123;</div><div class="line">    public void playVlc(String fileName);</div><div class="line">    public void playMp4(String fileName);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 2.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">// VlcPlayer.java</div><div class="line">public class VlcPlayer implements AdvancedMediaPlayer&#123;</div><div class="line">    @Override</div><div class="line">    public void playVlc(String fileName)&#123;</div><div class="line">        System.out.println(&quot;Playing vlc file. Name: &quot; + fileName);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public void playMp4(String fileName)&#123;&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// Mp4Player.java</div><div class="line">public class Mp4Player implements AdvancedMediaPlayer&#123;</div><div class="line">    @Override</div><div class="line">    public void playVlc(String fileName)&#123;&#125;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public void playMp4(String fileName)&#123;</div><div class="line">        System.out.println(&quot;Playing mp4 file. Name: &quot; + fileName);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 3.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// MediaAdapter.java</div><div class="line">public class MediaAdapter implements MediaPlayer&#123;</div><div class="line">    AdvancedMediaPlayer advancedMusicPlayer;</div><div class="line">    </div><div class="line">    public MediaAdapter(String audioType)&#123;</div><div class="line">        if (audioType.equalsIgnoreCase(&quot;vlc&quot;))&#123;</div><div class="line">            advancedMusicPlayer = new VlcPlayer();</div><div class="line">        &#125;</div><div class="line">        else if (audioType.equalsIgnoreCase(&quot;mp4&quot;))&#123;</div><div class="line">             advancedMusicPlayer = new Mp4Player();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">           </div><div class="line">    @Override</div><div class="line">    public void play(String audioType, String fileName)&#123;</div><div class="line">        if (audioType.equalsIgnoreCase(&quot;vlc&quot;))&#123;</div><div class="line">            advancedMusicPlayer.playVlc(fileName);</div><div class="line">        &#125;</div><div class="line">        else if (audioType.equalsIgnoreCase(&quot;mp4&quot;))&#123;</div><div class="line">             advancedMusicPlayer.playMp4(fileName);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 4.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// AudioPlayer.java</div><div class="line">public class AudioPlayer implements MediaPlayer&#123;</div><div class="line">    MediaAdapter mediaAdapter;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public void play(String audioType, String fileName)&#123;</div><div class="line">        if(audioType.equalsIgnoreCase(&quot;mp3&quot;))&#123;</div><div class="line">            System.out.println(&quot;Playing mp3 file. Name: &quot; + fileName);			</div><div class="line">        &#125;</div><div class="line">        else if(audioType.equalsIgnoreCase(&quot;vlc&quot;) || audioType.equalsIgnoreCase(&quot;mp4&quot;))&#123;</div><div class="line">            mediaAdapter = new MediaAdapter(audioType);</div><div class="line">            mediaAdapter.play(audioType, fileName);</div><div class="line">        &#125;</div><div class="line">        else&#123;</div><div class="line">            System.out.println(&quot;Invalid media. &quot; + audioType + &quot; format not supported&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 5.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// AdapterPatternDemo.java</div><div class="line">public class AdapterPatternDemo&#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        AudioPlayer audioPlayer = new AudioPlayer();</div><div class="line">    </div><div class="line">        audioPlayer.play(&quot;mp3&quot;, &quot;beyond the horizon.mp3&quot;);</div><div class="line">        audioPlayer.play(&quot;mp4&quot;, &quot;alone.mp4&quot;);</div><div class="line">        audioPlayer.play(&quot;vlc&quot;, &quot;far far away.vlc&quot;);</div><div class="line">        audioPlayer.play(&quot;avi&quot;, &quot;mind me.avi&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Example-Statement-10"><a href="#Example-Statement-10" class="headerlink" title="Example Statement"></a>Example Statement</h2><ul>
+<li>New Vendor in Existing Software,<ul>
+<li>You’ve got an existing client class that use a vendor class library.</li>
+<li>After a while you found another vendor class library is better, but the new vendor designed their interfaces differently.</li>
+</ul>
+</li>
+<li>A Text Shape,<ul>
+<li>A drawing editor</li>
+<li>Want to add a TextShape that using display method to display text and using boundingBox method to get bounding.</li>
+<li>A drawing editor</li>
+<li>Meanwhile, an external library already provide a TextView class using display method to display text and using getExtent method to get bounding.</li>
+<li>We’d like to reuse TextView to display text of shape.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Builder-Pattern"><a href="#Builder-Pattern" class="headerlink" title="Builder Pattern"></a>Builder Pattern</h1><h2 id="Design-Aspect-11"><a href="#Design-Aspect-11" class="headerlink" title="Design Aspect"></a>Design Aspect</h2><p><strong>how a composite object gets created</strong></p>
+<ul>
+<li>Separate the construction of a complex object from its representation so that the same construction process can create different representations.</li>
+</ul>
+<h2 id="Problem-11"><a href="#Problem-11" class="headerlink" title="Problem"></a>Problem</h2><ul>
+<li>Construct complex objects step-by-step, and return the product as a final step.</li>
+</ul>
+<h2 id="Graph-11"><a href="#Graph-11" class="headerlink" title="Graph"></a>Graph</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/DIUJJh4.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="Steps-11"><a href="#Steps-11" class="headerlink" title="Steps"></a>Steps</h2><p><strong>Step 1.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// Item.java</div><div class="line">public interface Item&#123;</div><div class="line">    public String name();</div><div class="line">    public Packing packing();</div><div class="line">    public float price();</div><div class="line">&#125;</div><div class="line"></div><div class="line">// Packing.java</div><div class="line">public interface Packing&#123;</div><div class="line">    public String pack();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 2.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">// Wrapper.java</div><div class="line">public class Wrapper implements Packing&#123;</div><div class="line">    @Override</div><div class="line">    public String pack()&#123;</div><div class="line">        return &quot;Wrapper&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">// Bottle.java</div><div class="line">public class Bottle implements Packing&#123;</div><div class="line">    @Override</div><div class="line">    public String pack()&#123;</div><div class="line">        return &quot;Bottle&quot;;    </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 3.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">// Burger.java</div><div class="line">public abstract class Burger implements Item&#123;</div><div class="line">    @Override</div><div class="line">    public Packing packing()&#123;</div><div class="line">        return new Wrapper();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public abstract float price();</div><div class="line">&#125;</div><div class="line"></div><div class="line">// ColdDrink.java</div><div class="line">public abstract class ColdDrink implements Item&#123;</div><div class="line">    @Override</div><div class="line">    public Packing packing()&#123;</div><div class="line">        return new Bottle();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public abstract float price();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 4.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">// VegBurger.java</div><div class="line">public class VegBurger extends Burger&#123;</div><div class="line">    @Override</div><div class="line">    public float price()&#123;</div><div class="line">        return 25.0f;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public String name()&#123;</div><div class="line">        return &quot;Veg Burger&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// ChickenBurger.java</div><div class="line">public class ChickenBurger extends Burger&#123;</div><div class="line">    @Override</div><div class="line">    public float price()&#123;</div><div class="line">        return 50.5f;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public String name()&#123;</div><div class="line">        return &quot;Chicken Burger&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// Coke.java</div><div class="line">public class VegBurger extends ColdDrink&#123;</div><div class="line">    @Override</div><div class="line">    public float price()&#123;</div><div class="line">        return 30.0f;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public String name()&#123;</div><div class="line">        return &quot;Coke&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// Pepsi.java</div><div class="line">public class Pepsi extends ColdDrink&#123;</div><div class="line">    @Override</div><div class="line">    public float price()&#123;</div><div class="line">        return 35.0f;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public String name()&#123;</div><div class="line">        return &quot;Pepsi&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 5.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">// Meal.java</div><div class="line">import java.util.ArrayList;</div><div class="line">import java.util.List;</div><div class="line"></div><div class="line">public class Meal&#123;</div><div class="line">    private List&lt;Item&gt; items = new ArrayList&lt;Item&gt;();</div><div class="line">&#125;</div><div class="line"></div><div class="line">    public void addItem(Item item)&#123;</div><div class="line">        items.add(item);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public float getCost()&#123;</div><div class="line">        flaot cost = 0.0f;</div><div class="line">        for (Item item : items)&#123;</div><div class="line">            cost += item.price();</div><div class="line">        &#125;</div><div class="line">        return cost;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void showItems()&#123;</div><div class="line">        for (Item item : items)&#123;</div><div class="line">            System.out.println(&quot;Item : &quot; + item.name());</div><div class="line">            System.out.println(&quot;, Packing : &quot; + item.packing().pack());</div><div class="line">            System.out.println(&quot;, Price : &quot; + item.price());</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 6.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">// MealBuilder.java</div><div class="line">public class MealBuilder&#123;</div><div class="line">    public Meal prepareVegMeal&#123;</div><div class="line">        Meal meal = new Meal();</div><div class="line">        meal.addItem(new VegBurger());</div><div class="line">        meal.addItem(new Coke());</div><div class="line">        return meal;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public Meal prepareNonVegMeal()&#123;</div><div class="line">        Meal meal = new Meal();</div><div class="line">        meal.addItem(new ChickenBurger());</div><div class="line">        meal.addItem(new Pepsi());</div><div class="line">        return meal;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 7.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">// BuilderPatternDemo.java</div><div class="line">public class BuilderPatternDemo&#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        MealBuilder mealBuilder = new MealBuilder();</div><div class="line">    </div><div class="line">        Meal vegMeal = mealBuilder.prepareVegMeal();</div><div class="line">        System.out.println(&quot;Veg Meal&quot;);</div><div class="line">        vegMeal.showItems();</div><div class="line">        System.out.println(&quot;Total Cost: &quot; + vegMeal.getCost());</div><div class="line">    </div><div class="line">        Meal nonVegMeal = mealBuilder.prepareNonVegMeal();</div><div class="line">        System.out.println(&quot;\nNon-Veg Meal&quot;);</div><div class="line">        nonVegMeal.showItems();</div><div class="line">        System.out.println(&quot;Total Cost: &quot; + nonVegMeal.getCost());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Example-Statement-11"><a href="#Example-Statement-11" class="headerlink" title="Example Statement"></a>Example Statement</h2><ul>
+<li>A RTF(Rich Text Fromat) Converter,<ul>
+<li>A reader for the RTF (Rich Text Format) document exchange format should be able to convert RTF to many text formats.</li>
+<li>The reader converts RTF documents into TeX text or into a text widget by recognizing different RTF tokens(Character, Font Change and Paragraph).</li>
+</ul>
+</li>
+<li>A Vacation Planner,<ul>
+<li>Patternsland wants to build a vacation planner.</li>
+<li>A vacation planner can choose a hotel and various types of admission tickets, make restaurant reservations, even book special events and day. The difference types vacation (normal, backpacking) will have difference options.</li>
+</ul>
+</li>
+</ul>
+<h1 id="State-Pattern"><a href="#State-Pattern" class="headerlink" title="State Pattern"></a>State Pattern</h1><h2 id="Design-Aspect-12"><a href="#Design-Aspect-12" class="headerlink" title="Design Aspect"></a>Design Aspect</h2><p><strong>states of an object</strong></p>
+<ul>
+<li>Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.</li>
+</ul>
+<h2 id="Problem-12"><a href="#Problem-12" class="headerlink" title="Problem"></a>Problem</h2><ul>
+<li>An object’s behavior depends on its state, and it must change its behavior at run-time depending on that state.</li>
+</ul>
+<h2 id="Graph-12"><a href="#Graph-12" class="headerlink" title="Graph"></a>Graph</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/HtFKjRo.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="Steps-12"><a href="#Steps-12" class="headerlink" title="Steps"></a>Steps</h2><p><strong>Step 1.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// State.java</div><div class="line">public interface State&#123;</div><div class="line">    public void doAction(Context context);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 2.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// StartState.java</div><div class="line">public class StartState implements State&#123;</div><div class="line">    public void doAction(Context context)&#123;</div><div class="line">        System.out.println(&quot;Player is in start state&quot;);</div><div class="line">        context.setState(this);</div><div class="line">    &#125;</div><div class="line">                                         </div><div class="line">    public String toString()&#123;</div><div class="line">        return &quot;Start State&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// StopState.java</div><div class="line">public class StopState implements State&#123;</div><div class="line">    public void doAction(Context context)&#123;</div><div class="line">        System.out.println(&quot;Player is in stop state&quot;);</div><div class="line">        context.setState(this);</div><div class="line">    &#125;</div><div class="line">                                         </div><div class="line">    public String toString()&#123;</div><div class="line">        return &quot;Stop State&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 3.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">// Context.java</div><div class="line">public class Context&#123;</div><div class="line">    private State state;</div><div class="line">    public Context()&#123;</div><div class="line">        state = null;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public void setState(State state)&#123;</div><div class="line">        this.state = state;    </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public State getState()&#123;</div><div class="line">        return state;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 4.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// StatePatternDemo.java</div><div class="line">public class StatePatternDemo&#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        Context context = new Context();</div><div class="line">    </div><div class="line">        StartState startState = new StartState();</div><div class="line">        startState.doAction(context);</div><div class="line">        System.out.println(context.getState().toString());</div><div class="line">        StopState stopState = new StopState();</div><div class="line">        stopState.doAction(context);</div><div class="line">        System.out.println(context.getState().toString());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Example-Statement-12"><a href="#Example-Statement-12" class="headerlink" title="Example Statement"></a>Example Statement</h2><ul>
+<li>A TCP Connection,<ul>
+<li>A class TCPConnection that represents a network connection.</li>
+<li>When a TCPConnection object receives an Open request from other objects, it responds differently depending on its current state. A TCPConnection object can be in one of several different states: Established, Listening, and Closed.</li>
+</ul>
+</li>
+<li>A Gumball Machine<ul>
+<li>A GumballMachine has four actions: Insert Quarter, Eject Quarter, Turn Crank, and Dispense.</li>
+<li>There are four states in the GumballMachine: No Quarter, Has Quarter, Out of Gumballs and Gumball Sold. As the following state diagram. </li>
+</ul>
+</li>
+</ul>
+<h1 id="Visitor-Pattern"><a href="#Visitor-Pattern" class="headerlink" title="Visitor Pattern"></a>Visitor Pattern</h1><h2 id="Design-Aspect-13"><a href="#Design-Aspect-13" class="headerlink" title="Design Aspect"></a>Design Aspect</h2><p><strong>Operations that can be applied to objects<br>without changing their classes</strong></p>
+<ul>
+<li>Represent an operation to be performed on the elements of an object structure.</li>
+<li>Visitor lets you define a new operation without changing the classes of the elements on which it operates. </li>
+</ul>
+<h2 id="Problem-13"><a href="#Problem-13" class="headerlink" title="Problem"></a>Problem</h2><ul>
+<li>The problem is that distributing all these operations across the various classes in an object structure leads to a system that’s hard to understand, maintain, and change. Moreover, adding a new operation usually requires recompiling all of these classes. </li>
+</ul>
+<h2 id="Graph-13"><a href="#Graph-13" class="headerlink" title="Graph"></a>Graph</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/g6FNfJg.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="Steps-13"><a href="#Steps-13" class="headerlink" title="Steps"></a>Steps</h2><p><strong>Step 1.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// ComputerPart.java</div><div class="line">public interface ComputerPart&#123;</div><div class="line">    public void accept(ComputerPartVisitor computerPartVisitor);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 2.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">// Keyboard.java</div><div class="line">public class Keyboard implements ComputerPart&#123;</div><div class="line">    @Override</div><div class="line">    public void accept(ComputerPartVisitor computerPartVisitor)&#123;</div><div class="line">        computerPartVisitor.visit(this);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// Monitor.java</div><div class="line">public class Monitor implements ComputerPart&#123;</div><div class="line">    @Override</div><div class="line">    public void accept(ComputerPartVisitor computerPartVisitor)&#123;</div><div class="line">        computerPartVisitor.visit(this);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// Mouse.java</div><div class="line">public class Mouse implements ComputerPart&#123;</div><div class="line">    @Override</div><div class="line">    public void accept(ComputerPartVisitor computerPartVisitor)&#123;</div><div class="line">        computerPartVisitor.visit(this);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// Computer.java</div><div class="line">public class Computer implements ComputerPart&#123;</div><div class="line">    ComputerPart[] parts;</div><div class="line">                                              </div><div class="line">    public Computer()&#123;</div><div class="line">        parts = new ComputerPart[] &#123;new Mouse(), new Keyboard(), new Monitor()&#125;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void accept(ComputerPartVisitor computerPartVisitor)&#123;</div><div class="line">        for (int i = 0; i &lt; parts.length; i++)&#123;</div><div class="line">            parts[i].accept(computerPartVisitor);</div><div class="line">        &#125;</div><div class="line">        computerPartVisitor.visit(this);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 3.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// ComputerPartVisitor.java</div><div class="line">public interface ComputerPartVisitor&#123;</div><div class="line">    public void visit(Computer computer);</div><div class="line">    public void visit(Mouse mouse);</div><div class="line">    public void visit(Keyboard keyboard);</div><div class="line">    public void visit(Monitor monitor);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 4.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// ComputerPartDisplayVisitor.java</div><div class="line">public class ComputerPartDisplayVisitor ComputerPartVisitor&#123;</div><div class="line">    @Override</div><div class="line">   public void visit(Computer computer) &#123;</div><div class="line">      System.out.println(&quot;Displaying Computer.&quot;);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   @Override</div><div class="line">   public void visit(Mouse mouse) &#123;</div><div class="line">      System.out.println(&quot;Displaying Mouse.&quot;);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   @Override</div><div class="line">   public void visit(Keyboard keyboard) &#123;</div><div class="line">      System.out.println(&quot;Displaying Keyboard.&quot;);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   @Override</div><div class="line">   public void visit(Monitor monitor) &#123;</div><div class="line">      System.out.println(&quot;Displaying Monitor.&quot;);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 5.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// VisitorPatternDemo.java</div><div class="line">public class VisitorPatternDemo&#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        ComputerPart computer = new Computer();</div><div class="line">        computer.accept(new ComputerPartDisplayVisitor());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Example-Statement-13"><a href="#Example-Statement-13" class="headerlink" title="Example Statement"></a>Example Statement</h2><ul>
+<li>Compiler and AST,<ul>
+<li>There are several nodes in an abstract syntax tree (AST), such as VariableRefNode and AssignmentNode, which represent respective parts in source code and keep the code information.</li>
+<li>Each node currently provides three interfaces for the compiler to use in order to check its type, generate code and print out the content.</li>
+</ul>
+</li>
+<li>Nutrition Retrieval from A Restaurant Menu,<ul>
+<li>The menu components of the Diner restaurant which comprises menu items and diner menus can be printed by a waitress.</li>
+<li>Each diner menu consists of several menu items.</li>
+<li>The Diner restaurant would like to provide calories, protein and carbs information for each menu item.</li>
+</ul>
+</li>
+<li>Equipment Power Consumption,<ul>
+<li>There are three types of equipment in the inventory, such as chassis, buses, and floppies. Among all the equipment, Chassis is composited of others.</li>
+<li>Chassis provides an interface for the creation of an iterator, which iterates all the equipment in one chassis with next and hasNext operations.</li>
+<li>Each equipment provides its power consumption and cost in addition.</li>
+<li>Chassis provides a sum of power consumption or cost for all its components.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Singleton-Pattern"><a href="#Singleton-Pattern" class="headerlink" title="Singleton Pattern"></a>Singleton Pattern</h1><h2 id="Design-Aspect-14"><a href="#Design-Aspect-14" class="headerlink" title="Design Aspect"></a>Design Aspect</h2><p><strong>the sole instance of a class</strong></p>
+<ul>
+<li>Ensure a class only has one instance, and provide a global point of access to it</li>
+</ul>
+<h2 id="Problem-14"><a href="#Problem-14" class="headerlink" title="Problem"></a>Problem</h2><ul>
+<li>It’s important for some classes to have exactly one instance and ensure that the instance is easily accessible. </li>
+<li>A global variable makes an object accessible, but it doesn’t keep you from instantiating multiple objects.</li>
+</ul>
+<h2 id="Graph-14"><a href="#Graph-14" class="headerlink" title="Graph"></a>Graph</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/DE9I4fK.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="Steps-14"><a href="#Steps-14" class="headerlink" title="Steps"></a>Steps</h2><p><strong>Step 1.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">// SingleObject.java</div><div class="line">public class SingleObject&#123;</div><div class="line">    private static SingleObject instance = new SingleObject();</div><div class="line"></div><div class="line">    private SingleObject()&#123;&#125;</div><div class="line"></div><div class="line">    public static SingleObject getInstance()&#123;</div><div class="line">        return instance;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void showMessage()&#123;</div><div class="line">        System.out.println(&quot;Hello World!&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 1.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// SingletonPatternDemo.java</div><div class="line">public class SingletonPatternDemo&#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        SingleObject object = SingleObject.getInstance();</div><div class="line">        object.showMessage();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Example-Statement-14"><a href="#Example-Statement-14" class="headerlink" title="Example Statement"></a>Example Statement</h2><ul>
+<li>Chocolate Boiler,<ul>
+<li>A chocolate boiler is used to boil chocolate.</li>
+<li>Before boiling chocolate with the boiler, you have to make sure that the boiler is now empty and then fill chocolate in. Besides, you can’t boil chocolate again while the chocolate has already been boiled.</li>
+<li>After boiling, it is time to drain out the boiled chocolate and make the boiler empty again.</li>
+<li>In order to prevent some unexpected situation, it is not allowed to have multiple instances of the chocolate boiler in the system.</li>
+</ul>
+</li>
+</ul>
+<h1 id="FlyWeight-Pattern"><a href="#FlyWeight-Pattern" class="headerlink" title="FlyWeight Pattern"></a>FlyWeight Pattern</h1><h2 id="Design-Aspect-15"><a href="#Design-Aspect-15" class="headerlink" title="Design Aspect"></a>Design Aspect</h2><p><strong>Storage costs of objects</strong></p>
+<ul>
+<li>Use sharing to support large numbers of finegrained objects efficiently.</li>
+</ul>
+<h2 id="Problem-15"><a href="#Problem-15" class="headerlink" title="Problem"></a>Problem</h2><ul>
+<li>Some applications could benefit from using objects throughout their design, but a naive implementation would be prohibitively expensive.</li>
+</ul>
+<h2 id="Graph-15"><a href="#Graph-15" class="headerlink" title="Graph"></a>Graph</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/NT0Bzcj.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="Steps-15"><a href="#Steps-15" class="headerlink" title="Steps"></a>Steps</h2><p><strong>Step 1.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// Shape.java</div><div class="line">public interface Shape&#123;</div><div class="line">    void draw();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 2.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">// Circle.java</div><div class="line">public class Circle implements Shape&#123;</div><div class="line">    private String color;</div><div class="line">    private int x;</div><div class="line">    private int y;</div><div class="line">    private int radius;</div><div class="line">    </div><div class="line">    public Circle(String color)&#123;</div><div class="line">        this.color = color;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public void setX(int x)&#123;</div><div class="line">        this.x = x;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public void setY(int y)&#123;</div><div class="line">        this.y = y;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public void setRadius(int radius)&#123;</div><div class="line">        this.radius = radius;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public void draw()&#123;</div><div class="line">        System.out.println(&quot;Circle: draw() [ Color: &quot; + color + &quot;, x: &quot; + x + &quot;, y: &quot; + y + &quot;, radius: &quot; + radius + &quot;]&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 3.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">// ShapeFactory.java</div><div class="line">import java.util.HashMap;</div><div class="line"></div><div class="line">public class ShapeFactory&#123;</div><div class="line">    private static final HashMap&lt;String, Shape&gt; circleMap = new HashMap();</div><div class="line">    public static Shape getCircle(String color)&#123;</div><div class="line">        Circle circle = (Circle)circle.get(color);</div><div class="line">        if (circle == null)&#123;</div><div class="line">            circle = new Circle(color);</div><div class="line">            circleMap.put(color, circle);</div><div class="line">            System.out.println(&quot;Creating circle of color: &quot; + color);</div><div class="line">        &#125;</div><div class="line">        return circle;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Step 4.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// FlyWeightPatternDemo.java</div><div class="line">public class FlyWeightPatternDemo&#123;</div><div class="line">    public static final String colors[] = &#123;&quot;Red&quot;, &quot;Green&quot;, &quot;Blue&quot;, &quot;White&quot;, &quot;Black&quot;&#125;;</div><div class="line">    public static void main(Sting[] args)&#123;</div><div class="line">        for (int i = 0; i &lt; 20; i++)&#123;</div><div class="line">            Circle circle = (Circle)ShapeFactory.getCircle(getRandomColor());</div><div class="line">            circle.setX(getRandomX());</div><div class="line">            circle.setY(getRandomY());</div><div class="line">            circle.setRadius(100);</div><div class="line">            circle.draw();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static String getRandomColor()&#123;</div><div class="line">        return colors[(int)(Math.random()*colors.length)];</div><div class="line">    &#125;</div><div class="line">    private static int getRandomX() &#123;</div><div class="line">        return (int)(Math.random()*100 );</div><div class="line">    &#125;</div><div class="line">    private static int getRandomY() &#123;</div><div class="line">        return (int)(Math.random()*100);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Example-Statement-15"><a href="#Example-Statement-15" class="headerlink" title="Example Statement"></a>Example Statement</h2><ul>
+<li>Document Editor,<ul>
+<li>A document editor uses objects to represent embedded elements like rows, columns and characters. The characters have X-Y locations, and they can draw themselves dynamically. </li>
+</ul>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Strategy-Pattern&quot;&gt;&lt;a href=&quot;#Strategy-Pattern&quot; class=&quot;headerlink&quot; title=&quot;Strategy Pattern&quot;&gt;&lt;/a&gt;Strategy Pattern&lt;/h1&gt;&lt;h2 id=&quot;Design-As
+    
+    </summary>
+    
+    
+      <category term="Design Pattern" scheme="http://yoursite.com/tags/Design-Pattern/"/>
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Sorting Algorithms</title>
@@ -3390,138 +3936,6 @@
       <category term="LSTM" scheme="http://yoursite.com/tags/LSTM/"/>
     
       <category term="Tensorflow" scheme="http://yoursite.com/tags/Tensorflow/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu16.04遠端桌面（remote desktop）設置</title>
-    <link href="http://yoursite.com/2017/07/25/Remote/"/>
-    <id>http://yoursite.com/2017/07/25/Remote/</id>
-    <published>2017-07-25T04:00:24.000Z</published>
-    <updated>2017-11-03T08:47:50.634Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Ubuntu上的遠端鏈接比起windows系統自帶的Remote Desktop需要配置的條件更多。網上也有許多不同的版本，本人嘗試之後發現了一些常見的問題，特在此總結可行的一般流程與常見問題的解決方式。</p>
-<h1 id="System-Config"><a href="#System-Config" class="headerlink" title="System Config"></a>System Config</h1><p><code>Ubuntu16.04</code> <code>Windows 10</code></p>
-<h1 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h1><p>1、如果需要從Ubuntu連接到Windows系統，則可以安裝Desktop</p>
-<ul>
-<li>sudo apt-get install ubuntu-desktop</li>
-</ul>
-<p>2、若只是從Windows鏈接到Ubuntu則跳過第一步，確保Ubuntu系統安裝了vnc服務，大部分系統會自行安裝，可以通過重複安裝確認。</p>
-<ul>
-<li>sudo apt-get install vnc4server（大部分只支持tightvncserver，建议选择后者）<br>或</li>
-<li>sudo apt-get install tightvncserver</li>
-</ul>
-<p>3、安裝遠端桌面軟體xrdp</p>
-<ul>
-<li><p>sudo apt-get install xrdp</p>
-<ul>
-<li>此時若打開xrdp的配置文件，可以看到默認的xrdp協定，遠 端桌面則是根據這個來請求遠端服務的。</li>
-</ul>
-</li>
-<li>sudo vim /etc/xrdp/xrdp.ini</li>
-</ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://i.imgur.com/1tOoyic.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<ul>
-<li>其中port = -1表示默認port(5910)作為登錄的接口，之後的連接可通過這個port連入相同的session（因為遠端連接的port一般可以兼容port5900到5910）如果需要更改連接的port可以在xrdp.ini文檔中修改port為port = ask59XX來請求連接。</li>
-</ul>
-<p>修改完畢後記得重啟xrdp：</p>
-<ul>
-<li>sudo service xrdp restart</li>
-</ul>
-<p>4、此時可以查看service port看是否處於LISTEN的狀態。</p>
-<ul>
-<li>netstat -utl</li>
-</ul>
-<p><strong>Important : 必須確保三個port處於監聽狀態</strong></p>
-<ul>
-<li>port 3389</li>
-<li>port 3350</li>
-<li>port 59XX</li>
-</ul>
-<p><img src="https://i.imgur.com/0BgAP4w.png" alt=""></p>
-<p>5、由於xrdp會開放3389的port作為遠端圖形化界面的窗口，因此還需要有相應的圖形化桌面套件。<br><strong>Ubuntu常用的桌面套件有三種，選擇一種安裝即可</strong></p>
-<ul>
-<li>安裝與設定Xfce<ul>
-<li>sudo apt install xfce4</li>
-<li>echo “xfce4-session” &gt; ~/.xsession </li>
-</ul>
-</li>
-<li>安裝與設定Lxde<ul>
-<li>sudo apt install lxde</li>
-<li>echo “lxsession -s LXDE -e LXDE” &gt; ~/.xession </li>
-</ul>
-</li>
-<li>安裝與設定Mate<ul>
-<li>sudo apt-add-repository ppa:ubuntu-mate-dev/ppa</li>
-<li>sudo apt-add-repository ppa:ubuntu-mate-dev/trusty-mate</li>
-<li>sudo apt update</li>
-<li>sudo apt install –no-install-recommends ubuntu-mate-core ubuntu-mate-desktop</li>
-<li>echo “mate-session” &gt; ~/.xsession</li>
-</ul>
-</li>
-</ul>
-<p>6、之後就可以使用遠端桌面連接Windows和Ubuntu了。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://i.imgur.com/PBsp6Sc.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<ul>
-<li>结果如下（Mate）：</li>
-</ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://i.imgur.com/a1PmzMs.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<h2 id="Common-Problem"><a href="#Common-Problem" class="headerlink" title="Common Problem"></a>Common Problem</h2><ul>
-<li>遠端連接出現error-problem connecting：<ul>
-<li>通常是因為vnc服務沒有架好，查看port的監聽狀態（詳見步驟3），如果只有3389和3350沒有5910的情況，則需要手動開啟相應的port進行連接。</li>
-</ul>
-</li>
-<li><strong>解決方法：</strong><ul>
-<li>vncserver : 1~9 (引號兩邊都需要空格)</li>
-<li>在xrdp設定檔中將prot從-1改為ask剛才開啟的port（vncserver設1則開啟5901以此類推）</li>
-</ul>
-</li>
-<li>遠端桌面連接進入出現灰色網格，無圖像，滑鼠變成X：<ul>
-<li>出現這種狀況通常是沒有安裝遠端桌面套件，導致圖形化界面無法呈現。</li>
-</ul>
-</li>
-<li><strong>解決方法：</strong><ul>
-<li>安裝三種遠端桌面套件的一種（詳見步驟5）</li>
-</ul>
-</li>
-</ul>
-<h2 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h2><p>一定要先安装tightvncserver等vnc服务才能安装xrdp，不要重复安装server。<br>如果需要卸载xrdp和vnc server，可以使用：</p>
-<ul>
-<li>sudo apt-get purge xrdp</li>
-<li>sudo apt-get purge tightvncserver</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h1&gt;&lt;p&gt;Ubuntu上的遠端鏈接比起windows系統自帶的Remo
-    
-    </summary>
-    
-    
-      <category term="Ubuntu" scheme="http://yoursite.com/tags/Ubuntu/"/>
-    
-      <category term="Remote Desktop" scheme="http://yoursite.com/tags/Remote-Desktop/"/>
-    
-      <category term="xrdp" scheme="http://yoursite.com/tags/xrdp/"/>
     
   </entry>
   
