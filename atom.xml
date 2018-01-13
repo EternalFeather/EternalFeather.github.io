@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-01-13T15:40:11.495Z</updated>
+  <updated>2018-01-13T15:42:42.872Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>design_pattern</title>
+    <title>Design Pattern</title>
     <link href="http://yoursite.com/2018/01/13/design-pattern/"/>
     <id>http://yoursite.com/2018/01/13/design-pattern/</id>
     <published>2018-01-13T15:39:42.000Z</published>
-    <updated>2018-01-13T15:40:11.495Z</updated>
+    <updated>2018-01-13T15:42:42.872Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Strategy-Pattern"><a href="#Strategy-Pattern" class="headerlink" title="Strategy Pattern"></a>Strategy Pattern</h1><h2 id="Design-Aspect"><a href="#Design-Aspect" class="headerlink" title="Design Aspect"></a>Design Aspect</h2><p><strong>An algorithm</strong></p>
 <ul>
