@@ -3659,9 +3659,9 @@
     </summary>
     
     
-      <category term="Deep Learning" scheme="http://yoursite.com/tags/Deep-Learning/"/>
-    
       <category term="Tensorflow" scheme="http://yoursite.com/tags/Tensorflow/"/>
+    
+      <category term="Deep Learning" scheme="http://yoursite.com/tags/Deep-Learning/"/>
     
       <category term="CUDA" scheme="http://yoursite.com/tags/CUDA/"/>
     
