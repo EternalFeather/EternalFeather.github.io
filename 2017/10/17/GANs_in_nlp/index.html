@@ -43,25 +43,27 @@
 <meta property="og:image" content="https://i.imgur.com/zHItvfh.png">
 <meta property="og:image" content="https://i.imgur.com/KPwBQhJ.png">
 <meta property="og:image" content="https://i.imgur.com/KCea4mp.png">
-<meta property="og:image" content="https://i.imgur.com/NJKd0XN.png">
-<meta property="og:image" content="https://i.imgur.com/8fTdAaI.png">
 <meta property="og:image" content="https://i.imgur.com/laWZZ2F.png">
 <meta property="og:image" content="https://i.imgur.com/ho6eo5j.png">
 <meta property="og:image" content="https://i.imgur.com/6qEmE69.png">
 <meta property="og:image" content="https://i.imgur.com/smaw7Mr.png">
 <meta property="og:image" content="https://i.imgur.com/Niw4Dfp.png">
 <meta property="og:image" content="https://i.imgur.com/SkFNT8j.png">
-<meta property="og:image" content="https://i.imgur.com/2J1WgZu.png">
-<meta property="og:image" content="https://i.imgur.com/NJKd0XN.png">
 <meta property="og:image" content="https://i.imgur.com/ZIYSgJI.png">
 <meta property="og:image" content="https://i.imgur.com/cyUf16J.png">
 <meta property="og:image" content="https://i.imgur.com/Gkuv6Xn.png">
 <meta property="og:image" content="https://i.imgur.com/HWSl6cC.png">
-<meta property="og:image" content="https://i.imgur.com/k9Of88Y.png">
 <meta property="og:image" content="https://i.imgur.com/NXU4Tem.png">
 <meta property="og:image" content="https://i.imgur.com/k9Of88Y.png">
+<meta property="og:image" content="https://i.imgur.com/A3LmpuI.png">
+<meta property="og:image" content="https://i.imgur.com/znxr8sJ.png">
+<meta property="og:image" content="https://i.imgur.com/V32hqvs.png">
+<meta property="og:image" content="https://i.imgur.com/NXU4Tem.png">
+<meta property="og:image" content="https://i.imgur.com/CSPLSng.png">
+<meta property="og:image" content="https://i.imgur.com/TylgMGA.png">
+<meta property="og:image" content="https://i.imgur.com/F5ZQHrU.png">
+<meta property="og:image" content="https://i.imgur.com/k9Of88Y.png">
 <meta property="og:image" content="https://i.imgur.com/BIthGKR.png">
-<meta property="og:image" content="https://i.imgur.com/FDmECAu.png">
 <meta property="og:image" content="https://i.imgur.com/mhx2hDy.png">
 <meta property="og:image" content="https://i.imgur.com/1oVPCoq.png">
 <meta property="og:image" content="https://i.imgur.com/Mj1HaTX.png">
@@ -81,6 +83,9 @@
 <meta property="og:image" content="https://i.imgur.com/qR2aCQF.png">
 <meta property="og:image" content="https://i.imgur.com/p6nEpTF.png">
 <meta property="og:image" content="https://i.imgur.com/w04YQ7F.png">
+<meta property="og:image" content="https://i.imgur.com/HNIeZqu.png">
+<meta property="og:image" content="https://i.imgur.com/FMeYe1T.png">
+<meta property="og:image" content="https://i.imgur.com/4aG1Sjc.png">
 <meta property="og:image" content="https://i.imgur.com/5nuwM7C.png">
 <meta property="og:image" content="https://i.imgur.com/We7q6hr.png">
 <meta property="og:image" content="https://i.imgur.com/YNKQOjk.png">
@@ -88,7 +93,7 @@
 <meta property="og:image" content="https://i.imgur.com/PrcrDaQ.png">
 <meta property="og:image" content="https://i.imgur.com/1QUo5yh.png">
 <meta property="og:image" content="https://i.imgur.com/rikhKho.png">
-<meta property="og:updated_time" content="2018-07-13T09:31:48.185Z">
+<meta property="og:updated_time" content="2018-07-13T09:42:06.626Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="细数生成对抗网络和自然语言处理的那些恩怨情仇">
 <meta name="twitter:description" content="文本生成的基础模型（Introduction）在众多NLP的task中，文本生成(Text Generation) 是一种结合了机器学习和自然语言处理等技术层面而衍生出来的应用。他的诞生在一定程度上诠释了当今这些技术的发展水平。例如前不久出现在网络上的Drumpf推文产生器。">
@@ -368,22 +373,10 @@
             </figure>
 <p>现在我们明确了一个道理：那就是在GANs训练过程中，当判别器到达了一个最佳状态的时候，生成器的目标就相当于最小化真实分布和生成分布之间的JS散度。<strong>我们越是训练判别器，生成器的损失函数（loss function）就会越接近JS散度的值</strong>。</p>
 <p>那么这又会引起什么问题呢？我们知道越是减小误差，JS散度就会越小，生成分布就会被带向真实分布。但是假如两个分布本身就存在维度差或者说两个分布本身就没有重合的部分呢？这个问题比较抽象，下面通过一些例子来介绍：</p>
-<p>首先介绍一下什么叫做两个分布没有重合的部分呢？维度差有是什么呢？怎么样的分布之间才算得上具有维度差呢？Wasserstein GAN告诉我们当<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://i.imgur.com/NJKd0XN.png" alt="](https://i.imgur.com/u2XkwvK.png)和![" title="">
-                </div>
-                <div class="image-caption">](https://i.imgur.com/u2XkwvK.png)和![</div>
-            </figure>的支撑集（support）是高维空间中的低维流形（manifold）时，两者重合的部分的测度（measure）为0。</p>
+<p>首先介绍一下什么叫做两个分布没有重合的部分呢？维度差有是什么呢？怎么样的分布之间才算得上具有维度差呢？Wasserstein GAN告诉我们当 <strong>Pg</strong> 和 <strong>Pr</strong> 的支撑集（support）是高维空间中的低维流形（manifold）时，两者重合的部分的测度（measure）为0。</p>
 <p>解释几个专有名词：</p>
 <ul>
-<li>支撑集（Support）：函数的非零部分的子集，例如ReLU的支撑集就是<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://i.imgur.com/8fTdAaI.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>，一个概率分布的支撑集就是他所有概率密度非零值得集合。</li>
+<li>支撑集（Support）：函数的非零部分的子集，例如ReLU的支撑集就是0到正无穷，一个概率分布的支撑集就是他所有概率密度非零值得集合。</li>
 <li>流形（manifold）：高维空间中的曲线、曲面的概念延伸。当两个分布的本质维度（intrinsic dimension）不同时，他们的自由度（二维的自由度包括长和宽）就会不同。</li>
 <li>测度（measure）：高维空间中的长度、面积、体积等测量指标的概念延伸。</li>
 </ul>
@@ -434,20 +427,8 @@
                 </div>
                 <div class="image-caption"></div>
             </figure><br>而唯有第四种情况的两个分布才有可能存在交集从而达到减小JS散度的目的。</p>
-<p>说完了JS散度在分布呈现不同状态时存在的问题，那么怎么样联想到GANs中呢？可以试想一下，如果现在的<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://i.imgur.com/2J1WgZu.png" alt="](https://i.imgur.com/GQp7abc.png)就是![](https://i.imgur.com/u2XkwvK.png)，而![](https://i.imgur.com/9Tmbfhd.png)就是![](https://i.imgur.com/NJKd0XN.png)。那么当判别器训练到最佳情况的时候，![](https://i.imgur.com/NJKd0XN.png)就会为0（相当于第二种情况），此时JS散度就是一个常数![" title="">
-                </div>
-                <div class="image-caption">](https://i.imgur.com/GQp7abc.png)就是![](https://i.imgur.com/u2XkwvK.png)，而![](https://i.imgur.com/9Tmbfhd.png)就是![](https://i.imgur.com/NJKd0XN.png)。那么当判别器训练到最佳情况的时候，![](https://i.imgur.com/NJKd0XN.png)就会为0（相当于第二种情况），此时JS散度就是一个常数![</div>
-            </figure>，这也就意味着生成器的损失函数对于他本身的超参数的偏微分结果为0——没有梯度！这样一来每一次的对抗学习都会让生成器陷入一个迷茫的状态，也就是梯度的消失（gradient vanishing）。</p>
-<p>总结一下，生成器的第一种损失函数是因为在判别器接近最优状态时，生成器的误差就相当于<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://i.imgur.com/NJKd0XN.png" alt="](https://i.imgur.com/u2XkwvK.png)和![" title="">
-                </div>
-                <div class="image-caption">](https://i.imgur.com/u2XkwvK.png)和![</div>
-            </figure>的JS散度。而所有的情况都指明了，在这种最优条件下，无论两个分布怎么变换，都会让梯度变成0或者无意义。这样一来<strong>GANs训练不稳定的原因也就清楚了</strong>。判别器训练得太好，生成器的梯度就会消失，判别器训练得不好，生成器的梯度就会不准确，四处乱跑。只有当判别器训练刚刚好火候的时候，GANs才能平稳地进行对抗训练。</p>
+<p>说完了JS散度在分布呈现不同状态时存在的问题，那么怎么样联想到GANs中呢？可以试想一下，如果现在的 <strong>P1</strong> 就是 <strong>Pr</strong> ，而 <strong>P2</strong> 就是 <strong>Pg</strong> 。那么当判别器训练到最佳情况的时候， <strong>Pg</strong> 就会为0（相当于第二种情况），此时JS散度就是一个常数 <strong>log2</strong> ，这也就意味着生成器的损失函数对于他本身的超参数的偏微分结果为0——没有梯度！这样一来每一次的对抗学习都会让生成器陷入一个迷茫的状态，也就是梯度的消失（gradient vanishing）。</p>
+<p>总结一下，生成器的第一种损失函数是因为在判别器接近最优状态时，生成器的误差就相当于 <strong>Pr</strong> 和 <strong>Pg</strong> 的JS散度。而所有的情况都指明了，在这种最优条件下，无论两个分布怎么变换，都会让梯度变成0或者无意义。这样一来<strong>GANs训练不稳定的原因也就清楚了</strong>。判别器训练得太好，生成器的梯度就会消失，判别器训练得不好，生成器的梯度就会不准确，四处乱跑。只有当判别器训练刚刚好火候的时候，GANs才能平稳地进行对抗训练。</p>
 <p>那么既然这种生成器的损失函数存在这样的问题，就以为着我们无法随心所欲地让模型自己朝着收敛的目标前进，势必会对训练模型造成影响。那么如果采用改进后的第二种损失函数呢？</p>
 <p>在论述第一个损失函数的时候我们已经证明了：</p>
 <figure class="image-bubble">
@@ -485,26 +466,82 @@
 <h3 id="KL散度的问题"><a href="#KL散度的问题" class="headerlink" title="KL散度的问题"></a>KL散度的问题</h3><p>比较一下<figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://i.imgur.com/k9Of88Y.png" alt="](https://i.imgur.com/NXU4Tem.png)和![" title="">
+                    <img src="https://i.imgur.com/NXU4Tem.png" alt="" title="">
                 </div>
-                <div class="image-caption">](https://i.imgur.com/NXU4Tem.png)和![</div>
-            </figure>可以发现：</p>
+                <div class="image-caption"></div>
+            </figure><br>和<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/k9Of88Y.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>可以发现：</p>
 <ul>
-<li><p>当<figure class="image-bubble">
+<li><p>当</p>
+<figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://i.imgur.com/NXU4Tem.png" alt="](https://i.imgur.com/A3LmpuI.png)而![](https://i.imgur.com/znxr8sJ.png)时，![](https://i.imgur.com/V32hqvs.png)，对![" title="">
+                    <img src="https://i.imgur.com/A3LmpuI.png" alt="" title="">
                 </div>
-                <div class="image-caption">](https://i.imgur.com/A3LmpuI.png)而![](https://i.imgur.com/znxr8sJ.png)时，![](https://i.imgur.com/V32hqvs.png)，对![</div>
-            </figure>的贡献趋近于0</p>
+                <div class="image-caption"></div>
+            </figure>
+<p>而</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/znxr8sJ.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>时，</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/V32hqvs.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>，对</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/NXU4Tem.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>的贡献趋近于0</p>
 </li>
-<li><p>当<figure class="image-bubble">
+<li><p>当</p>
+<figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://i.imgur.com/k9Of88Y.png" alt="](https://i.imgur.com/CSPLSng.png)而![](https://i.imgur.com/TylgMGA.png)时，![](https://i.imgur.com/F5ZQHrU.png)，对![" title="">
+                    <img src="https://i.imgur.com/CSPLSng.png" alt="" title="">
                 </div>
-                <div class="image-caption">](https://i.imgur.com/CSPLSng.png)而![](https://i.imgur.com/TylgMGA.png)时，![](https://i.imgur.com/F5ZQHrU.png)，对![</div>
-            </figure>的贡献趋近于无穷大。</p>
+                <div class="image-caption"></div>
+            </figure>
+<p>而</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/TylgMGA.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>时，<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/F5ZQHrU.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>，对</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/k9Of88Y.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>的贡献趋近于无穷大。</p>
 </li>
 </ul>
 <p>这些差异意味着什么呢？我们可以这样理解，KL散度对于以上两种方式定义的不同，也就侧面反映了生成器在面对判别器两种不同情况时候给出的判断。首先第一种情况下，错误来自于 <strong>“生成器没有办法生成真实的样本”</strong> ，这个时候的惩罚比较小（KL散度趋于0）。而第二种错误对应的错误则来自于 <strong>“生成器无法生成真实样本（当生成器的模型达到最佳状态的时候，判别器给出的分数仍然很低）”</strong> ，这个时候的惩罚是非常大的（KL散度趋于无穷大）。第一种误差让生成模型缺乏多样性，因为模型只是为了尽可能模仿真实样本进行输出。而第二种误差则让生成模型缺乏准确性，因为模型一旦尝试一些不一样的方法便会受到大量的惩罚。这样的权衡之下，模型和人一样是具有惰性的，在一切条件相近的前提下，模型宁可选择那些惩罚小的苟且方式而放弃挺而走险尝试不同的东西。这样一来生成器模型往往会选择接受第一种错误，而让生成的句子千篇一律，这在特征角度被定义为塌陷模式（collapse mode）。</p>
@@ -520,13 +557,7 @@
                 <div class="image-caption"></div>
             </figure>
 <p>左边的那个分布想要达到右边的状态，就必须移动制高点左边的那部分，而距离和量的考量就成为了当前的关键指标。</p>
-<p>那么这样的评估方式又有什么好处呢？为什么说他能够解决KL散度和JS散度所带来的问题呢？首先我们先要明确一下问题的本质，从之前的讨论可以看出，KL散度和JS散度在当判别器训练到最佳状态的时候存在的问题就是两个分布的重合部分可忽略或者不存在。这个时候我们得到的生成器的损失函数（是一个常数<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://i.imgur.com/FDmECAu.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>），除非能够让两个分布重合，这个时候才会突然变化成为最优解。这样一来我们的优化就缺少了一个所谓的“演化”过程，换句话说就是我们无法通过损失函数的改变来描述从好到不好的渐变过程，这样对于模型的训练是不利的。而利用Earth Mover distance我们就可以量化每一次更新之后的差异，从而还原这个重要的过程。具体情况如下图：</p>
+<p>那么这样的评估方式又有什么好处呢？为什么说他能够解决KL散度和JS散度所带来的问题呢？首先我们先要明确一下问题的本质，从之前的讨论可以看出，KL散度和JS散度在当判别器训练到最佳状态的时候存在的问题就是两个分布的重合部分可忽略或者不存在。这个时候我们得到的生成器的损失函数（是一个常数 <strong>log2</strong> ），除非能够让两个分布重合，这个时候才会突然变化成为最优解。这样一来我们的优化就缺少了一个所谓的“演化”过程，换句话说就是我们无法通过损失函数的改变来描述从好到不好的渐变过程，这样对于模型的训练是不利的。而利用Earth Mover distance我们就可以量化每一次更新之后的差异，从而还原这个重要的过程。具体情况如下图：</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -721,13 +752,31 @@
                 </div>
                 <div class="image-caption"></div>
             </figure>
-<p><strong>思路</strong>：不同于之前的RL方法，该论文在处理离散数据的问题上采用了新的方法——Gumbel Softmax。离散数据通常是用one-hot vector表示，并可以通过sampling的方式从一些多项式（例如softmax函数）中采样得到。采样的过程：<figure class="image-bubble">
+<p><strong>思路</strong>：不同于之前的RL方法，该论文在处理离散数据的问题上采用了新的方法——Gumbel Softmax。离散数据通常是用one-hot vector表示，并可以通过sampling的方式从一些多项式（例如softmax函数）中采样得到。采样的过程：<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://i.imgur.com/5nuwM7C.png" alt="](https://i.imgur.com/HNIeZqu.png)，其中的![](https://i.imgur.com/FMeYe1T.png)是服从Gumbel Distribution的分布函数。然而这样的函数在反向传递过程中是无法微分的，因此我们采用另一种表示方式：![](https://i.imgur.com/4aG1Sjc.png)，这样的方式通过调节温度系数![" title="">
+                    <img src="https://i.imgur.com/HNIeZqu.png" alt="" title="">
                 </div>
-                <div class="image-caption">](https://i.imgur.com/HNIeZqu.png)，其中的![](https://i.imgur.com/FMeYe1T.png)是服从Gumbel Distribution的分布函数。然而这样的函数在反向传递过程中是无法微分的，因此我们采用另一种表示方式：![](https://i.imgur.com/4aG1Sjc.png)，这样的方式通过调节温度系数![</div>
-            </figure>的值我们可以让softmax的分布在形式上尽可能逼近one-hot vector的形式，从而打破KL散度识别的误区。</p>
+                <div class="image-caption"></div>
+            </figure><br>，其中的<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/FMeYe1T.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>是服从Gumbel Distribution的分布函数。然而这样的函数在反向传递过程中是无法微分的，因此我们采用另一种表示方式：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/4aG1Sjc.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>，这样的方式通过调节温度系数<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/5nuwM7C.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>的值我们可以让softmax的分布在形式上尽可能逼近one-hot vector的形式，从而打破KL散度识别的误区。</p>
 <h2 id="Connecting-Generative-Adversarial-Networks-and-Actor-Critic-Methods"><a href="#Connecting-Generative-Adversarial-Networks-and-Actor-Critic-Methods" class="headerlink" title="Connecting Generative Adversarial Networks and Actor-Critic Methods"></a>Connecting Generative Adversarial Networks and Actor-Critic Methods</h2><ul>
 <li>论文链接：<a href="https://arxiv.org/pdf/1610.01945.pdf" target="_blank" rel="external">https://arxiv.org/pdf/1610.01945.pdf</a></li>
 <li><p>Key Points：Summarize the correlation between GAN and Actor-Critic</p>
@@ -833,7 +882,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-07-13T09:31:48.185Z" itemprop="dateUpdated">2018-07-13 17:31:48</time>
+    最后更新时间：<time datetime="2018-07-13T09:42:06.626Z" itemprop="dateUpdated">2018-07-13 17:42:06</time>
 </span><br>
 
 
@@ -916,18 +965,18 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2017/10/17/GAN/" id="post-prev" class="post-nav-link">
+      <a href="/2017/11/02/Algorithm/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">New GANs(对抗生成网络)</h4>
+        <h4 class="title">剑指offer算法编程题（Python、C++、Java）</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2017/08/29/CPU/" id="post-next" class="post-nav-link">
+      <a href="/2017/10/17/GAN/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Single Cycle MIPS CPU</h4>
+        <h4 class="title">New GANs(对抗生成网络)</h4>
       </a>
     </div>
   
