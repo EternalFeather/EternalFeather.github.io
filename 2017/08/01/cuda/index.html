@@ -20,23 +20,25 @@
     
     
     <meta name="keywords" content="Deep Learning,Tensorflow,CUDA,cuDNN">
-    <meta name="description" content="顯卡規格查詢首先需要確定自己顯卡的規格：1lspci -vnn | grep VGA -A 12                                                                                                            其中nvidia_375就是顯卡的規格指數，後面會用到。 安裝CUDA首先確保本機沒有其">
+    <meta name="description" content="顯卡規格查詢首先需要確定自己顯卡的規格：1lspci -vnn | grep VGA -A 12                                                                                                            其中nvidia_375就是顯卡的規格指數，後面會用到。 安裝CUDA 8.0前往CUD">
 <meta name="keywords" content="Deep Learning,Tensorflow,CUDA,cuDNN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu16.04配置深度學習開發環境（CUDA+CUDNN）">
 <meta property="og:url" content="http://yoursite.com/2017/08/01/cuda/index.html">
 <meta property="og:site_name" content="指尖の岁月">
-<meta property="og:description" content="顯卡規格查詢首先需要確定自己顯卡的規格：1lspci -vnn | grep VGA -A 12                                                                                                            其中nvidia_375就是顯卡的規格指數，後面會用到。 安裝CUDA首先確保本機沒有其">
+<meta property="og:description" content="顯卡規格查詢首先需要確定自己顯卡的規格：1lspci -vnn | grep VGA -A 12                                                                                                            其中nvidia_375就是顯卡的規格指數，後面會用到。 安裝CUDA 8.0前往CUD">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.imgur.com/Hqk5wzt.png">
 <meta property="og:image" content="https://i.imgur.com/uxl5TQY.png">
 <meta property="og:image" content="https://i.imgur.com/VsYqKL0.png">
+<meta property="og:image" content="https://i.imgur.com/dR3uJYQ.png">
+<meta property="og:image" content="https://i.imgur.com/wB9MVpO.png">
 <meta property="og:image" content="https://i.imgur.com/xnyMEH3.png">
 <meta property="og:image" content="https://i.imgur.com/qHCfJgT.png">
-<meta property="og:updated_time" content="2018-01-09T09:24:07.452Z">
+<meta property="og:updated_time" content="2018-07-26T03:56:53.818Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu16.04配置深度學習開發環境（CUDA+CUDNN）">
-<meta name="twitter:description" content="顯卡規格查詢首先需要確定自己顯卡的規格：1lspci -vnn | grep VGA -A 12                                                                                                            其中nvidia_375就是顯卡的規格指數，後面會用到。 安裝CUDA首先確保本機沒有其">
+<meta name="twitter:description" content="顯卡規格查詢首先需要確定自己顯卡的規格：1lspci -vnn | grep VGA -A 12                                                                                                            其中nvidia_375就是顯卡的規格指數，後面會用到。 安裝CUDA 8.0前往CUD">
 <meta name="twitter:image" content="https://i.imgur.com/Hqk5wzt.png">
     
         <link rel="alternate" type="application/atom+xml" title="指尖の岁月" href="/atom.xml">
@@ -159,7 +161,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#顯卡規格查詢"><span class="post-toc-number">1.</span> <span class="post-toc-text">顯卡規格查詢</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安裝CUDA"><span class="post-toc-number">2.</span> <span class="post-toc-text">安裝CUDA</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置CUDA環境"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">配置CUDA環境</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安裝cuDNN"><span class="post-toc-number">3.</span> <span class="post-toc-text">安裝cuDNN</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置cuDNN環境"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">配置cuDNN環境</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#設定環境變數"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">設定環境變數</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#查看配置結果"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">查看配置結果</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安裝Tensorflow-gpu"><span class="post-toc-number">4.</span> <span class="post-toc-text">安裝Tensorflow-gpu</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#顯卡規格查詢"><span class="post-toc-number">1.</span> <span class="post-toc-text">顯卡規格查詢</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安裝CUDA-8-0"><span class="post-toc-number">2.</span> <span class="post-toc-text">安裝CUDA 8.0</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置CUDA環境"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">配置CUDA環境</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安裝cuDNN-for-CUDA-8-0"><span class="post-toc-number">3.</span> <span class="post-toc-text">安裝cuDNN for CUDA 8.0</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置cuDNN環境"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">配置cuDNN環境</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#設定環境變數"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">設定環境變數</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安装CUDA-9-0"><span class="post-toc-number">4.</span> <span class="post-toc-text">安装CUDA 9.0</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置CUDA環境-1"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">配置CUDA環境</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安裝cuDNN-for-CUDA-9-0"><span class="post-toc-number">5.</span> <span class="post-toc-text">安裝cuDNN for CUDA 9.0</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置cuDNN環境-1"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">配置cuDNN環境</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#查看配置結果"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">查看配置結果</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安裝Tensorflow-gpu"><span class="post-toc-number">6.</span> <span class="post-toc-text">安裝Tensorflow-gpu</span></a></li></ol>
         </nav>
     </aside>
     
@@ -187,11 +189,7 @@
                 <div class="image-caption"></div>
             </figure>
 <p>其中<code>nvidia_375</code>就是顯卡的規格指數，後面會用到。</p>
-<h1 id="安裝CUDA"><a href="#安裝CUDA" class="headerlink" title="安裝CUDA"></a>安裝CUDA</h1><p>首先確保本機沒有其他版本的cuda。<br>可以通過執行:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get autoremove --purge cuda</div></pre></td></tr></table></figure></p>
-<p>前往<code>/usr/local/</code>路徑下確認cuda已經清空，如果殘留有cuda或cuda+版本號的文件，可通過指令進行刪除：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo rm -r /usr/local/cuda</div></pre></td></tr></table></figure></p>
-<p>如果此時執行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nvidia-smi</div></pre></td></tr></table></figure></p>
-<p>之後沒有反應，就可以開始進行下一步操作。</p>
-<p>前往<a href="https://developer.nvidia.com/cuda-80-ga2-download-archive" target="_blank" rel="external">CUDA 8.0下載</a>頁面選擇好系統參數進行下載。</p>
+<h1 id="安裝CUDA-8-0"><a href="#安裝CUDA-8-0" class="headerlink" title="安裝CUDA 8.0"></a>安裝CUDA 8.0</h1><p>前往<a href="https://developer.nvidia.com/cuda-80-ga2-download-archive" target="_blank" rel="external">CUDA 8.0下載</a>頁面選擇好系統參數進行下載。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -199,8 +197,8 @@
                 </div>
                 <div class="image-caption"></div>
             </figure>
-<h2 id="配置CUDA環境"><a href="#配置CUDA環境" class="headerlink" title="配置CUDA環境"></a>配置CUDA環境</h2><p>Installation Instructions:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install cuda-8-0</div></pre></td></tr></table></figure></p>
-<h1 id="安裝cuDNN"><a href="#安裝cuDNN" class="headerlink" title="安裝cuDNN"></a>安裝cuDNN</h1><p>前往<a href="https://developer.nvidia.com/rdp/cudnn-download" target="_blank" rel="external">cuDNN下載</a>點擊同意並選擇規格後開始下載。</p>
+<h2 id="配置CUDA環境"><a href="#配置CUDA環境" class="headerlink" title="配置CUDA環境"></a>配置CUDA環境</h2><p>Installation Instructions:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install cuda</div></pre></td></tr></table></figure></p>
+<h1 id="安裝cuDNN-for-CUDA-8-0"><a href="#安裝cuDNN-for-CUDA-8-0" class="headerlink" title="安裝cuDNN for CUDA 8.0"></a>安裝cuDNN for CUDA 8.0</h1><p>前往<a href="https://developer.nvidia.com/rdp/cudnn-download" target="_blank" rel="external">cuDNN下載</a>點擊同意並選擇規格後開始下載。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -214,6 +212,37 @@
 <p>將下面的指令復制到配置文件的末尾：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/usr/lib/nvidia-375</div><div class="line">export CUDA_HOME=/usr/local/cuda</div><div class="line">export PATH=$PATH:/usr/local/cuda/bin</div></pre></td></tr></table></figure>
 <p><strong>注意</strong>：其中的/usr/lib/nvidia-375就是之前查詢的顯卡規格。</p>
+<h1 id="安装CUDA-9-0"><a href="#安装CUDA-9-0" class="headerlink" title="安装CUDA 9.0"></a>安装CUDA 9.0</h1><p>前往<a href="https://developer.nvidia.com/cuda-90-download-archive" target="_blank" rel="external">CUDA 9.0下載</a>頁面選擇好系統參數進行下載。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/dR3uJYQ.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="配置CUDA環境-1"><a href="#配置CUDA環境-1" class="headerlink" title="配置CUDA環境"></a>配置CUDA環境</h2><p>Installation Instructions:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sudo dpkg -i cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64.deb</div><div class="line">sudo apt-key add /var/cuda-repo-&lt;version&gt;/7fa2af80.pub (其中的entity</div><div class="line">表示需要自行填写的部分,因版本可能不同,所以建议使用tab来联想不容易出错。)</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install cuda</div></pre></td></tr></table></figure></p>
+<p><strong>Tips ： 这时候就可以使用nvidia-smi指令确认nvidia驱动是否成功安装了。</strong></p>
+<h1 id="安裝cuDNN-for-CUDA-9-0"><a href="#安裝cuDNN-for-CUDA-9-0" class="headerlink" title="安裝cuDNN for CUDA 9.0"></a>安裝cuDNN for CUDA 9.0</h1><p><strong>p.s. cuDNN的下载需要注册账号</strong></p>
+<p>前往<a href="https://developer.nvidia.com/rdp/cudnn-download" target="_blank" rel="external">cuDNN下載</a>點擊同意並選擇規格後開始下載。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/wB9MVpO.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>不需要更改source code只需要下载runtime version即可。</p>
+<h2 id="配置cuDNN環境-1"><a href="#配置cuDNN環境-1" class="headerlink" title="配置cuDNN環境"></a>配置cuDNN環境</h2><ul>
+<li><p>Installing from a <strong>Tar</strong> File:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">tar -xzvf cudnn-9.0-linux-x64-v7.tgz</div><div class="line">（同样建议使用tab输入）</div><div class="line"></div><div class="line">sudo cp cuda/include/cudnn.h /usr/local/cuda/include</div><div class="line">sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64</div><div class="line">sudo chmod a+r /usr/local/cuda/include/cudnn.h</div><div class="line">/usr/local/cuda/lib64/libcudnn*</div></pre></td></tr></table></figure>
+</li>
+<li><p>Installing from a Debian File</p>
+<ul>
+<li>Install the runtime library:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo dpkg -i libcudnn7_7.0.3.11-1+cuda9.0_amd64.deb</div><div class="line">(tab不解释)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="查看配置結果"><a href="#查看配置結果" class="headerlink" title="查看配置結果"></a>查看配置結果</h2><p>配置完成後可以查看是否成功配置：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nvidia-smi -l</div></pre></td></tr></table></figure>
 <p>即可即時查看GPU的運作情況</p>
@@ -242,7 +271,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-01-09T09:24:07.452Z" itemprop="dateUpdated">2018-01-09 17:24:07</time>
+    最后更新时间：<time datetime="2018-07-26T03:56:53.818Z" itemprop="dateUpdated">2018-07-26 11:56:53</time>
 </span><br>
 
 
